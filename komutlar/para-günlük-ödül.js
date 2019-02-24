@@ -60,7 +60,7 @@ exports.run = async (bot, message, args) => {
         .setColor('#59FF4A')
         message.channel.send(embed);
 
-     //   db.set(`lastDaily_${message.author.id}`, Date.now());
+        db.set(`lastDaily_${message.author.id}`, Date.now());
       
         db.add(`bonus_${message.author.id}`, 1)
         db.add(`paracık_${message.author.id}`, amount);
