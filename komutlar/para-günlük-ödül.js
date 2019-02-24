@@ -56,7 +56,8 @@ exports.run = async (bot, message, args) => {
      //   db.set(`lastDaily_${message.author.id}`, Date.now());
       
         db.add(`bonus_${message.author.id}`, 1)
-        db.add(`paracık_${message.author.id}`, amount + bns == 5 ? "0" : "500");
+        db.add(`paracık_${message.author.id}`, amount);
+        db.add(`paracık_${message.author.id}`, bns == 5 ? "0" : "500");
         db.add(`paracık_${message.author.id}`, meslek === null  ? "0" : meslek);
     }
 }
