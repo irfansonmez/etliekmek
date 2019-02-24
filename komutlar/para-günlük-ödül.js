@@ -19,16 +19,28 @@ exports.run = async (bot, message, args) => {
         
     } else {
       
+      
+      let aB = bot.emojis.get(bot.emojiler.açıkB);
+      let aO = bot.emojis.get(bot.emojiler.açıkO);
+      let aN = bot.emojis.get(bot.emojiler.açıkN);
+      let aU = bot.emojis.get(bot.emojiler.açıkU);
+      let aS = bot.emojis.get(bot.emojiler.açıkS);
+      
+      let kO = bot.emojis.get(bot.emojiler.kapalıO);
+      let kN = bot.emojis.get(bot.emojiler.kapalıN);
+      let kU = bot.emojis.get(bot.emojiler.kapalıU);
+      let kS = bot.emojis.get(bot.emojiler.kapalıS);
+      
         const Durum = await db.fetch(`bonus_${message.author.id}`);
       
            
         var bns = ''
 
-                if (Durum === '1') { var bns = 'green' }
-                if (Durum === '2') { var bns = 'grey' }
-                if (Durum === '3') { var bns = 'red' }
-                if (Durum === '4') { var bns = 'yellow' }
-                if (Durum === '5') { var bns = 'yellow' }
+                if (Durum === '1') { var bns = `${aB} ${kO} ${kN} ${kU} ${kS}` }
+                if (Durum === '2') { var bns = `${aB} ${aO} ${kN} ${kU} ${kS}` }
+                if (Durum === '3') { var bns = `${aB} ${aO} ${aN} ${kU} ${kS}` }
+                if (Durum === '4') { var bns = `${aB} ${aO} ${aN} ${aU} ${kS}` }
+                if (Durum === '5') { var bns = `${aB} ${aO} ${aN} ${aU} ${aS}` }
       
         let meslekA = await db.fetch(`meslekA_${message.author.id}`);
         let meslek = await db.fetch(`meslek_${message.author.id}`);
@@ -36,7 +48,7 @@ exports.run = async (bot, message, args) => {
 
         const embed = new Discord.RichEmbed()
         .addField('Topladın!', `Başarıyla topladınız ${amount} TL!`)
-        .addField(`Meslek`, `Çalıştığı meslek: **${meslek === null  ? "Meslek sahibi değil" : `${meslekA}`}**\nMaaş: **${meslek === null  ? "0" : `${meslek}`}** `)
+        .addField(`Meslek`, `Çalıştığı meslek: **${meslek === null  ? "Meslek sahibi değil" : `${meslekA}`}**\nMaaş: **${meslek === null  ? "0" : `${meslek}`}**\nBonus: ${bns} `)
         .setColor('#59FF4A')
         message.channel.send(embed);
 
