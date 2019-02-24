@@ -49,12 +49,14 @@ exports.run = async (bot, message, args) => {
       
       const tplnB = await db.fetch(`bonus_${message.author.id}`); 
         var tbns = ''
-       if (tplnB == '5') { var tbns = `500` }
+       if (tplnB == '5') { var tbns = `${500 + amount}` }
+    //   if (tplnB == '1' || tplnB == '2' || tplnB == '3' || tplnB == '4' || tplnB === null || tplnB == '0') { var tbns = `0` }
+      
       
         const embed = new Discord.RichEmbed()
-        .addField('Topladın!', `Günlük Ödül: **${amount}TL**\nBonus Ödülü **${Durum == '5' ? '500TL' : 'Bonus tamamlanmamış'}**\nToplam Bonus+Günlük: **${ amount}TL**`)
+        .addField('Topladın!', `Günlük Ödül: **${amount}TL**\nBonus Ödülü **${Durum == '5' ? '500TL' : 'Bonus tamamlanmamış'}**\nToplam Bonus+Günlük: **${tbns || amount}TL**`)
         .addField(`Meslek`, `Çalıştığı meslek: **${meslek === null  ? "Meslek sahibi değil" : `${meslekA}`}**\nMaaş: **${meslek === null  ? "0" : `${meslek}`}**`)
-        .addField(`Bonus`, bns)
+        .addField(`Bonus`,`\n${bns}`)
         .setColor('#59FF4A')
         message.channel.send(embed);
 
