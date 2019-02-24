@@ -2,6 +2,7 @@ dependencies:
   array-sort: 1.0.0
   better-sqlite3: 5.4.0
   canvas: 2.3.1
+  canvas-constructor: 2.1.1
   chalk: 2.4.2
   cleverbot.io: 1.0.4
   cli-table: 0.3.1
@@ -20,7 +21,7 @@ dependencies:
   fortnite: 4.2.1
   fortnitetracker-7days-stats: 3.1.2
   generate-password: 1.4.1
-  gifencoder: 1.1.0
+  gifencoder: 2.0.1
   google-tts-api: 0.0.4
   hastebin-gen: 1.3.1
   helmet: 3.15.1
@@ -30,7 +31,7 @@ dependencies:
   json-server: 0.14.2
   level: 4.0.0
   level-session-store: 2.2.0
-  marked: 0.5.2
+  marked: 0.6.1
   math-expression-evaluator: 1.2.17
   mc-ping-updated: 0.1.0
   moment: 2.24.0
@@ -56,10 +57,10 @@ dependencies:
   superagent: 4.1.0
   table: 5.2.3
   useful-package: 0.0.64
-  useful-tools: 0.0.33
+  useful-tools: 0.2.6
   xml2js: 0.4.19
   xmlhttprequest: 1.8.0
-  ytdl-core: 0.28.3
+  ytdl-core: 0.29.1
 packages:
   /@babel/polyfill/7.2.5:
     dependencies:
@@ -723,6 +724,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs=
+  /canvas-constructor/2.1.1:
+    dev: false
+    engines:
+      node: '>=8.6.0'
+    peerDependencies:
+      canvas: '*'
+    resolution:
+      integrity: sha512-FFbLj5bHigNneiTo0UNt9PPRLrJCX0QHwrgJVJmywPaeqYNbBsrRSKtlEK8tL7XTRdz781BhQCDw/NGoVil2Dw==
   /canvas/2.3.1:
     dependencies:
       nan: 2.12.1
@@ -1780,10 +1789,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Xv+OPmhNVprkyysSgmBOi6YhSfo=
-  /gifencoder/1.1.0:
+  /gifencoder/2.0.1:
+    dependencies:
+      canvas: 2.3.1
     dev: false
     resolution:
-      integrity: sha512-MVh++nximxsp8NaNRfS1+MmCviZ4wi7HhuvX8eHrfNn//1mqi8Eb03tKs6Z+lIIcSEySJ6PmS1VPZ+HdtEMlfg==
+      integrity: sha512-x19DcyWY10SkshBpokqFOo/HBht9GB75evRYvaLMbez9p+yB/o+kt0fK9AwW59nFiAMs2UUQsjv1lX/hvu9Ong==
   /github-from-package/0.0.0:
     dev: false
     resolution:
@@ -2607,13 +2618,13 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-bJzx6nMoP6PDLPBFmg7+xRKeFZvFboMrGlxmNj9ClvX53KrmvM5bXFXEWjbz4cz1AFn+jWJ9z/DJSz7hrs0w3w==
-  /marked/0.5.2:
+  /marked/0.6.1:
     dev: false
     engines:
       node: '>=0.10.0'
     hasBin: true
     resolution:
-      integrity: sha512-fdZvBa7/vSQIZCi4uuwo2N3q+7jJURpMVCcbaX0S1Mg65WZ5ilXvC67MviJAsdjqqgD+CEq4RKo5AYGgINkVAA==
+      integrity: sha512-+H0L3ibcWhAZE02SKMqmvYsErLo4EAVJxu5h3bHBBDvvjeWXtl92rGUSBYHL2++5Y+RSNgl8dYOAXcYe7lp1fA==
   /math-expression-evaluator/1.2.17:
     dev: false
     resolution:
@@ -4321,12 +4332,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-hgy702UjhvEe/b+1qed5KBtwlYJ5cYzzEBD/yVQSZKeiAodaeop+rPyLZ37bKcZTldtt9tWjIBS0B/+NKhegHw==
-  /useful-tools/0.0.33:
+  /useful-tools/0.2.6:
     dependencies:
       npm: 6.8.0
+    deprecated: true
     dev: false
     resolution:
-      integrity: sha512-lsn0T4a/a9JWGoHnPRBe/CzSBevexTYhU0HndXmXDYayBj8jnFLPRvRvOicUxtpeEm0RrAop+cklynfh1FtcsA==
+      integrity: sha512-MKTYzAJd3q10Lfpy4r/dLSeyK/iqLfuZtdVNRBg875h8vx82dERIiP8ep2hoJkTVf/jatXCRSjksJUy8ZX9jMA==
   /utif/2.0.1:
     dependencies:
       pako: 1.0.8
@@ -4530,7 +4542,7 @@ packages:
     dev: false
     resolution:
       integrity: sha1-x+sXyT4RLLEIb6bY5R+wZnt5pfk=
-  /ytdl-core/0.28.3:
+  /ytdl-core/0.29.1:
     dependencies:
       html-entities: 1.2.1
       m3u8stream: 0.6.2
@@ -4540,14 +4552,15 @@ packages:
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-PbUEY7viwO6mJjsZN3vpnjNfpB747rNva3YbOJ9iTM9MtDt2CFcZov4K3Agf22pt/EuPc4zKnk/97K7TeS04yw==
+      integrity: sha512-J/TW3rupqE6y+TczHTTFjuwf23tweA9fasmnbU/5yYH0O2IRFLcwgHbbvEPt3t8mtXWGX207+TWH7uuJpB1FKQ==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   array-sort: ^1.0.0
-  better-sqlite3: ^5.0.1
-  canvas: ^2.1.0
+  better-sqlite3: ^5.4.0
+  canvas: ^2.3.1
+  canvas-constructor: ^2.1.0
   chalk: ^2.4.1
   cleverbot.io: ^1.0.4
   cli-table: ^0.3.1
@@ -4564,22 +4577,22 @@ specifiers:
   ffmpeg-binaries: ^4.0.0
   figlet: ^1.2.1
   fortnite: ^4.1.1
-  fortnitetracker-7days-stats: ^3.1.1
+  fortnitetracker-7days-stats: ^3.1.2
   generate-password: ^1.4.1
-  gifencoder: ^1.1.0
+  gifencoder: ^2.0.1
   google-tts-api: ^0.0.4
   hastebin-gen: ^1.3.1
-  helmet: ^3.15.0
-  inquirer: ^6.2.1
+  helmet: ^3.15.1
+  inquirer: ^6.2.2
   isgd: ^1.1.3
   jimp: ^0.6.0
-  json-server: ^0.14.0
+  json-server: ^0.14.2
   level: ^4.0.0
-  level-session-store: ^2.1.0
-  marked: ^0.5.2
+  level-session-store: ^2.2.0
+  marked: ^0.6.1
   math-expression-evaluator: ^1.2.17
   mc-ping-updated: ^0.1.0
-  moment: ^2.22.2
+  moment: ^2.24.0
   moment-duration-format: ^2.2.2
   node-google-translate-skidz: ^1.1.2
   node-superfetch: ^0.1.9
@@ -4594,15 +4607,15 @@ specifiers:
   quick.db: ^7.0.0-b15
   quick.hook: ^1.5.1
   request: ^2.88.0
-  request-promise-native: ^1.0.5
+  request-promise-native: ^1.0.7
   simple-youtube-api: ^5.1.1
-  speedtest-net: ^1.4.3
+  speedtest-net: ^1.5.1
   steam-market-search: ^1.0.8
   steam-provider: ^0.2.0
   superagent: ^4.0.0
   table: ^5.1.1
   useful-package: ^0.0.64
-  useful-tools: ^0.0.33
+  useful-tools: ^0.2.6
   xml2js: ^0.4.19
   xmlhttprequest: ^1.8.0
-  ytdl-core: ^0.28.0
+  ytdl-core: ^0.29.0

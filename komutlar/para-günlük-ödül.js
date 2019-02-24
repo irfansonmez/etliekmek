@@ -18,6 +18,18 @@ exports.run = async (bot, message, args) => {
         message.channel.send(embed);
         
     } else {
+      
+        const Durum = await db.fetch(`bonus_${message.author.id}`);
+      
+           
+        var bns = ''
+
+                if (Durum === '1') { var bns = 'green' }
+                if (Durum === '2') { var bns = 'grey' }
+                if (Durum === '3') { var bns = 'red' }
+                if (Durum === '4') { var bns = 'yellow' }
+                if (Durum === '5') { var bns = 'yellow' }
+      
         let meslekA = await db.fetch(`meslekA_${message.author.id}`);
         let meslek = await db.fetch(`meslek_${message.author.id}`);
         
@@ -28,7 +40,9 @@ exports.run = async (bot, message, args) => {
         .setColor('#59FF4A')
         message.channel.send(embed);
 
-        db.set(`lastDaily_${message.author.id}`, Date.now());
+     //   db.set(`lastDaily_${message.author.id}`, Date.now());
+      
+        db.add(`bonus_${message.author.id}`, 1)
         db.add(`paracık_${message.author.id}`, amount);
         db.add(`paracık_${message.author.id}`, meslek === null  ? "0" : meslek);
     }

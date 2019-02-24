@@ -64,7 +64,12 @@ client.emojiler = {
    "yan": "538809641036152853", // > GİBİ EMOJİ İŞTE :ç
    "olumlu": "",
    "olumsuz": "",
-
+  
+  // BONUS EMOJİLERİ --------------
+  
+  "açıkB": "",
+  "açıkO": "",
+  "açıkN":
 }
 
 client.ayarlar = {
