@@ -41,14 +41,18 @@ exports.run = async (bot, message, args) => {
                 if (Durum == '1' || Durum == '2') { var bns = `${aB} ${aO} ${kN} ${kU} ${kS}` }
                 if (Durum == '3') { var bns = `${aB} ${aO} ${aN} ${kU} ${kS}` }
                 if (Durum == '4') { var bns = `${aB} ${aO} ${aN} ${aU} ${kS}` }
-                if (Durum == '5') { var bns = `${aB} ${aO} ${aN} ${aU} ${aS} Bonusu tamamladığınız için ekstra **500TL** kazandınız. Toplam kazanılan para: **${amount + 500}TL**` }
+                if (Durum == '5') { var bns = `${aB} ${aO} ${aN} ${aU} ${aS}` }
       
         let meslekA = await db.fetch(`meslekA_${message.author.id}`);
         let meslek = await db.fetch(`meslek_${message.author.id}`);
         
-
+      
+      const tplnB = await db.fetch(`bonus_${message.author.id}`); 
+        var tbns = ''
+       if (tplnB == '5') { var tbns = `500` }
+      
         const embed = new Discord.RichEmbed()
-        .addField('Topladın!', `Başarıyla topladınız ${amount} TL!`)
+        .addField('Topladın!', `Günlük Ödül: **${amount}TL**\nBonus Ödülü **${Durum == '5' ? '500TL' : 'Bonus tamamlanmamış'}**\nToplam Bonus+Günlük: **${ amount}TL**`)
         .addField(`Meslek`, `Çalıştığı meslek: **${meslek === null  ? "Meslek sahibi değil" : `${meslekA}`}**\nMaaş: **${meslek === null  ? "0" : `${meslek}`}**`)
         .addField(`Bonus`, bns)
         .setColor('#59FF4A')
@@ -58,7 +62,7 @@ exports.run = async (bot, message, args) => {
       
         db.add(`bonus_${message.author.id}`, 1)
         db.add(`paracık_${message.author.id}`, amount);
-        db.add(`paracık_${message.author.id}`, bns == 5 ? "0" : "500");
+        db.add(`paracık_${message.author.id}`, bns == 5 ? "500" : "0");
         db.add(`paracık_${message.author.id}`, meslek === null  ? "0" : meslek);
       
     }
