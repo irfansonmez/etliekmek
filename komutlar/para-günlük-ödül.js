@@ -16,8 +16,38 @@ exports.run = async (bot, message, args) => {
         .setColor('#FFBA4A')
         .setDescription(`Bunu zaten topladın lütfen bekleyin **${timeObj.hours} saat ${timeObj.minutes} dakika**!`)
         message.channel.send(embed);
-        
-    } else {
+        return
+    } 
+  
+  if(args[0] == 'bonus') {
+      
+      let aB = bot.emojis.get(bot.emojiler.açıkB);
+      let aO = bot.emojis.get(bot.emojiler.açıkO);
+      let aN = bot.emojis.get(bot.emojiler.açıkN);
+      let aU = bot.emojis.get(bot.emojiler.açıkU);
+      let aS = bot.emojis.get(bot.emojiler.açıkS);
+      
+      let kO = bot.emojis.get(bot.emojiler.kapalıO);
+      let kN = bot.emojis.get(bot.emojiler.kapalıN);
+      let kU = bot.emojis.get(bot.emojiler.kapalıU);
+      let kS = bot.emojis.get(bot.emojiler.kapalıS);
+    
+    
+     var bns = ''
+
+                if (Durum == '1' || Durum == null || Durum == '0') { var bns = `${aB} ${kO} ${kN} ${kU} ${kS}` }
+                if (Durum == '2') { var bns = `${aB} ${aO} ${kN} ${kU} ${kS}` }
+                if (Durum == '3') { var bns = `${aB} ${aO} ${aN} ${kU} ${kS}` }
+                if (Durum == '4') { var bns = `${aB} ${aO} ${aN} ${aU} ${kS}` }
+                if (Durum == '5') { var bns = `${aB} ${aO} ${aN} ${aU} ${aS}` }
+    
+    
+    let embed = await Discord.RichEmbed()
+    
+    .setColor('RANDOM')
+    
+    
+  }
       
       
       let aB = bot.emojis.get(bot.emojiler.açıkB);
@@ -59,7 +89,17 @@ exports.run = async (bot, message, args) => {
         db.add(`paracık_${message.author.id}`, amount);
         db.add(`paracık_${message.author.id}`, bns == 5 ? "0" : "500");
         db.add(`paracık_${message.author.id}`, meslek === null  ? "0" : meslek);
-    }
+      
+      
+     
+
+    
+    
+    
+    
+    
+  
+  
 }
 exports.conf = {
   enabled: true,
