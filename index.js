@@ -2841,11 +2841,17 @@ client.on("message", async msg => {
     if (msg.channel.type === "dm") return;
     if(msg.author.bot) return;  
     
-    if (msg.content.length > 70000000000000000000000000000000000000000000) {
+    if (msg.content.length > 70) {
       
       db.add(`puancik_${msg.author.id + msg.guild.id}`, 1)
   };
   
+     if (db.fetch(`bonus_${msg.author.id}`) > 5) {
+
+     db.delete(`bonus_${msg.author.id}`)
+
+}
+    
     if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 150) {
       
       db.add(`seviye_${msg.author.id + msg.guild.id}`, 1)
