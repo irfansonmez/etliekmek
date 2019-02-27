@@ -17,17 +17,20 @@ request(`https://simsekapi.cf/tmpuye/${args[1]}`, function (error, response, bod
     else if (!error) {
         var veri = JSON.parse(body);
       
-      if(veri.kullaniciadi == undefined) {
+      if(veri.katilmatarihi == undefined) {
         const e = new Discord.RichEmbed()
         .setColor('RED')
         .setDescription('Kullanıcı bulunamadı lütfen doğru id giriniz.')
+        message.channel.send(e)
+        
         return 
       }
       
       if(veri.profilresmi == undefined) {
-        const e = new Discord.RichEmbed()
+        const em = new Discord.RichEmbed()
         .setColor('RED')
         .setDescription('Kullanıcı bulunamadı lütfen doğru id giriniz.')
+         message.channel.send(em)
         return 
       }
       
