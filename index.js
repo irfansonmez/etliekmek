@@ -652,7 +652,7 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
     }
   
   var dill = 'tr'
-    if(db.has(`dil_${message.guild.id}`) === true) {
+    if(db.has(`lang_${message.guild.id}`) === true) {
         var dill = 'en'
     }
     const dil = client[dill]

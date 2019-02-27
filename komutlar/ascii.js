@@ -2,11 +2,11 @@ const Discord = require('discord.js');
 const oneLine = require('common-tags').oneLine;
 const ascii = require('figlet');
 
-exports.run = function(client, message, args) {
+exports.run = function(client, message, args, dil) {
 
   const db = require('quick.db');
 
-  
+  if(dil == "tr") {
   var yazi = args.slice(0).join(' ');
   if (yazi.length < 1) {
     let embed = new Discord.RichEmbed()
@@ -31,6 +31,9 @@ exports.run = function(client, message, args) {
           code: 'text'
         })
       })
+} else if(dil == "en"){
+  
+  
   
 };  
 

@@ -8,7 +8,7 @@ exports.run = (client, message, args, dil, dill) => {
 
       db.set(`afks_${message.author.id}`, sebep)
   
-  if (dill === "tr") {
+  if (dill == "tr") {
     message.reply(`artık **${sebep}** sebebi ile AFK modundasın!`)
   }
   
