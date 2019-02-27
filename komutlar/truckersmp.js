@@ -17,11 +17,25 @@ request(`https://simsekapi.cf/tmpuye/${args[1]}`, function (error, response, bod
     else if (!error) {
         var veri = JSON.parse(body);
       
+      if(veri.kullaniciadi == undefined) {
+        const e = new Discord.RichEmbed()
+        .setColor('RED')
+        .setDescription('Kullanıcı bulunamadı lütfen doğru id giriniz.')
+        return 
+      }
+      
+      if(veri.profilresmi == undefined) {
+        const e = new Discord.RichEmbed()
+        .setColor('RED')
+        .setDescription('Kullanıcı bulunamadı lütfen doğru id giriniz.')
+        return 
+      }
+      
       let sayfa = [`**${veri.kullaniciadi}** Truckers MP Bilgileri
       
       Katılma Tarihi: **${veri.katilmatarihi}**
-      Ban Durumu: **${veri.katilmatarihi === 'evet' ? 'Ban Yememiş' : 'Ban Yemiş'}**
-      Adminmi: **${veri.banlimi}**
+      Ban Durumu: **${veri.banlimi === 'evet' ? 'Ban Yememiş' : 'Ban Yemiş'}**
+      Adminmi: **${veri.adminmi}**
       Grubu: **${veri.grubu}**
       Profil Resmi: **${veri.profilresmi}**
       `]
