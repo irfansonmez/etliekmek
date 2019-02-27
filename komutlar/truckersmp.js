@@ -73,22 +73,22 @@ request(`https://simsekapi.glitch.me/tmptrafik`, function (error, response, body
  // if(!args[1]) return message.channel.send(`Lütfen bir oyuncunun steam id yazınız. ${prefix}truckersmp kullanıcı steam-id`)
     
     var request = require('request');
-request(`https://simsekapi.glitch.me/tmptrafik`, function (error, response, body) {
+request(`https://simsekapi.glitch.me/tmpsd`, function (error, response, body) {
     if (error) return message.channel.send('Hata:', error);
     else if (!error) {
         var veri = JSON.parse(body);
       
       let sayfa = [`Euro Truck Simulator MP Trafik Durumu
       
-     Avrupa 1: **${veri.ets2avrupa1 + veri.ets2avrupa1do}
-     Avrupa 2: ${veri.ets2avrupa2 + veri.ets2avrupa2do}
-     Avrupa 3: ${veri.ets2avrupa3 + veri.ets2avrupa3do}
-     Avrupa 4: ${veri.ets2avrupa4 + veri.ets2avrupa4do}
+     Avrupa 1: **${veri.ets2avrupa1} ${veri.ets2avrupa1do}**
+     Avrupa 2: **${veri.ets2avrupa2} ${veri.ets2avrupa2do}**
+     Avrupa 3: **${veri.ets2avrupa3} ${veri.ets2avrupa3do}**
+     Avrupa 4: **${veri.ets2avrupa4} ${veri.ets2avrupa4do}**
 
      American Truck Simulator MP Trafik Durumu
 
-     Amerika 1: ${veri.atsamerika + veri.atsamerikado}
-     Amerika 2: ${veri.atsamerika2 + veri.atsamerika2do}
+     Amerika 1: **${veri.atsamerika} ${veri.atsamerikado}**
+     Amerika 2: **${veri.atsavrupa2} ${veri.atsavrupa2do}**
 
       `]
       
