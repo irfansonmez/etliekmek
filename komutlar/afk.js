@@ -1,19 +1,35 @@
 const Discord = require('discord.js');
 const db = require("quick.db");
 
-exports.run = (client, message, args, dil, dill) => {
+exports.run = async (client, message, args) => {
       
       let sebep = args.slice(0).join(" ");
-      if (!sebep) return message.reply('Lütfen afk olma sebebinizi giriniz.');
+      
 
-      db.set(`afks_${message.author.id}`, sebep)
+      let dil = await db.fetch(`lang_${message.guild.id}`)  
+     
   
-  if (dill == "tr") {
-    message.reply(`artık **${sebep}** sebebi ile AFK modundasın!`)
+  if (dil === "tr") {
+    
+    if (!sebep) {
+   message.channel.send('Lütfen afk olma sebebinizi giriniz.')
+    return
+    }
+    message.channel.send(`artık **${sebep}** sebebi ile AFK modundasın!`)
+    
+    db.set(`afks_${message.author.id}`, sebep)
+    return
   }
   
-  if (dill === "en") {
-    message.reply(`You are in AFK mode now! Reason: **${sebep}**`)
+  if (dil === "en") {
+     if (!sebep){
+   message.channel.send('Please enter your reason for being afk.')
+       return
+     }
+    
+    message.channel.send(`You are in AFK mode now! Reason: **${sebep}**`)
+    db.set(`afks_${message.author.id}`, sebep)
+    return
   }
   
 };
