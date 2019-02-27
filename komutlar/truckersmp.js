@@ -56,6 +56,7 @@ request(`https://simsekapi.cf/tmpuye/${args[1]}`, function (error, response, bod
   
     if(args[0] === 'trafik'){
     
+      
  // if(!args[1]) return message.channel.send(`Lütfen bir oyuncunun steam id yazınız. ${prefix}truckersmp kullanıcı steam-id`)
     
     var request = require('request');
