@@ -312,7 +312,7 @@ message.guild.createChannel(`🎮》LOL`, 'voice')
     channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
     message.guild.createChannel(`🎮》ROBLOX`, 'voice')
     .then(channel =>
-     channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
+     channel.setParent(message.guild.channels.find(channel => channel.name === `|▬▬|OYUN ODALARI|▬▬|`)))
      message.guild.createChannel(`🎮》WOLFTEAM`, 'voice')
      .then(channel =>
       channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
