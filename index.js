@@ -1222,7 +1222,7 @@ client.on("message", async msg => {
   const args = msg.content.trim().split(/ +/g);
   const fAK = await  db.fetch(`filtreAK_${msg.guild.id}`);
   let mesaj = args.slice(1).join(' ');
-  const filtre = await db.fetch(`filtre_${msg.guild.id}_${mesaj}`);
+  const filtre = await db.fetch(`filtre_${msg.guild.id}`);
   
   if(fAK == 'kapalı') return;
   if(fAK == 'açık') {
