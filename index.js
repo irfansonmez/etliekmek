@@ -1224,19 +1224,27 @@ client.on("message", async msg => {
   let mesaj = args.slice(1).join(' ');
   const filtre = await db.fetch(`filtre_${msg.guild.id}`);
   
-  if(fAK == 'kapalı') return;
+  if(fAK === null) return;
   if(fAK == 'açık') {
     
     
     
       const fltr = filtre
    if (fltr.some(word => msg.content.includes(word))) {
-    msg.delete();
-   
-    msg.channel.send('Bu sunucuda yasaklanmış bir kelimeyi kullandığınız için mesajınızı sildim')
+  if (!msg.member.hasPermission("ADMINISTRATOR")) {
+    msg.delete()
      
+     
+   var k = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor("Filtre Sistemi")
+        .setDescription(`Bu sunucuda yasaklanmış bir kelimeyi kullandınız, bu yüzden mesajınızı sildim.`)
+        msg.channel.send(k).then(message => message.delete(5000));
+     
+  return;
   }
-  }
+  } }
+    
   
   
   
