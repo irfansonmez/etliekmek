@@ -3,12 +3,12 @@ const db = require('quick.db');
 
 exports.run = async (client, message, args, params) => { 
   
-
+const filtreler = await db.fetch(`filtreK_${message.guild.id}_${args[0]}`)
   
   //if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu komutu kullanabilmek için **Yönetici** iznine sahip olmalısın!`); 
     
   if (!args[0]) return message.reply(`Lütfen yasaklamak istediğiniz kelimeyi giriniz`)
-  
+  if(filtreler == args[0]) return message.channel.send(`Zaten böyle bir filtre eklenmiş`)
     
   if (client.commands.get(args[0])) return message.reply(`Botun komudunu yasaklayamazsın.`)
   if (client.aliases.get(args[0])) return message.reply(`Botun komudunu yasaklayamazsın.`)
@@ -20,6 +20,7 @@ exports.run = async (client, message, args, params) => {
  let kelimeler = args[0]
   
   var a = db.push(`filtre_${message.guild.id}`, kelimeler)
+  db.set(`filtreK_${message.guild.id}_${args[0]}`, args[0])
   db.set(`filtreAK_${message.guild.id}`, "açık");
   //var a = db.push(`aciklama_${message.guild.id}`, args.slice(1).join(' '))
 

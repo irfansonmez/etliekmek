@@ -5,31 +5,31 @@ exports.run = async (client, message, args, params) => {
   
 const s = await db.fetch(`filtre_${message.guild.id}`);
 const prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-
+const argss = args[0]
+  
+  
 if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.')
   
   if(!args[0]) return message.channel.send(`Silmek istediğiniz filtreyi girmeniz gerek örnek: **${prefix}filtre-sil <silmek istediğiniz filtre>**`)
   
  
-  /*
- let kelimeler = args[0]
+
+  const filtreler = await db.fetch(`filtreK_${message.guild.id}_${args[0]}`);
   
-  var a = db.delete(`filtre_${message.guild.id}`)
   
- */
-  
-          const fltr = s
-   db.fetch(`filtre_${message.guild.id}`).forEach(s => {
-     if(s == args[0]) {
+  if(filtreler == args[0]) {
+          
+         const fltr = s
+   if (fltr.some(word => argss.includes(word))) {
      
-  let x = args[0] //silinecek şey yani
+let x = args[0] //silinecek şey yani
 let arr = []
 db.fetch(`filtre_${message.guild.id}`).forEach(v => {
 if (v !== x) {
 arr.push(v)
 }
 })
-db.set(`filtre_${message.guild.id}`, arr)
+db.set(`filtre_${msg.guild.id}`, arr)
 
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
