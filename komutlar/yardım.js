@@ -297,23 +297,26 @@ ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
   
 
 
-  if(x === 'ayarlar') {
+  if(x === 'ayarlar' || x === 'ayar') {
 
     let ayar = [`**${bot.user.username} | Ayar komutları**
 
+${yana} **${prefix}filtre-ekle**: Sunucunuza kelime filtresi eklemenizi sağlar
+${yana} **${prefix}filtre-sil**: Sunucunuzda eklediğiniz bir filtreyi silmenize yarar
+${yana} **${prefix}filtre-liste**: Sunucunuza eklenmiş kelime filtrelerini gösterir
 ${yana} **${prefix}davet-kanal-ayarla**: Davet kanalını ayarlar. 
 ${yana} **${prefix}destek-kanal-ayarla**: Gelişmiş Destek Sistemindeki destek kanalını değiştirmenizi sağlar. 
 ${yana} **${prefix}destek-rol-ayarla**: Gelişmiş Destek Sistemindeki destek ekibi rolünü değiştirmenizi sağlar. 
 ${yana} **${prefix}giriş-mesaj-ayarla**: Giriş mesajını değiştirmenizi sağlar. 
 ${yana} **${prefix}giriş-çıkış-ayarla**: Giriş çıkış kanalını ayarlar. 
+${yana} **${prefix}çıkış-mesaj-ayarla**: Çıkış mesajını değiştirmenizi sağlar. 
 ${yana} **${prefix}küfür-engelle**: Küfür engelleme sistemini açıp kapatmanızı sağlar. 
 ${yana} **${prefix}link-engelle**: Lİnk engelleme sistemini açıp kapatmanızı sağlar. 
-${yana} **${prefix}log-ayarla**: Sunucu kayıtları kanalını ayarlar. 
-${yana} **${prefix}oto-rol-ayarla**: Sunucuya birisi katıldıgında verilecek rolü ayarlar. 
 ${yana} **${prefix}sayaç-ayarla**: Sayacı ayarlar. 
 ${yana} **${prefix}sayaç-kanal-ayarla**: Sayaç kanalını ayarlar. 
+${yana} **${prefix}log-ayarla**: Sunucu kayıtları kanalını ayarlar. 
+${yana} **${prefix}oto-rol-ayarla**: Sunucuya birisi katıldıgında verilecek rolü ayarlar. 
 ${yana} **${prefix}tag-ayarla**: Sunucuya katılan üyeye otomatik tag verir 
-${yana} **${prefix}çıkış-mesaj-ayarla**: Çıkış mesajını değiştirmenizi sağlar. 
 ${yana} **${prefix}ön-ek**: Botun ön ekini sunucuya özel olarak değiştirir.
 
 ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
