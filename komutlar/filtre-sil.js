@@ -19,8 +19,8 @@ if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bu
   
   if(filtreler == args[0]) {
           
-         const fltr = s
-   if (fltr.some(word => argss.includes(word))) {
+      
+   
      
 let x = args[0] //silinecek şey yani
 let arr = []
@@ -29,8 +29,8 @@ if (v !== x) {
 arr.push(v)
 }
 })
-db.set(`filtre_${msg.guild.id}`, arr)
-
+db.set(`filtre_${message.guild.id}`, arr)
+db.delete(`filtreK_${message.guild.id}_${args[0]}`);
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
    .setDescription(`Sunucudaki ${args[0]} filtresi silindi`) 
