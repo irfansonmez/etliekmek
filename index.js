@@ -1221,12 +1221,13 @@ client.on("message", async msg => {
   //const args = msg.content.slice.split(' ');
   const args = msg.content.trim().split(/ +/g);
   const fAK = await  db.fetch(`filtreAK_${msg.guild.id}`);
-  const filtre = await db.fetch(`filtre_${msg.guild.id}_${args[0]}`);
+  let mesaj = args.slice(1).join(' ');
+  const filtre = await db.fetch(`filtre_${msg.guild.id}_${mesaj}`);
   
   if(fAK == 'kapalı') return;
   if(fAK == 'açık') {
     
-  if(filtre.test(msg.content)==true){
+   if(filtre.includes(filtre)) {
     msg.channel.send('Bu sunucuda yasaklanmış bir kelimeyi kullandığınız için mesajınızı sildim')
   }
   }
