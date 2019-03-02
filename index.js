@@ -1217,6 +1217,23 @@ client.on("guildDelete", async guild => {
 })
 
 client.on("message", async msg => {
+  const prefix = await db.fetch(`prefix_${msg.`)
+  //const args = msg.content.slice.split(' ');
+  const args = message.content.slice(p.length).trim().split(/ +/g);
+  const fAK = db.fetch(`filtreAK_${msg.guild.id}`);
+  const filtre = db.fetch(`filtre_${msg.guild.id}_${args[0]}`);
+  
+  if(fAK == 'kapalı') return;
+  if(fAK == 'açık') {
+    
+  if(filtre.includes(msg.content)){
+    msg.channel.send('tamamdır')
+  }
+  }
+  
+  
+  
+  
   if (!msg.guild) return;
   if (db.has(`küfürE_${msg.guild.id}`) === false) return;
     if (db.has(`küfürE_${msg.guild.id}`) === true) {
