@@ -1234,7 +1234,6 @@ client.on("message", async msg => {
   if (!msg.member.hasPermission("ADMINISTRATOR")) {
     msg.delete()
      
-     
    var k = new Discord.RichEmbed()
         .setColor("RANDOM")
         .setAuthor("Filtre Sistemi")
