@@ -3,30 +3,20 @@ const db = require('quick.db');
 
 exports.run = async (client, message, args, params) => { 
   
+const s = await db.fetch(`filtre_${message.guild.id}`)
 
-  
-  //if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu komutu kullanabilmek için **Yönetici** iznine sahip olmalısın!`); 
-    
-  if (!args[0]) return message.reply(`Lütfen yasaklamak istediğiniz kelimeyi giriniz`)
-  
-    
-  if (client.commands.get(args[0])) return message.reply(`Botun komudunu yasaklayamazsın.`)
-  if (client.aliases.get(args[0])) return message.reply(`Botun komudunu yasaklayamazsın.`)
-  
-  //db.set(`komutkomuts_${message.guild.id}`, db.has(`komutkomuts_${message.guild.id}`) ? db.fetch(`komutkomuts_${message.guild.id}`) + 1 : 1)
-  /*var i = db.set(`komutkomut_${message.guild.id}_${s}`, args[0])
-  var a = db.set(`cevapcevap_${message.guild.id}_${s}`, args.slice(1).join(' '))*/
+
+if(s === null) return message.channel.send('Eklenmiş filtre bulunmuyor.')
   
  let kelimeler = args[0]
   
-  var a = db.push(`filtre_${message.guild.id}`, kelimeler)
-  db.set(`filtreAK_${message.guild.id}`, "açık");
-  //var a = db.push(`aciklama_${message.guild.id}`, args.slice(1).join(' '))
+  var a = db.delete(`filtre_${message.guild.id}`)
+  
+ 
 
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
-  
-   .setDescription(`Filtre eklendi.`) 
+   .setDescription(`Sunucudaki **tüm** filtreler silindi`) 
     message.channel.send(embed)
   
 };
@@ -34,15 +24,15 @@ exports.run = async (client, message, args, params) => {
 exports.conf = { 
   enabled: true, 
   guildOnly: false, 
-  aliases: ['filtreekle', 'filtre-oluştur'], 
+  aliases: ['filtresil'], 
   permLevel: 4,
   kategori: "özel",
  
 }; 
 
 exports.help = { 
-  name: 'filtre-ekle', 
-  description: 'Sunucuda bir kelimyei yasaklarsınız.', 
-  usage: 'filtre-ekle <kelime>',
+  name: 'filtre-sil', 
+  description: 'Sunucudaki filtreleri silersiniz.', 
+  usage: 'filtre-sil',
   
 };
