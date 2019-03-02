@@ -17,9 +17,10 @@ exports.run = async (client, message, args, params) => {
   /*var i = db.set(`komutkomut_${message.guild.id}_${s}`, args[0])
   var a = db.set(`cevapcevap_${message.guild.id}_${s}`, args.slice(1).join(' '))*/
   
- let kelimeler = JSON.parse('{"'+args[0]+'":"'+args.slice(1).join(' ')+'"}')
+ let kelimeler = args[0]
   
   var a = db.push(`filtre_${message.guild.id}`, kelimeler)
+  db.set(`filtreAK_${message.guild.id}`, "açık");
   //var a = db.push(`aciklama_${message.guild.id}`, args.slice(1).join(' '))
 
     var embed = new Discord.RichEmbed()

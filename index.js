@@ -1227,8 +1227,14 @@ client.on("message", async msg => {
   if(fAK == 'kapalı') return;
   if(fAK == 'açık') {
     
-   if(filtre.includes(filtre)) {
+    
+    
+      const fltr = filtre
+   if (fltr.some(word => msg.content.includes(word))) {
+    msg.delete();
+   
     msg.channel.send('Bu sunucuda yasaklanmış bir kelimeyi kullandığınız için mesajınızı sildim')
+     
   }
   }
   
