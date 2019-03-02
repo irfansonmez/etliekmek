@@ -4,7 +4,7 @@ const db = require('quick.db');
 exports.run = async (client, message, args, params) => { 
   
 const s = await db.fetch(`filtre_${message.guild.id}`);
-const prefix = await db.fetch(`prefix_${prefix}`);
+const prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
 
 if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.')
   
@@ -18,8 +18,10 @@ if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bu
   
  */
   
-  if(msg.content == s) {
-    
+          const fltr = s
+   db.fetch(`filtre_${message.guild.id}`).forEach(s => {
+     if(s == args[0]) {
+     
   let x = args[0] //silinecek şey yani
 let arr = []
 db.fetch(`filtre_${message.guild.id}`).forEach(v => {
@@ -34,9 +36,9 @@ db.set(`filtre_${message.guild.id}`, arr)
    .setDescription(`Sunucudaki ${args[0]} filtresi silindi`) 
     message.channel.send(embed)
   return
-  }
+     }
   
-  message.channel.send(`${args[0]} Adında bir filtre bulunamadı.\n Eklenmiş filtreleri görmek için **${prefix}filtre-liste** yazarak görebilirsiniz`)
+  message.channel.send(`${args[0]} Adında bir filtre bulunamadı.\n Eklenmiş filtreleri görmek için **${prefix}filtre-liste** yazarak görebilirsiniz.`)
 };
 
 exports.conf = { 
