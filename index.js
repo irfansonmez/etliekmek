@@ -86,12 +86,12 @@ client.ayarlar = {
         "official_sahip": "507803933557915652",
         "sahip": ['336869318874890241'],
         "yardimcilar": [''],
-        "isim": "Chewy",
-        "botD": "https://discordapp.com/oauth2/authorize?client_id=538372202215768065&scope=bot&permissions=2146958847",
+        "isim": "RYKER",
+        "botD": "https://discordapp.com/oauth2/authorize?client_id=516600125649453066&scope=bot&permissions=2146958847",
         "webS": "http://ryker.tk",
         "web": "https://ryker.tk",
-        "dblO": "https://discordbots.org/bot/538372202215768065/vote",
-        "dbl": "https://discordbots.org/bot/538372202215768065",
+        "dblO": "https://discordbots.org/bot/516600125649453066/vote",
+        "dbl": "https://discordbots.org/bot/516600125649453066",
         "versiyon": "0.0.1",
         "prefix": "?",
  
@@ -893,7 +893,7 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
 client.on("guildCreate",guild => {
   const e = new Discord.RichEmbed()
   .setColor('RANDOM')
-  .setDescription("Beni Sunucuna Eklediğin İçin Teşekkür Ederim, \n Bir Ayar Komudunu Kapatmak İçin `?ayarlar kapat` Yazarak Nasıl Kapatacağınızı Görebilirsiniz. \n Ayrıca Komutlarımı görmek için `?yardım` yazabilirsiniz\n [DESTEK SUNUCUM](https://discord.gg/TcZtQFU) ")
+  .setDescription("Beni Sunucuna Eklediğin İçin Teşekkür Ederim, \n Bir Ayar Komudunu Kapatmak İçin `?ayarlar kapat` Yazarak Nasıl Kapatacağınızı Görebilirsiniz. \n Ayrıca Komutlarımı görmek için `?yardım` yazabilirsiniz\n [DESTEK SUNUCUM](https://discord.gg/Hc6GrV) ")
           .setFooter("Bu Mesaj Sadece Size Gönderilmiştir.")
 guild.owner.send(e)
 })
@@ -2512,6 +2512,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     .setDescription(`${newMember.user.tag} adlı kullanıcı bir sesli kanaldan çıkış yaptı!`)
     kanal.send(embed);
     
+    
   }
 });
 
@@ -2924,4 +2925,4 @@ client.on('ready', () => {
     console.log('DBL ye gerekli verileri girdim.') // {"server_count":2,"shards":[]}
  });
 
-client.login('NTM4MzcyMjAyMjE1NzY4MDY1.Dyy2VA.WHzoNfHIUOxBopGZ2QlK9Xtwn20')
+client.login('NTE2NjAwMTI1NjQ5NDUzMDY2.D1xk2Q.mCPCl5bTEDpjzkB9ahv3D4_TTsU')
