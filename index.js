@@ -1,4 +1,16 @@
-/*const http = require('http');
+process.on('çık', async () => {
+    console.log('çıkıyom..');
+    try {
+// çıkarken yapılacaklar
+    } catch (_) {}
+    process.exit();
+});
+
+setTimeout(() => process.emit('çık'), 1000 * 60 * 60 * 12);
+
+
+
+const http = require('http');
 const express = require('express');
 const app = express();
 app.get("/", (request, response) => {
@@ -8,7 +20,7 @@ app.get("/", (request, response) => {
 app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000)*/
+}, 280000)
 
 if (process.version.slice(1).split(".")[0] < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
 

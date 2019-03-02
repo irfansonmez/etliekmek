@@ -9,7 +9,7 @@ exports.run = async (client, message) => {
   const davet = new Discord.RichEmbed()
 .setColor("RANDOM")
 .setAuthor(`${client.user.username} - LİNKLERİ`, client.user.avatarURL)
-.setDescription(`[Bot davet linki](https://discordapp.com/oauth2/authorize?client_id=538372202215768065&scope=bot&permissions=2146958847) \n[Destek sunucusu](https://discord.gg/vnWgkX3)  \n[DBL sayfası](https://discordbots.org/bot/538372202215768065) \n[DBL Oy sayfası](https://discordbots.org/bot/538372202215768065)
+.setDescription(`[Bot davet linki](https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847) \n[Destek sunucusu](https://discord.gg/vnWgkX3)  \n[DBL sayfası](https://discordbots.org/bot/${client.user.id}) \n[DBL Oy sayfası](https://discordbots.org/bot/${client.user.id})
 `)
 message.channel.send(davet)
 };
