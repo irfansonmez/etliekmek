@@ -16,8 +16,8 @@ exports.run = async (client, message) => {
 
     message.reply('Hatanız iletildi');
 
-    var hataHook = new Discord.WebhookClient("539076955866136596", "6oLnLzflZHPzRmwe0A5zU828h-H95C7WF6XHDWPAbDULik81cY_evO_Mb2fg1aRdC7Y8")
-// https://discordapp.com/api/webhooks/539076955866136596/6oLnLzflZHPzRmwe0A5zU828h-H95C7WF6XHDWPAbDULik81cY_evO_Mb2fg1aRdC7Y8
+    var hataHook = new Discord.WebhookClient("551482350228209675", "izxsGh5YBWu3k67MpKTnwF3GD_KQyPnwi2DEEv6VlIG2M56aYaAzom-GHvP5Nw8fwqQV")
+// hhttps://discordapp.com/api/webhooks/551482350228209675/izxsGh5YBWu3k67MpKTnwF3GD_KQyPnwi2DEEv6VlIG2M56aYaAzom-GHvP5Nw8fwqQV
     var embed = new Discord.RichEmbed()
     .setColor("0x36393F")
     .setTitle(`_» Bende Bir Hata Bulmuşlar! «_`)
