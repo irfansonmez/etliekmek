@@ -19,10 +19,8 @@ if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bu
   
   if(filtreler == args[0]) {
           
-      
-   
-     
-let x = args[0] //silinecek şey yani
+    
+let x = args[0] 
 let arr = []
 db.fetch(`filtre_${message.guild.id}`).forEach(v => {
 if (v !== x) {

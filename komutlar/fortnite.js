@@ -4,7 +4,7 @@ const fortnite = require('fortnitetracker-7days-stats');
 exports.run = (client, message, args) => {
   
   const db = require('quick.db');
-  
+  let prefix = db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   
   
     if(args.length < 1){
