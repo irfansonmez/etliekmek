@@ -7,11 +7,11 @@ exports.run = async (client, message, args) => {
   
   const db = require('quick.db');
   
-
+let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   let channel = message.mentions.channels.first()
   
     if (!channel) {
-        return message.reply('Lütfen ayarlamak istediğiniz kanalı ayarlayınız')
+        return message.reply(`Lütfen ayarlamak istediğiniz kanalı etiketleyiniz. Örnek: **${prefix}giriş çıkış ayarla #kanal**`)
     }
 
     /*if(!kanal[message.guild.id]){
@@ -36,7 +36,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['hoş-geldin-ayarla', 'giriş-çıkış-belirle'],
+    aliases: ['hoş-geldin-ayarla', 'giriş-çıkış-belirle', 'girişçıkışayarla'],
     permLevel: 4,
     kategori: "ayarlar",
   
