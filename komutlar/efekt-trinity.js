@@ -3,7 +3,14 @@ const Jimp = require('jimp');
 
 exports.run = (bot, message, args) => {
 
-    
+     const snekfetch = require("snekfetch");
+snekfetch.get(`https://discordbots.org/api/bots/${bot.user.id}/check?userId=${message.author.id}`)
+.set("Authorization", bot.ayarlar.dbltoken)
+.then(response => {
+var check = response.body.voted;
+if(check == 1) {  
+  
+  
     let x = /(-)/
     
     var user = message.mentions.users.first();  
@@ -27,7 +34,9 @@ exports.run = (bot, message, args) => {
 
         });
 
-  
+    } else {
+    return message.channel.send(`${bot.emojis.get(bot.emojiler.hayır)} **Hata**, bu komutu kullanmak için **12 saat aralıkla** **[BURADAN](https://discordbots.org/bot/${bot.user.id}/vote)**  botu oylamanız gerekmektedir. Onaylanması **1-4** dakikayı bulabilir, lütfen bekleyin. `)
+}});
 };
 
 exports.conf = {

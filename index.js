@@ -94,7 +94,7 @@ client.emojiler = {
 }
 
 client.ayarlar = {
-        "oynuyor": "?yardım | ?davet | Bana şans tanıyın :)",
+        "oynuyor": "?yardım | ?davet | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın",
         "official_sahip": "507803933557915652",
         "sahip": ['336869318874890241'],
         "yardimcilar": [''],
@@ -104,6 +104,7 @@ client.ayarlar = {
         "web": "https://ryker.tk",
         "dblO": "https://discordbots.org/bot/516600125649453066/vote",
         "dbl": "https://discordbots.org/bot/516600125649453066",
+        "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxNjYwMDEyNTY0OTQ1MzA2NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTUxNjE4MDEwfQ.k435Nz8LEyG2uMQdtuKBOeDanzLi7u7-O5mFQnnuvRE",
         "versiyon": "0.0.1",
         "prefix": "?",
  
