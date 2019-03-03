@@ -70,8 +70,12 @@ if(check == 1) {
 
     }
   } else {
-    return message.channel.send(`${bot.emojis.get(bot.emojiler.hayır)} **Hata**, bu komutu kullanmak için **12 saat aralıkla** **[BURADAN](https://discordbots.org/bot/${bot.user.id}/vote)**  botu oylamanız gerekmektedir. Onaylanması **1-4** dakikayı bulabilir, lütfen bekleyin. `)
-}});
+let embed = new Discord.RichEmbed()
+      .setTitle('HATA')
+      .setColor('RANDOM')
+      .setDescription(`${bot.emojis.get(bot.emojiler.hayır)} **Hata**, bu komutu kullanmak için **12 saat aralıkla** **[BURADAN](https://discordbots.org/bot/${bot.user.id}/vote)**  botu oylamanız gerekmektedir. Onaylanması **1-4** dakikayı bulabilir, lütfen bekleyin. `)
+    message.channel.send(embed)
+      return }});
 
 };
 
