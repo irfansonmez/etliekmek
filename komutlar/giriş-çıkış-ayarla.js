@@ -28,7 +28,7 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
   
     const embed = new Discord.RichEmbed()
     
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Giriş çıkıl kanalı ayarlandı: ${channel}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Giriş çıkış kanalı ayarlandı: ${channel}`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }

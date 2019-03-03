@@ -8,11 +8,12 @@ exports.run = async (client, message, args) => {
   
   const db = require('quick.db');
   
- 
+ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+
   let channel = message.mentions.channels.first()
   
     if (!channel) {
-        return message.reply("Lütfen kanal işaretleyiniz")
+        return message.reply(`Lütfen ayarlamak istediğiniz kanalı etiketleyiniz. Örnek **${prefix}davet-kanal-ayarla #kanal**`)
     }
 
     /*if(!kanal[message.guild.id]){
@@ -28,7 +29,7 @@ exports.run = async (client, message, args) => {
     db.set(`dKanal_${message.guild.id}`, "<#"+channel.id+">")
   
     const embed = new Discord.RichEmbed()
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Başarıyla ayarlandı: ${channel}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Davet kanalı ayarlandı: ${channel}`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }
