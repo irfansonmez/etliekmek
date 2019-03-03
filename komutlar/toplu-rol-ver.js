@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 exports.run = async (client, message, args) => {
   
   const db = require('quick.db');
-  let prefix = await db.fetch(`prefix_${message.guild.id}`)
+  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   
   if (db.has(`premium_${message.guild.id}`) === false) {
     let e = new Discord.RichEmbed()
