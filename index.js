@@ -2903,10 +2903,15 @@ client.on("message", async msg => {
     setTimeout(function(){
       
     db.delete(`hatırlatZ_${msg.author.id}`);
-    client.channels.get('551481544951332864').send(`OLDUM GARDEŞİM`);
+    
+     client.channels.get('551481544951332864').send(`OLDUM GARDEŞİM`); return;
   
-     return
-  }, ms(zaman));
+     return;
+   ms(zaman)
+              
+       client.channels.get('551481544951332864').send(`OLDUM GARDEŞİM`); return; 
+      
+    }, ms(zaman));
     
     
     if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 150) {
