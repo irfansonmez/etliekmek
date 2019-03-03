@@ -2895,13 +2895,16 @@ client.on("message", async msg => {
      db.delete(`bonus_${msg.author.id}`)
 
 }
-    const ms = require('ms'); 
-    
+    const ms = require('ms');     
     let zaman = await db.fetch(`hatırlatZ_${msg.author.id}`);
-    setTimeout(function(){
     
+    setTimeout(function(){
+      
+    db.delete(`hatırlatZ_${msg.author.id}`);
     client.channels.get('551481544951332864').send(`OLDUM GARDEŞİM`);
-  }, ms(zaman));
+  
+     return
+  }, ms(zaman.replace("dk", "m")));
     
     
     if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 150) {
