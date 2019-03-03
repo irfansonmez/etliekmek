@@ -4,9 +4,14 @@ const db = require('quick.db');
 exports.run = async (client, message, args, params) => { 
   
 let filtre = await db.fetch(`filtre_${message.guild.id}`)
+let filtreler = await db.fetch(`filtreK_${message.guild.id}_${args[0]}`)
 
+
+if(filtreler == null) return message.channel.send('Sununuza eklenmiş filtre bulunmuyor')
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
+    .setThumbnail(message.guild.avatarURL)
+    .setTitle(`${message.guild.name} Sunucu Filtreleri`)//çakma coder seni, NERDEN ÇALIYON LAN İBNE AKSJDLGJAKSGKJSAJKSG
    .setDescription(filtre) 
     message.channel.send(embed)
   
