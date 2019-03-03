@@ -2897,6 +2897,8 @@ client.on("message", async msg => {
 }
     const ms = require('ms');     
     let zaman = await db.fetch(`hatırlatZ_${msg.author.id}`);
+    let mesaj = await db.fetch(`hatırlatM_${msg.author.id}`);
+    let kullanıcı = await db.fetch(`hatırlatK_${msg.author.id}`);
     
     setTimeout(function(){
       
@@ -2904,7 +2906,7 @@ client.on("message", async msg => {
     client.channels.get('551481544951332864').send(`OLDUM GARDEŞİM`);
   
      return
-  }, ms(zaman.replace("dk", "m")));
+  }, ms(zaman));
     
     
     if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 150) {
