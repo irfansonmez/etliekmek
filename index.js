@@ -2903,11 +2903,11 @@ client.on("message", async msg => {
 }
 
     
-    if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 150) {
+    if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 484848848450) {
       
       db.add(`seviye_${msg.author.id + msg.guild.id}`, 1)
       
-      msg.channel.send(`Tebrik ederim <@${msg.author.id}>! Seviye atladın ve **${db.fetch(`seviye_${msg.author.id + msg.guild.id}`)}** seviye oldun!`)
+    //  msg.channel.send(`Tebrik ederim <@${msg.author.id}>! Seviye atladın ve **${db.fetch(`seviye_${msg.author.id + msg.guild.id}`)}** seviye oldun!`)
       
       db.delete(`puancik_${msg.author.id + msg.guild.id}`)
       
