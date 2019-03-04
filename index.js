@@ -9,7 +9,7 @@ process.on('çık', async () => {
 setTimeout(() => process.emit('çık'), 1000 * 60 * 60 * 12);
 
 
-/*
+
 const http = require('http');
 const express = require('express');
 const app = express();
@@ -23,7 +23,7 @@ setInterval(() => {
 }, 280000)
 
 if (process.version.slice(1).split(".")[0] < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
-*/
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const bot = new Discord.Client();
@@ -155,8 +155,9 @@ client.on("ready", async () => {
   client.appInfo = await client.fetchApplication();
   setInterval( async () => {
     client.appInfo = await client.fetchApplication();
-    require('./modüller/fonksiyonlar.js')(client);
-require("../modüller/panel.js")(client);
+  }, 60000);
+  
+  require("../modüller/panel.js")(client);
     
   }, 60000);
   

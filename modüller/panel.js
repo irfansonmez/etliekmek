@@ -23,6 +23,8 @@ module.exports = (client) => {
     domain: "https://cyber-runner.glitch.me/"
   };
   
+  console.log('BAŞARILI')
+  
   const dataDir = path.resolve(`${process.cwd()}${path.sep}panel`);
 
   const templateDir = path.resolve(`${dataDir}${path.sep}html${path.sep}`);
