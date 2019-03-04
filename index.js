@@ -116,7 +116,7 @@ client.ayarlar = {
 "version":  "2.0.0",
  
 };
-
+client.avatarURL = `https://cdn.discordapp.com/avatars/516600125649453066/c866646d27728bdb25fc39161c94a2e8.png?size=2048`
 const ayarlar = client.ayarlar;
 
 client.tr = require('./tr.js');
