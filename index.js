@@ -9,7 +9,7 @@ process.on('çık', async () => {
 setTimeout(() => process.emit('çık'), 1000 * 60 * 60 * 12);
 
 
-
+/*
 const http = require('http');
 const express = require('express');
 const app = express();
@@ -23,7 +23,7 @@ setInterval(() => {
 }, 280000)
 
 if (process.version.slice(1).split(".")[0] < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
-
+*/
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const bot = new Discord.Client();
@@ -42,13 +42,11 @@ const snekfetch = require('snekfetch');
 
 
 
-client.web = "https://cyber-runner.glitch.me/";
-client.ayarlar.renk = "DARKBLUE";
-client.ayarlar.version = "1.0.0";
+
+
 
 client.ayar = db;
 
-require('./modüller/fonksiyonlar.js')(client);
 
 client.emojiler = {
 
@@ -111,6 +109,9 @@ client.ayarlar = {
         "versiyon": "0.0.1",
         "prefix": "?",
  
+"renk":  "DARKBLUE",
+"version":  "2.0.0",
+ 
 };
 
 const ayarlar = client.ayarlar;
@@ -154,6 +155,9 @@ client.on("ready", async () => {
   client.appInfo = await client.fetchApplication();
   setInterval( async () => {
     client.appInfo = await client.fetchApplication();
+    require('./modüller/fonksiyonlar.js')(client);
+require("../modüller/panel.js")(client);
+    
   }, 60000);
   
   
