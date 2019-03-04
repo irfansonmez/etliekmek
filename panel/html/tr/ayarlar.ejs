@@ -1,0 +1,664 @@
+<!--HEADER-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="<%=bot.avatarURL%>">
+  <meta name="author" content="<%=bot.user.tag%>">
+  <meta name="keywords" content="tornado">
+  <meta property="og:site_name" value="<%=bot.user.username%>">
+  <meta property="og:image" content="<%=bot.avatarURL%>">
+  <meta property="og:description" content="Gelişmiş bir bot!">
+  <meta name="description" content="Gelişmiş bir bot!">
+  <meta name="theme-color" content="#0070fa">
+  <meta charset="UTF-8">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://bootswatch.com/4/cyborg/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.16/cr-1.4.1/r-2.2.0/datatables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" integrity="sha256-zG8v+NWiZxmjNi+CvUYnZwKtHzFtdO8cAKUIdB8+U9I="
+    crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="/css/main.css" />
+  
+	<link rel='icon' href='<%=bot.avatarURL%>'>
+	<title><%=bot.user.username%> Web Paneli</title>
+</head>
+  
+  <body>
+    
+    <nav style="background-color:#2a2d32" class="navbar navbar-expand-lg navbar-dark">
+     <div class="container">
+      <a class="navbar-brand" href="/tr"><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="30" height="30"
+          class="d-inline-block align-top rounded-circle" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor02">
+
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a href="/tr" class="nav-link">Ana Sayfa</a></li>
+        <li class="nav-item"><a href="/tr/komutlar" class="nav-link">Komutlar</a></li>
+        <li class="nav-item"><a href="/tr/istatistikler" class="nav-link">İstatistikler</a></li>
+        <li class="nav-item"><a href="/tr/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
+        <li class="nav-item"><a href="/tr/sunucular" class="nav-link">Sunucular</a></li>
+        <li class="nav-item"><a href="/tr/kullaniciler" class="nav-link">Kullanıcılar</a></li>
+      </ul>
+
+      <ul class="navbar-nav">
+          <%if(!user) {%>
+          <li class="nav-item"><a href="/tr/giris" class="nav-link">Giriş Yap</a></li>
+            <%}%>
+       <%if(user) {%>
+            <li class="dropdown">
+            <a href="/tr" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt=""> <%=user.username%>
+           </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="background-color:#2a2d32">
+              <a class="dropdown-item" href="/tr/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
+              <a class="dropdown-item activex" href="/tr/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım <br>(Şuan <b><%=sunucu.name%></b> adlı sunucu seçili.)</a>
+              <% if(bot.ayarlar.sahip.includes(user.id)) { %>
+						  <a class="dropdown-item" href="/tr/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
+				      <% } %>
+              <a class="dropdown-item" href="/tr/cikis" style="color:#ffffff"><i aria-hidden="true"></i>Çıkış Yap</a>
+        </div>
+          </li>
+      <%}%>
+        </ul>
+      </div>
+  </nav>
+      
+  <!-- HEADER -->
+  
+  <div class="sidebar">
+    <a style="cursor:pointer" id="genelAyarlarBtn" class="activex">Genel Ayarlar</a>
+    <br>
+    <a style="cursor:pointer" id="ozelKomutlarBtn">Özel Komut Sistemi</a>
+    <br>
+    <a style="cursor:pointer" id="modAyarlarBtn">Moderasyon Ayarları</a>
+  </div>
+  
+<div class="container">
+  <br>
+  <div class="jumbotron" style="background-color:#0053ba;">
+    <div align="center">
+      <form method="POST" id="forum">
+    
+  <div id="genelAyarlar">
+    
+      <div class="row">
+        <div class="col-25">
+          <label for="prefix">Ön-Ek/Prefix</label>
+        </div>
+        <div class="col-75">
+          <% if (bot.veritabanı.varMı(`${sunucu.id}.prefix`) === false) { %>
+          <input type="text" style="text-align: left; width:87%;" name="prefix" id="prefix" maxlength="15" placeholder="<%=bot.ayarlar.prefix%>">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.prefix`) === true) { %>
+					<input type="text" style="text-align: left; width:87%;" name="prefix" id="prefix" value="<%= bot.veritabanı.veri(`${sunucu.id}.prefix`) %>" maxlength="15" placeholder="<%=bot.ayarlar.prefix%>">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+        </div>
+      </div>
+    
+    <div class="row">
+        <div class="col-25">
+          <label for="otorol">Otomatik Rol</label>
+        </div>
+        <div class="col-75">
+          <% if (bot.veritabanı.varMı(`${sunucu.id}.otorol`) === false) { %>
+          <select style="text-align: left; width:87%;" name="otorol" id="otorol">
+            <option disabled selected>Lütfen bir rol seçiniz.</option>
+            <% sunucu.roles.filter(r => r.name !== "@everyone").forEach(r => { %>
+            <option value="<%=r.id%>" style="color:<%=r.hexColor%>"><%=r.name%></option>
+            <% }); %>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/otorol/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.otorol`) === true) { %>
+          <select style="color:<%=sunucu.roles.get(bot.veritabanı.veri(`${sunucu.id}.otorol`)).hexColor%>; text-align: left; width:87%;" name="otorol" id="otorol">
+             <option disabled selected>Lütfen bir rol seçiniz.</option>
+            <option value="<%=bot.veritabanı.veri(`${sunucu.id}.otorol`)%>" style="color:<%=sunucu.roles.get(bot.veritabanı.veri(`${sunucu.id}.otorol`)).hexColor%>" selected><%=sunucu.roles.get(bot.veritabanı.veri(`${sunucu.id}.otorol`)).name%></option>
+					 <% sunucu.roles.filter(r => r.name !== "@everyone").filter(r => r.id !== bot.veritabanı.veri(`${sunucu.id}.otorol`)).forEach(r => { %>
+            <option value="<%=r.id%>" style="color:<%=r.hexColor%>"><%=r.name%></option>
+          <% }); %>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/otorol/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+        </div>
+      </div>
+    
+     <div class="row">
+        <div class="col-25">
+          <label for="girisCikis">Giriş Çıkış Kanalı</label>
+        </div>
+        <div class="col-75">
+          <% if (bot.veritabanı.varMı(`${sunucu.id}.girisCikis`) === false) { %>
+          <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
+            <option disabled selected>Lütfen bir kanal seçiniz.</option>
+            <% sunucu.channels.filter(c => c.type === "text").forEach(c => { %>
+            <option value="<%=c.id%>">#<%=c.name%></option>
+            <% }); %>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisCikis/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.girisCikis`) === true) { %>
+          <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
+            <option value="<%=bot.veritabanı.veri(`${sunucu.id}.girisCikis`)%>">#<%=sunucu.channels.get(bot.veritabanı.veri(`${sunucu.id}.girisCikis`)).name%></option>
+					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.veritabanı.veri(`${sunucu.id}.girisCikis`)).forEach(c => { %>
+            <option value="<%=c.id%>">#<%=c.name%></option>
+          <% }); %>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisCikis/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+        </div>
+      </div>
+    
+    <% if (bot.veritabanı.varMı(`${sunucu.id}.girisCikis`) === true) { %>
+    <div class="row">
+      <div class="col-25">
+          <label for="girisCikisTip">Giriş Çıkış Tipi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.girisCikisTip`) === false) { %>
+          <select style="text-align: left; width:87%;" name="girisCikisTip" id="girisCikisTip">
+            <option value="resimli">Resimli</option>
+            <option value="varsayılan" selected>Varsayılan</option>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisCikisTip/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.girisCikisTip`) === true) { %>
+          <select style="text-align: left; width:87%;" name="girisCikisTip" id="girisCikisTip">
+            <option value="resimli" selected>Resimli</option>
+            <option value="varsayılan">Varsayılan</option>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisCikisTip/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+      </div>
+    </div>
+    
+    <p style="color:#fff"><a style="color:red">NOT</a><a style="color:#2a2d32d">:</a> Giriş ve çıkış mesajlarında kullanıcının geleceği yere <a style="color:#bfff3f">{kullanıcı}</a> yazınız.</p>
+    
+    <div class="row">
+      <div class="col-25">
+          <label for="girisMesaj">Giriş Mesajı</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.girisMesaj`) === false) { %>
+        <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" placeholder="{kullanıcı} adlı kullanıcı sunucuya katıldı!">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.girisMesaj`) === true) { %>
+        <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" value="<%=bot.veritabanı.veri(`${sunucu.id}.girisMesaj`)%>">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-25">
+          <label for="cikisMesaj">Çıkış Mesajı</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.cikisMesaj`) === false) { %>
+        <input type="text" style="text-align: left; width:87%;" name="cikisMesaj" id="cikisMesaj" maxlength="1950" placeholder="{kullanıcı} adlı kullanıcı sunucudan ayrıldı!">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/cikisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.cikisMesaj`) === true) { %>
+        <input type="text" style="text-align: left; width:87%;" name="cikisMesaj" id="cikisMesaj" maxlength="1950" value="<%=bot.veritabanı.veri(`${sunucu.id}.cikisMesaj`)%>">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/cikisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+      </div>
+    </div>
+    <% } %>
+    
+    <div class="row">
+      <div class="col-25">
+          <label for="spam">Spam Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.spam`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="spam" name="spam" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.spam`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="spam" name="spam" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
+    
+  <% if (bot.veritabanı.varMı(`${sunucu.id}.spam`) === true) { %>
+    <div class="row">
+      <div class="col-25">
+          <label for="spamMesaj">Spam Uyarılacak Mesaj Sayısı</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.spamMesaj`) === false) { %>
+        <input type="number" style="text-align: left; width:87%;" name="spamMesaj" id="spamMesaj" maxlength="1950" placeholder="5">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.spamMesaj`) === true) { %>
+        <input type="number" style="text-align: left; width:87%;" name="spamMesaj" id="spamMesaj" maxlength="1950" value="<%=bot.veritabanı.veri(`${sunucu.id}.spamMesaj`)%>">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-25">
+          <label for="spamUyarı">Spam Susturulacak Uyarı Sayısı</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.spamUyarı`) === false) { %>
+        <input type="number" style="text-align: left; width:87%;" name="spamUyarı" id="spamUyarı" maxlength="1950" placeholder="3">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamUyarı/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.spamUyarı`) === true) { %>
+        <input type="number" style="text-align: left; width:87%;" name="spamUyarı" id="spamUyarı" maxlength="1950" value="<%=bot.veritabanı.veri(`${sunucu.id}.spamUyarı`)%>">
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamUyarı/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+      </div>
+    </div>
+  <% } %>
+    
+ <div class="row">
+      <div class="col-25">
+          <label for="küfürEngel">Küfür Engelleme Sistemi <br> (Bakımda)</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.küfürEngel`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input disabled type="checkbox" id="küfürEngel" name="küfürEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.küfürEngel`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input disabled type="checkbox" id="küfürEngel" name="küfürEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
+    
+     <div class="row">
+      <div class="col-25">
+          <label for="linkEngel">Link/Reklam Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.linkEngel`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="linkEngel" name="linkEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.linkEngel`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="linkEngel" name="linkEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-25">
+          <label for="capslockEngel">Büyük Harf Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.veritabanı.varMı(`${sunucu.id}.capslockEngel`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.capslockEngel`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
+    
+  </div>
+      
+  <div id="ozelKomutlar" style="display:none;">
+     <button class="stat-btn" data-toggle="collapse" style="background-color:green; color: white;" data-target="#yeni">Komut Oluştur</button>
+        <br><br>
+        <div id="yeni" class="collapse in">
+          <div class="row">
+                    <div class="col-25">
+                        <label style="color: white;" for="komut">Komut</label>
+                    </div>
+                    <div class="col-75">
+                      <input type="text" id="komut" name="komut" placeholder="Komutun adını yazınız.">
+                    </div>
+                </div>
+          <div class="row">
+                    <div class="col-25">
+                        <label style="color: white;" for="aciklama">Açıklama</label>
+                    </div>
+                    <div class="col-75">
+                      <textarea class="form-control" id="aciklama" name="aciklama" rows="3" placeholder="Komut kullanıldığında verilecek cevabı yazınız." style="margin-top: 0px; margin-bottom: 0px; height: 65px;"></textarea>
+                    </div>
+                </div>
+          <div class="row">
+                    <div class="col-25">
+                        <label style="color: white;" for="tip">Tip</label>
+                    </div>
+                    <div class="col-75">
+                      <select onchange="myFunctionXyz()" id="tip" name="tip">
+                        <option disabled selected>Bir tip seçiniz.</option>
+                        <option value="varsayılan">Varsayılan</option>
+                        <option value="embed">Embed</option>
+                      </select>
+                      <input type="color" id="renk" name="renk" style="width:49%; float:right; display:none;" value="#ff0000">
+                    </div>
+                </div>
+          <br>
+    </div>
+    
+    <button class="stat-btn" data-toggle="collapse" style="background-color:green; color: white;" data-target="#duzenle">Komut Düzenle</button>
+        <br><br>
+        <div id="duzenle" class="collapse in">
+          <div class="row">
+            <div class="col-25">
+                <label style="color: white;">Düzenlenecek Komut</label>
+            </div>
+            <div class="col-75">
+              <select id="dkomut" name="dkomut" onchange="myFunctionTwo()">
+                <% if (bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === false || bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === true && bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
+                 <option disabled selected>Sunucuda hiç özel komut bulunmuyor.</option>
+                <script>
+                  document.getElementById("dkomut").disabled = true;
+                </script>
+                <% } else { %>
+                  <option disabled selected>Düzenlenecek özel komutu seçiniz.</option>
+                 <% bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
+                  <option value="<%=Object.keys(k)[0]%>"><%=Object.keys(k)[0]%></option>
+                 <% }); %>
+                <% } %>
+              </select>
+            </div>
+          </div>
+            
+          <div class="row" id="yeniKomutX" style="display:none;">
+            <div class="col-25">
+                <label style="color: white;" for="ykomut">Yeni Komut</label>
+            </div>
+              <div class="col-75">
+              <input type="text" id="komut" name="ykomut" placeholder="Komutun yeni adını yazınız.">
+          </div>
+              </div>
+                <div class="row" id="yeniAciklamaX" style="display:none;">
+                    <div class="col-25">
+                        <label style="color: white;" for="yaciklama">Yeni Açıklama</label>
+                    </div>
+                    <div class="col-75">
+                      <textarea class="form-control" id="yaciklama" name="yaciklama" rows="3" placeholder="Komut kullanıldığında verilecek yeni cevabı yazınız." style="margin-top: 0px; margin-bottom: 0px; height: 65px;"></textarea>
+                    </div>
+                </div>
+          <div class="row" id="yeniTipX" style="display:none;">
+                    <div class="col-25">
+                        <label style="color: white;" for="ytip">Yeni Tip</label>
+                    </div>
+                    <div class="col-75">
+                      <select onchange="myFunctionAbc()" id="ytip" name="ytip">
+                        <option disabled selected>Yeni tipi seçiniz.</option>
+                        <option value="varsayılan">Varsayılan</option>
+                        <option value="embed">Embed</option>
+                      </select>
+                      <input type="color" id="yrenk" name="yrenk" style="width:49%; float:right; display:none;" value="#ff0000">
+                    </div>
+                </div>
+          <br>
+    </div>
+  <br>
+    <% if (bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === false || bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === true && bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
+      <h4>Sunucuda hiç özel komut bulunmuyor.</h4>
+    <br>
+    <% } else { %>
+    <br>
+    <table>
+      <tr>
+        <th>Komut</th>
+        <th>Açıklama</th>
+        <th>Tip</th>
+        <th>İşlem</th>
+      </tr>
+      <% bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
+      <tr>
+        <td><%=Object.keys(k)[0]%></td>
+        <td><%=k[Object.keys(k)[0]]%></td>
+        <td><%=k.tip.toProperCase()%></td>
+        <% if (k.tip !== 'embed') { %>
+        <td><a style="width:70%; text-align:center; align:center;" class="reset-btn" href="/tr/panel/<%=sunucu.id%>/yonet/ozelKomutlar/<%=Object.keys(k)[0]%>/<%=k[Object.keys(k)[0]]%>/<%=k.tip%>/sifirla" role="button">Sil</a></td>
+        <% } else { %>
+        <td><a style="width:70%; text-align:center; align:center;" class="reset-btn" href="/tr/panel/<%=sunucu.id%>/yonet/ozelKomutlar/<%=Object.keys(k)[0]%>/<%=k[Object.keys(k)[0]]%>/<%=k.tip%>/<%=k.renk.replace("#","")%>/sifirla" role="button">Sil</a></td>
+        <% } %>
+      </tr>
+      <% }); %>
+    </table>
+    <br>
+    <% }; %>
+  </div>
+        
+  <div id="modAyarlar" style="display:none;">
+   <h5>Moderasyon sistemi durumu</h5>
+    <br>
+     <% if (bot.veritabanı.varMı(`${sunucu.id}.moderasyon`) === false) { %>
+      <label class="switch">
+       <input type="checkbox" id="moderasyon" name="moderasyon" onclick="formAutoSubmit()" value="aktif">
+       <span class="slider round"></span>
+    </label>
+    <h6>Deaktif.</h6>
+     <% } else { %>
+      <label class="switch">
+       <input type="checkbox" id="moderasyon" name="moderasyon" onclick="formAutoSubmit()" value="deaktif" checked>
+       <span class="slider round"></span>
+    </label>
+    <h6>Aktif.</h6>
+    <br>
+    
+    <div class="row">
+        <div class="col-25">
+          <label for="modlog">Moderasyon Kayıtları Kanalı <br>(Mod Log)</label>
+        </div>
+        <div class="col-75">
+          <% if (bot.veritabanı.varMı(`${sunucu.id}.modlog`) === false) { %>
+          <select style="text-align: left; width:87%;" name="modlog" id="modlog">
+            <option disabled selected>Lütfen bir kanal seçiniz.</option>
+            <% sunucu.channels.filter(c => c.type === "text").forEach(c => { %>
+            <option value="<%=c.id%>">#<%=c.name%></option>
+            <% }); %>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/modlog/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.veritabanı.varMı(`${sunucu.id}.modlog`) === true) { %>
+          <select style="text-align: left; width:87%;" name="modlog" id="modlog">
+            <option value="<%=bot.veritabanı.veri(`${sunucu.id}.modlog`)%>">#<%=sunucu.channels.get(bot.veritabanı.veri(`${sunucu.id}.modlog`)).name%></option>
+					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.veritabanı.veri(`${sunucu.id}.modlog`)).forEach(c => { %>
+            <option value="<%=c.id%>">#<%=c.name%></option>
+          <% }); %>
+          </select>
+          <a href="/tr/panel/<%=sunucu.id%>/yonet/modlog/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+        </div>
+      </div>
+    
+    <div class="row">
+        <div class="col-25">
+          <label for="ban">Üye Yasakla</label>
+        </div>
+        <div class="col-75">
+          <select style="text-align: left; width:49%;" id="ban" name="ban">
+             <option disabled selected>Yasaklanacak üyeyi seçiniz.</option>
+            <% sunucu.members.forEach(m => { %>
+             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
+            <% }); %>
+          </select>
+          <input type="text" style="text-align: left; width:49%;" name="banSebep" id="banSebep" placeholder="Yasaklama sebebini yazınız.">
+        </div>
+      </div>
+    
+    <div class="row">
+        <div class="col-25">
+          <label for="unban">Üye Yasağı Kaldır</label>
+        </div>
+        <div class="col-75">
+          <input type="text" style="text-align: left; width:87%;" name="unban" id="unban" placeholder="Yasağı kaldırılacak üyenin ID'ini yazınız. ">
+        </div>
+      </div>
+    
+    <div class="row">
+        <div class="col-25">
+          <label for="kick">Üye At</label>
+        </div>
+        <div class="col-75">
+          <select style="text-align: left; width:87%;" id="kick" name="kick">
+             <option disabled selected>Atılacak üyeyi seçiniz.</option>
+            <% sunucu.members.forEach(m => { %>
+             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
+            <% }); %>
+          </select>
+        </div>
+      </div>
+    
+    <div class="row">
+        <div class="col-25">
+          <label for="sustur">Üye Sustur</label>
+        </div>
+        <div class="col-75">
+          <select style="text-align: left; width:49%;" id="sustur" name="sustur">
+             <option disabled selected>Susturulacak üyeyi seçiniz.</option>
+            <% sunucu.members.filter(m => bot.veritabanı.varMı(`${sunucu.id}.mutes`) ? Object.keys(bot.veritabanı.veri(`${sunucu.id}.mutes`)).includes(m.user.id) === false : []).forEach(m => { %>
+             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
+            <% }); %>
+          </select>
+          
+          <select style="text-align: left; width:49%;" id="susturK" name="susturK">
+             <option disabled selected>Susturulacağı kanalı seçiniz.</option>
+            <% sunucu.channels.forEach(c => { %>
+             <option value="<%=c.id%>">#<%=c.name%></option>
+            <% }); %>
+          </select>
+        </div>
+      </div>
+    
+    <div class="row">
+        <div class="col-25">
+          <label for="susturma">Üye Susturması Kaldır</label>
+        </div>
+        <div class="col-75">
+          <select style="text-align: left; width:49%;" id="susturma" name="susturma">
+             <option disabled selected>Susturması kaldırılacak üyeyi seçiniz.</option>
+            <% sunucu.members.filter(m => bot.veritabanı.varMı(`${sunucu.id}.mutes`) ? Object.keys(bot.veritabanı.veri(`${sunucu.id}.mutes`)).includes(m.user.id) !== false : []).forEach(m => { %>
+             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
+            <% }); %>
+          </select>
+          
+          <select style="text-align: left; width:49%;" id="susturmaK" name="susturmaK">
+             <option disabled selected>Susturması kaldırılacak kanalı seçiniz.</option>
+            <% sunucu.channels.forEach(c => { %>
+             <option value="<%=c.id%>">#<%=c.name%></option>
+            <% }); %>
+          </select>
+        </div>
+      </div>
+     <% } %>
+    <br>
+  </div>
+        
+        <button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
+        
+      </form>
+    </div>  
+  </div>
+</div>
+  
+  <script>
+    function myFunctionTwo () {
+      $("#yeniKomutX").css("display", "block");
+      $("#yeniAciklamaX").css("display", "block");
+      $("#yeniTipX").css("display", "block");
+    };
+    
+    function myFunctionXyz () {
+      if (document.getElementById("tip").value === "embed") {
+        $("#tip").css("width", "49%");
+        $("#renk").css("display", "block");
+      } else {
+        $("#tip").css("width", "100%");
+        $("#renk").css("display", "none");
+      }
+    };
+    
+    function myFunctionAbc () {
+      if (document.getElementById("ytip").value === "embed") {
+        $("#ytip").css("width", "49%");
+        $("#yrenk").css("display", "block");
+      } else {
+        $("#ytip").css("width", "100%");
+        $("#yrenk").css("display", "none");
+      }
+    };
+  </script>
+  
+  <script>
+      function formAutoSubmit () {
+       var frm = document.getElementById("forum")
+        frm.submit();
+      }
+    </script>
+  
+  <script>
+      $(document).ready(function(){
+        
+        $("#genelAyarlarBtn").click(function() {
+          $("#genelAyarlarBtn").addClass("activex");
+          $("#genelAyarlar").css("display", "block");
+          $("#ozelKomutlarBtn").removeClass("activex");
+          $("#ozelKomutlar").css("display", "none");
+          $("#modAyarlarBtn").removeClass("activex");
+          $("#modAyarlar").css("display", "none");
+        });
+        
+        $("#ozelKomutlarBtn").click(function() {
+          $("#genelAyarlarBtn").removeClass("activex");
+          $("#genelAyarlar").css("display", "none");
+          $("#ozelKomutlarBtn").addClass("activex");
+          $("#ozelKomutlar").css("display", "block");
+          $("#modAyarlarBtn").removeClass("activex");
+          $("#modAyarlar").css("display", "none");
+        });
+        
+        $("#modAyarlarBtn").click(function() {
+          $("#genelAyarlarBtn").removeClass("activex");
+          $("#genelAyarlar").css("display", "none");
+          $("#ozelKomutlarBtn").removeClass("activex");
+          $("#ozelKomutlar").css("display", "none");
+          $("#modAyarlarBtn").addClass("activex");
+          $("#modAyarlar").css("display", "block");
+        });
+        
+      });
+  </script>
+  
+<%- include('ek/footer.ejs', {bot, user, path}) %>

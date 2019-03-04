@@ -1,0 +1,146 @@
+<!--HEADER-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="<%=bot.avatarURL%>">
+  <meta name="author" content="<%=bot.user.tag%>">
+  <meta name="keywords" content="tornado">
+  <meta property="og:site_name" value="<%=bot.user.username%>">
+  <meta property="og:image" content="<%=bot.avatarURL%>">
+  <meta property="og:description" content="Gelişmiş bir bot!">
+  <meta name="description" content="Gelişmiş bir bot!">
+  <meta name="theme-color" content="#0070fa">
+  <meta charset="UTF-8">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700&subset=latin-ext" rel="stylesheet">
+<link href="https://bootswatch.com/4/cyborg/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/v/bs4/dt-1.10.16/cr-1.4.1/r-2.2.0/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" integrity="sha256-zG8v+NWiZxmjNi+CvUYnZwKtHzFtdO8cAKUIdB8+U9I="
+crossorigin="anonymous"></script>
+  
+<link rel="stylesheet" href="/css/main.css" />
+
+	<link rel='icon' href='<%=bot.avatarURL%>'>
+	<title><%=bot.user.username%> Web Paneli</title>
+</head>
+
+<body>
+
+  <nav style="background-color:#2a2d32" class="navbar navbar-expand-lg navbar-dark">
+     <div class="container">
+      <a class="navbar-brand" href="/tr"><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="30" height="30"
+          class="d-inline-block align-top rounded-circle" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor02">
+
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a href="/tr" class="nav-link">Ana Sayfa</a></li>
+        <li class="nav-item"><a href="/tr/komutlar" class="nav-link">Komutlar</a></li>
+        <li class="nav-item"><a href="/tr/istatistikler" class="nav-link">İstatistikler</a></li>
+        <li class="nav-item"><a href="/tr/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
+        <li class="nav-item"><a href="/tr/sunucular" class="nav-link">Sunucular</a></li>
+        <li class="nav-item"><a href="/tr/kullaniciler" class="nav-link">Kullanıcılar</a></li>
+      </ul>
+
+      <ul class="navbar-nav">
+          <%if(!user) {%>
+          <li class="nav-item"><a href="/tr/giris" class="nav-link">Giriş Yap</a></li>
+            <%}%>
+       <%if(user) {%>
+            <li class="dropdown">
+            <a href="/tr" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt=""> <%=user.username%>
+           </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="background-color:#2a2d32">
+              <a class="dropdown-item activex" href="/tr/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
+              <a class="dropdown-item" href="/tr/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım</a>
+              <% if(bot.ayarlar.sahip.includes(user.id)) { %>
+						  <a class="dropdown-item" href="/tr/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
+				      <% } %>
+              <a class="dropdown-item" href="/tr/cikis" style="color:#ffffff"><i aria-hidden="true"></i>Çıkış Yap</a>
+        </div>
+          </li>
+      <%}%>
+        </ul>
+      </div>
+  </nav>
+
+<!--HEADER-->
+
+<% const db = bot.veritabanı; %>
+<% const u = bot.users.get(user.id); %>
+
+<div class="container">
+	<div class="jumbotron" style="background-color:#1c1c1c">
+		<div align="center">
+<form method="POST">
+
+<h3 id="sssss"></h3>
+
+<canvas id="myCanvas" width="934px" height="282px"></canvas>
+
+<div class="row">
+<div class="col-25">
+<label for="renk">Seviye kartı rengi</label>
+</div>
+<div class="col-75">
+<% if (db.varMı(`${user.id}.renk`) === false) { %>
+<input type="color" id="renk" name="renk" style="width:87%" value="#84a0ed">
+<a href="/tr/kullaniciler/<%=user.id%>/yonet/renk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<% } else { %>
+<input type="color" id="renk" name="renk" style="width:87%" value="<%=db.veri(`${user.id}.renk`)%>">
+<a href="/tr/kullaniciler/<%=user.id%>/yonet/renk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<% } %>
+</div>
+</div>
+
+<div class="row">
+<div class="col-25">
+<label for="resim">Seviye kartı arka plan resmi</label>
+</div>
+<div class="col-75">
+<% if (db.varMı(`${user.id}.resim`) === false || db.veri(`${user.id}.resim`) === "https://img.revabot.tk/99kd63vy.png") { %>
+<input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız.">
+<a href="/tr/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<% } else { %>
+<input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız." value="<%=db.veri(`${user.id}.resim`)%>">
+<a href="/tr/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<div align="left" class="col-25">
+<label for="resim">Resim</label>
+<img src="<%=db.veri(`${user.id}.resim`)%>"><br><br>
+</div>
+<% } %>
+</div>
+</div>
+
+<button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
+  <script>
+    var c=document.getElementById("myCanvas");var ctx=c.getContext("2d");let url="<%= u.displayAvatarURL %>";let ava=new Image();ava.src=url;let srs="";<% if (!db.varMı(`${u.id}.resim`)) { %>
+srs=0.55;<% } else { %>
+let resim=new Image();resim.src="<%= db.veri(`${u.id}.resim`) %>";ctx.drawImage(resim,0,0,934,282);srs=0;<% } %>
+ctx.globalAlpha=srs;ctx.fillStyle="#666";ctx.fillRect(0,0,934,282);ctx.globalAlpha=0.90;ctx.fillStyle="#fcfcfc";ctx.fillRect(145,30,760,220);ctx.globalAlpha=1;ctx.font="bold 36px Arial";ctx.fillStyle="#878787";ctx.textAlign="sctart";ctx.fillText("<%=u.username%>",355-ctx.measureText("<%=`#${u.discriminator}`%>").width,92);ctx.font="italic 36px Arial";ctx.fillStyle="#878787";ctx.textAlign="center";ctx.fillText("<%=`#${u.discriminator}`%>",325+ctx.measureText("<%=`${u.username}`%>").width,92);var lvl=0;ctx.fillStyle="<%= db.varMı(`${u.id}.renk`) ? db.veri(`${u.id}.renk`) : '#84a0ed' %>";ctx.textAlign="start";ctx.font="bold 30px Arial";ctx.fillText(lvl,325+ctx.measureText("Seviye").width+10,164);ctx.fillStyle="#878787";ctx.font="30px Arial";ctx.fillText("Seviye",325,164);var sira="#1";ctx.fillStyle="<%= db.varMı(`${u.id}.renk`) ? db.veri(`${u.id}.renk`) : '#84a0ed' %>";ctx.textAlign="start";ctx.font="bold 30px Arial";ctx.fillText(sira,710+ctx.measureText("Sıralama").width+10,92);ctx.fillStyle="#878787";ctx.font="30px Arial";ctx.fillText("Sıralama",710,92);let xyz=100;let xp=0;ctx.font="30px Arial";ctx.fillStyle="#878787";ctx.textAlign="end";ctx.fillText("/ "+xyz+" XP",770,164);ctx.fillStyle="#939393";ctx.fillText(xp,770-ctx.measureText("/ "+xyz+" XP").width-10,164);ctx.beginPath();ctx.fillStyle="#fff";ctx.arc(237+18.5,144.5+18.5+36.25,18.5,1.5*Math.PI,true);ctx.fill();ctx.fillRect(237+18.5,144.5+36.25,635,37.5);ctx.arc(237+635,144.5+18.5+36.25,18.75,1.5*Math.PI,false);ctx.fill();let xpx=25;ctx.beginPath();ctx.fillStyle="<%= db.varMı(`${u.id}.renk`) ? db.veri(`${u.id}.renk`) : '#84a0ed' %>";ctx.arc(237+18.5,144.5+18.5+36.25,18.5,1.5*Math.PI,true);ctx.fill();ctx.fillRect(237+18.5,144.5+36.25,xpx,37.5);ctx.arc(237+xpx,144.5+18.5+36.25,18.75,1.5*Math.PI,false);ctx.fill();const Durum="<%= u.presence.status %>";var Durmm=''
+if(Durum==='online'){var Durmm='#42b581'}
+if(Durum==='offline'){var Durmm='#747f8d'}
+if(Durum==='dnd'){var Durmm='#f04747'}
+if(Durum==='idle'){var Durmm='#faa61a'}
+ctx.beginPath();ctx.lineWidth=7;ctx.rect(80,60,140,140);ctx.strokeStyle=Durmm;ctx.stroke();ctx.clip();ctx.drawImage(ava,80,60,140,140);
+  </script>
+      </form>
+    </div>
+  </div>
+  </div>
+  
+  <%- include('ek/footer.ejs', {bot, user, path}) %>

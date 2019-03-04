@@ -9,7 +9,7 @@ process.on('çık', async () => {
 setTimeout(() => process.emit('çık'), 1000 * 60 * 60 * 12);
 
 
-
+/*
 const http = require('http');
 const express = require('express');
 const app = express();
@@ -21,7 +21,7 @@ app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000)
-
+*/
 if (process.version.slice(1).split(".")[0] < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
 
 const Discord = require('discord.js');
@@ -35,10 +35,13 @@ const fs = require('fs');
 const { stripIndents } = require('common-tags');
 const moment = require('moment');
 require('./util/eventLoader')(client);
+
 const db = require('quick.db');
 const jimp = require('jimp');
 const Jimp = require('jimp')
 const snekfetch = require('snekfetch');
+client.config = require("./config.js");
+require("./modüller/fonksiyonlar.js")(client);
 
 
 
@@ -157,18 +160,17 @@ client.on("ready", async () => {
     client.appInfo = await client.fetchApplication();
   }, 60000);
   
-  require("../modüller/panel.js")(client);
-    
-  }, 60000);
-  
-  
+  require("./modüller/panel.js")(client); 
   
   console.log(`${chalk.green(client.user.username)}${chalk.red(",")} ${chalk.blue(client.guilds.size)} ${chalk.yellow("Sunucu'ya")} ${chalk.red("ve")} ${chalk.blue(client.users.size.toLocaleString())} ${chalk.yellow("Kullanıcı'ya")} ${chalk.red("hizmet veriyor!")}`)
   client.user.setStatus("online");
   client.user.setActivity(`${client.ayarlar.oynuyor}`, { type: 'WATCHING' });
   
 })
-
+  
+  
+  
+ 
 
 client.on('message', async message => {
 
