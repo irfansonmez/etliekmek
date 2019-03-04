@@ -42,10 +42,13 @@ const snekfetch = require('snekfetch');
 
 
 
+client.web = "https://cyber-runner.glitch.me/";
+client.ayarlar.renk = "DARKBLUE";
+client.ayarlar.version = "1.0.0";
 
 client.ayar = db;
 
-
+require('./modüller/fonksiyonlar.js')(client);
 
 client.emojiler = {
 
