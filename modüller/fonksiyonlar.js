@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-
+const db = require('quick.db');
 module.exports = (client) => {
 
 client.panel = {};
@@ -19,10 +19,10 @@ client.panel.ayarlarKaydet = (sunucuID, sunucu, yeniAyar, req, res) => {
 try {
 
 if (yeniAyar['prefix']) {
-client.veritabanı.ayarla(`${sunucuID}.prefix`, yeniAyar['prefix'])
+db.set(`prefix_${sunucu.id}`, yeniAyar['prefix'])
 }
 if (yeniAyar['otorol']) {
-client.veritabanı.ayarla(`${sunucuID}.oto-rol`, yeniAyar['otorol'])
+db.set(`otoR_${sunucu.id}`, yeniAyar['otorol'])
 }
 if (yeniAyar['girisCikis']) {
 client.veritabanı.ayarla(`${sunucuID}.girisCikis`, yeniAyar['girisCikis'])
