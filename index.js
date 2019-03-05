@@ -2941,7 +2941,7 @@ client.on("message", async msg => {
   });
   
 const DBL = require("dblapi.js");
-const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxMDg4MTY1NDk0OTAxOTY1MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTQzMTUzNTY3fQ.3-OgRgiNdzXb-ehJAuryurHFJ4dG_eGVGTS8OLl1koA', client);
+const dbl = new DBL(client.ayarlar.dbltoken, client);
 
 
 client.on('ready', () => {
@@ -2950,7 +2950,7 @@ client.on('ready', () => {
   }, 1800000);
    });
 
-  dbl.getStats("510881654949019652").then(stats => {
+  dbl.getStats("516600125649453066").then(stats => {
     console.log('DBL ye gerekli verileri girdim.') // {"server_count":2,"shards":[]}
  });
 
