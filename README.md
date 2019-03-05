@@ -1,1 +1,2 @@
 # REİS BU BOTTAN BİŞE ALANIN ANNESİNE ATOM BOMBASI İLE GİRERİM (SAHİPLER HARİÇ YANİ ARDAĞĞĞĞHHH) ASDFLJKSKJG
+[![Discord Bots](https://discordbots.org/api/widget/516600125649453066.svg)](https://discordbots.org/bot/516600125649453066)
