@@ -19,8 +19,8 @@ module.exports = (client) => {
   
   const bilgiler = {
     oauthSecret: "lQRQ4QWq0VXuzlFyaTSidt5qr1xc2H8X",
-    callbackURL: "https://cyber-runner.glitch.me/callback",
-    domain: "https://cyber-runner.glitch.me/"
+    callbackURL: "https://seed-satin.glitch.me//callback",
+    domain: "https://seed-satin.glitch.me/"
   };
   
   console.log('BAŞARILI')

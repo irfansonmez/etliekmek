@@ -31,7 +31,7 @@ exports.run = (bot, message, args) => {
             image.resize(400, 400)  
             //image.greyscale()
          //   image.gaussian(1)
-            Jimp.read(`./efektler/discord/partner${mesaj}.png`, (err, avatar) => {
+            Jimp.read(`https://github.com/batuhan121/botumuzg-zelbroo-/blob/master/efektler/discord/partner${mesaj}.png`, (err, avatar) => {
                 avatar.resize(400, 400)
                 image.composite(avatar, 0, 0).write(`./img/efektler/${user.id}.png`);
                 setTimeout(function() {

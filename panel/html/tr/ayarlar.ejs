@@ -144,7 +144,7 @@
           <label for="girisCikis">Giriş Çıkış Kanalı</label>
         </div>
         <div class="col-75">
-          <% if (bot.ayar.has(`${sunucu.id}.girisCikis`) === false) { %>
+          <% if (bot.ayar.has(`gc_${sunucu.id}`) === false) { %>
           <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
             <option disabled selected>Lütfen bir kanal seçiniz.</option>
             <% sunucu.channels.filter(c => c.type === "text").forEach(c => { %>
@@ -153,10 +153,10 @@
           </select>
           <a href="/tr/panel/<%=sunucu.id%>/yonet/girisCikis/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.girisCikis`) === true) { %>
+					<% if(bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
           <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
-            <option value="<%=bot.ayar.fetch(`${sunucu.id}.girisCikis`)%>">#<%=sunucu.channels.get(bot.ayar.fetch(`${sunucu.id}.girisCikis`)).name%></option>
-					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`${sunucu.id}.girisCikis`)).forEach(c => { %>
+            <option value="<%=bot.ayar.fetch(`gc_${sunucu.id}`)%>">#<%=sunucu.channels.get(bot.ayar.fetch(`gc_${sunucu.id}`)).name%></option>
+					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`gc_${sunucu.id}`)).forEach(c => { %>
             <option value="<%=c.id%>">#<%=c.name%></option>
           <% }); %>
           </select>
