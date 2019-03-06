@@ -1,12 +1,5 @@
-process.on('çık', async () => {
-    console.log('çıkıyom..');
-    try {
-// çıkarken yapılacaklar
-    } catch (_) {}
-    process.exit();
-});
+// ıkarken yapılacaklar
 
-setTimeout(() => process.emit('çık'), 1000 * 60 * 60 * 12);
 
 
 /*
