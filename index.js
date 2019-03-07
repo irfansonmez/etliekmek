@@ -620,6 +620,31 @@ client.on('message', async message => {
 });
 
 
+
+client.on("message",async  message => {
+
+  if (!message.guild) return;
+  
+let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+
+  if(db.has(`özelKD_${message.guild.id}`)) {
+for(var i = 0; i < db.fetch(`özelKD_${message.guild.id}`).length; i++) {
+  
+ var o = Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])
+ 
+  if (message.content === prefix+o) {
+    
+    var a = db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])]
+    
+    message.channel.send(a)
+  
+ }
+}
+  }
+  
+  
+});
+
 client.on('guildMemberAdd' , async member => {
 const toplamkullanıcı = await db.fetch(`toplamkullanıcı_${member.guild.id}`)
 const toplamkişi = await db.fetch(`toplamkişi_${member.guild.id}`)
