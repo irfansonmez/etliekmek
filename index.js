@@ -33,12 +33,12 @@ const db = require('quick.db');
 const jimp = require('jimp');
 const Jimp = require('jimp')
 const snekfetch = require('snekfetch');
+const useful = require('./x.js');
 
 
 
 
-
-
+client.useful = useful;
 require("./modüller/fonksiyonlar.js")(client);
 require('./util/eventLoader')(client);
 client.config = require("./config.js");
