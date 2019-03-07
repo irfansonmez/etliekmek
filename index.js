@@ -571,6 +571,33 @@ if (args[0] === "yardım"){
 
 
 client.on('message', async message => {
+  
+  
+  
+   var prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+  let p = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : client.ayarlar.prefix
+  let prefix = db.fetch(`${message.guild.id}.prefix`) || p;
+  
+  if(message.content.startsWith(prefix)) {
+    if (db.has(`özelKD_${message.guild.id}`) === true) {
+      for (var i = 0; i < db.fetch(`özelKD_${message.guild.id}`).length; i++) {
+        if(message.content.slice(prefix.length).toLowerCase() === Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0] || message.content.slice(prefix.length).toUpperCase() === Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0] || message.content.slice(prefix.length).toProperCase() === Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0]) {
+          if (db.fetch(`özelKD_${message.guild.id}`)[i].tip === 'varsayılan') {
+            message.channel.send(db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0]])
+          }
+          if (db.fetch(`özelKD_${message.guild.id}`)[i].tip === 'embed') {
+            let embed = new Discord.RichEmbed()
+            .setColor(db.fetch(`özelKD_${message.guild.id}`)[i].renk)
+            .setDescription(db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0]])
+            message.channel.send({embed:embed})
+          }
+          return
+        };
+      };
+    };
+  };
+
+  
 
     const args = message.content.substring().split(" ");
   if (message.author.bot) return;
@@ -1330,6 +1357,7 @@ client.on("message", async msg => {
 
 
 })
+
 
 
 
