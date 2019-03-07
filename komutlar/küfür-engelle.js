@@ -23,7 +23,10 @@ exports.run = async (client, message) => {
     
     var i = db.set(`küfürE_${message.guild.id}`, "acik")
     
-		message.channel.send('Başarıyla açıldı')
+		  const embed = new Discord.RichEmbed()
+    .setColor('RED')
+    .setDescription('Küfür Engeli Başarıyla açıldı')
+    message.channel.send(embed)
     /*let kufurEngel = JSON.parse(fs.readFileSync("././jsonlar/kufurEngelle.json", "utf8"));
  if(!kufurEngel[message.guild.id]){
 		kufurEngel[message.guild.id] = {

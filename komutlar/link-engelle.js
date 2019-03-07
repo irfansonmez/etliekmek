@@ -23,7 +23,10 @@ exports.run = async (client, message) => {
 		
     var i = db.set(`linkE_${message.guild.id}`, "acik")
     
-		message.channel.send('Link engelleme sistemi açıldı')
+		  const embed = new Discord.RichEmbed()
+    .setColor('RED')
+    .setDescription('Link Engeli Başarıyla açıldı')
+    message.channel.send(embed)
     
     /*let linkEngel = JSON.parse(fs.readFileSync("././jsonlar/linkEngelle.json", "utf8"));
   if(!linkEngel[message.guild.id]){

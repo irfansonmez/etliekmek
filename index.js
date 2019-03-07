@@ -1289,7 +1289,7 @@ client.on("message", async msg => {
   if (db.has(`capsE_${msg.guild.id}`) === true) {
     let x = /\w*[A-Z]\w*[A-Z]\w*/g;
     if (msg.content.match(x)) {
-    //  if (mesaj.member.permissions.has("ADMINISTRATOR") === true) return;
+      if (mesaj.member.permissions.has("ADMINISTRATOR") === true) return;
       msg.delete();
       let y = await msg.reply(`Bu sunucuda büyük harf engeli açık, bu yüzden büyük harf açıkken yazı yazamazsın!`)
       y.delete(5000);
