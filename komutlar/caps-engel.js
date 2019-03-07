@@ -23,7 +23,12 @@ exports.run = async (client, message) => {
     
     var i = db.set(`capsE_${message.guild.id}`, "acik")
     
-		message.channel.send('Başarıyla açıldı')
+    
+    const embed = new Discord.RichEmbed()
+    .setColor('RED')
+    .setDescription('Caps Lock Engeli Başarıyla açıldı')
+    message.channel.send(embed)
+		
     /*let kufurEngel = JSON.parse(fs.readFileSync("././jsonlar/kufurEngelle.json", "utf8"));
  if(!kufurEngel[message.guild.id]){
 		kufurEngel[message.guild.id] = {

@@ -574,29 +574,6 @@ client.on('message', async message => {
   
   
   
-   var prefixMention = new RegExp(`^<@!?${client.user.id}> `);
-  let p = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : client.ayarlar.prefix
-  let prefix = db.fetch(`${message.guild.id}.prefix`) || p;
-  
-  if(message.content.startsWith(prefix)) {
-    if (db.has(`özelKD_${message.guild.id}`) === true) {
-      for (var i = 0; i < db.fetch(`özelKD_${message.guild.id}`).length; i++) {
-        if(message.content.slice(prefix.length).toLowerCase() === Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0] || message.content.slice(prefix.length).toUpperCase() === Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0] || message.content.slice(prefix.length).toProperCase() === Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0]) {
-          if (db.fetch(`özelKD_${message.guild.id}`)[i].tip === 'varsayılan') {
-            message.channel.send(db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0]])
-          }
-          if (db.fetch(`özelKD_${message.guild.id}`)[i].KomutE.tip === 'embed') {
-            let embed = new Discord.RichEmbed()
-            .setColor(db.fetch(`özelKD_${message.guild.id}`)[i].komutE.renk)
-            .setDescription(db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i]).komutE[0]])
-            message.channel.send({embed:embed})
-          }
-          return
-        };
-      };
-    };
-  };
-
   
 
     const args = message.content.substring().split(" ");
@@ -621,29 +598,6 @@ client.on('message', async message => {
 
 
 
-client.on("message",async  message => {
-
-  if (!message.guild) return;
-  
-let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-
-  if(db.has(`özelKD_${message.guild.id}`)) {
-for(var i = 0; i < db.fetch(`özelKD_${message.guild.id}`).length; i++) {
-  
- var o = Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])
- 
-  if (message.content === prefix+o) {
-    
-    var a = db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])]
-    
-    message.channel.send(a)
-  
- }
-}
-  }
-  
-  
-});
 
 client.on('guildMemberAdd' , async member => {
 const toplamkullanıcı = await db.fetch(`toplamkullanıcı_${member.guild.id}`)
@@ -1335,7 +1289,7 @@ client.on("message", async msg => {
   if (db.has(`capsE_${msg.guild.id}`) === true) {
     let x = /\w*[A-Z]\w*[A-Z]\w*/g;
     if (msg.content.match(x)) {
-     // if (mesaj.member.permissions.has("ADMINISTRATOR") === true) return;
+    //  if (mesaj.member.permissions.has("ADMINISTRATOR") === true) return;
       msg.delete();
       let y = await msg.reply(`Bu sunucuda büyük harf engeli açık, bu yüzden büyük harf açıkken yazı yazamazsın!`)
       y.delete(5000);
