@@ -1275,17 +1275,17 @@ client.on("message", async msg => {
     
   
   
-   if (!mesaj.guild) return;
+   if (!msg.guild) return;
 
-  if (mesaj.author.bot) return;
+  if (msg.author.bot) return;
   
   if (db.has(`capsE_${msg.guild.id}`) === false) return;
   if (db.has(`capsE_${msg.guild.id}`) === true) {
     let x = /\w*[A-Z]\w*[A-Z]\w*/g;
-    if (mesaj.content.match(x)) {
+    if (msg.content.match(x)) {
      // if (mesaj.member.permissions.has("ADMINISTRATOR") === true) return;
-      mesaj.delete();
-      let y = await mesaj.reply(`Bu sunucuda büyük harf engeli açık, bu yüzden büyük harf açıkken yazı yazamazsın!`)
+      msg.delete();
+      let y = await msg.reply(`Bu sunucuda büyük harf engeli açık, bu yüzden büyük harf açıkken yazı yazamazsın!`)
       y.delete(5000);
       return
     };

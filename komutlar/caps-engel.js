@@ -14,14 +14,14 @@ exports.run = async (client, message) => {
 	let args = message.content.split(' ').slice(1);
 	const secenekler = args.slice(0).join(' ');
 
-	if(secenekler.length < 1) return message.reply(`**${prefix}küfür-engelle aç** veya **${prefix}küfür-engelle kapat** yazınz `);
+	if(secenekler.length < 1) return message.reply(`**${prefix}büyükharf-engelle aç** veya **${prefix}büyükharf-engelle kapat** yazınz `);
 	//if(secenekler === "aç" || "kapat") return message.channel.send(errembed);
 
   if (secenekler !== "aç" && secenekler !== "kapat" && secenekler !== "on" && secenekler !== "off") return message.reply(`**${prefix}küfür-engelle aç** veya **${prefix}küfür-engelle kapat** yazınz `)
   
 	if (secenekler === "aç" || secenekler === "on") {
     
-    var i = db.set(`küfürE_${message.guild.id}`, "acik")
+    var i = db.set(`capsE_${message.guild.id}`, "acik")
     
 		message.channel.send('Başarıyla açıldı')
     /*let kufurEngel = JSON.parse(fs.readFileSync("././jsonlar/kufurEngelle.json", "utf8"));
@@ -41,9 +41,9 @@ exports.run = async (client, message) => {
     
     //var i = db.set(`küfürE_${message.guild.id}`, "kapali")
     
-    db.delete(`küfürE_${message.guild.id}`)
+    db.delete(`capsE_${message.guild.id}`)
     
-		message.channel.send('Küfür engelleyici kapatıldı')
+		message.channel.send('Büyük harf engelleyici kapatıldı')
   /*let kufurEngel = JSON.parse(fs.readFileSync("././jsonlar/kufurEngelle.json", "utf8"));
   if(!kufurEngel[message.guild.id]){
 		kufurEngel[message.guild.id] = {
@@ -66,14 +66,14 @@ exports.run = async (client, message) => {
 	exports.conf = {
 		enabled: true,
 		guildOnly: false,
-		aliases: ['küfür-engel'],
+		aliases: ['büyük-harf-engelle', 'büyükharfengelle', 'caps-engelle', 'capssngelle'],
 		permLevel: 4,
     kategori: "ayarlar",
 	};
 	  
 	exports.help = {
 		name: 'büyükharf-engelle',
-		description: 'Küfür engelleme sistemini açıp kapatmanızı sağlar.',
+		description: 'Büyük harf engelleme sistemini açıp kapatmanızı sağlar.',
 		usage: 'büyükharf-engelle <aç/kapat>',
     
 	};

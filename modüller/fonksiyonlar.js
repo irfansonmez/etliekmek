@@ -25,33 +25,17 @@ if (yeniAyar['otorol']) {
 db.set(`otoR_${sunucu.id}`, yeniAyar['otorol'])
 }
 if (yeniAyar['girisCikis']) {
-client.veritabanı.ayarla(`${sunucuID}.girisCikis`, yeniAyar['girisCikis'])
+db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])
+    
 }
-if (yeniAyar['girisCikisTip']) {
-if (yeniAyar['girisCikisTip'] === "varsayılan") {
-client.veritabanı.sil(`${sunucuID}.girisCikisTip`)
-} else {
-client.veritabanı.ayarla(`${sunucuID}.girisCikisTip`, yeniAyar['girisCikisTip'])
-}
-}
+
 if (yeniAyar['girisMesaj']) {
 client.veritabanı.ayarla(`${sunucuID}.girisMesaj`, yeniAyar['girisMesaj'])
 }
 if (yeniAyar['cikisMesaj']) {
 client.veritabanı.ayarla(`${sunucuID}.cikisMesaj`, yeniAyar['cikisMesaj'])
 }
-if (yeniAyar['spam'] === 'aktif') {
-client.veritabanı.ayarla(`${sunucuID}.spam`, yeniAyar['spam'])
-}
-if (!yeniAyar['spam']) {
-client.veritabanı.sil(`${sunucuID}.spam`)
-}
-if (yeniAyar['spamMesaj']) {
-client.veritabanı.ayarla(`${sunucuID}.spamMesaj`, yeniAyar['spamMesaj'])
-}
-if (yeniAyar['spamUyarı']) {
-client.veritabanı.ayarla(`${sunucuID}.spamUyarı`, yeniAyar['spamUyarı'])
-}
+
 if (yeniAyar['küfürEngel'] === 'aktif') {
 client.veritabanı.ayarla(`${sunucuID}.küfürEngel`, yeniAyar['küfürEngel'])
 }

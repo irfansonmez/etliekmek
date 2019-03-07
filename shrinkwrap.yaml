@@ -12,7 +12,6 @@ dependencies:
   dblapi.js: 2.3.0
   discord.js: 11.4.2
   discord.js-sharder: 1.0.6
-  discordjs-advanced: 2.0.5
   ejs: 2.6.1
   express: 4.16.4
   express-session: 1.15.6
@@ -1296,16 +1295,6 @@ packages:
       uws: ^9.14.0
     resolution:
       integrity: sha512-MDwpu0lMFTjqomijDl1Ed9miMQe6kB4ifKdP28QZllmLv/HVOJXhatRgjS8urp/wBlOfx+qAYSXcdI5cKGYsfg==
-  /discordjs-advanced/2.0.5:
-    dependencies:
-      chalk: 2.4.2
-      discord.js: 11.4.2
-      fs: 0.0.1-security
-      lowdb: 1.0.0
-      npm: 6.9.0
-    dev: false
-    resolution:
-      integrity: sha512-CkGH4nGPtYbOpRfzxgxYBoNyGGlaW9PajrC0RGcIYngVuthBpR+/Jicclm6pXbJkjwQN6WOh0iqX+NlkdYRuxA==
   /distributions/0.2.1:
     dependencies:
       mathfn: 0.3.1
@@ -1802,10 +1791,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
-  /fs/0.0.1-security:
-    dev: false
-    resolution:
-      integrity: sha1-invTcYa23d84E/I4WLV+yq9eQdQ=
   /function-bind/1.1.1:
     dev: false
     resolution:
@@ -3169,134 +3154,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-xMH6V0OCSJ5ZET6yWPI3BmJSqMMCuVJSIcLx3LSH/SrratFSt6EDuCuGRFMQYty98Q1l6x/7vKmfURosoyWgrA==
-  /npm/6.9.0:
-    bundledDependencies:
-      - abbrev
-      - ansicolors
-      - ansistyles
-      - aproba
-      - archy
-      - bin-links
-      - bluebird
-      - byte-size
-      - cacache
-      - call-limit
-      - chownr
-      - ci-info
-      - cli-columns
-      - cli-table3
-      - cmd-shim
-      - columnify
-      - config-chain
-      - debuglog
-      - detect-indent
-      - detect-newline
-      - dezalgo
-      - editor
-      - figgy-pudding
-      - find-npm-prefix
-      - fs-vacuum
-      - fs-write-stream-atomic
-      - gentle-fs
-      - glob
-      - graceful-fs
-      - has-unicode
-      - hosted-git-info
-      - iferr
-      - imurmurhash
-      - inflight
-      - inherits
-      - ini
-      - init-package-json
-      - is-cidr
-      - json-parse-better-errors
-      - JSONStream
-      - lazy-property
-      - libcipm
-      - libnpm
-      - libnpmaccess
-      - libnpmhook
-      - libnpmorg
-      - libnpmsearch
-      - libnpmteam
-      - libnpx
-      - lock-verify
-      - lockfile
-      - lodash._baseindexof
-      - lodash._baseuniq
-      - lodash._bindcallback
-      - lodash._cacheindexof
-      - lodash._createcache
-      - lodash._getnative
-      - lodash.clonedeep
-      - lodash.restparam
-      - lodash.union
-      - lodash.uniq
-      - lodash.without
-      - lru-cache
-      - meant
-      - mississippi
-      - mkdirp
-      - move-concurrently
-      - node-gyp
-      - nopt
-      - normalize-package-data
-      - npm-audit-report
-      - npm-cache-filename
-      - npm-install-checks
-      - npm-lifecycle
-      - npm-package-arg
-      - npm-packlist
-      - npm-pick-manifest
-      - npm-profile
-      - npm-registry-fetch
-      - npm-user-validate
-      - npmlog
-      - once
-      - opener
-      - osenv
-      - pacote
-      - path-is-inside
-      - promise-inflight
-      - qrcode-terminal
-      - query-string
-      - qw
-      - read-cmd-shim
-      - read-installed
-      - read-package-json
-      - read-package-tree
-      - read
-      - readable-stream
-      - readdir-scoped-modules
-      - request
-      - retry
-      - rimraf
-      - safe-buffer
-      - semver
-      - sha
-      - slide
-      - sorted-object
-      - sorted-union-stream
-      - ssri
-      - stringify-package
-      - tar
-      - text-table
-      - tiny-relative-date
-      - uid-number
-      - umask
-      - unique-filename
-      - unpipe
-      - update-notifier
-      - uuid
-      - validate-npm-package-license
-      - validate-npm-package-name
-      - which
-      - worker-farm
-      - write-file-atomic
-    dev: false
-    hasBin: true
-    resolution:
-      integrity: sha512-91V+zB5hDxO+Jyp2sUKS7juHlIM95dGQxTeQtmZI1nAI/7kjWXFipPrtwwKjhyKmV4GsS2LzJhrxRjGWsU9z/w==
   /npmlog/4.1.2:
     dependencies:
       are-we-there-yet: 1.1.5
@@ -4844,7 +4701,6 @@ specifiers:
   dblapi.js: ^2.3.0
   discord.js: ^11.4.2
   discord.js-sharder: ^1.0.6
-  discordjs-advanced: ^2.0.5
   ejs: ^2.6.1
   express: ^4.16.4
   express-session: ^1.15.6
