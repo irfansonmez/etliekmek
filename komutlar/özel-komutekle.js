@@ -12,16 +12,10 @@ let arg2 = args[1]
   if (client.commands.get(arg1)) return message.reply("Botun zaten var olan bir komutunu özel komut olarak ekleyemezsin!")
   if (client.aliases.get(arg1)) return message.reply("Botun zaten var olan bir komutunu özel komut olarak ekleyemezsin!")
   
-  let obj = JSON.parse('{"'+arg1+'": "'+arg2+'"}')
-  
-  //db.push(`özelKD_${message.guild.id}`, obj)
-
-   let obj = JSON.parse('{"'${args[1]}":"${args[2]}", "tip":"${embed}", "renk":"${args[3] || '#ff0000'}"}`)
-  
-  //db.push(`özelKD_${message.guild.id}`, obj)
-
+  let obj = JSON.parse("{"+arg1+ ":" +arg2+"}")
   
   db.push(`özelKD_${message.guild.id}`, obj)
+
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
    .setTitle(`${arg1} İsimli Özel Komut Başarıyla Oluşturuldu!`) 
@@ -33,7 +27,7 @@ let arg2 = args[1]
 exports.conf = { 
   enabled: true, 
   guildOnly: false, 
-  aliases: ['dkomutekle', 'dkomut-oluştur'], 
+  aliases: ['dkomutekle', 'komut-oluştur'], 
   permLevel: 3,
     kategori: "özel",
   category: "special"
