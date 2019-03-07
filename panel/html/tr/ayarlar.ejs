@@ -155,7 +155,7 @@
           <% } %>
 					<% if(bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
           <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
-            <option value="<%= bot.ayar.fetch(`gc_${sunucu.id}`) %>"><%=bot.ayar.fetch(`gc_${sunucu.id}`)%></option>
+            <option value="<%=bot.ayar.fetch(`gc_${sunucu.id}`)%>">#<%=sunucu.channels.get(bot.ayar.fetch(`gc_${sunucu.id}`))%></option>
 					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`gc_${sunucu.id}`)).forEach(c => { %>
             <option value="<%=c.id%>">#<%=c.name%></option>
           <% }); %>
@@ -165,7 +165,7 @@
         </div>
       </div>
     
-   
+    <% if (bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
     
     <p style="color:#fff"><a style="color:red">NOT</a><a style="color:#2a2d32d">:</a> Giriş ve çıkış mesajlarında kullanıcının geleceği yere <a style="color:#bfff3f">{kullanıcı}</a> yazınız.</p>
     
@@ -174,12 +174,12 @@
           <label for="girisMesaj">Giriş Mesajı</label>
       </div>
       <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}`) === false) { %>
+        <% if (bot.ayar.has(`girisM_${sunucu.id}`) === false) { %>
         <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" placeholder="{kullanıcı} adlı kullanıcı sunucuya katıldı!">
           <a href="/tr/panel/<%=sunucu.id%>/yonet/girisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.girisMesaj`) === true) { %>
-        <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" value="<%=bot.ayar.fetch(`${sunucu.id}.girisMesaj`)%>">
+					<% if(bot.ayar.has(`girisM_${sunucu.id}`) === true) { %>
+        <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" value="<%=bot.ayar.fetch(`girisM_${sunucu.id}`)%>">
           <a href="/tr/panel/<%=sunucu.id%>/yonet/girisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
       </div>
@@ -190,104 +190,57 @@
           <label for="cikisMesaj">Çıkış Mesajı</label>
       </div>
       <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.cikisMesaj`) === false) { %>
+        <% if (bot.ayar.has(`cikisM_${sunucu.id}`) === false) { %>
         <input type="text" style="text-align: left; width:87%;" name="cikisMesaj" id="cikisMesaj" maxlength="1950" placeholder="{kullanıcı} adlı kullanıcı sunucudan ayrıldı!">
           <a href="/tr/panel/<%=sunucu.id%>/yonet/cikisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.cikisMesaj`) === true) { %>
-        <input type="text" style="text-align: left; width:87%;" name="cikisMesaj" id="cikisMesaj" maxlength="1950" value="<%=bot.ayar.fetch(`${sunucu.id}.cikisMesaj`)%>">
+					<% if(bot.ayar.has(`cikisM_${sunucu.id}`) === true) { %>
+        <input type="text" style="text-align: left; width:87%;" name="cikisMesaj" id="cikisMesaj" maxlength="1950" value="<%=bot.ayar.fetch(`cikisM_${sunucu.id}`)%>">
           <a href="/tr/panel/<%=sunucu.id%>/yonet/cikisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
       </div>
     </div>
     <% } %>
     
-    <div class="row">
+    
+    
+    
+        
+     <div class="row">
       <div class="col-25">
-          <label for="spam">Spam Engelleme Sistemi</label>
+          <label for="küfürEngel">Küfür Engelleme Sistemi</label>
       </div>
       <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.spam`) === false) { %>
+        <% if (bot.ayar.has(`küfürE_${sunucu.id}`) === false) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="spam" name="spam" value="aktif">
+         <input type="checkbox" id="küfürEngel" name="küfürEngel" value="aktif">
          <span class="slider round"></span>
         </label>
           <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.spam`) === true) { %>
+					<% if(bot.ayar.has(`küfürE_${sunucu.id}`) === true) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="spam" name="spam" value="deaktif" checked>
+         <input type="checkbox" id="küfürEngel" name="küfürEngel" value="deaktif" checked>
          <span class="slider round"></span>
         </label>
           <% } %>
       </div>
     </div>
     
-  <% if (bot.ayar.has(`${sunucu.id}.spam`) === true) { %>
-    <div class="row">
-      <div class="col-25">
-          <label for="spamMesaj">Spam Uyarılacak Mesaj Sayısı</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.spamMesaj`) === false) { %>
-        <input type="number" style="text-align: left; width:87%;" name="spamMesaj" id="spamMesaj" maxlength="1950" placeholder="5">
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.spamMesaj`) === true) { %>
-        <input type="number" style="text-align: left; width:87%;" name="spamMesaj" id="spamMesaj" maxlength="1950" value="<%=bot.ayar.fetch(`${sunucu.id}.spamMesaj`)%>">
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-25">
-          <label for="spamUyarı">Spam Susturulacak Uyarı Sayısı</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.spamUyarı`) === false) { %>
-        <input type="number" style="text-align: left; width:87%;" name="spamUyarı" id="spamUyarı" maxlength="1950" placeholder="3">
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamUyarı/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.spamUyarı`) === true) { %>
-        <input type="number" style="text-align: left; width:87%;" name="spamUyarı" id="spamUyarı" maxlength="1950" value="<%=bot.ayar.fetch(`${sunucu.id}.spamUyarı`)%>">
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/spamUyarı/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-      </div>
-    </div>
-  <% } %>
-    
- <div class="row">
-      <div class="col-25">
-          <label for="küfürEngel">Küfür Engelleme Sistemi <br> (Bakımda)</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.küfürEngel`) === false) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input disabled type="checkbox" id="küfürEngel" name="küfürEngel" value="aktif">
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.küfürEngel`) === true) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input disabled type="checkbox" id="küfürEngel" name="küfürEngel" value="deaktif" checked>
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-      </div>
-    </div>
+
+  
     
      <div class="row">
       <div class="col-25">
           <label for="linkEngel">Link/Reklam Engelleme Sistemi</label>
       </div>
       <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.linkEngel`) === false) { %>
+        <% if (bot.ayar.has(`linkE_${sunucu.id}`) === false) { %>
         <label style="margin-right:80%;" class="switch">
          <input type="checkbox" id="linkEngel" name="linkEngel" value="aktif">
          <span class="slider round"></span>
         </label>
           <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.linkEngel`) === true) { %>
+					<% if(bot.ayar.has(`linkE_${sunucu.id}`) === true) { %>
         <label style="margin-right:80%;" class="switch">
          <input type="checkbox" id="linkEngel" name="linkEngel" value="deaktif" checked>
          <span class="slider round"></span>
