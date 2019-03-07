@@ -18,7 +18,7 @@ setInterval(() => {
 if (process.version.slice(1).split(".")[0] < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
 
 const Discord = require('discord.js');
-//const client = new Discord.Client();
+const client = new Discord.Client();
 const bot = new Discord.Client();
 const {RichEmbed} = require('discord.js');
 const { promisify } = require("util");
@@ -37,22 +37,6 @@ const snekfetch = require('snekfetch');
 
 
 
-
-const Advanced = require('discordjs-advanced');
-                         
-    const client = new Advanced.Client({
-   komutDosya: "komutlar",
-        //"Botu Çalıştırma" bölümün de botu "discordjs-advanced" ile aktif etmeyi öğrendik. Yani bu yazıdan üstteki bilgileri doldurabilirsiniz.
-        //Veritabanı sisteminin aktif hale gelmesi için tek yapmanız gereken aşağıdaki veriyi eklemek.
-        veritabanı: {
-            dosya: "veritaban.json" /*Burada "" içine veritabanı dosyanızın adını yazacaksınız. Veritabanı olarak JSON kullanılmaktadır. Yani dosyanızın sonu ".json" ile bitmeli.
-            Örneğin;
-            veritabanı: {
-                dosya: "db.json"
-            }*/
-            //Tabi "x.json" (Örneğin; "db.json") dosyasını botun klasöründe oluşturacaksınız. 
-        }
-    });
 
 
 require("./modüller/fonksiyonlar.js")(client);
@@ -1257,6 +1241,11 @@ client.on("guildDelete", async guild => {
 })
 
 client.on("message", async msg => {
+  
+  
+  
+  
+  
   const prefix = await db.fetch(`prefix_${msg.guild.id}`) || client.ayarlar.prefix;
   //const args = msg.content.slice.split(' ');
   const args = msg.content.trim().split(/ +/g);
@@ -1286,7 +1275,22 @@ client.on("message", async msg => {
     
   
   
+   if (!mesaj.guild) return;
+
+  if (mesaj.author.bot) return;
   
+  if (db.has(`capsE_${msg.guild.id}`) === false) return;
+  if (db.has(`capsE_${msg.guild.id}`) === true) {
+    let x = /\w*[A-Z]\w*[A-Z]\w*/g;
+    if (mesaj.content.match(x)) {
+     // if (mesaj.member.permissions.has("ADMINISTRATOR") === true) return;
+      mesaj.delete();
+      let y = await mesaj.reply(`Bu sunucuda büyük harf engeli açık, bu yüzden büyük harf açıkken yazı yazamazsın!`)
+      y.delete(5000);
+      return
+    };
+  };
+
   
   if (!msg.guild) return;
   if (db.has(`küfürE_${msg.guild.id}`) === false) return;

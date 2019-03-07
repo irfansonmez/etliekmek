@@ -260,7 +260,7 @@
          <span class="slider round"></span>
         </label>
           <% } %>
-					<% if(bot.ayar.has(`capsE_${sunucu.id}`) === true) { %>
+					<% if(bot.ayar.has(`capsE${sunucu.id}`) === true) { %>
         <label style="margin-right:80%;" class="switch">
          <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
          <span class="slider round"></span>
@@ -271,7 +271,7 @@
     
   </div>
       
- <div id="ozelKomutlar" style="display:none;">
+  <div id="ozelKomutlar" style="display:none;">
      <button class="stat-btn" data-toggle="collapse" style="background-color:green; color: white;" data-target="#yeni">Komut Oluştur</button>
         <br><br>
         <div id="yeni" class="collapse in">
@@ -316,14 +316,14 @@
             </div>
             <div class="col-75">
               <select id="dkomut" name="dkomut" onchange="myFunctionTwo()">
-                <% if (bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === false || bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === true && bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
+                <% if (bot.ayar.has(`${sunucu.id}.özelKomutlar`) === false || bot.ayar.has(`${sunucu.id}.özelKomutlar`) === true && bot.ayar.fetch(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
                  <option disabled selected>Sunucuda hiç özel komut bulunmuyor.</option>
                 <script>
                   document.getElementById("dkomut").disabled = true;
                 </script>
                 <% } else { %>
                   <option disabled selected>Düzenlenecek özel komutu seçiniz.</option>
-                 <% bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
+                 <% bot.ayar.fetch(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
                   <option value="<%=Object.keys(k)[0]%>"><%=Object.keys(k)[0]%></option>
                  <% }); %>
                 <% } %>
@@ -363,7 +363,7 @@
           <br>
     </div>
   <br>
-    <% if (bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === false || bot.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === true && bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
+    <% if (bot.ayar.has(`${sunucu.id}.özelKomutlar`) === false || bot.ayar.has(`${sunucu.id}.özelKomutlar`) === true && bot.ayar.fetch(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
       <h4>Sunucuda hiç özel komut bulunmuyor.</h4>
     <br>
     <% } else { %>
@@ -375,7 +375,7 @@
         <th>Tip</th>
         <th>İşlem</th>
       </tr>
-      <% bot.veritabanı.veri(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
+      <% bot.ayar.fetch(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
       <tr>
         <td><%=Object.keys(k)[0]%></td>
         <td><%=k[Object.keys(k)[0]]%></td>
@@ -391,11 +391,8 @@
     <br>
     <% }; %>
   </div>
-       
-      
-     
-    <br>
-  </div>
+        
+  
         
         <button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
         
