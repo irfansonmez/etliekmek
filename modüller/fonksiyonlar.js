@@ -6,11 +6,11 @@ client.panel = {};
 
 client.panel.ayarlarKaydetKullanici = (kullaniciID, kullanici, yeniAyar, req, res) => {
 if (yeniAyar['renk']) {
-client.veritabanı.ayarla(`${kullaniciID}.renk`, yeniAyar['renk'])
+db.set(`${kullaniciID}.renk`, yeniAyar['renk'])
 }
 
 if (yeniAyar['resim']) {
-client.veritabanı.ayarla(`${kullaniciID}.resim`, yeniAyar['resim'])
+db.set(`${kullaniciID}.resim`, yeniAyar['resim'])
 }
 };
 
@@ -30,10 +30,10 @@ db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])
 }
 
 if (yeniAyar['girisMesaj']) {
-client.veritabanı.ayarla(`${sunucuID}.girisMesaj`, yeniAyar['girisMesaj'])
+db.set(`${sunucuID}.girisMesaj`, yeniAyar['girisMesaj'])
 }
 if (yeniAyar['cikisMesaj']) {
-client.veritabanı.ayarla(`${sunucuID}.cikisMesaj`, yeniAyar['cikisMesaj'])
+db.set(`${sunucuID}.cikisMesaj`, yeniAyar['cikisMesaj'])
 }
 
 if (yeniAyar['küfürEngel'] === 'aktif') {
@@ -57,71 +57,71 @@ db.delete(`capsE_${sunucu.id}`)
 
 if (yeniAyar['komut'] && yeniAyar['aciklama'] && yeniAyar['tip']) {
 if (client.kayıt.komutlar.has(yeniAyar['komut']) === true || client.kayıt.alternatifler.has(yeniAyar['komut'])) return
-if (client.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === true) {
-for (var i = 0; i < client.veritabanı.veri(`${sunucu.id}.özelKomutlar`).length; i++) {
-if (Object.keys(client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i])[0] === yeniAyar['komut']) return
+if (db.has(`özelKD_${sunucu.id}`) === true) {
+for (var i = 0; i < db.fetch(`özelKD_${sunucu.id}`).length; i++) {
+if (Object.keys(db.fetch(`özelKD_${sunucu.id}`)[i])[0] === yeniAyar['komut']) return
 }
 }
 
-if (client.veritabanı.varMı(`${sunucuID}.özelKomutlar`) === false) {
+if (db.has(`${sunucuID}.özelKomutlar`) === false) {
 if (yeniAyar['tip'] === 'embed' && yeniAyar['renk']) {
-client.veritabanı.ayarla(`${sunucuID}.özelKomutlar`, new Array(JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}", "renk":"${yeniAyar['renk'] || '#ff0000'}"}`)))
+db.set(`${sunucuID}.özelKomutlar`, new Array(JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}", "renk":"${yeniAyar['renk'] || '#ff0000'}"}`)))
 }
 if (yeniAyar['tip'] !== 'embed') {
-client.veritabanı.ayarla(`${sunucuID}.özelKomutlar`, new Array(JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}"}`)))
+db.set(`${sunucuID}.özelKomutlar`, new Array(JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}"}`)))
 }
 } else {
 if (yeniAyar['tip'] === 'embed' && yeniAyar['renk']) {
-client.veritabanı.ekle(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}", "renk":"${yeniAyar['renk'] || '#ff0000'}"}`))
+db.push(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}", "renk":"${yeniAyar['renk'] || '#ff0000'}"}`))
 }
 if (yeniAyar['tip'] !== 'embed') {
-client.veritabanı.ekle(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}"}`))
+db.push(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['komut']}":"${yeniAyar['aciklama']}", "tip":"${yeniAyar['tip']}"}`))
 } 
 }
 }
 
 if (yeniAyar['dkomut'] && yeniAyar['ykomut'] && yeniAyar['yaciklama'] && yeniAyar['ytip']) {
 
-for (var i = 0; i < client.veritabanı.veri(`${sunucu.id}.özelKomutlar`).length; i++) {
-if (Object.keys(client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i])[0] === yeniAyar['dkomut']) {
-if (client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i].tip === 'embed') {
-client.veritabanı.çıkar(`${sunucu.id}.özelKomutlar`, JSON.parse(`{"${Object.keys(client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i])[0]}":"${client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i][Object.keys(client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i])[0]]}", "tip":"${client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i].tip}", "renk":"${client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i].renk}"}`))
+for (var i = 0; i < db.fetch(`özelKD_${sunucu.id}`).length; i++) {
+if (Object.keys(db.fetch(`özelKD_${sunucu.id}`)[i])[0] === yeniAyar['dkomut']) {
+if (db.fetch(`özelKD_${sunucu.id}`)[i].tip === 'embed') {
+db.set(`özelKD_${sunucu.id}`, JSON.parse(`{"${Object.keys(db.fetch(`özelKD_${sunucu.id}`)[i])[0]}":"${db.fetch(`özelKD_${sunucu.id}`)[i][Object.keys(db.fetch(`özelKD_${sunucu.id}`)[i])[0]]}", "tip":"${db.fetch(`özelKD_${sunucu.id}`)[i].tip}", "renk":"${db.fetch(`özelKD_${sunucu.id}`)[i].renk}"}`))
 }
-if (client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i].tip !== 'embed') {
-client.veritabanı.çıkar(`${sunucu.id}.özelKomutlar`, JSON.parse(`{"${Object.keys(client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i])[0]}":"${client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i][Object.keys(client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i])[0]]}", "tip":"${client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i].tip}"}`))
+if (db.fetch(`özelKD_${sunucu.id}`)[i].tip !== 'embed') {
+db.set(`özelKD_${sunucu.id}`, JSON.parse(`{"${Object.keys(db.fetch(`özelKD_${sunucu.id}`)[i])[0]}":"${db.fetch(`özelKD_${sunucu.id}`)[i][Object.keys(db.fetch(`özelKD_${sunucu.id}`)[i])[0]]}", "tip":"${db.fetch(`özelKD_${sunucu.id}`)[i].tip}"}`))
 }
 }
 }
 
 if (yeniAyar['ytip'] === 'embed' && yeniAyar['yrenk']) {
-client.veritabanı.ekle(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['ykomut']}":"${yeniAyar['yaciklama']}", "tip":"${yeniAyar['ytip']}", "renk":"${yeniAyar['yrenk'] || '#ff0000'}"}`))
+db.push(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['ykomut']}":"${yeniAyar['yaciklama']}", "tip":"${yeniAyar['ytip']}", "renk":"${yeniAyar['yrenk'] || '#ff0000'}"}`))
 }
 if (yeniAyar['ytip'] !== 'embed') {
-client.veritabanı.ekle(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['ykomut']}":"${yeniAyar['yaciklama']}", "tip":"${yeniAyar['ytip']}"}`))
+db.push(`${sunucuID}.özelKomutlar`, JSON.parse(`{"${yeniAyar['ykomut']}":"${yeniAyar['yaciklama']}", "tip":"${yeniAyar['ytip']}"}`))
 }
 }
 
 if (yeniAyar['moderasyon'] === 'aktif') {
-client.veritabanı.ayarla(`${sunucuID}.moderasyon`, yeniAyar['moderasyon'])
+db.set(`${sunucuID}.moderasyon`, yeniAyar['moderasyon'])
 }
 
 if (!yeniAyar['moderasyon']) {
-client.veritabanı.sil(`${sunucuID}.moderasyon`)
+db.delete(`${sunucuID}.moderasyon`)
 }
 
 if (yeniAyar['modlog']) {
-client.veritabanı.ayarla(`${sunucuID}.modlog`, yeniAyar['modlog'])
+db.set(`${sunucuID}.modlog`, yeniAyar['modlog'])
 }
 
 if (yeniAyar['ban'] && yeniAyar['banSebep']) {
-if (client.veritabanı.varMı(`${sunucuID}.modlog`) === true) {
+if (db.has(`${sunucuID}.modlog`) === true) {
 var embed = new Discord.MessageEmbed()
 .setColor("DARKBLUE")
 .setAuthor("Üye Yasaklama")
 .addField("Yetkili", `${req.user.username}#${req.user.discriminator}`)
 .addField("Kullanıcı", `${sunucu.members.get(yeniAyar['ban']).user.tag}`)
 .addField("Sebep", yeniAyar['banSebep'])
-sunucu.channels.get(client.veritabanı.veri(`${sunucuID}.modlog`)).send({embed:embed})
+sunucu.channels.get(db.fetch(`${sunucuID}.modlog`)).send({embed:embed})
 }
 setTimeout(() => {
 sunucu.members.get(yeniAyar['ban']).ban({reason: yeniAyar['banSebep']})
@@ -129,7 +129,7 @@ sunucu.members.get(yeniAyar['ban']).ban({reason: yeniAyar['banSebep']})
 }
 
 if (yeniAyar['unban']) {
-if (client.veritabanı.varMı(`${sunucuID}.modlog`) === true) {
+if (db.has(`${sunucuID}.modlog`) === true) {
 require('request')({
 url: `https://discordapp.com/api/v7/users/${yeniAyar['unban']}`,
 headers: {
@@ -142,7 +142,7 @@ var embed = new Discord.MessageEmbed()
 .setAuthor("Üye Yasağı Kaldırma")
 .addField("Yetkili", `${req.user.username}#${req.user.discriminator}`)
 .addField("Kullanıcı", `${JSON.parse(body).username}#${JSON.parse(body).discriminator}`)
-sunucu.channels.get(client.veritabanı.veri(`${sunucuID}.modlog`)).send({embed:embed})
+sunucu.channels.get(db.fetch(`${sunucuID}.modlog`)).send({embed:embed})
 });
 }
 setTimeout(() => {
@@ -151,13 +151,13 @@ sunucu.unban(yeniAyar['unban'])
 }
 
 if (yeniAyar['kick']) {
-if (client.veritabanı.varMı(`${sunucuID}.modlog`) === true) {
+if (db.has(`${sunucuID}.modlog`) === true) {
 var embed = new Discord.MessageEmbed()
 .setColor("DARKBLUE")
 .setAuthor("Üye Atma")
 .addField("Yetkili", `${req.user.username}#${req.user.discriminator}`)
 .addField("Kullanıcı", `${sunucu.members.get(yeniAyar['kick']).user.tag}`)
-sunucu.channels.get(client.veritabanı.veri(`${sunucuID}.modlog`)).send({embed:embed})
+sunucu.channels.get(db.fetch(`${sunucuID}.modlog`)).send({embed:embed})
 }
 setTimeout(() => {
 sunucu.members.get(yeniAyar['kick']).kick()
@@ -169,14 +169,14 @@ if (yeniAyar['sustur'] && yeniAyar['susturK']) {
   sunucu.channels.get(yeniAyar['susturK']).overwritePermissions(sunucu.members.get(yeniAyar['sustur']), {
     SEND_MESSAGES: false
   });
-  client.veritabanı.ayarla(`${sunucuID}.mutes.${yeniAyar['sustur']}`, true)
+  db.set(`${sunucuID}.mutes.${yeniAyar['sustur']}`, true)
 }
   
 if (yeniAyar['susturma'] && yeniAyar['susturmaK']) {
   sunucu.channels.get(yeniAyar['susturmaK']).overwritePermissions(sunucu.members.get(yeniAyar['susturma']), {
     SEND_MESSAGES: null
   });
-  client.veritabanı.sil(`${sunucuID}.mutes.${yeniAyar['susturma']}`)
+  db.delete(`${sunucuID}.mutes.${yeniAyar['susturma']}`)
 }
 
 } catch(err) {
