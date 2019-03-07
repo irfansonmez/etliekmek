@@ -90,9 +90,7 @@
     
     <br><br>
     <h5 align="center"><b>Şuanki hedef</b>: <i>100 sunucu</i> | <b>Şuanki sunucu</b>: <i><%=bot.guilds.size%></i></h5>
-     <div id="myProgress">
-        <div id="myBar" style="width:<%=bot.guilds.size < 3 ? bot.guilds.size + 1 : bot.guilds.size%>%">%<%=bot.guilds.size%></div>
-      </div>
+    
 </div>
 </div>
-<%- include('ek/footer.ejs', {bot, user, path}) %>
+<%- include('footer.ejs', {bot, user, path}) %>

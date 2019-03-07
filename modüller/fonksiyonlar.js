@@ -30,10 +30,10 @@ db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])
 }
 
 if (yeniAyar['girisMesaj']) {
-db.set(`${sunucuID}.girisMesaj`, yeniAyar['girisMesaj'])
+db.set(`girisM_${sunucu.id}`, yeniAyar['girisMesaj'])
 }
 if (yeniAyar['cikisMesaj']) {
-db.set(`${sunucuID}.cikisMesaj`, yeniAyar['cikisMesaj'])
+db.set(`cikisM_${sunucu.id}`, yeniAyar['cikisMesaj'])
 }
 
 if (yeniAyar['küfürEngel'] === 'aktif') {

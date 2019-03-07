@@ -86,16 +86,18 @@ module.exports = (client) => {
   
   let dil = ""
   
+  
   app.get("/", (req, res) => {
-    yukle(res, req, "index.ejs")
+    yukle(res, req, "anasayfa.ejs")
   });
   
+  /*
   app.post("/", (req, res) => {
     dil = req.body["d"]
     if (!dil || dil === undefined || dil === null) return res.json({"hata/error":"Dil seçmeden giremezsin!/You can't go without language!"})
     res.redirect("/"+dil)
   });
-
+*/
   app.get("/tr/giris", (req, res, next) => {
     if (req.session.backURL) {
       req.session.backURL = req.session.backURL;
@@ -111,20 +113,8 @@ module.exports = (client) => {
   },
   passport.authenticate("discord"));
 
-  app.get("/en/login", (req, res, next) => {
-    if (req.session.backURL) {
-      req.session.backURL = req.session.backURL;
-    } else if (req.headers.referer) {
-      const parsed = url.parse(req.headers.referer);
-      if (parsed.hostname === app.locals.domain) {
-        req.session.backURL = parsed.path;
-      }
-    } else {
-      req.session.backURL = "/en";
-    }
-    next();
-  },
-  passport.authenticate("discord"));
+
+  
   
   app.get("/autherror", (req, res) => {
     res.json({"hata":"Bir hata sonucunda Discord'da bağlanamadım! Lütfen tekrar deneyiniz."})
