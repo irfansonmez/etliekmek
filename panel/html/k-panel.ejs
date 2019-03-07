@@ -37,7 +37,7 @@ crossorigin="anonymous"></script>
 
   <nav style="background-color:#2a2d32" class="navbar navbar-expand-lg navbar-dark">
      <div class="container">
-      <a class="navbar-brand" href="/tr"><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="30" height="30"
+      <a class="navbar-brand" href="/anasayfa.ejs"><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="30" height="30"
           class="d-inline-block align-top rounded-circle" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -47,30 +47,30 @@ crossorigin="anonymous"></script>
       <div class="collapse navbar-collapse" id="navbarColor02">
 
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a href="/tr" class="nav-link">Ana Sayfa</a></li>
-        <li class="nav-item"><a href="/tr/komutlar" class="nav-link">Komutlar</a></li>
-        <li class="nav-item"><a href="/tr/istatistikler" class="nav-link">İstatistikler</a></li>
-        <li class="nav-item"><a href="/tr/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
-        <li class="nav-item"><a href="/tr/sunucular" class="nav-link">Sunucular</a></li>
-        <li class="nav-item"><a href="/tr/kullaniciler" class="nav-link">Kullanıcılar</a></li>
+        <li class="nav-item"><a href="/anasayfa.ejs" class="nav-link">Ana Sayfa</a></li>
+        <li class="nav-item"><a href="/komutlar" class="nav-link">Komutlar</a></li>
+        <li class="nav-item"><a href="/istatistikler" class="nav-link">İstatistikler</a></li>
+        <li class="nav-item"><a href="/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
+        <li class="nav-item"><a href="/sunucular" class="nav-link">Sunucular</a></li>
+        <li class="nav-item"><a href="/kullaniciler" class="nav-link">Kullanıcılar</a></li>
       </ul>
 
       <ul class="navbar-nav">
           <%if(!user) {%>
-          <li class="nav-item"><a href="/tr/giris" class="nav-link">Giriş Yap</a></li>
+          <li class="nav-item"><a href="/giris" class="nav-link">Giriş Yap</a></li>
             <%}%>
        <%if(user) {%>
             <li class="dropdown">
-            <a href="/tr" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt=""> <%=user.username%>
            </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="background-color:#2a2d32">
-              <a class="dropdown-item activex" href="/tr/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
-              <a class="dropdown-item" href="/tr/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım</a>
+              <a class="dropdown-item activex" href="/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
+              <a class="dropdown-item" href="/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım</a>
               <% if(bot.ayarlar.sahip.includes(user.id)) { %>
-						  <a class="dropdown-item" href="/tr/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
+						  <a class="dropdown-item" href="/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
 				      <% } %>
-              <a class="dropdown-item" href="/tr/cikis" style="color:#ffffff"><i aria-hidden="true"></i>Çıkış Yap</a>
+              <a class="dropdown-item" href="/cikis" style="color:#ffffff"><i aria-hidden="true"></i>Çıkış Yap</a>
         </div>
           </li>
       <%}%>
@@ -99,10 +99,10 @@ crossorigin="anonymous"></script>
 <div class="col-75">
 <% if (db.varMı(`${user.id}.renk`) === false) { %>
 <input type="color" id="renk" name="renk" style="width:87%" value="#84a0ed">
-<a href="/tr/kullaniciler/<%=user.id%>/yonet/renk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<a href="/kullaniciler/<%=user.id%>/yonet/renk/sifirla" class="reset-btn" role="button">Sıfırla</a>
 <% } else { %>
 <input type="color" id="renk" name="renk" style="width:87%" value="<%=db.veri(`${user.id}.renk`)%>">
-<a href="/tr/kullaniciler/<%=user.id%>/yonet/renk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<a href="/kullaniciler/<%=user.id%>/yonet/renk/sifirla" class="reset-btn" role="button">Sıfırla</a>
 <% } %>
 </div>
 </div>
@@ -114,10 +114,10 @@ crossorigin="anonymous"></script>
 <div class="col-75">
 <% if (db.varMı(`${user.id}.resim`) === false || db.veri(`${user.id}.resim`) === "https://img.revabot.tk/99kd63vy.png") { %>
 <input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız.">
-<a href="/tr/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
 <% } else { %>
 <input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız." value="<%=db.veri(`${user.id}.resim`)%>">
-<a href="/tr/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
 <div align="left" class="col-25">
 <label for="resim">Resim</label>
 <img src="<%=db.veri(`${user.id}.resim`)%>"><br><br>
@@ -143,4 +143,4 @@ ctx.beginPath();ctx.lineWidth=7;ctx.rect(80,60,140,140);ctx.strokeStyle=Durmm;ct
   </div>
   </div>
   
-  <%- include('ek/footer.ejs', {bot, user, path}) %>
+  <%- include('footer.ejs', {bot, user, path}) %>
