@@ -249,20 +249,20 @@
       </div>
     </div>
     
-    <div class="row">
+       <div class="row">
       <div class="col-25">
-          <label for="capslockEngel">Büyük Harf Engelleme Sistemi</label>
+          <label for="capsEngel">Büyük Harf Engelleme Sistemi</label>
       </div>
       <div class="col-75">
         <% if (bot.ayar.has(`capsE_${sunucu.id}`) === false) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
+         <input type="checkbox" id="acpsEngel" name="capsEngel" value="aktif">
          <span class="slider round"></span>
         </label>
           <% } %>
-					<% if(bot.ayar.has(`capsE${sunucu.id}`) === true) { %>
+					<% if(bot.ayar.has(`capsE_${sunucu.id}`) === true) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
+         <input type="checkbox" id="capsEngel" name="capsEngel" value="deaktif" checked>
          <span class="slider round"></span>
         </label>
           <% } %>

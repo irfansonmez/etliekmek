@@ -37,22 +37,22 @@ client.veritabanı.ayarla(`${sunucuID}.cikisMesaj`, yeniAyar['cikisMesaj'])
 }
 
 if (yeniAyar['küfürEngel'] === 'aktif') {
-client.veritabanı.ayarla(`${sunucuID}.küfürEngel`, yeniAyar['küfürEngel'])
+db.set(`küfürE_${sunucu.id}`, yeniAyar['küfürEngel'])
 }
 if (!yeniAyar['küfürEngel']) {
-client.veritabanı.sil(`${sunucuID}.küfürEngel`)
+db.delete(`küfürE_${sunucu.id}`)
 }
 if (yeniAyar['linkEngel'] === 'aktif') {
-client.veritabanı.ayarla(`${sunucuID}.linkEngel`, yeniAyar['linkEngel'])
+db.set(`linkE_${sunucu.id}`, yeniAyar['linkEngel'])
 }
 if (!yeniAyar['linkEngel']) {
-client.veritabanı.sil(`${sunucuID}.linkEngel`)
+db.delete(`linkE_${sunucu.id}`)
 }
-if (yeniAyar['capslockEngel'] === 'aktif') {
-client.veritabanı.ayarla(`${sunucuID}.capslockEngel`, yeniAyar['capslockEngel'])
+if (yeniAyar['capsEngel'] === 'aktif') {
+db.set(`capsE_${sunucu.id}`, yeniAyar['capslockEngel'])
 }
-if (!yeniAyar['capslockEngel']) {
-client.veritabanı.sil(`${sunucuID}.capslockEngel`)
+if (!yeniAyar['capsEngel']) {
+db.delete(`capsE_${sunucu.id}`)
 }
 
 if (yeniAyar['komut'] && yeniAyar['aciklama'] && yeniAyar['tip']) {
