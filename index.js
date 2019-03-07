@@ -585,10 +585,10 @@ client.on('message', async message => {
           if (db.fetch(`özelKD_${message.guild.id}`)[i].tip === 'varsayılan') {
             message.channel.send(db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0]])
           }
-          if (db.fetch(`özelKD_${message.guild.id}`)[i].tip === 'embed') {
+          if (db.fetch(`özelKD_${message.guild.id}`)[i].KomutE.tip === 'embed') {
             let embed = new Discord.RichEmbed()
-            .setColor(db.fetch(`özelKD_${message.guild.id}`)[i].renk)
-            .setDescription(db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i])[0]])
+            .setColor(db.fetch(`özelKD_${message.guild.id}`)[i].komutE.renk)
+            .setDescription(db.fetch(`özelKD_${message.guild.id}`)[i][Object.keys(db.fetch(`özelKD_${message.guild.id}`)[i]).komutE[0]])
             message.channel.send({embed:embed})
           }
           return
