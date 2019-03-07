@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
-module.exports = (client) => {
+module.exports = (client, clientt) => {
 
 client.panel = {};
 

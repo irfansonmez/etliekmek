@@ -18,7 +18,7 @@ setInterval(() => {
 if (process.version.slice(1).split(".")[0] < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
 
 const Discord = require('discord.js');
-const client = new Discord.Client();
+//const client = new Discord.Client();
 const bot = new Discord.Client();
 const {RichEmbed} = require('discord.js');
 const { promisify } = require("util");
@@ -27,23 +27,37 @@ const chalk = require('chalk');
 const fs = require('fs');
 const { stripIndents } = require('common-tags');
 const moment = require('moment');
-require('./util/eventLoader')(client);
+
 
 const db = require('quick.db');
 const jimp = require('jimp');
 const Jimp = require('jimp')
 const snekfetch = require('snekfetch');
-client.config = require("./config.js");
+
+
+
+
+
+const Advanced = require('discordjs-advanced');
+                         
+    const client = new Advanced.Client({
+   komutDosya: "komutlar",
+        //"Botu Çalıştırma" bölümün de botu "discordjs-advanced" ile aktif etmeyi öğrendik. Yani bu yazıdan üstteki bilgileri doldurabilirsiniz.
+        //Veritabanı sisteminin aktif hale gelmesi için tek yapmanız gereken aşağıdaki veriyi eklemek.
+        veritabanı: {
+            dosya: "veritaban.json" /*Burada "" içine veritabanı dosyanızın adını yazacaksınız. Veritabanı olarak JSON kullanılmaktadır. Yani dosyanızın sonu ".json" ile bitmeli.
+            Örneğin;
+            veritabanı: {
+                dosya: "db.json"
+            }*/
+            //Tabi "x.json" (Örneğin; "db.json") dosyasını botun klasöründe oluşturacaksınız. 
+        }
+    });
+
+
 require("./modüller/fonksiyonlar.js")(client);
-
-
-
-
-
-
-client.ayar = db;
-
-
+require('./util/eventLoader')(client);
+client.config = require("./config.js");
 client.emojiler = {
 
    "gold": "532931814730366980",  //?PARAM DAKİ ALTIN EMOJİSİ      
@@ -104,6 +118,7 @@ client.ayarlar = {
         "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxNjYwMDEyNTY0OTQ1MzA2NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTUxNjE4MDEwfQ.k435Nz8LEyG2uMQdtuKBOeDanzLi7u7-O5mFQnnuvRE",
         "versiyon": "0.0.1",
         "prefix": "?",
+        "veritabanı": "clientt.veritabanı",
  
 "renk":  "DARKBLUE",
 "version":  "2.0.0",
@@ -124,24 +139,11 @@ const log = message => {
 
 
 
-const Advanced = require('discordjs-advanced');
-                         
-    const clientt = new Advanced.Client({
-   komutDosya: "komutlar",
-        //"Botu Çalıştırma" bölümün de botu "discordjs-advanced" ile aktif etmeyi öğrendik. Yani bu yazıdan üstteki bilgileri doldurabilirsiniz.
-        //Veritabanı sisteminin aktif hale gelmesi için tek yapmanız gereken aşağıdaki veriyi eklemek.
-        veritabanı: {
-            dosya: "veritaban.json" /*Burada "" içine veritabanı dosyanızın adını yazacaksınız. Veritabanı olarak JSON kullanılmaktadır. Yani dosyanızın sonu ".json" ile bitmeli.
-            Örneğin;
-            veritabanı: {
-                dosya: "db.json"
-            }*/
-            //Tabi "x.json" (Örneğin; "db.json") dosyasını botun klasöründe oluşturacaksınız. 
-        }
-    });
+
                          
  
-                
+  client.ayar = db;
+const dbmiz = client.veritabanı;         
 
 
 client.on("messageDelete", async (message) => {
