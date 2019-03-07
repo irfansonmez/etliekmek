@@ -155,7 +155,7 @@
           <% } %>
 					<% if(bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
           <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
-            <option value="<%=bot.ayar.fetch(`gc_${sunucu.id}`)%>">#<%=sunucu.channels.get(bot.ayar.fetch(`gc_${sunucu.id}`))%></option>
+            <option value="<%=bot.ayar.fetch(`gc_${sunucu.id}`)%>"><%=sunucu.channels.get(bot.ayar.fetch(`gc_${sunucu.id}`)).name%></option>
 					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`gc_${sunucu.id}`)).forEach(c => { %>
             <option value="<%=c.id%>">#<%=c.name%></option>
           <% }); %>

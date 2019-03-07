@@ -23,7 +23,7 @@ if (!a && a !== "destek" && a !== "kapat" && a !== "liste" && a !== "support" &&
   .setAuthor(`» ${message.guild.name} Sunucu ayarları «`, `https://cdn.discordapp.com/emojis/456224342427041803.png?v=1`)
   .addField('Destek sistemi', `**${prefix}ayarlar destek** Yazarak destek ayarlarını görebilirsiniz`)
   .addField('Sunucu prefixi', `${prefix2}`, true)
-  .addField('Giriş çıkış kanalı', db.has(`gc_${message.guild.id}`) ? ac + db.fetch(`gc_${message.guild.id}`) : `${ka} Ayarlanmamış **${prefix}giriş-çıkış-ayarla** `, true)
+  .addField('Giriş çıkış kanalı', db.has(`gc_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`gc_${message.guild.id}`)) : `${ka} Ayarlanmamış **${prefix}giriş-çıkış-ayarla** `, true)
   .addField('Mod log kanalı', db.has(`mLog_${message.guild.id}`) ? `${ac} ${db.fetch(`mLog_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}mod-log-ayarla** `, true)
   .addField('Log kanalı', db.has(`log_${message.guild.id}`) ? `${ac} ${db.fetch(`log_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}log-ayarla**`, true)
   .addField('Link engeli', db.has(`linkE_${message.guild.id}`) ? `${ac} Açık` : `${ka} Ayarlanmamış **${prefix}link-engelle**`, true)

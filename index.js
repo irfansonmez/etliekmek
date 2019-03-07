@@ -1392,12 +1392,12 @@ client.on("guildMemberAdd", async member => {
   
   if(db.has(`gc_${member.guild.id}`) === false) return;
   
-  const hgK = member.guild.channels.get(db.fetch(`gc_${member.guild.id}`).replace("<#", "").replace(">", ""));
+  const hgK = await db.fetch(`gc_${member.guild.id}`)
   if (!hgK) return;
   
   const giris = db.fetch(`girisM_${member.guild.id}`)
   
-    hgK.send(db.has(`girisM_${member.guild.id}`) ? giris.replace('{kullanıcı}', `<@${member.user.id}>`).replace("{user}", `<@${member.user.id}>`) : `<@${member.user.id}> Katıldı! (\`giriş-mesaj-ayarla\` komutu ile mesaj değiştirilebilir.)`);
+    member.guild.channels.get(hgK).send(db.has(`girisM_${member.guild.id}`) ? giris.replace('{kullanıcı}', `<@${member.user.id}>`).replace("{user}", `<@${member.user.id}>`) : `<@${member.user.id}> Katıldı! (\`giriş-mesaj-ayarla\` komutu ile mesaj değiştirilebilir.)`);
 });
 
 client.on("guildMemberRemove", async member => {
@@ -1408,12 +1408,12 @@ client.on("guildMemberRemove", async member => {
   
   if(db.has(`gc_${member.guild.id}`) === false) return;
   
-  const hgK = member.guild.channels.get(db.fetch(`gc_${member.guild.id}`).replace("<#", "").replace(">", ""));
+   const hgK = await db.fetch(`gc_${member.guild.id}`)
   if (!hgK) return;
   
   const cikis = db.fetch(`cikisM_${member.guild.id}`)
   
-  hgK.send(db.has(`cikisM_${member.guild.id}`) ? cikis.replace('{kullanıcı}', `**${member.user.username}**`).replace("{user}", `**${member.user.username}**`) : `**${member.user.username}** Ayrıldı! (\`çıkış-mesaj-ayarla\` komutu ile mesaj değiştirilebilir.)`);
+  member.guild.channels.get(hgK).send(db.has(`cikisM_${member.guild.id}`) ? cikis.replace('{kullanıcı}', `**${member.user.username}**`).replace("{user}", `**${member.user.username}**`) : `**${member.user.username}** Ayrıldı! (\`çıkış-mesaj-ayarla\` komutu ile mesaj değiştirilebilir.)`);
 });
 
 const YouTube = require('simple-youtube-api');

@@ -24,7 +24,7 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
         if (x) console.error(x)
       })*/
   
-    var s = db.set(`gc_${message.guild.id}`, "<#"+channel.id+">")
+    var s = db.set(`gc_${message.guild.id}`, channel.id)
   
     const embed = new Discord.RichEmbed()
     
