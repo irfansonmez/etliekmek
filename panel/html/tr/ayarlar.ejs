@@ -85,7 +85,7 @@
     <br>
     <a style="cursor:pointer" id="ozelKomutlarBtn">Özel Komut Sistemi</a>
     <br>
-    <a style="cursor:pointer" id="modAyarlarBtn">Moderasyon Ayarları</a>
+    
   </div>
   
 <div class="container">
@@ -254,13 +254,13 @@
           <label for="capslockEngel">Büyük Harf Engelleme Sistemi</label>
       </div>
       <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.capslockEngel`) === false) { %>
+        <% if (bot.ayar.has(`capsE_${sunucu.id}`) === false) { %>
         <label style="margin-right:80%;" class="switch">
          <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
          <span class="slider round"></span>
         </label>
           <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.capslockEngel`) === true) { %>
+					<% if(bot.ayar.has(`capsE_${sunucu.id}`) === true) { %>
         <label style="margin-right:80%;" class="switch">
          <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
          <span class="slider round"></span>
@@ -392,129 +392,9 @@
     <% }; %>
   </div>
         
-  <div id="modAyarlar" style="display:none;">
-   <h5>Moderasyon sistemi durumu</h5>
-    <br>
-     <% if (bot.ayar.has(`${sunucu.id}.moderasyon`) === false) { %>
-      <label class="switch">
-       <input type="checkbox" id="moderasyon" name="moderasyon" onclick="formAutoSubmit()" value="aktif">
-       <span class="slider round"></span>
-    </label>
-    <h6>Deaktif.</h6>
-     <% } else { %>
-      <label class="switch">
-       <input type="checkbox" id="moderasyon" name="moderasyon" onclick="formAutoSubmit()" value="deaktif" checked>
-       <span class="slider round"></span>
-    </label>
-    <h6>Aktif.</h6>
-    <br>
-    
-    <div class="row">
-        <div class="col-25">
-          <label for="modlog">Moderasyon Kayıtları Kanalı <br>(Mod Log)</label>
-        </div>
-        <div class="col-75">
-          <% if (bot.ayar.has(`${sunucu.id}.modlog`) === false) { %>
-          <select style="text-align: left; width:87%;" name="modlog" id="modlog">
-            <option disabled selected>Lütfen bir kanal seçiniz.</option>
-            <% sunucu.channels.filter(c => c.type === "text").forEach(c => { %>
-            <option value="<%=c.id%>">#<%=c.name%></option>
-            <% }); %>
-          </select>
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/modlog/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.modlog`) === true) { %>
-          <select style="text-align: left; width:87%;" name="modlog" id="modlog">
-            <option value="<%=bot.ayar.fetch(`${sunucu.id}.modlog`)%>">#<%=sunucu.channels.get(bot.ayar.fetch(`${sunucu.id}.modlog`)).name%></option>
-					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`${sunucu.id}.modlog`)).forEach(c => { %>
-            <option value="<%=c.id%>">#<%=c.name%></option>
-          <% }); %>
-          </select>
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/modlog/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-        </div>
-      </div>
-    
-    <div class="row">
-        <div class="col-25">
-          <label for="ban">Üye Yasakla</label>
-        </div>
-        <div class="col-75">
-          <select style="text-align: left; width:49%;" id="ban" name="ban">
-             <option disabled selected>Yasaklanacak üyeyi seçiniz.</option>
-            <% sunucu.members.forEach(m => { %>
-             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
-            <% }); %>
-          </select>
-          <input type="text" style="text-align: left; width:49%;" name="banSebep" id="banSebep" placeholder="Yasaklama sebebini yazınız.">
-        </div>
-      </div>
-    
-    <div class="row">
-        <div class="col-25">
-          <label for="unban">Üye Yasağı Kaldır</label>
-        </div>
-        <div class="col-75">
-          <input type="text" style="text-align: left; width:87%;" name="unban" id="unban" placeholder="Yasağı kaldırılacak üyenin ID'ini yazınız. ">
-        </div>
-      </div>
-    
-    <div class="row">
-        <div class="col-25">
-          <label for="kick">Üye At</label>
-        </div>
-        <div class="col-75">
-          <select style="text-align: left; width:87%;" id="kick" name="kick">
-             <option disabled selected>Atılacak üyeyi seçiniz.</option>
-            <% sunucu.members.forEach(m => { %>
-             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
-            <% }); %>
-          </select>
-        </div>
-      </div>
-    
-    <div class="row">
-        <div class="col-25">
-          <label for="sustur">Üye Sustur</label>
-        </div>
-        <div class="col-75">
-          <select style="text-align: left; width:49%;" id="sustur" name="sustur">
-             <option disabled selected>Susturulacak üyeyi seçiniz.</option>
-            <% sunucu.members.filter(m => bot.ayar.has(`${sunucu.id}.mutes`) ? Object.keys(bot.ayar.fetch(`${sunucu.id}.mutes`)).includes(m.user.id) === false : []).forEach(m => { %>
-             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
-            <% }); %>
-          </select>
-          
-          <select style="text-align: left; width:49%;" id="susturK" name="susturK">
-             <option disabled selected>Susturulacağı kanalı seçiniz.</option>
-            <% sunucu.channels.forEach(c => { %>
-             <option value="<%=c.id%>">#<%=c.name%></option>
-            <% }); %>
-          </select>
-        </div>
-      </div>
-    
-    <div class="row">
-        <div class="col-25">
-          <label for="susturma">Üye Susturması Kaldır</label>
-        </div>
-        <div class="col-75">
-          <select style="text-align: left; width:49%;" id="susturma" name="susturma">
-             <option disabled selected>Susturması kaldırılacak üyeyi seçiniz.</option>
-            <% sunucu.members.filter(m => bot.ayar.has(`${sunucu.id}.mutes`) ? Object.keys(bot.ayar.fetch(`${sunucu.id}.mutes`)).includes(m.user.id) !== false : []).forEach(m => { %>
-             <option value="<%=m.user.id%>"><%=m.user.tag%></option>
-            <% }); %>
-          </select>
-          
-          <select style="text-align: left; width:49%;" id="susturmaK" name="susturmaK">
-             <option disabled selected>Susturması kaldırılacak kanalı seçiniz.</option>
-            <% sunucu.channels.forEach(c => { %>
-             <option value="<%=c.id%>">#<%=c.name%></option>
-            <% }); %>
-          </select>
-        </div>
-      </div>
-     <% } %>
+       
+      
+     
     <br>
   </div>
         
