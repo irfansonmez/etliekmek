@@ -42,7 +42,7 @@
     
     <nav style="background-color:#2a2d32" class="navbar navbar-expand-lg navbar-dark">
      <div class="container">
-       <a class="navbar-brand" href="/tr"><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="30" height="30"
+       <a class="navbar-brand" href="/anasayfa"><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="30" height="30"
           class="d-inline-block align-top rounded-circle" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -52,30 +52,30 @@
       <div class="collapse navbar-collapse" id="navbarColor02">
 
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a href="/tr" class="nav-link">Ana Sayfa</a></li>
-        <li class="nav-item"><a href="/tr/komutlar" class="nav-link">Komutlar</a></li>
-        <li class="nav-item"><a href="/tr/istatistikler" class="nav-link">İstatistikler</a></li>
-        <li class="nav-item"><a href="/tr/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
-        <li class="nav-item active"><a href="/tr/sunucular" class="nav-link">Sunucular <br>(<font size=1>Şuan <b><%=sunucu.name%></b> adlı sunucu seçili.)</font></a></li>
-        <li class="nav-item"><a href="/tr/kullaniciler" class="nav-link">Kullanıcılar</a></li>
+        <li class="nav-item"><a href="/anasayfa" class="nav-link">Ana Sayfa</a></li>
+        <li class="nav-item"><a href="/komutlar" class="nav-link">Komutlar</a></li>
+        <li class="nav-item"><a href="/istatistikler" class="nav-link">İstatistikler</a></li>
+        <li class="nav-item"><a href="/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
+        <li class="nav-item active"><a href="/sunucular" class="nav-link">Sunucular <br>(<font size=1>Şuan <b><%=sunucu.name%></b> adlı sunucu seçili.)</font></a></li>
+        <li class="nav-item"><a href="/kullaniciler" class="nav-link">Kullanıcılar</a></li>
       </ul>
 
       <ul class="navbar-nav">
           <%if(!user) {%>
-          <li class="nav-item"><a href="/tr/giris" class="nav-link">Giriş Yap</a></li>
+          <li class="nav-item"><a href="/giris" class="nav-link">Giriş Yap</a></li>
             <%}%>
        <%if(user) {%>
             <li class="dropdown">
-            <a href="/tr" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt=""> <%=user.username%>
            </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="background-color:#2a2d32">
-              <a class="dropdown-item" href="/tr/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
-              <a class="dropdown-item" href="/tr/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım</a>
+              <a class="dropdown-item" href="/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
+              <a class="dropdown-item" href="/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım</a>
               <% if(bot.ayarlar.sahip.includes(user.id)) { %>
-						  <a class="dropdown-item" href="/tr/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
+						  <a class="dropdown-item" href="/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
 				      <% } %>
-              <a class="dropdown-item" href="/tr/cikis" style="color:#ffffff"><i aria-hidden="true"></i>Çıkış Yap</a>
+              <a class="dropdown-item" href="/cikis" style="color:#ffffff"><i aria-hidden="true"></i>Çıkış Yap</a>
         </div>
           </li>
       <%}%>
@@ -134,11 +134,11 @@
     <p style="color:#b1b1b1"><b style="color:#fff">Sunucu ID</b>: <%=sunucu.id%></p>
     <p style="color:#b1b1b1"><b style="color:#fff">Sunucu Bölgesi</b>: <%=region[sunucu.region]%></p>
     <p style="color:#b1b1b1"><b style="color:#fff">Kurulduğu Tarih</b>: <%=bot.useful.tarih(sunucu.createdAt)%></p>
-    <p style="color:#b1b1b1"><b style="color:#fff">Üyeler</b>: <%=sunucu.members.size%> üye | <a style="outline:none; text-decoration:none;" href="/tr/sunucular/<%=sunucu.id%>/uyeler">Üye Listesi</a></p>
-    <p style="color:#b1b1b1"><b style="color:#fff">Kanallar</b>: <%=sunucu.channels.size%> kanal | <a style="outline:none; text-decoration:none;" href="/tr/sunucular/<%=sunucu.id%>/kanallar">Kanal Listesi</a></p>
-    <p style="color:#b1b1b1"><b style="color:#fff">Roller</b>: <%=sunucu.roles.size%> rol | <a style="outline:none; text-decoration:none;" href="/tr/sunucular/<%=sunucu.id%>/roller">Rol Listesi</a></p>
+    <p style="color:#b1b1b1"><b style="color:#fff">Üyeler</b>: <%=sunucu.members.size%> üye | <a style="outline:none; text-decoration:none;" href="/sunucular/<%=sunucu.id%>/uyeler">Üye Listesi</a></p>
+    <p style="color:#b1b1b1"><b style="color:#fff">Kanallar</b>: <%=sunucu.channels.size%> kanal | <a style="outline:none; text-decoration:none;" href="/sunucular/<%=sunucu.id%>/kanallar">Kanal Listesi</a></p>
+    <p style="color:#b1b1b1"><b style="color:#fff">Roller</b>: <%=sunucu.roles.size%> rol | <a style="outline:none; text-decoration:none;" href="/sunucular/<%=sunucu.id%>/roller">Rol Listesi</a></p>
     <% if (user && sunucu.members.get(`${user.id}`).hasPermission('MANAGE_GUILD')) { %>
-    <a style="color:#fff" class="reset-btn" href="/tr/sunucular/<%=sunucu.id%>/botuat" role="button">Botu sunucudan at</a>
+    <a style="color:#fff" class="reset-btn" href="/sunucular/<%=sunucu.id%>/botuat" role="button">Botu sunucudan at</a>
     <% } %>
   </div>
 </div>
