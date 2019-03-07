@@ -48,7 +48,7 @@ db.set(`linkE_${sunucu.id}`, yeniAyar['linkEngel'])
 if (!yeniAyar['linkEngel']) {
 db.delete(`linkE_${sunucu.id}`)
 }
-if (yeniAyar['capsEngel'] === 'aktif') {
+if (yeniAyar['capslockEngel'] === 'aktif') {
 db.set(`capsE_${sunucu.id}`, yeniAyar['capslockEngel'])
 }
 if (!yeniAyar['capsEngel']) {

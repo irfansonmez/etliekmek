@@ -91,10 +91,10 @@
 
 <!-- Sidebar -->
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
-  <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+  <button onclick="w3_close()" class="w3-bar-item w3-large">Kapat &times;</button>
   <a id="genelAyarlarBtn" class="w3-bar-item w3-button">Genel Ayarlar</a>
   <a id="ozelKomutlarBtn" class="w3-bar-item w3-button">Özel Komut Sistemi</a>
-  <a id="filtreBtn" class="w3-bar-item w3-button">Fitre Sistemi</a>
+  <a id="" class="w3-bar-item w3-button">Fitre Sistemi</a>
 </div>
 
 <!-- Page Content -->
@@ -126,7 +126,6 @@ function w3_close() {
 
       
 
-  
 <div class="container">
   <br>
   <div class="jumbotron" style="background-color:#0053ba;">
@@ -290,18 +289,18 @@ function w3_close() {
     
        <div class="row">
       <div class="col-25">
-          <label for="capsEngel">Büyük Harf Engelleme Sistemi</label>
+          <label for="capslockEngel">Büyük Harf Engelleme Sistemi</label>
       </div>
       <div class="col-75">
         <% if (bot.ayar.has(`capsE_${sunucu.id}`) === false) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="acpsEngel" name="capsEngel" value="aktif">
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
          <span class="slider round"></span>
         </label>
           <% } %>
 					<% if(bot.ayar.has(`capsE_${sunucu.id}`) === true) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capsEngel" name="capsEngel" value="deaktif" checked>
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
          <span class="slider round"></span>
         </label>
           <% } %>
@@ -311,44 +310,99 @@ function w3_close() {
   </div>
       
   <div id="ozelKomutlar" style="display:none;">
-     <button class="stat-btn" data-toggle="collapse" style="background-color:green; color: white;" data-target="#yeni">Filtre Oluştur</button>
+     <button class="stat-btn" data-toggle="collapse" style="background-color:green; color: white;" data-target="#yeni">Komut Oluştur</button>
         <br><br>
         <div id="yeni" class="collapse in">
           <div class="row">
                     <div class="col-25">
-                        <label style="color: white;" for="komut">Engellenecek Kelime</label>
+                        <label style="color: white;" for="komut">Komut</label>
                     </div>
                     <div class="col-75">
-                      <input type="text" id="komut" name="komut" placeholder="Engellenecek Kelimeyi Yazınız.">
+                      <input type="text" id="komut" name="komut" placeholder="Komutun adını yazınız.">
                     </div>
                 </div>
           <div class="row">
-                
-                
+                    <div class="col-25">
+                        <label style="color: white;" for="aciklama">Açıklama</label>
+                    </div>
+                    <div class="col-75">
+                      <textarea class="form-control" id="aciklama" name="aciklama" rows="3" placeholder="Komut kullanıldığında verilecek cevabı yazınız." style="margin-top: 0px; margin-bottom: 0px; height: 65px;"></textarea>
+                    </div>
                 </div>
           <div class="row">
-                  
+                    <div class="col-25">
+                        <label style="color: white;" for="tip">Tip</label>
+                    </div>
                     <div class="col-75">
-                     
+                      <select onchange="myFunctionXyz()" id="tip" name="tip">
+                        <option disabled selected>Bir tip seçiniz.</option>
+                        <option value="varsayılan">Varsayılan</option>
+                        <option value="embed">Embed</option>
+                      </select>
                       <input type="color" id="renk" name="renk" style="width:49%; float:right; display:none;" value="#ff0000">
                     </div>
                 </div>
           <br>
     </div>
     
-    
+    <button class="stat-btn" data-toggle="collapse" style="background-color:green; color: white;" data-target="#duzenle">Komut Düzenle</button>
+        <br><br>
+        <div id="duzenle" class="collapse in">
+          <div class="row">
+            <div class="col-25">
+                <label style="color: white;">Düzenlenecek Komut</label>
+            </div>
+            <div class="col-75">
+              <select id="dkomut" name="dkomut" onchange="myFunctionTwo()">
+                <% if (bot.ayar.has(`${sunucu.id}.özelKomutlar`) === false || bot.ayar.has(`${sunucu.id}.özelKomutlar`) === true && bot.ayar.fetch(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
+                 <option disabled selected>Sunucuda hiç özel komut bulunmuyor.</option>
+                <script>
+                  document.getElementById("dkomut").disabled = true;
+                </script>
+                <% } else { %>
+                  <option disabled selected>Düzenlenecek özel komutu seçiniz.</option>
+                 <% bot.ayar.fetch(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
+                  <option value="<%=Object.keys(k)[0]%>"><%=Object.keys(k)[0]%></option>
+                 <% }); %>
+                <% } %>
+              </select>
+            </div>
+          </div>
             
-        
-              
-                  
-                   
-                    
+          <div class="row" id="yeniKomutX" style="display:none;">
+            <div class="col-25">
+                <label style="color: white;" for="ykomut">Yeni Komut</label>
+            </div>
+              <div class="col-75">
+              <input type="text" id="komut" name="ykomut" placeholder="Komutun yeni adını yazınız.">
+          </div>
+              </div>
+                <div class="row" id="yeniAciklamaX" style="display:none;">
+                    <div class="col-25">
+                        <label style="color: white;" for="yaciklama">Yeni Açıklama</label>
+                    </div>
+                    <div class="col-75">
+                      <textarea class="form-control" id="yaciklama" name="yaciklama" rows="3" placeholder="Komut kullanıldığında verilecek yeni cevabı yazınız." style="margin-top: 0px; margin-bottom: 0px; height: 65px;"></textarea>
+                    </div>
+                </div>
+          <div class="row" id="yeniTipX" style="display:none;">
+                    <div class="col-25">
+                        <label style="color: white;" for="ytip">Yeni Tip</label>
+                    </div>
+                    <div class="col-75">
+                      <select onchange="myFunctionAbc()" id="ytip" name="ytip">
+                        <option disabled selected>Yeni tipi seçiniz.</option>
+                        <option value="varsayılan">Varsayılan</option>
+                        <option value="embed">Embed</option>
+                      </select>
+                      <input type="color" id="yrenk" name="yrenk" style="width:49%; float:right; display:none;" value="#ff0000">
+                    </div>
                 </div>
           <br>
     </div>
   <br>
-    <% if (bot.ayar.has(`filtre_${sunucu.id}`) === false || bot.ayar.has(`filtre_${sunucu.id}`) === true && bot.ayar.fetch(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
-      <h4>Sunucuda hiç filtre bulunmuyor.</h4>
+    <% if (bot.ayar.has(`${sunucu.id}.özelKomutlar`) === false || bot.ayar.has(`${sunucu.id}.özelKomutlar`) === true && bot.ayar.fetch(`${sunucu.id}.özelKomutlar`)[0] === undefined) { %>
+      <h4>Sunucuda hiç özel komut bulunmuyor.</h4>
     <br>
     <% } else { %>
     <br>
@@ -359,7 +413,7 @@ function w3_close() {
         <th>Tip</th>
         <th>İşlem</th>
       </tr>
-      <% bot.ayar.fetch(`filtre_${sunucu.id}`).forEach(k => { %>
+      <% bot.ayar.fetch(`${sunucu.id}.özelKomutlar`).forEach(k => { %>
       <tr>
         <td><%=Object.keys(k)[0]%></td>
         <td><%=k[Object.keys(k)[0]]%></td>
