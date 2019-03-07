@@ -155,7 +155,7 @@
           <% } %>
 					<% if(bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
           <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
-            <option value="<%=bot.ayar.fetch(`gc_${sunucu.id}`)%>">#<%=sunucu.channels.get(bot.ayar.fetch(`gc_${sunucu.id}`)).name%></option>
+            <option value="<%= bot.ayar.fetch(`gc_${sunucu.id}`) %>"><%=bot.ayar.fetch(`gc_${sunucu.id}`)%></option>
 					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`gc_${sunucu.id}`)).forEach(c => { %>
             <option value="<%=c.id%>">#<%=c.name%></option>
           <% }); %>
@@ -165,28 +165,7 @@
         </div>
       </div>
     
-    <% if (bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
-    <div class="row">
-      <div class="col-25">
-          <label for="girisCikisTip">Giriş Çıkış Tipi</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.girisCikisTip`) === false) { %>
-          <select style="text-align: left; width:87%;" name="girisCikisTip" id="girisCikisTip">
-            <option value="resimli">Resimli</option>
-            <option value="varsayılan" selected>Varsayılan</option>
-          </select>
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisCikisTip/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`${sunucu.id}.girisCikisTip`) === true) { %>
-          <select style="text-align: left; width:87%;" name="girisCikisTip" id="girisCikisTip">
-            <option value="resimli" selected>Resimli</option>
-            <option value="varsayılan">Varsayılan</option>
-          </select>
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/girisCikisTip/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-      </div>
-    </div>
+   
     
     <p style="color:#fff"><a style="color:red">NOT</a><a style="color:#2a2d32d">:</a> Giriş ve çıkış mesajlarında kullanıcının geleceği yere <a style="color:#bfff3f">{kullanıcı}</a> yazınız.</p>
     
@@ -195,7 +174,7 @@
           <label for="girisMesaj">Giriş Mesajı</label>
       </div>
       <div class="col-75">
-        <% if (bot.ayar.has(`${sunucu.id}.girisMesaj`) === false) { %>
+        <% if (bot.ayar.has(`${sunucu.id}`) === false) { %>
         <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" placeholder="{kullanıcı} adlı kullanıcı sunucuya katıldı!">
           <a href="/tr/panel/<%=sunucu.id%>/yonet/girisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
