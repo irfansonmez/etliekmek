@@ -32,7 +32,7 @@ exports.run = async (client, msg, args) => {
                         const embed = new Discord.RichEmbed()
                                 .setDescription("Bir renk kodu veya `sıfırla` yazmalısın!")
       .setFooter("Başına # koymayınız!")
-                                .setColor("RANDOM")
+                               .setColor("RANDOM")
                         msg.channel.send({embed})
                         return
                 }
@@ -285,7 +285,7 @@ exports.run = async (client, msg, args) => {
         ctx.fill()
         ctx.fillRect(0, 0, 750, 300)
   
-        var re = db.fetch(`${u.id}.renk`) || "FF0000"
+        var re = db.fetch(`${u.id}.renk`) || "ec001a"
   
   var xp = db.fetch(`puancik_${u.id + msg.guild.id}`);
   var lvl = db.fetch(`seviye_${u.id + msg.guild.id}`);  
@@ -299,9 +299,8 @@ exports.run = async (client, msg, args) => {
                         sira += `${i + 1}`
                 }
         }
-  
-  
-                const Durum = u.presence.status;
+
+        const Durum = u.presence.status;
         var Durmm = ''
 
                 if (Durum === 'online') { var Durmm = 'green' }
@@ -309,9 +308,7 @@ exports.run = async (client, msg, args) => {
                 if (Durum === 'dnd') { var Durmm = 'red' }
                 if (Durum === 'idle') { var Durmm = 'yellow' }
 
-               
-                // ctx.clip();
-                // ctx.drawImage(ava, 85, 66, 150, 150);
+             
 
         var de = 1.6
         ctx.beginPath()
@@ -341,17 +338,21 @@ exports.run = async (client, msg, args) => {
         ctx.fillText(`${u.tag}`, 270, 150)
         ctx.beginPath();
         ctx.lineWidth = 8;
+        ctx.beginPath();
+                ctx.lineWidth = 8;
+                ctx.arc(55 + 75, 77 + 75, 75, 0, 2 * Math.PI, false);
+                ctx.strokeStyle = Durmm;
+                ctx.stroke();
+                ctx.clip();
   ctx.fill()
         ctx.lineWidth = 8;
         ctx.arc(55 + 80, 80 + 80, 80, 0, 2 * Math.PI, false);
         ctx.clip();
-   ctx.beginPath();
-          
-                
+        
         ctx.drawImage(avatar, 55, 80, 160, 160);
     
         msg.channel.send({files:[{attachment:canvas.toBuffer(),name:"seviye.png"}]})
-  
+    //ctx.drawImage(avatar, 85, 66, 150, 150);
 };
 
 exports.conf = {
