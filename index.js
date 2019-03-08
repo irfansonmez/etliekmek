@@ -598,7 +598,7 @@ client.on('message', async message => {
 
 
 
-
+/*
 client.on('guildMemberAdd' , async member => {
 const toplamkullanıcı = await db.fetch(`toplamkullanıcı_${member.guild.id}`)
 const toplamkişi = await db.fetch(`toplamkişi_${member.guild.id}`)
@@ -642,7 +642,7 @@ member.guild.channels.get(toplamkişi).setName(`Toplam Kişi Sayısı: ${member.
 member.guild.channels.get(toplambot).setName(`Toplam Bot Sayısı: ${member.guild.members.filter(m => m.user.bot).size}`);
 member.guild.fetchBans().then(bans => member.guild.channels.get(banlı).setName(`Toplam Banlı Kişi Sayısı: ${bans.size}`))
 });
-
+*/
 client.on("message", async message => {
   
   let client = message.client;

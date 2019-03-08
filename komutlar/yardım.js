@@ -89,7 +89,6 @@ ${yana} **${prefix}uyarı-kaldır**: İstediğiniz kişinin uyarılarını kald�
 ${yana} **${prefix}uyarılar**: İstediğiniz kişinin uyarılarını gösterir.
 ${yana} **${prefix}emojiyükle**: Sunucuza emoji yüklemenizi sağlar.
 ${yana} **${prefix}sunucu-kur**: Bot sizin yerinize sunucunuzun kanallarını ve rolleri açar.
-${yana} **${prefix}panel-oluştur**: Bot sunucunuzdaki üye sayısı, banlı sayısı ve bot sayısını kanal olarak gösterir.
 
 **${bot.user.username} Özel Komut Sistemi**
  
