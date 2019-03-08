@@ -112,7 +112,7 @@ crossorigin="anonymous"></script>
 <label for="resim">Seviye kartı arka plan resmi</label>
 </div>
 <div class="col-75">
-<% if (bot.ayar.has(`${user.id}.resim`) === false || bot.ayar.fetch(`${user.id}.resim`) === "https://img.revabot.tk/99kd63vy.png") { %>
+<% if (bot.ayar.has(`${user.id}.resim`) === false || bot.ayar.fetch(`${user.id}.resim`) === "https://img.revabot.tk/99kd63vyss.png") { %>
 <input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız.">
 <a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
 <% } else { %>
@@ -127,17 +127,7 @@ crossorigin="anonymous"></script>
 </div>
 
 <button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
-  <script>
-    var c=document.getElementById("myCanvas");var ctx=c.getContext("2d");let url="<%= u.displayAvatarURL %>";let ava=new Image();ava.src=url;let srs="";<% if (!db.has(`${u.id}.resim`)) { %>
-srs=0.55;<% } else { %>
-let resim=new Image();resim.src="<%= bot.ayar.fetch(`${u.id}.resim`) %>";ctx.drawImage(resim,0,0,934,282);srs=0;<% } %>
-ctx.globalAlpha=srs;ctx.fillStyle="#999999";ctx.fillRect(0,0,934,282);ctx.globalAlpha=0.90;ctx.fillStyle="#fcfcfc";ctx.fillRect(145,30,760,220);ctx.globalAlpha=1;ctx.font="bold 36px Arial";ctx.fillStyle="#878787";ctx.textAlign="sctart";ctx.fillText("<%=u.username%>",355-ctx.measureText("<%=`#${u.discriminator}`%>").width,92);ctx.font="italic 36px Arial";ctx.fillStyle="#878787";ctx.textAlign="center";ctx.fillText("<%=`#${u.discriminator}`%>",325+ctx.measureText("<%=`${u.username}`%>").width,92);var lvl=0;ctx.fillStyle="<%= bot.ayar.has(`${u.id}.renk`) ? bot.ayar.fetch(`${u.id}.renk`) : '#84a0ed' %>";ctx.textAlign="start";ctx.font="bold 30px Arial";ctx.fillText(lvl,325+ctx.measureText("Seviye").width+10,164);ctx.fillStyle="#878787";ctx.font="30px Arial";ctx.fillText("Seviye",325,164);var sira="#1";ctx.fillStyle="<%= bot.ayar.has(`${u.id}.renk`) ? bot.ayar.fetch(`${u.id}.renk`) : '#84a0ed' %>";ctx.textAlign="start";ctx.font="bold 30px Arial";ctx.fillText(sira,710+ctx.measureText("Sıralama").width+10,92);ctx.fillStyle="#878787";ctx.font="30px Arial";ctx.fillText("Sıralama",710,92);let xyz=100;let xp=0;ctx.font="30px Arial";ctx.fillStyle="#878787";ctx.textAlign="end";ctx.fillText("/ "+xyz+" XP",770,164);ctx.fillStyle="#939393";ctx.fillText(xp,770-ctx.measureText("/ "+xyz+" XP").width-10,164);ctx.beginPath();ctx.fillStyle="#fff";ctx.arc(237+18.5,144.5+18.5+36.25,18.5,1.5*Math.PI,true);ctx.fill();ctx.fillRect(237+18.5,144.5+36.25,635,37.5);ctx.arc(237+635,144.5+18.5+36.25,18.75,1.5*Math.PI,false);ctx.fill();let xpx=25;ctx.beginPath();ctx.fillStyle="<%= bot.ayar.has(`${u.id}.renk`) ? bot.ayar.fetch(`${u.id}.renk`) : '#84a0ed' %>";ctx.arc(237+18.5,144.5+18.5+36.25,18.5,1.5*Math.PI,true);ctx.fill();ctx.fillRect(237+18.5,144.5+36.25,xpx,37.5);ctx.arc(237+xpx,144.5+18.5+36.25,18.75,1.5*Math.PI,false);ctx.fill();const Durum="<%= u.presence.status %>";var Durmm=''
-if(Durum==='online'){var Durmm='#42b581'}
-if(Durum==='offline'){var Durmm='#747f8d'}
-if(Durum==='dnd'){var Durmm='#f04747'}
-if(Durum==='idle'){var Durmm='#faa61a'}
-ctx.beginPath();ctx.lineWidth=7;ctx.rect(80,60,140,140);ctx.strokeStyle=Durmm;ctx.stroke();ctx.clip();ctx.drawImage(ava,80,60,140,140);
-  </script>
+
       </form>
     </div>
   </div>
@@ -145,6 +135,5 @@ ctx.beginPath();ctx.lineWidth=7;ctx.rect(80,60,140,140);ctx.strokeStyle=Durmm;ct
   
   <%- include('footer.ejs', {bot, user, path}) %>
 
-    
     
     
