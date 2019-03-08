@@ -9,6 +9,21 @@ exports.run = async (client, message, args) => {
   
     let rol = message.mentions.roles.first() || message.guild.roles.find(r => r.name === args.slice(0).join(' '));
   
+  
+    let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+  
+    if(args[0] === 'kapat') {
+   if (db.has(`destekR_${message.guild.id}`) === true) {
+     message.channel.send(`Destek rolü başarıyla kaldırıldı`)
+     db.delete(`destekR_${message.guild.id}`)
+     return
+}
+  message.channel.send(`Destek rolü ayarlanmamış.`)
+    return
+  
+  }
+    
+  
     if (!rol) {
       let e = new Discord.RichEmbed()
       .setDescription('Lütfen bir rol adı yazınız veya etiketleyiniz')
@@ -21,7 +36,7 @@ exports.run = async (client, message, args) => {
   
     const embed = new Discord.RichEmbed()
 
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Destek rolü başarıyla ayarlandı: ${rol}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Destek rolü başarıyla ayarlandı: ${rol}\nDestel rolünü silmek için **${prefix}destek-rol kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }

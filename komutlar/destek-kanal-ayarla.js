@@ -8,6 +8,20 @@ exports.run = async (client, message, args) => {
  
   let kanal = message.mentions.channels.first();
   
+  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+  
+    if(args[0] === 'kapat') {
+   if (db.has(`destekK_${message.guild.id}`) === true) {
+     message.channel.send(`Destek kanalı başarıyla kaldırıldı`)
+     db.delete(`destekK_${message.guild.id}`)
+     return
+}
+  message.channel.send(`Destek kanalı ayarlanmamış.`)
+    return
+  
+  }
+    
+  
     if (!kanal) {
       let e = new Discord.RichEmbed()
       .setDescription('Lütfen bir kanal etiketleyiniz')
@@ -19,7 +33,7 @@ exports.run = async (client, message, args) => {
     var s = db.set(`destekK_${message.guild.id}`, kanal.id)
   
     const embed = new Discord.RichEmbed()
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Davet kanalı ayarlandı: ${kanal}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Davet kanalı ayarlandı: ${kanal}\nDestek kanalını kapatmak için **${prefix}destek-kanal kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }

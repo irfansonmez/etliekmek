@@ -25,7 +25,7 @@ exports.run = async (client, message) => {
     
 		  const embed = new Discord.RichEmbed()
     .setColor('RED')
-    .setDescription('Küfür Engeli Başarıyla açıldı')
+    .setDescription(`Küfür Engeli Başarıyla açıldı\nKüfür engelini kapatmak isterseniz **${prefix}küfür-engel kapat** yazmanız yeterlidir.`)
     message.channel.send(embed)
     /*let kufurEngel = JSON.parse(fs.readFileSync("././jsonlar/kufurEngelle.json", "utf8"));
  if(!kufurEngel[message.guild.id]){

@@ -26,11 +26,26 @@ exports.run = async (client, message, args) => {
         if (x) console.error(x)
       })*/
   
+  
+ 
+  
+    if(args[0] === 'kapat') {
+   if (db.has(`girisM_${message.guild.id}`) === true) {
+     message.channel.send(`Giriş mesajı başarıyla kaldırıldı`)
+     db.delete(`girisM_${message.guild.id}`)
+     return
+}
+  message.channel.send(`Giriş mesajı ayarlanmamış.`)
+    return
+  
+  }
+    
+  
     var s = db.set(`girisM_${message.guild.id}`, gM)
   
     const embed = new Discord.RichEmbed()
     
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Giriş mesajı başarıyla ayarlandı ${gM}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Giriş mesajı başarıyla ayarlandı ${gM}\nGiriş mesajını kapatmak için **${prefix}giriş-mesaj kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }
@@ -38,7 +53,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ['giriş-mesaj'],
     permLevel: 4,
     kategori: "ayarlar",
   };

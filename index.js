@@ -992,29 +992,7 @@ client.on('guildMemberAdd', member => {
   })
 });
 
-client.on("message",async  message => {
 
-  if (!message.guild) return;
-  
-let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-
-  //let k;
-  if(db.has(`komut_${message.guild.id}`)) {
-for(var i = 0; i < db.fetch(`komut_${message.guild.id}`).length; i++) {
-  
- var o = Object.keys(db.fetch(`komut_${message.guild.id}`)[i])
- 
-  if (message.content === prefix+o) {
-    
-    var a = db.fetch(`komut_${message.guild.id}`)[i][Object.keys(db.fetch(`komut_${message.guild.id}`)[i])]
-    
-    message.channel.send(a)
-  
- }
-}
-  }
-  
-});
 
 
 client.on("message", message => {

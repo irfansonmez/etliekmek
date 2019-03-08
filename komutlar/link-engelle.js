@@ -25,7 +25,7 @@ exports.run = async (client, message) => {
     
 		  const embed = new Discord.RichEmbed()
     .setColor('RED')
-    .setDescription('Link Engeli Başarıyla açıldı')
+    .setDescription(`Link Engeli Başarıyla açıldı\nLink engelini kapatmak isterseniz **${prefix}link-engel kapat** yazmanız yeterlidir.`)
     message.channel.send(embed)
     
     /*let linkEngel = JSON.parse(fs.readFileSync("././jsonlar/linkEngelle.json", "utf8"));
