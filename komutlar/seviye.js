@@ -45,7 +45,7 @@ exports.run = async (client, msg, args) => {
                         return
                 }
                         
-                db.set(`${msg.author.id}.renk`, args[1])
+                db.set(`${msg.author.id}.renk`, `#${args[1]}`)
     
     var Canvas = require('canvas')
                 var canvas = Canvas.createCanvas(150, 150)
@@ -286,7 +286,7 @@ exports.run = async (client, msg, args) => {
         ctx.fillRect(0, 0, 750, 300)
   
         var re = db.has(`${u.id}.renk`) ? db.fetch(`${u.id}.renk`) : "#84a0ed";
-  	//ctx.fillStyle = db.varMı(`${u.id}.renk`) ? db.veri(`${u.id}.renk`) : "#84a0ed";
+  //	ctx.fillStyle = db.varMı(`${u.id}.renk`) ? db.veri(`${u.id}.renk`) : "#84a0ed";
   
   var xp = db.fetch(`puancik_${u.id + msg.guild.id}`);
   var lvl = db.fetch(`seviye_${u.id + msg.guild.id}`);  
@@ -320,13 +320,13 @@ exports.run = async (client, msg, args) => {
         ctx.arc(257 + 18.5 + 250 * de, 147.5 + 18.5 + 36.25, 18.75, 1.5 * Math.PI, 0.5 * Math.PI, false);
         ctx.fill();
         ctx.beginPath();
-        ctx.fillStyle = `#${re}`;
+        ctx.fillStyle = `${re}`;
         ctx.arc(257 + 18.5, 147.5 + 18.5 + 36.25, 18.5, 1.5 * Math.PI, 0.5 * Math.PI, true);
         ctx.fill();
         ctx.fillRect(257 + 18.5, 147.5 + 36.25, xp * de, 37.5);
         ctx.arc(257 + 18.5 + xp * de, 147.5 + 18.5 + 36.25, 18.75, 1.5 * Math.PI, 0.5 * Math.PI, false);
         ctx.fill();
-        ctx.fillStyle = `#${re}`;
+        ctx.fillStyle = `${re}`;
         ctx.font = '28px Impact';
         ctx.textAlign = "right";
         ctx.fillText(`Sıralama #${sira} | Seviye ${lvl || 0}`, 670, 70);
