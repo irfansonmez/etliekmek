@@ -145,7 +145,7 @@ module.exports = (client) => {
   app.get("/cikis", function(req, res) {
     req.session.destroy(() => {
       req.logout();
-      res.redirect("anasayfa.ejs");
+      res.redirect("/anasayfa");
     });
   });
   
