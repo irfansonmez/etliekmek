@@ -32,7 +32,7 @@ if (!a && a !== "destek" && a !== "kapat" && a !== "liste" && a !== "support" &&
   .addField('Susturma rolü', db.has(`sRol_${message.guild.id}`) ? `${ac} \`@${message.guild.roles.get(db.fetch(`sRol_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}sustur-rol-ayarla**`, true)
   .addField('Sayaç kanalı', db.has(`sKanal_${message.guild.id}`) ? `${ac} ${db.fetch(`sKanal_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-kanal-ayarla** `, true)
   .addField('Sayaç', db.has(`sayac_${message.guild.id}`) ? `${ac} ${db.fetch(`sayac_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-ayarla**`, true)
-  .addField('Davet kanalı', db.has(`dKanal_${message.guild.id}`) ? `${ac} ${db.fetch(`dKanal_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}davet-kanal-ayarla**`, true)
+  .addField('Davet kanalı', db.has(`dKanal_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`dKanal_${message.guild.id}`)) : `${ka} Ayarlanmamış **${prefix}davet-kanal-ayarla**`, true)
  
   .addField('Otomatig tag', db.has(`tagB_${message.guild.id}`) ? db.fetch(`tagB_${message.guild.id}`) : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`)
 
@@ -46,7 +46,7 @@ if (!a && a !== "destek" && a !== "kapat" && a !== "liste" && a !== "support" &&
   var embed = new Discord.RichEmbed()
   .setColor("RANDOM")
   .setAuthor(`» ${message.guild.name} Destek ayarları «`, `https://cdn.discordapp.com/emojis/456224342427041803.png?v=1`)
-  .addField('Destek kanalı', db.has(`destekK_${message.guild.id}`) ? ac + " <#"+db.fetch(`destekK_${message.guild.id}`)+">" : `${ka} Ayarlanmamış **${prefix}destek-kanal-ayarla**`, true)
+  .addField('Destek kanalı', db.has(`destekK_${message.guild.id}`) ? ac + ` ${message.guild.channels.get(db.fetch(`destekK_${message.guild.id}`))}` : `${ka} Ayarlanmamış **${prefix}destek-kanal-ayarla**`, true)
   .addField('Destek rolü', db.has(`destekR_${message.guild.id}`) ? ac + " `@"+message.guild.roles.get(db.fetch(`destekR_${message.guild.id}`)).name+"`" : `${ka} Ayarlanmamış **${prefix}destek-rol-ayarla**`, true)
   message.channel.send(embed)
   return;

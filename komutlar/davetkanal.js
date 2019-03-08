@@ -10,6 +10,20 @@ exports.run = async (client, message, args) => {
   
  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
 
+  
+  if(args[0] === 'kapat') {
+   if (db.has(`dKanal_${message.guild.id}`) === true) {
+     message.channel.send(`Davet kanalı başarıyla kaldırıldı`)
+     db.delete(`dKanal_${message.guild.id}`)
+     return
+}
+  message.channel.send(`Davet kanalı ayarlanmamış.`)
+    return
+  
+  }
+    
+  
+  
   let channel = message.mentions.channels.first()
   
     if (!channel) {
@@ -26,10 +40,10 @@ exports.run = async (client, message, args) => {
         if (x) console.error(x)
       })*/
   
-    db.set(`dKanal_${message.guild.id}`, "<#"+channel.id+">")
+    db.set(`dKanal_${message.guild.id}`, channel.id)
   
     const embed = new Discord.RichEmbed()
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Davet kanalı ayarlandı: ${channel}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Davet kanalı ayarlandı: ${channel}\nDavet kanalını kapatmak isterseniz **${prefix}davet-kanal kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }
@@ -37,7 +51,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['davet-kanal-belirle'],
+    aliases: ['davet-kanal-belirle', 'davet-kanal'],
     permLevel: 4,
     kategori: "ayarlar",
 }

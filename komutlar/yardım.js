@@ -21,7 +21,7 @@ ${yana} **${prefix}yardım sunucu** > Sunucu komutlarını listeler.
 ${yana} **${prefix}yardım kullanıcı** > Kullanıcı komutlarını listeler.
 ${yana} **${prefix}yardım eğlence** > Eğlence komutlarını listeler.
 ${yana} **${prefix}yardım oyun** > Oyun komutlarını listeler.
-${yana} **${prefix}yardım profil** > Profil ve para sistemi komutlarını listeler.
+${yana} **${prefix}yardım profil** > Profil, seviye ve para sistemi komutlarını listeler.
 ${yana} **${prefix}yardım müzik** > Müzik komutlarını listeler.
 ${yana} **${prefix}yardım efekt** > Efekt komutlarını listeler.
 ${yana} **${prefix}yardım premium** > Ücretsiz premium komutlarını listeler.
@@ -361,7 +361,7 @@ ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
 
 
 
-  if(x === 'profil' || x === 'para' || x === 'para-komutları' || x === 'profil-komutları') {
+  if(x === 'profil' || x === 'para' || x === 'para-komutları' || x === 'profil-komutları' ||x === 'seviye' || x === 'seviye-komutları') {
 
     let profil = [`
 **${bot.user.username} | Para komutları**
@@ -382,6 +382,12 @@ ${yana} **${prefix}profil**: Profil kartınızı gösterir.
 ${yana} **${prefix}isim**: İsminizi ayarlarsınız.
 ${yana} **${prefix}biyografi**: Biyografi mesajınızı ayarlar.
 ${yana} **${prefix}rozetler**: Aldığınız rozetleri gösterir.
+
+**${bot.user.username} | Seviye komutları**
+
+${yana} **${prefix}seviye**: Seviye kartınızı gösterir.
+${yana} **${prefix}seviye renk**: Seviye kartınızdaki renkleri değiştirir.
+${yana} **${prefix}seviye resim**: Seviye kartınızın resmini değişir.
 
 ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
 

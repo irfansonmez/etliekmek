@@ -974,7 +974,7 @@ client.on('guildMemberAdd', member => {
   member.guild.fetchInvites().then(guildInvites => {
     
     if (db.has(`dKanal_${member.guild.id}`) === false) return
-    const channel = db.fetch(`dKanal_${member.guild.id}`).replace("<#", "").replace(">", "")
+    const channel =  db.fetch(`dKanal_${member.guild.id}`)
     
     const ei = invites[member.guild.id];
   

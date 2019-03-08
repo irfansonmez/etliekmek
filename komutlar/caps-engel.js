@@ -26,7 +26,7 @@ exports.run = async (client, message) => {
     
     const embed = new Discord.RichEmbed()
     .setColor('RED')
-    .setDescription('Caps Lock Engeli Başarıyla açıldı')
+    .setDescription(`Caps Lock Engeli Başarıyla açıldı, caps lock engelini kapatmak için **${prefix}büyükharf-engel kapat** yazmanız yeterlidir.`)
     message.channel.send(embed)
 		
     /*let kufurEngel = JSON.parse(fs.readFileSync("././jsonlar/kufurEngelle.json", "utf8"));
@@ -71,7 +71,7 @@ exports.run = async (client, message) => {
 	exports.conf = {
 		enabled: true,
 		guildOnly: false,
-		aliases: ['büyük-harf-engelle', 'büyükharfengelle', 'caps-engelle', 'capssngelle'],
+		aliases: ['büyük-harf-engelle', 'büyükharfengelle', 'caps-engelle', 'capssngelle', 'büyükharf-engel'],
 		permLevel: 4,
     kategori: "ayarlar",
 	};
