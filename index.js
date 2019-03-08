@@ -2908,61 +2908,33 @@ client.unload = command => {
 };
 
 
-client.on("message", async msg => {
+ 
 
-
-
-  if (msg.content === client.ayarlar.prefix+"gizli") {
-    msg.channel.send(`**İngilizceye Çevrilmiş Komut Sayısı:** \`${client.english.size}\` \n--------------\n**Toplam Komut Sayısı:** \`${client.commands.size}\` \n\n[${client.commands.size}'da ${client.english.size} ingilizceye çevrilmiş.]`)
-  }
+  client.on("message", async msg => {
   
   const request = require('node-superfetch');
   const db = require('quick.db');
   
-  client.on("message", async msg => {
-  
-    if (msg.channel.type === "dm") return;
-    if(msg.author.bot) return;  
     
-    if (msg.content.length > 70) {
-      
-      db.add(`puancik_${msg.author.id + msg.guild.id}`, 1)
+  if (msg.channel.type === "dm") return;
+  if(msg.author.bot) return;  
+  
+  if (msg.content.length > 7) {
+    
+    db.add(`puancik_${msg.author.id + msg.guild.id}`, 1)
+};
+
+  if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 250) {
+    
+    db.add(`seviye_${msg.author.id + msg.guild.id}`, 1)
+    
+    msg.channel.send(`Tebrik ederim <@${msg.author.id}>! Seviye atladın ve **${db.fetch(`seviye_${msg.author.id + msg.guild.id}`)}** seviye oldun!`)
+    
+    db.delete(`puancik_${msg.author.id + msg.guild.id}`)
+    
   };
-  
-     if (db.fetch(`bonus_${msg.author.id}`) > 5) {
+});
 
-     db.delete(`bonus_${msg.author.id}`)
-
-}
-
-    
-    if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 484848848450) {
-      
-      db.add(`seviye_${msg.author.id + msg.guild.id}`, 1)
-      
-    //  msg.channel.send(`Tebrik ederim <@${msg.author.id}>! Seviye atladın ve **${db.fetch(`seviye_${msg.author.id + msg.guild.id}`)}** seviye oldun!`)
-      
-      db.delete(`puancik_${msg.author.id + msg.guild.id}`)
-      
-    };
-   
-    if (db.has(`roll_${msg.guild.id}`) === true) {
-    if (db.has(`rollss_${msg.guild.id}`) === true) {
-      
-   var r = db.fetch(`roll_${msg.guild.id}`)
-   var s = db.fetch(`rollss_${msg.guild.id}`)
-    
-    if (db.fetch(`seviye_${msg.author.id + msg.guild.id}`) == s) {
-      if (msg.member.roles.has(msg.guild.roles.get(r).id) === false) {
-      msg.channel.send(`<@${msg.author.id}> başarıyla **${db.fetch(`seviye_${msg.author.id + msg.guild.id}`) - 1 || 0}** seviyeyi geçtin ve **${msg.guild.roles.get(r).name}** rolünü aldın!`)
-      msg.member.addRole(msg.guild.roles.get(r).id)
-      }
-    };
-  }};
-}); 
-
-  });
-  
 const DBL = require("dblapi.js");
 const dbl = new DBL(client.ayarlar.dbltoken, client);
 
