@@ -285,7 +285,8 @@ exports.run = async (client, msg, args) => {
         ctx.fill()
         ctx.fillRect(0, 0, 750, 300)
   
-        var re = db.fetch(`${u.id}.renk`) || "ec001a"
+        var re = db.has(`${u.id}.renk`) ? db.fetch(`${u.id}.renk`) : "#84a0ed";
+  	//ctx.fillStyle = db.varMı(`${u.id}.renk`) ? db.veri(`${u.id}.renk`) : "#84a0ed";
   
   var xp = db.fetch(`puancik_${u.id + msg.guild.id}`);
   var lvl = db.fetch(`seviye_${u.id + msg.guild.id}`);  

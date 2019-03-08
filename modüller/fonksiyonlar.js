@@ -6,11 +6,11 @@ client.panel = {};
 
 client.panel.ayarlarKaydetKullanici = (kullaniciID, kullanici, yeniAyar, req, res) => {
 if (yeniAyar['renk']) {
-db.set(`${kullaniciID}.renk`, yeniAyar['renk'])
+db.set(`${kullanici.id}.renk`, yeniAyar['renk'])
 }
 
 if (yeniAyar['resim']) {
-db.set(`${kullaniciID}.resim`, yeniAyar['resim'])
+db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
 }
 };
 

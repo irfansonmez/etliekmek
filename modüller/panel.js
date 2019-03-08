@@ -14,6 +14,8 @@ const Strategy = require("passport-discord").Strategy;
 const helmet = require("helmet");
 
 const md = require("marked");
+const db = require('quick.db');
+
 
 module.exports = (client) => {
   
@@ -72,7 +74,7 @@ module.exports = (client) => {
   function girisGerekli(req, res, next) {
     if (req.isAuthenticated()) return next();
     req.session.backURL = req.url;
-    res.redirect("/login");
+    res.redirect("/giris");
   }
   
   const yukle = (res, req, template, data = {}) => {
@@ -107,7 +109,7 @@ module.exports = (client) => {
   },
   passport.authenticate("discord"));
 
-  app.get("/en/login", (req, res, next) => {
+  app.get("/giris", (req, res, next) => {
     if (req.session.backURL) {
       req.session.backURL = req.session.backURL;
     } else if (req.headers.referer) {
@@ -194,8 +196,8 @@ module.exports = (client) => {
   });
   
   app.get("/kullaniciler/:kullaniciID/yonet/:ayarID/sifirla", girisGerekli, (req, res) => {
-    if (client.veritabanı.varMı(`${req.params.kullaniciID}.${req.params.ayarID}`) ===  false || req.params.ayarID === "resim" && client.veritabanı.veri(`${req.params.kullaniciID}.${req.params.ayarID}`) === "https://img.revabot.tk/99kd63vy.png") return res.json({"hata":req.params.ayarID.charAt(0).toUpperCase()+req.params.ayarID.slice(1)+" ayarı "+client.users.get(req.params.kullaniciID).tag+" adlı kullanıcıda ayarlı olmadığı için sıfırlanamaz."});
-    client.veritabanı.sil(`${req.params.kullaniciID}.${req.params.ayarID}`)
+    if (db.has(`${req.params.kullaniciID}.${req.params.ayarID}`) ===  false || req.params.ayarID === "resim" && db.fetch(`${req.params.kullaniciID}.${req.params.ayarID}`) === "https://img.revabot.tk/99kd63vy.png") return res.json({"hata":req.params.ayarID.charAt(0).toUpperCase()+req.params.ayarID.slice(1)+" ayarı "+client.users.get(req.params.kullaniciID).tag+" adlı kullanıcıda ayarlı olmadığı için sıfırlanamaz."});
+    db.delete(`${req.params.kullaniciID}.${req.params.ayarID}`)
     res.redirect(`/kullaniciler/${req.params.kullaniciID}/yonet`);
   });
   
@@ -252,9 +254,9 @@ module.exports = (client) => {
     
     if (req.body['komut'] && req.body['aciklama']) {
       if (client.kayıt.komutlar.has(req.body['komut']) === true || client.kayıt.alternatifler.has(req.body['komut'])) return res.json({"hata":"Botun zaten var olan bir komutu özel komut olarak eklenemez."});
-      if (client.veritabanı.varMı(`${sunucu.id}.özelKomutlar`) === true) {
-        for (var i = 0; i < client.veritabanı.veri(`${sunucu.id}.özelKomutlar`).length; i++) {
-          if (Object.keys(client.veritabanı.veri(`${sunucu.id}.özelKomutlar`)[i])[0] === req.body['komut']) return res.json({"hata":"Sunucuda "+req.body['komut']+" adlı bir özel komut zaten bulunduğu için tekrar eklenemez."});
+      if (db.has(`${sunucu.id}.özelKomutlar`) === true) {
+        for (var i = 0; i < db.fetch(`${sunucu.id}.özelKomutlar`).length; i++) {
+          if (Object.keys(db.fetch(`${sunucu.id}.özelKomutlar`)[i])[0] === req.body['komut']) return res.json({"hata":"Sunucuda "+req.body['komut']+" adlı bir özel komut zaten bulunduğu için tekrar eklenemez."});
         }  
       }
     }
@@ -284,18 +286,18 @@ module.exports = (client) => {
   });
   
   app.get("/panel/:sunucuID/yonet/:ayarID/sifirla", girisGerekli, (req, res) => {
-    if (client.veritabanı.varMı(`${req.params.sunucuID}.${req.params.ayarID}`) === false) return res.json({"hata":req.params.ayarID.charAt(0).toUpperCase()+req.params.ayarID.slice(1)+" adlı ayar "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
-    client.veritabanı.sil(`${req.params.sunucuID}.${req.params.ayarID}`)
+    if (db.has(`${req.params.sunucuID}.${req.params.ayarID}`) === false) return res.json({"hata":req.params.ayarID.charAt(0).toUpperCase()+req.params.ayarID.slice(1)+" adlı ayar "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    db.delete(`${req.params.sunucuID}.${req.params.ayarID}`)
     res.redirect(`/panel/${req.params.sunucuID}/yonet`);
   });
   
   app.get("/panel/:sunucuID/yonet/ozelKomutlar/:komutID/:aciklamaID/:tipID/sifirla", girisGerekli, (req, res) => {
-    client.veritabanı.çıkar(`${req.params.sunucuID}.özelKomutlar`, JSON.parse(`{"${req.params.komutID}":"${req.params.aciklamaID}", "tip":"${req.params.tipID}"}`))
+    db.delete(`${req.params.sunucuID}.özelKomutlar`, JSON.parse(`{"${req.params.komutID}":"${req.params.aciklamaID}", "tip":"${req.params.tipID}"}`))
     res.redirect(`/panel/${req.params.sunucuID}/yonet`);
   });
   
   app.get("/panel/:sunucuID/yonet/ozelKomutlar/:komutID/:aciklamaID/:tipID/:renkID/sifirla", girisGerekli, (req, res) => {
-    client.veritabanı.çıkar(`${req.params.sunucuID}.özelKomutlar`, JSON.parse(`{"${req.params.komutID}":"${req.params.aciklamaID}", "tip":"${req.params.tipID}", "renk":"#${req.params.renkID}"}`))
+    db.delete(`${req.params.sunucuID}.özelKomutlar`, JSON.parse(`{"${req.params.komutID}":"${req.params.aciklamaID}", "tip":"${req.params.tipID}", "renk":"#${req.params.renkID}"}`))
     res.redirect(`/panel/${req.params.sunucuID}/yonet`);
   });
   
