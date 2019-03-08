@@ -25,7 +25,7 @@ if (!a && a !== "destek" && a !== "kapat" && a !== "liste" && a !== "support" &&
   .addField('Sunucu prefixi', `${prefix2}`, true)
   .addField('Giriş çıkış kanalı', db.has(`gc_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`gc_${message.guild.id}`)) : `${ka} Ayarlanmamış **${prefix}giriş-çıkış-ayarla** `, true)
   .addField('Mod log kanalı', db.has(`mLog_${message.guild.id}`) ? `${ac} ${db.fetch(`mLog_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}mod-log-ayarla** `, true)
-  .addField('Log kanalı', db.has(`log_${message.guild.id}`) ? `${ac} ${db.fetch(`log_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}log-ayarla**`, true)
+  .addField('Log kanalı', db.has(`log_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`log_${message.guild.id}`)) : `${ka} Ayarlanmamış **${prefix}log-ayarla**`, true)
   .addField('Link engeli', db.has(`linkE_${message.guild.id}`) ? `${ac} Açık` : `${ka} Ayarlanmamış **${prefix}link-engelle**`, true)
   .addField('Küfür engeli', db.has(`küfürE_${message.guild.id}`) ? `${ac} Açık` : `${ka} Ayarlanmamış **${prefix}küfür-engelle**` ,true)
   .addField('Otorol', db.has(`otoR_${message.guild.id}`) ? `${ac} \`@${message.guild.roles.get(db.fetch(`otoR_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}oto-rol**`, true)

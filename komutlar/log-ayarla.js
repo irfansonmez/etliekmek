@@ -11,9 +11,7 @@ exports.run = async (client, message, args) => {
  
   let channel = message.mentions.channels.first()
   
-    if (!channel) {
-        return message.reply('Lütfen bir kanal etiketleyiniz')
-    }
+    
 
     /*if(!kanal[message.guild.id]){
         kanal[message.guild.id] = {
@@ -25,10 +23,29 @@ exports.run = async (client, message, args) => {
         if (x) console.error(x)
       })*/
   
-    db.set(`log_${message.guild.id}`, "<#"+channel.id+">")
+  
+  
+    let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+      if(args[0] === 'kapat') {
+   if (db.has(`log_${message.guild.id}`) === true) {
+     message.channel.send(`Log kanalı başarıyla kaldırıldı`)
+     db.delete(`log_${message.guild.id}`)
+     return
+}
+  message.channel.send(`Log kanalı ayarlanmamış.`)
+    return
+  
+  }
+  
+  if (!channel) {
+        return message.reply('Lütfen bir kanal etiketleyiniz')
+    }
+  
+  
+    db.set(`log_${message.guild.id}`, channel.id)
   
     const embed = new Discord.RichEmbed()
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Log kanalı başarıyla ayarlandı:: ${channel}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Log kanalı başarıyla ayarlandı: ${channel}\nLog kanalını kapatmak isterseniz **${prefix}log-kanal kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
   
@@ -37,7 +54,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['log-belirle'],
+    aliases: ['log-belirle', 'log-kanal'],
     permLevel: 4,
     kategori: "ayarlar",
 }

@@ -2291,7 +2291,7 @@ client.on("guildMemberAdd", member => {
   
   if (db.has(`log_${member.guild.id}`) === false) return;
   
-  var kanal = member.guild.channels.get(db.fetch(`log_${member.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = member.guild.channels.get(db.fetch(`log_${member.guild.id}`))
   if (!kanal) return;
   
   const embed = new Discord.RichEmbed()
@@ -2393,7 +2393,7 @@ client.on("guildMemberRemove", member => {
   
   if (db.has(`log_${member.guild.id}`) === false) return;
   
-  var kanal = member.guild.channels.get(db.fetch(`log_${member.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = member.guild.channels.get(db.fetch(`log_${member.guild.id}`))
   if (!kanal) return;
   
   const embed = new Discord.RichEmbed()
@@ -2420,7 +2420,7 @@ client.on("messageDelete", message => {
   
   if (db.has(`log_${message.guild.id}`) === false) return;
   
-  var kanal = message.guild.channels.get(db.fetch(`log_${message.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = message.guild.channels.get(db.fetch(`log_${message.guild.id}`))
   if (!kanal) return;
   
   const embed = new Discord.RichEmbed()
@@ -2446,7 +2446,7 @@ client.on("messageUpdate", async (oldMsg, newMsg) => {
   
   if (db.has(`log_${oldMsg.guild.id}`) === false) return;
   
-  var kanal = oldMsg.guild.channels.get(db.fetch(`log_${oldMsg.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = oldMsg.guild.channels.get(db.fetch(`log_${oldMsg.guild.id}`))
   if (!kanal) return;
   
   const embed = new Discord.RichEmbed()
@@ -2467,7 +2467,7 @@ client.on("roleCreate", role => {
   
   if (db.has(`log_${role.guild.id}`) === false) return;
   
-  var kanal = role.guild.channels.get(db.fetch(`log_${role.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = role.guild.channels.get(db.fetch(`log_${role.guild.id}`))
   if (!kanal) return;
   
   const embed = new Discord.RichEmbed()
@@ -2485,7 +2485,7 @@ client.on("roleDelete", role => {
   
   if (db.has(`log_${role.guild.id}`) === false) return;
   
- var kanal = role.guild.channels.get(db.fetch(`log_${role.guild.id}`).replace("<#", "").replace(">", ""))
+ var kanal = role.guild.channels.get(db.fetch(`log_${role.guild.id}`))
   if (!kanal) return;
   
   const embed = new Discord.RichEmbed()
@@ -2503,7 +2503,7 @@ client.on("roleUpdate", role => {
   
   if (db.has(`log_${role.guild.id}`) === false) return;
   
-  var kanal = role.guild.channels.get(db.fetch(`log_${role.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = role.guild.channels.get(db.fetch(`log_${role.guild.id}`))
   if (!kanal) return;
   
   const embed = new Discord.RichEmbed()
@@ -2521,7 +2521,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   
   if (db.has(`log_${oldMember.guild.id}`) === false) return;
   
-  var kanal = oldMember.guild.channels.get(db.fetch(`log_${oldMember.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = oldMember.guild.channels.get(db.fetch(`log_${oldMember.guild.id}`))
   if (!kanal) return;
   
   let newUserChannel = newMember.voiceChannel
