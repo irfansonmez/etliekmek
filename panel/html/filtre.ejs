@@ -79,19 +79,48 @@
   </nav>
       
   
-	<div class="row">
-  
-    
+<div class="row">
     
 <div class="col">
-  
-    
-  <div class="container">
-    
-  
-    
-    
-     <div class="row">
+    <div class="container">
+      <form method="post">
+        <ul class="list-group list-group-flush">
+          
+              <div class="row">
+            <div class="col-25">
+              <label for="link">Link Engelleme Sistemi</label>
+            </div>
+            <div class="col-75">
+              <select id="link" name="link"> 
+           <%if(bot.ayar.has(`linkE_${guild.id}`) === false) {%>
+                 <option value="acik">Açık</option>
+                 <option value="kapali" selected>Kapalı</option>
+           <%} else {%>
+               <option value="acik" selected>Açık</option>
+                 <option value="kapali">Kapalı</option>
+             <%}%>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="kufur">Küfür Engelleme Sistemi</label>
+            </div>
+            <div class="col-75">
+              <select id="kufur" name="kufur"> 
+           <%if(bot.ayar.has(`küfürE_${guild.id}`) === false) {%>
+                 <option value="acik">Açık</option>
+                 <option value="kapali" selected>Kapalı</option>
+           <%} else {%>
+               <option value="acik" selected>Açık</option>
+                 <option value="kapali">Kapalı</option>
+             <%}%>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
             <div class="col-25">
               <label for="kelimefiltre">Kelime Filtresi Sistemi</label>
             </div>
@@ -123,11 +152,24 @@
             </tbody>
         </table>
           
-          
-               
+          </ul>
           <div style="width: 100%; text-align: right; margin-top: 15px;">
+      <button style="background-color:blue; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kaydet</button>
           </div>
-    </div></div>
+      </form>
+    </div>
+  </div>
+    
+</div>
+          
+          </ul>
+          <div style="width: 100%; text-align: right; margin-top: 15px;">
+      <button style="background-color:blue; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kaydet</button>
+          </div>
+      </form>
+    </div>
+  </div>
+    
 </div>
 
 

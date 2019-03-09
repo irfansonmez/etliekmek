@@ -246,19 +246,38 @@ module.exports = (client) => {
     yukle(res, req, "ayarlar.ejs", {sunucu});
   });
   
+  
+  app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
+  const guild = client.guilds.get(req.params.guildID);
+ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+  const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+      if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+  yukle(res, req, "filtre.ejs", {guild});
+});
+
+app.post("/panel/:guildID/filtre", girisGerekli, (req, res) => {
+  const guild = client.guilds.get(req.params.guildID);
+  if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+  const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+
+  client.customCmds(guild.id, req.body);
+  res.redirect("/panel/"+req.params.guildID+"/filtre");
+});
+  
 app.get("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
   const guild = client.guilds.get(req.params.guildID);
-  if (!guild) return res.status(404);
+ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
   const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-  if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
+    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
   yukle(res, req, "ozelkomutlar.ejs", {guild});
 });
 
 app.post("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
   const guild = client.guilds.get(req.params.guildID);
-  if (!guild) return res.status(404);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
   const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-  if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
+    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
 
   client.customCmds(guild.id, req.body);
   res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
@@ -267,17 +286,17 @@ app.post("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
 
 app.get("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
 const guild = client.guilds.get(req.params.guildID);
-if (!guild) return res.status(404);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
 const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
+    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
 yukle(res, req, "ozelkomutlar.ejs", {guild});
 });
 
 app.post("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
 const guild = client.guilds.get(req.params.guildID);
-if (!guild) return res.status(404);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
 const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
+    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
 
 client.customCmds(guild.id, req.body);
 res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");

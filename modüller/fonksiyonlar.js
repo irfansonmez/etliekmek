@@ -64,6 +64,8 @@ if (yeniAyar['resim']) {
 db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
 }
 };
+  
+  
 
 client.panel.ayarlarKaydet = (sunucuID, sunucu, yeniAyar, req, res) => {
 
@@ -79,6 +81,10 @@ if (yeniAyar['girisCikis']) {
 db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])
     
 }
+  
+      if (yeniAyar['kelimefiltre']) {
+        db.push(`filtre_${sunucu.id}`, yeniAyar['kelimefiltre'])
+      }
 
 if (yeniAyar['girisMesaj']) {
 db.set(`girisM_${sunucu.id}`, yeniAyar['girisMesaj'])
