@@ -246,12 +246,22 @@ module.exports = (client) => {
     yukle(res, req, "ayarlar.ejs", {sunucu});
   });
   
-  app.get("/panel/:sunucuID/komut", girisGerekli, (req, res) => {
-    const sunucu = client.guilds.get(req.params.sunucuID);
-    if (!sunucu) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
-    const isManaged = sunucu && !!sunucu.member(req.user.id) ? sunucu.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
-    yukle(res, req, "komut.ejs", {sunucu});
+     app.get("/panel/:guildID/komut", girisGerekli, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
+    yukle(res, req, "komut.ejs", {guild});
+  });
+  
+  app.post("/panel/:guildID/komut", girisGerekli, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
+
+    client.customCmds(guild.id, req.body);
+    res.redirect("/panel/"+req.params.guildID+"/komut");
   });
   
   app.post("/panel/:sunucuID/yonet", girisGerekli, (req, res) => {
@@ -268,6 +278,44 @@ module.exports = (client) => {
         }  
       }
     }
+    
+       app.get("/panel/:guildID/komut/sil", girisGerekli, async (req, res) => {
+     res.redirect("/panel/"+req.params.guildID+"/komut");
+   });
+  
+  const fs = require('fs');
+  app.get("/panel/:guildID/komut/sil/:cmdID", girisGerekli, async (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) res.redirect("/hata-yetki");
+   
+    var komut = req.params.cmdID;
+    
+    let komutlar = client.cmdd
+		if(komutlar[req.params.guildID].length === 1) {
+			if(Object.keys(komutlar[req.params.guildID][0])[0].toString() === komut) {
+				delete komutlar[req.params.guildID]
+				fs.writeFile("./komutlar.json", JSON.stringify(komutlar), (err) => {
+					console.log(err)
+				})
+			}
+		} else {
+		for (var i = 0; i < komutlar[req.params.guildID].length; i++) {
+			if(Object.keys(komutlar[req.params.guildID][i])[0].toString() === komut) {
+				komutlar[req.params.guildID].splice(i, 1);
+
+				fs.writeFile("./komutlar.json", JSON.stringify(komutlar), (err) => {
+					console.log(err)
+				})
+			}
+		}
+  }
+    
+    res.redirect("/panel/"+req.params.guildID+"/komut");
+  });
+    
+    
     if (req.body['ban']) {
       if (sunucu.members.get(client.user.id).permissions.has("BAN_MEMBERS") === false) return res.json({"hata":"Botun "+sunucu.name+" adlı sunucuda Üyeleri Yasakla (BAN_MEMBERS) izni olmadığı için "+client.users.get(req.body['ban']).tag+" adlı üye yasaklanamıyor."});
     }

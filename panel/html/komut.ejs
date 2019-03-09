@@ -50,8 +50,8 @@
         <li class="nav-item"><a href="" class="nav-link">Ana Sayfa</a></li>
 
         <li class="nav-item"><a href="/istatistikler" class="nav-link">İstatistikler</a></li>
-        <li class="nav-item"><a href="/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
-        <li class="nav-item"><a href="/sunucular" class="nav-link">Sunucular</a></li>
+        <li class="nav-item"><a href="/botuekle" class="nav-link">Botu guildna ekle</a></li>
+        <li class="nav-item"><a href="/guildlar" class="nav-link">guildlar</a></li>
         <li class="nav-item"><a href="/kullaniciler" class="nav-link">Kullanıcılar</a></li>
       </ul>
 
@@ -66,7 +66,7 @@
            </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="background-color:#2a2d32">
               <a class="dropdown-item" href="/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
-              <a class="dropdown-item activex" href="/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım <br>(Şuan <b><%=sunucu.name%></b> adlı sunucu seçili.)</a>
+              <a class="dropdown-item activex" href="/panel" style="color:#ffffff"><i aria-hidden="true"></i>guildlarım <br>(Şuan <b><%=guild.name%></b> adlı guild seçili.)</a>
               <% if(bot.ayarlar.sahip.includes(user.id)) { %>
 						  <a class="dropdown-item" href="/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
 				      <% } %>
@@ -112,7 +112,7 @@
           Komut Listesi
       </h3>
         <br>
-        <%if(bot.cmdd[sunucu.id]) {%>
+        <%if(bot.cmdd[guild.id]) {%>
         <table class="table table-hover" style="background-color:#222">
             <thead>
                 <tr>
@@ -122,16 +122,16 @@
                 </tr>
             </thead>
             <tbody>
-                    <%for(var i = 0; i < bot.cmdd[sunucu.id].length; i++) {%>
+                    <%for(var i = 0; i < bot.cmdd[guild.id].length; i++) {%>
               <tr>
-                  <th scope="row"><%=Object.keys(bot.cmdd[sunucu.id][i])%></th>
-                  <td><%=bot.cmdd[sunucu.id][i][Object.keys(bot.cmdd[sunucu.id][i])]%></td>
-                  <td><a class="btn btn-danger" href="/panel/<%=sunucu.id%>/ozelkomutlar/sil/<%=Object.keys(bot.cmdd[sunucu.id][i])%>">Komutu Sil</a></td>
+                  <th scope="row"><%=Object.keys(bot.cmdd[guild.id][i])%></th>
+                  <td><%=bot.cmdd[guild.id][i][Object.keys(bot.cmdd[guild.id][i])]%></td>
+                  <td><a class="btn btn-danger" href="/panel/<%=guild.id%>/komut/sil/<%=Object.keys(bot.cmdd[guild.id][i])%>">Komutu Sil</a></td>
                  </tr>
                   <%}%>
             <%} else {%>
                   <h5 align="center" style="color:#fff">
-                    Sunucuda hiç özel komut bulunmuyor.
+                    guildda hiç özel komut bulunmuyor.
               </h5>
               <%}%>
             </tbody>
@@ -144,7 +144,7 @@
 
 
 <script>
-	var ts = parseInt($('#sunucuCreate').text());
-	$('#sunucuCreate').html(`<strong>Created:</strong>: ${moment(ts).format('MMMM Do YYYY (h:mm a)')}`);  
+	var ts = parseInt($('#guildCreate').text());
+	$('#guildCreate').html(`<strong>Created:</strong>: ${moment(ts).format('MMMM Do YYYY (h:mm a)')}`);  
 </script>
 <% include footer.ejs %>
