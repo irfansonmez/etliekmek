@@ -82,8 +82,8 @@ db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])
     
 }
   
-      if (yeniAyar['kelimefiltre']) {
-        db.push(`filtre_${sunucu.id}`, yeniAyar['kelimefiltre'])
+    if (yeniAyar['kelimefiltre']) {
+        db.push(`kFiltre_${sunucu.id}`, yeniAyar['kelimefiltre'])
       }
 
 if (yeniAyar['girisMesaj']) {
