@@ -36,7 +36,8 @@ const snekfetch = require('snekfetch');
 const useful = require('./x.js');
 
 
-
+let komutum = JSON.parse(fs.readFileSync("./komutlar.json", "utf8"));
+client.cmdd = komutum
 
 client.useful = useful;
 require("./modüller/fonksiyonlar.js")(client);

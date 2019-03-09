@@ -246,6 +246,14 @@ module.exports = (client) => {
     yukle(res, req, "ayarlar.ejs", {sunucu});
   });
   
+  app.get("/panel/:sunucuID/komut", girisGerekli, (req, res) => {
+    const sunucu = client.guilds.get(req.params.sunucuID);
+    if (!sunucu) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = sunucu && !!sunucu.member(req.user.id) ? sunucu.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+    yukle(res, req, "komut.ejs", {sunucu});
+  });
+  
   app.post("/panel/:sunucuID/yonet", girisGerekli, (req, res) => {
     const sunucu = client.guilds.get(req.params.sunucuID);
     if (!sunucu) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});

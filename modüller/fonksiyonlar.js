@@ -1,9 +1,60 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
+const fs = require("fs");
 module.exports = (client, clientt) => {
 
 client.panel = {};
 
+    client.customCmds = (id, cmd) => {
+    
+    let komut = cmd['komut']
+    let aciklama = cmd['aciklama']
+    
+    var array = []
+	  var kontrol2 = []
+    let komutlar = client.cmdd
+    
+    if(komutlar[id]) {
+		for (var i = 0; i < Object.keys(komutlar[id]).length; i++) {
+			if(komut === Object.keys(komutlar[id][i])[0].toString()) {
+				array.push(JSON.parse(`{"${Object.keys(komutlar[id][i])[0]}": "${aciklama}"}`))
+			} else {
+				array.push(JSON.parse(`{"${Object.keys(komutlar[id][i])[0]}": "${komutlar[id][i][Object.keys(komutlar[id][i])].replace("\n", "\\n")}"}`))
+			}
+			kontrol2.push(Object.keys(komutlar[id][i])[0].toString())
+		}
+		if(!kontrol2.includes(komut)) {
+			array.push(JSON.parse(`{"${komut}": "${aciklama}"}`))
+			komutlar[id] = array
+
+			fs.writeFile("./komutlar.json", JSON.stringify(komutlar), (err) => {
+				console.log(err)
+			})
+
+			return
+		} else {
+			komutlar[id] = array
+
+			fs.writeFile("./komutlar.json", JSON.stringify(komutlar), (err) => {
+				console.log(err)
+			})
+
+			return
+		}
+	} else {
+		array.push(JSON.parse(`{"${komut}": "${aciklama}"}`))
+		komutlar[id] = array
+
+		fs.writeFile("./komutlar.json", JSON.stringify(komutlar), (err) => {
+			console.log(err)
+		})
+
+		return
+	}
+    
+  };
+  
+  
 client.panel.ayarlarKaydetKullanici = (kullaniciID, kullanici, yeniAyar, req, res) => {
 if (yeniAyar['renk']) {
 db.set(`${kullanici.id}.renk`, yeniAyar['renk'])
