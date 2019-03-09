@@ -89,13 +89,14 @@
    <a href="/giris" <button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Giriş yap</button> </a>
 				<a style="color:#fff" class="nav-link" href="/komutlar" role="button"><i class="fa fa-book fa-fw"></i> Komutlar</a>
 			<% } else { %>
-     <a class="dropdown-item" href="/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
-		<a href="/giris" <button		<a style="color:#fff" class="nav-link" href="/panel" role="button"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Yönetim/Kontrol Paneli</a>
+   
+  			<a style="color:#fff" class="nav-link" href="/kullaniciler/<%=user.id%>/yonet" role="button"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Seviye Kartını Düzenle
+			<a style="color:#fff" class="nav-link" href="/panel" role="button"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Yönetim/Kontrol Paneli
 				<% if(bot.ayarlar.sahip.includes(user.id)) { %>
 						<a style="color:#fff" class="nav-link" href="/yonetici" role="button"><i class="fa fa-key fa-fw" aria-hidden="true"></i> Yönetici Paneli</a>
   
 				<% } %>
-				<a style="color:#fff" class="nav-link" href="/komutlar" role="button"><i class="fa fa-book fa-fw"></i> Komutlar</a>
+
 				<a style="color:#fff" class="nav-link" href="/cikis" role="button"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Çıkış Yap</a>
 			<% } %>
       
