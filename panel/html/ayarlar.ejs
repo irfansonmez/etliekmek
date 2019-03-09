@@ -310,74 +310,7 @@ function w3_close() {
   </div>
         
         
-        
-         <div id="ozelKomutlar" style="display:none;">
- 
-      <br> <br> Özel komut sistemi <br> <br>
-</h3>
-
-<center><a align="center" class="btn btn-success" data-toggle="collapse" style="color: white;" data-target="#yeni">Komut Oluştur</a></center>
-<br>
-<div id="yeni" class="collapse in">
-<form method="post">
-
-<div class="row">
-      <div class="col">
-          <label style="color: white;" for="komut">Komut</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="komut" name="komut" placeholder="Komutun adını yazın." required>
-      </div>
-  </div>
-  <div class="row">
-      <div class="col">
-          <label style="color: white;" for="aciklama">Açıklama</label>
-      </div>
-      <div class="col-75">
-        <textarea class="form-control" id="aciklama" name="aciklama" rows="3" placeholder="Komut kullanıldığında verilecek cevabı yazın." style="margin-top: 0px; margin-bottom: 0px; height: 65px;" required></textarea>
-      </div>
-  </div>
-<button style="background-color:blue; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Komut Ekle/Düzenle</button>
-</form>
-</div>
-<br>
-<h3 align="center" style="color:#fff">
-Komut Listesi
-</h3>
-<br>
-<%if(bot.cmdd[sunucu.id]) {%>
-<table class="table table-hover" style="background-color:#222">
-<thead>
-  <tr>
-    <th scope="col" style="width: 25%">Komut</th>
-      <th scope="col" style="width: 50%">Açıklama</th>
-      <th scope="col" style="width: 25%"></th>
-  </tr>
-</thead>
-<tbody>
-      <%for(var i = 0; i < bot.cmdd[sunucu.id].length; i++) {%>
-<tr>
-    <th scope="row"><%=Object.keys(bot.cmdd[sunucu.id][i])%></th>
-    <td><%=bot.cmdd[sunucu.id][i][Object.keys(bot.cmdd[sunucu.id][i])]%></td>
-    <td><a class="btn btn-danger" href="/panel/<%=sunucu.id%>/ozelkomutlar/sil/<%=Object.keys(bot.cmdd[sunucu.id][i])%>">Komutu Sil</a></td>
-   </tr>
-    <%}%>
-<%} else {%>
-    <h5 align="center" style="color:#fff">
-      Sunucuda hiç özel komut bulunmuyor.
-</h5>
-<%}%>
-</tbody>
-</table>
-    
-  
-        
-        <button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
-        
-      </form>
-    </div>  
-  </div>
-</div>
+      
   
   <script>
     function myFunctionTwo () {
