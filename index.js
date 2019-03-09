@@ -405,199 +405,26 @@ message.guild.createChannel(`🎮》LOL`, 'voice')
 });
 
 
-client.on("message", async message => {
-  let p = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-  let prefüx = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+client.on("message",async  message => {
 
-  const args = message.content.slice(prefix.length).split(' ');
-      const command = args.shift().toLowerCase();  
-      if (message.content.startsWith(prefix + 'özel-komut')) {
-
+  if (!message.guild) return;
   
-if (!args[0]) {
+let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
 
-  let prefüx = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-   
-    let embed = new Discord.RichEmbed()
-    .setTitle("Özel komut")
-    .addField(`${prefüx}özel-komut ekle [Komut cevap]`, `Sunucunuza özel komut eklemeyi sağlar.`)
-    .addField(`${prefüx}özel-komut sil [komut]`, `Sunucunuzdan özel komut silmeyi sağlar`)
-    .addField(`${prefüx}özel-komut bilgi [komut]`, `Sununuzda olan özel komut hakkında bilgi almanızı sağlar`)
-    message.channel.send(embed)
-  return
-}
- if (args[1] == db.fetch(`content_${message.guild.id}_${args[1]}`)) return message.channel.send(`**Zaten böyle bir komut var.**`)
-     
-     if (args[0] == 'ekle') {
-      let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-
-if (!message.member.hasPermission("MANAGE_MESSAGES"))
-    return message.reply(`**Bu komutu kullanmak için gerekli izinin bulunmuyor.**`)
-    
-if (!args[1]) {
-const em = new Discord.RichEmbed()
-.setDescription(`Lütfen komut adı giriniz **${prefix}özel-komut ekle komut-adı komut-cevabı**`)
-.setColor('RANDOM')
-message.channel.send(em)
-return
-} 
-
-if (!args[2]) {
-  const em2 = new Discord.RichEmbed()
-  .setDescription(`Lütfen cevap giriniz **${prefix}özel-komut ekle komut-adı komut-cevabı**`)
-  .setColor('RANDOM')
-  message.channel.send(em2)
-  return
-  } 
-       const name = await db.fetch(`content_${message.guild.id}_${args[1]}`)
-
-       if (args[1] == name) return message.channel.send(`**Zaten böyle bir özel komut eklemişsin**`)
-
-       if (message.content.includes("@everyone")) return message.channel.send("**Everyone koyamazsın**")
-   if(message.content.includes("@here")) return message.channel.send("**Here koyamazsın.**")
-
-   if (client.commands.get(args[1])) return message.reply('Botun var olan komutunu ekleyemezsin')
-  if (client.aliases.get(args[1])) return message.reply('Botun var olan komutunu ekleyemezsin')
-  
-  if(args[1] == args[2]) {
-
-    const em = new Discord.RichEmbed()
-    .setDescription('Komut adı ile cevap aynı olamaz.')
-    .setColor('RANDOM')
-    message.channel.send(em)
-return
-  }
-  
-
-
- let i = await  db.set(`content_${message.guild.id}_${args[1]}`, args.slice(2).join(' '))
-  let asdsasd = db.fetch(`content_${message.guild.id}_komut`);
-      if (asdsasd == null) asdsasd = "\n";
-   db.set(`content_${message.guild.id}_${args[1]}_author`, message.author.tag)
-   db.set(`content_${message.guild.id}_komut`, ` **Name:** ${args[1]} \n**Response:** ${args.slice(2).join(' ')}`)
-
-   
-    const em = new Discord.RichEmbed()
-    .setDescription(`**Özel komut eklendi.\n**Komut: **${args[1]}\n**Cevap: **${args[2]}**`)
-    .setColor('RANDOM')
-    message.channel.send(em)
-    
-  
-   }
-
-if (args[0] === 'sil') {
-  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-if (!message.member.hasPermission("MANAGE_MESSAGES"))
-    return message.reply(`<@${message.author.id}> **Bu komutu kullanmak için gerekli iznin bulunmuyor.**`)
-
-if (!args[1]){
-
-    const em = new Discord.RichEmbed()
-    .setDescription(`Silmek istediğiniz komutu yazınız **${prefix}özel-komut sil komut-adı**`)
-    .setColor('RANDOM')
-    message.channel.send(em)
-    return
-
-} 
-      let cmd = await db.fetch(`content_${message.guild.id}_${args[1]}`)
-
-      if (cmd == null) {
-        const em = new Discord.RichEmbed()
-        .setDescription('**Komut bulunmuyor**')
-        .setColor('RANDOM')
-        message.channel.send(em)
-        return
-      }
-
-      db.delete(`content_${message.guild.id}_${args[1]}`)
-      db.delete(`content_${message.guild.id}_${args[1]}_author`)
-
-      const em = new Discord.RichEmbed()
-      .setDescription(`**${args[1]}** Adlı özel komut başarıyla silindi.`)
-      .setColor('RANDOM')
-      message.channel.send(em)
-      
-  
+  if(message.content.startsWith(prefix)) {
+        let komutum = client.cmdd
+        if(komutum[message.guild.id]) {
+            for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
+                if(message.content.slice(prefix.length) === Object.keys(komutum[message.guild.id][i])[0]) {
+                   
+                    message.channel.send(komutum[message.guild.id][i][Object.keys(komutum[message.guild.id][i])])
+                  
+                    return
+                }
+            }
+        }
     }
-     
-if (args[0] === 'bilgi') {
-  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-
-  if (!args[1]){
-
-    const em = new Discord.RichEmbed()
-    .setDescription(`Lütfen bilgisini almak istediğiniz komutun adını yazınız **${prefix}özel-komut bilgi komut-adı**`)
-    .setColor('RANDOM')
-    message.channel.send(em)
-    return
-
-} 
-      let cmd = await db.fetch(`content_${message.guild.id}_${args[1]}`)
-      if (cmd == null) {
-        const em = new Discord.RichEmbed()
-        .setDescription('**Komut bulunamadı**')
-        .setColor('RANDOM')
-        message.channel.send(em)
-        return
-      }
-
-      const author = await db.fetch(`content_${message.guild.id}_${args[1]}_author`)
-      const content = await db.fetch(`content_${message.guild.id}_${args[1]}`)
-
-
-      const em22 = new Discord.RichEmbed()
-      .setDescription(`**Komut bilgisi**\n\n**Komut adı:** ${args[1]}\n**Cevap** ${content}`)
-      .setColor('RANDOM')
-      message.channel.send(em22)
-
-    
-    }
-     
-
-
-if (args[0] === "yardım"){
-    let prefüx = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-   
-    let embed = new Discord.RichEmbed()
-    .setTitle("Özel komut")
-    .addField(`${prefüx}özel-komut ekle [Komut cevap]`, `Sunucunuza özel komut eklemeyi sağlar.`)
-    .addField(`${prefüx}özel-komut sil [komut]`, `Sunucunuzdan özel komut silmeyi sağlar`)
-    .addField(`${prefüx}özel-komut bilgi [komut]`, `Sununuzda olan özel komut hakkında bilgi almanızı sağlar`)
-    message.channel.send(embed)
-      }
-   
-}
-})
-
-
-client.on('message', async message => {
-  
-  
-  
-  
-
-    const args = message.content.substring().split(" ");
-  if (message.author.bot) return;
-  if (message.author.id === client.user.id) return;
-  if (message.channel.type === "dm") return;
-  if (message.author.bot) return;
-  var user = message.mentions.users.first() || message.author;
-  if (!message.guild) user = message.author;
-  let content = await db.fetch(`content_${message.guild.id}_${args[0]}`)
-  let response = await db.fetch(`content_${message.guild.id}_${args[0]}`)
-  if (content == null) return;
-  if (response == null) return;
-      try {
-      if (message.content.toLowerCase() === args[0]) {
-       return message.channel.send(response)
-      }
-      } catch (err) {
-        message.channel.send(`\`\`\`${err}\`\`\``)
-      }
 });
-
-
 
 /*
 client.on('guildMemberAdd' , async member => {
