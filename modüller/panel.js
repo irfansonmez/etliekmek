@@ -287,9 +287,6 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
   
  
-
-
-  
 app.get("/panel/:guildID/ozelkomutlar/sil", girisGerekli, async (req, res) => {
 res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
@@ -309,7 +306,7 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
    
-    client.writeSettings(guild.id, req.body);
+    client.panel.ayarlarKaydet(guild.id, req.body);
     res.redirect("/panel/"+req.params.guildID+"/filtre");
   });
   

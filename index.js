@@ -93,7 +93,7 @@ client.emojiler = {
 client.ayarlar = {
         "oynuyor": "?yardım | ?davet | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın",
         "official_sahip": "507803933557915652",
-        "sahip": ['336869318874890241'],
+        "sahip": ['336869318874890241',"487515609815580672"],
         "yardimcilar": [''],
         "isim": "RYKER",
         "botD": "https://discordapp.com/oauth2/authorize?client_id=516600125649453066&scope=bot&permissions=2146958847",
