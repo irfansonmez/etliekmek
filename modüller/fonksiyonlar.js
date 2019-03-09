@@ -65,7 +65,21 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
 }
 };
   
-  
+
+    client.writeSettings = (id, newSettings) => {
+    
+    if (!client.guilds.get(id)) return
+    
+    try {
+      
+         if (newSettings['kelimefiltre']) {
+        db.push(`filtre_${id}`, newSettings['kelimefiltre'])
+           
+      }
+     } catch (err) {
+      //console.error(err)
+    };
+        };
 
 client.panel.ayarlarKaydet = (sunucuID, sunucu, yeniAyar, req, res) => {
 
@@ -82,10 +96,10 @@ db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])
     
 }
   
-    if (yeniAyar['kelimefiltre']) {
-        db.push(`kFiltre_${sunucu.id}`, yeniAyar['kelimeFiltre'])
-      }
-
+ //   if (yeniAyar['kelimefiltre']) {
+   //     db.push(`filtre_${sunucu.id}`, req.kelimefiltre)
+     // }
+// bi dk bişe deneyecem
 if (yeniAyar['girisMesaj']) {
 db.set(`girisM_${sunucu.id}`, yeniAyar['girisMesaj'])
 }
@@ -113,7 +127,7 @@ db.delete(`capsE_${sunucu.id}`)
 }
 
 if (yeniAyar['komut'] && yeniAyar['aciklama'] && yeniAyar['tip']) {
-if (client.kayıt.komutlar.has(yeniAyar['komut']) === true || client.kayıt.alternatifler.has(yeniAyar['komut'])) return
+if (client.kayıt.komutlar.has(yeniAyar['komut']) === true ||client.kayıt.alternatifler.has(yeniAyar['komut'])) return
 if (db.has(`özelKD_${sunucu.id}`) === true) {
 for (var i = 0; i < db.fetch(`özelKD_${sunucu.id}`).length; i++) {
 if (Object.keys(db.fetch(`özelKD_${sunucu.id}`)[i])[0] === yeniAyar['komut']) return

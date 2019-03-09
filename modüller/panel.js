@@ -282,17 +282,14 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
 const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
 
+  
+  
 client.customCmds(guild.id, req.body);
 res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
   
  
-app.get("/panel/:guildID/ozelkomutlar/sil", girisGerekli, async (req, res) => {
-res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
-});
-
-  
- app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
+  app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
     const guild = client.guilds.get(req.params.guildID);
     if (!guild) return res.status(404);
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
@@ -300,13 +297,20 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
     yukle(res, req, "filtre.ejs", {guild});
   });
   
+app.get("/panel/:guildID/ozelkomutlar/sil", girisGerekli, async (req, res) => {
+res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
+});
+
+  
+ 
+  
    app.post("/panel/:guildID/filtre", girisGerekli, async(req, res) => {
     const guild = client.guilds.get(req.params.guildID);
     if (!guild) return res.status(404);
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
    
-    client.panel.ayarlarKaydet(guild.id, req.body);
+    client.writeSettings(guild.id, req.body);
     res.redirect("/panel/"+req.params.guildID+"/filtre");
   });
   
