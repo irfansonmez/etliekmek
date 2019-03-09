@@ -1058,8 +1058,8 @@ client.on("guildDelete", async guild => {
 client.on("message", async msg => {
   
   
-  
-  
+ 
+
   
   const prefix = await db.fetch(`prefix_${msg.guild.id}`) || client.ayarlar.prefix;
   //const args = msg.content.slice.split(' ');
@@ -1073,6 +1073,7 @@ client.on("message", async msg => {
     
     
     
+            
       const fltr = filtre
    if (fltr.some(word => msg.content.includes(word))) {
   if (!msg.member.hasPermission("ADMINISTRATOR")) {
