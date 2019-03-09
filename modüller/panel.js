@@ -279,7 +279,7 @@ module.exports = (client) => {
       }
     }
     
-       app.get("/panel/:guildID/komut/sil", girisGerekli, async (req, res) => {
+   app.get("/panel/:guildID/komut/sil", girisGerekli, async (req, res) => {
      res.redirect("/panel/"+req.params.guildID+"/komut");
    });
   
@@ -314,8 +314,7 @@ module.exports = (client) => {
     
     res.redirect("/panel/"+req.params.guildID+"/komut");
   });
-    
-    
+  
     if (req.body['ban']) {
       if (sunucu.members.get(client.user.id).permissions.has("BAN_MEMBERS") === false) return res.json({"hata":"Botun "+sunucu.name+" adlı sunucuda Üyeleri Yasakla (BAN_MEMBERS) izni olmadığı için "+client.users.get(req.body['ban']).tag+" adlı üye yasaklanamıyor."});
     }
