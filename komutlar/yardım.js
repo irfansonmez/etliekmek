@@ -68,7 +68,7 @@ ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
     }
 
 
-  if(x === 'moderasyon' || x === 'mod' || x === 'yetkili' || x === 'özel-komut' || x === 'özelkomut' ) {
+  if(x === 'moderasyon' || x === 'mod' || x === 'yetkili' || x === 'özel-komut' || x === 'özelkomut' || x === 'filtre') {
  
   
       
@@ -88,13 +88,18 @@ ${yana} **${prefix}uyar**: İstediğiniz kişiyi uyarır.
 ${yana} **${prefix}uyarı-kaldır**: İstediğiniz kişinin uyarılarını kaldırır. 
 ${yana} **${prefix}uyarılar**: İstediğiniz kişinin uyarılarını gösterir.
 ${yana} **${prefix}emojiyükle**: Sunucuza emoji yüklemenizi sağlar.
-${yana} **${prefix}sunucu-kur**: Bot sizin yerinize sunucunuzun kanallarını ve rolleri açar.
 
 **${bot.user.username} Özel Komut Sistemi**
  
-${yana} **${prefix}özel-komut ekle**: Sunucunuza ait özel komut oluşturursunuz.
-${yana} **${prefix}özel-komut sil**: Sunucunuza ait özel komut silmenizi sağlar.
-${yana} **${prefix}özel-komut bilgi**: İstediğiniz özel komut hakkında bilgi almanızı sağlar
+${yana} **${prefix}komut-ekle**: Sunucunuza ait komut oluşturursunuz.
+${yana} **${prefix}komut-sil**: Sunucunuza ait komut silmenizi sağlar.
+${yana} **${prefix}komut-liste**: Sunucunuza eklenmiş komutları gösterir.
+
+**${bot.user.username} Filtre Sistemi**
+
+${yana} **${prefix}filtre-ekle**: Sunucunuza kelime filtresi eklemenizi sağlar.
+${yana} **${prefix}filtre-sil**: Sunucunuzda eklediğiniz bir filtreyi silmenize yarar.
+${yana} **${prefix}filtre-liste**: Sunucunuza eklenmiş kelime filtrelerini gösterir.
 
     
 ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
@@ -300,9 +305,6 @@ ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
 
     let ayar = [`**${bot.user.username} | Ayar komutları**
 
-${yana} **${prefix}filtre-ekle**: Sunucunuza kelime filtresi eklemenizi sağlar
-${yana} **${prefix}filtre-sil**: Sunucunuzda eklediğiniz bir filtreyi silmenize yarar
-${yana} **${prefix}filtre-liste**: Sunucunuza eklenmiş kelime filtrelerini gösterir
 ${yana} **${prefix}davet-kanal-ayarla**: Davet kanalını ayarlar. 
 ${yana} **${prefix}destek-kanal-ayarla**: Gelişmiş Destek Sistemindeki destek kanalını değiştirmenizi sağlar. 
 ${yana} **${prefix}destek-rol-ayarla**: Gelişmiş Destek Sistemindeki destek ekibi rolünü değiştirmenizi sağlar. 
