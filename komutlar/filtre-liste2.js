@@ -7,12 +7,12 @@ exports.run = function(client, message, args) {
   let prefix = client.ayar.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix
  
 	var str = ''
-	   let komutlar = client.cmdd
-        if(!komutlar[message.guild.id]) {
+	   let filteler = client.filtres
+        if(!filteler[message.guild.id]) {
             str = "Sunucu içi özel komut bulunmuyor."
         } else {
-            for (var i = 0; i < komutlar[message.guild.id].length; i++) {
-                str += Object.keys(komutlar[message.guild.id][i])+"\n"
+            for (var i = 0; i < filteler[message.guild.id].length; i++) {
+                str += Object.keys(filteler[message.guild.id][i])+"\n"
             }
         }
 	 if(!args[0]) {
@@ -23,16 +23,18 @@ exports.run = function(client, message, args) {
     return  message.channel.send(komut)
 	 }
 };
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: ['komutlistesi', 'komutliste', 'komut-liste'],
-  permLevel: 0,
-  kategori: "özel"
-};
+exports.conf = { 
+  enabled: true, 
+  guildOnly: false, 
+  aliases: ['filtreliste2'], 
+  permLevel: 4,
+  kategori: "özel",
+ 
+}; 
 
-exports.help = {
-  name: 'komut-listesi',
-  description: 'Sunucu içi özel komutları listeler.',
-  usage: 'komut-listesi'
+exports.help = { 
+  name: 'filtre-liste2', 
+  description: 'Sunucunuzdaki filtreleri listeler', 
+  usage: 'filtre-liste',
+  
 };
