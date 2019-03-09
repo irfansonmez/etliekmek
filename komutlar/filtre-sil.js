@@ -14,10 +14,10 @@ if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bu
   
  
 
-  const filtreler = await db.fetch(`filtreK_${message.guild.id}_${args[0]}`);
+
   
   
-  if(filtreler == args[0]) {
+
           
     
 let x = args[0] 
@@ -27,16 +27,17 @@ if (v !== x) {
 arr.push(v)
 }
 })
+  
 db.set(`filtre_${message.guild.id}`, arr)
-db.delete(`filtreK_${message.guild.id}_${args[0]}`);
+
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
    .setDescription(`Sunucudaki ${args[0]} filtresi silindi`) 
     message.channel.send(embed)
   return
-     }
+    
   
-  message.channel.send(`${args[0]} Adında bir filtre bulunamadı.\n Eklenmiş filtreleri görmek için **${prefix}filtre-liste** yazarak görebilirsiniz.`)
+
 };
 
 exports.conf = { 
