@@ -237,6 +237,14 @@ module.exports = (client) => {
   app.get("/panel/:sunucuID", girisGerekli, (req, res) => {
     res.redirect(`/panel/${req.params.sunucuID}/yonet`);
   });
+  
+     app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    if (!guild) return res.status(404);
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
+    yukle(res, req, "filtre.ejs", {guild});
+  });
 
   app.get("/panel/:sunucuID/yonet", girisGerekli, (req, res) => {
     const sunucu = client.guilds.get(req.params.sunucuID);
@@ -246,13 +254,7 @@ module.exports = (client) => {
     yukle(res, req, "ayarlar.ejs", {sunucu});
   });
   
-    app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
-    const guild = client.guilds.get(req.params.guildID);
-    if (!guild) return res.status(404);
-    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-    if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
-    yukle(res, req, "filtre.ejs", {guild});
-  });
+ 
   
   app.post("/panel/:guildID/filtre", girisGerekli, (req, res) => {
     const guild = client.guilds.get(req.params.guildID);
@@ -260,7 +262,7 @@ module.exports = (client) => {
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
    
-    client.newSettings(guild.id, req.body);
+    client.writeSettings(guild.id, req.body);
     res.redirect("/panel/"+req.params.guildID+"/filtre");
   });
   
