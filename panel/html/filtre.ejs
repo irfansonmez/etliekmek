@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="shortcut icon" href="<%=bot.avatarURL%>">
   <meta name="author" content="<%=bot.user.tag%>">
-  <meta name="keywords" content="tornado">
+  <meta name="keywords" content="RYKER">
   <meta property="og:site_name" value="<%=bot.user.username%>">
   <meta property="og:image" content="<%=bot.avatarURL%>">
   <meta property="og:description" content="Gelişmiş Türçe Discord Botu RYKER">
@@ -139,7 +139,21 @@
               <label for="kelimefiltre">Kelime Filtresi Sistemi</label>
             </div>
             <div class="col-75">
-              <input type="text" id="kelimefiltre" name="kelimefiltre" placeholder="Filtreye eklenecek kelimeyi yazınız.">
+             <%=
+                if(document.getElementById("formbtn").clicked == true){
+                
+                db.push(``)
+                
+                
+                
+                }
+                
+                
+                <input type="text" id="kelimefiltre" name="kelimefiltre" placeholder="Filtreye eklenecek kelimeyi yazınız."> 
+                
+              
+                
+                =%>
             </div>
             <button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kelimeyi Ekle</button>    
           </div>

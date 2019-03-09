@@ -51,7 +51,7 @@ module.exports = (client) => {
   }));
 
   app.use(session({
-    secret: 'ceyhun12',
+    secret: 'batuhan',
     resave: false,
     saveUninitialized: false,
   }));
@@ -295,22 +295,22 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
 
   
- app.get("/panel/:guildID/ayarlar/ayar=filtreler", checkAuth, (req, res) => {
+ app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
     const guild = client.guilds.get(req.params.guildID);
     if (!guild) return res.status(404);
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
-    renderTemplate(res, req, "guild/filtre.ejs", {guild});
+    yukle(res, req, "filtre.ejs", {guild});
   });
   
-   app.post("/panel/:guildID/ayarlar/ayar=filtreler", checkAuth, (req, res) => {
+   app.post("/panel/:guildID/filtre", girisGerekli, async(req, res) => {
     const guild = client.guilds.get(req.params.guildID);
     if (!guild) return res.status(404);
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
    
     client.writeSettings(guild.id, req.body);
-    res.redirect("/panel/"+req.params.guildID+"/ayarlar/ayar=filtreler");
+    res.redirect("/panel/"+req.params.guildID+"/filtre");
   });
   
   
