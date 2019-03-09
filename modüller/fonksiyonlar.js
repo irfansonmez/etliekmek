@@ -119,51 +119,6 @@ if (!yeniAyar['capslockEngel']) {
 db.delete(`capsE_${sunucu.id}`)
 }
 
-
-}, async function(error, response, body) {
-
-var embed = new Discord.MessageEmbed()
-.setColor("DARKBLUE")
-.setAuthor("Üye Yasağı Kaldırma")
-.addField("Yetkili", `${req.user.username}#${req.user.discriminator}`)
-.addField("Kullanıcı", `${JSON.parse(body).username}#${JSON.parse(body).discriminator}`)
-sunucu.channels.get(db.fetch(`${sunucuID}.modlog`)).send({embed:embed})
-});
-}
-setTimeout(() => {
-sunucu.unban(yeniAyar['unban'])
-}, 2000)
-}
-
-if (yeniAyar['kick']) {
-if (db.has(`${sunucuID}.modlog`) === true) {
-var embed = new Discord.MessageEmbed()
-.setColor("DARKBLUE")
-.setAuthor("Üye Atma")
-.addField("Yetkili", `${req.user.username}#${req.user.discriminator}`)
-.addField("Kullanıcı", `${sunucu.members.get(yeniAyar['kick']).user.tag}`)
-sunucu.channels.get(db.fetch(`${sunucuID}.modlog`)).send({embed:embed})
-}
-setTimeout(() => {
-sunucu.members.get(yeniAyar['kick']).kick()
-}, 2000)
-  
-}
-
-if (yeniAyar['sustur'] && yeniAyar['susturK']) {
-  sunucu.channels.get(yeniAyar['susturK']).overwritePermissions(sunucu.members.get(yeniAyar['sustur']), {
-    SEND_MESSAGES: false
-  });
-  db.set(`${sunucuID}.mutes.${yeniAyar['sustur']}`, true)
-}
-  
-if (yeniAyar['susturma'] && yeniAyar['susturmaK']) {
-  sunucu.channels.get(yeniAyar['susturmaK']).overwritePermissions(sunucu.members.get(yeniAyar['susturma']), {
-    SEND_MESSAGES: null
-  });
-  db.delete(`${sunucuID}.mutes.${yeniAyar['susturma']}`)
-}
-
 } catch(err) {
 //console.log(err)
 }
