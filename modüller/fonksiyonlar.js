@@ -74,8 +74,10 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
       
          if (newSettings['kelimefiltre']) {
         db.push(`filtre_${id}`, newSettings['kelimefiltre'])
-           
+         
       }
+         
+      
      } catch (err) {
       //console.error(err)
     };
