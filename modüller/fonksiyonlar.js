@@ -76,25 +76,6 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
         db.push(`filtre_${id}`, newSettings['kelimefiltre'])
          
       }
-      
-      if (newSettings['küfürEngel'] === 'aktif') {
-db.set(`küfürE_${id}`, newSettings['küfürEngel'])
-}
-if (!newSettings['küfürEngel']) {
-db.delete(`küfürE_${id}`)
-}
-if (newSettings['linkEngel'] === 'aktif') {
-db.set(`linkE_${id}`, newSettings['linkEngel'])
-}
-if (!newSettings['linkEngel']) {
-db.delete(`linkE_${id}`)
-}
-if (newSettings['capsLockEngel'] === 'aktif') {
-db.set(`capsE_${id}`, newSettings['capslockEngel'])
-}
-if (!newSettings['capsLockEngel']) {
-db.delete(`capsE_${id}`)
-}
          
       
      } catch (err) {
@@ -121,7 +102,24 @@ db.set(`girisM_${sunucu.id}`, yeniAyar['girisMesaj'])
 if (yeniAyar['cikisMesaj']) {
 db.set(`cikisM_${sunucu.id}`, yeniAyar['cikisMesaj'])
 }
-
+if (yeniAyar['küfürEngel'] === 'aktif') {
+db.set(`küfürE_${sunucu.id}`, yeniAyar['küfürEngel'])
+}
+if (!yeniAyar['küfürEngel']) {
+db.delete(`küfürE_${sunucu.id}`)
+}
+if (yeniAyar['linkEngel'] === 'aktif') {
+db.set(`linkE_${sunucu.id}`, yeniAyar['linkEngel'])
+}
+if (!yeniAyar['linkEngel']) {
+db.delete(`linkE_${sunucu.id}`)
+}
+if (yeniAyar['capslockEngel'] === 'aktif') {
+db.set(`capsE_${sunucu.id}`, yeniAyar['capslockEngel'])
+}
+if (!yeniAyar['capslockEngel']) {
+db.delete(`capsE_${sunucu.id}`)
+}
 
 } catch(err) {
 //console.log(err)

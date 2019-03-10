@@ -117,7 +117,7 @@ function w3_close() {
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<%- include('footer.ejs', {bot, user, path}) %>
+
 <div class="container">
 
 	<div class="row justify-content-md-center">
@@ -126,7 +126,10 @@ function w3_close() {
 	
   <!--<center><h7 style="color:red">Bakımda...</h7></center>-->
   
-       <div class="row">
+  
+  
+  
+    <div class="row">
       <div class="col-25">
           <label for="küfürEngel">Küfür Engelleme Sistemi</label>
       </div>
@@ -145,10 +148,13 @@ function w3_close() {
           <% } %>
       </div>
     </div>
+    
+
   
-  <div class="row">
+    
+     <div class="row">
       <div class="col-25">
-          <label for="linkEngel">Link Engelleme Sistemi</label>
+          <label for="linkEngel">Link/Reklam Engelleme Sistemi</label>
       </div>
       <div class="col-75">
         <% if (bot.ayar.has(`linkE_${guild.id}`) === false) { %>
@@ -165,26 +171,28 @@ function w3_close() {
           <% } %>
       </div>
     </div>
-  
-  <div class="row">
+    
+     <div class="row">
       <div class="col-25">
-          <label for="capsLockEngel">Büyük harf Engelleme Sistemi</label>
+          <label for="capslockEngel">Büyük harf Engelleme Sistemi</label>
       </div>
       <div class="col-75">
         <% if (bot.ayar.has(`capsE_${guild.id}`) === false) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capsLockEngel" name="capsLockEngel" value="aktif">
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
          <span class="slider round"></span>
         </label>
           <% } %>
 					<% if(bot.ayar.has(`capsE_${guild.id}`) === true) { %>
         <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capsLockEngel" name="capsLockEngel" value="deaktif" checked>
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
          <span class="slider round"></span>
         </label>
           <% } %>
       </div>
     </div>
+    
+  </div>
   
 	<div class="row">
     
@@ -249,8 +257,7 @@ function w3_close() {
         
         
           <div style="width: 100%; text-align: right; margin-top: 15px;">
-      <button style="background-color:blue; color:#fff" type="sumbit" id="formbtn" class="btn btn-default" ><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kaydet</button>
-            
+   <button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
             
             
           </div>
@@ -270,7 +277,8 @@ function w3_close() {
  
   
   
-  
+
   
 </script>
 
+<%- include('footer.ejs', {bot, user, path}) %>
