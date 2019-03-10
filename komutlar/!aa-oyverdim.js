@@ -4,10 +4,10 @@ const db = require('quick.db'),
       ms = require('parse-ms');
 
 exports.run = async (bot, message, args) => {
-    let cooldown = 1.728e+8, // 24 Часа
+    let cooldown = 0.05, // 24 Часа
         amount = Math.floor(Math.random() * 10) + 200;      
 
-    let lastDaily = await db.fetch(`lastDaily_${message.author.id}`);
+    let lastDaily = await db.fetch(`oyZ_${message.author.id}`);
     if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
         let timeObj = ms(cooldown - (Date.now() - lastDaily));
         
@@ -19,7 +19,7 @@ exports.run = async (bot, message, args) => {
         message.channel.send(embed);
         return
  
-    } else {
+    } 
 
   
      const snekfetch = require("snekfetch");
@@ -27,7 +27,7 @@ snekfetch.get(`https://discordbots.org/api/bots/${bot.user.id}/check?userId=${me
 .set("Authorization", bot.ayarlar.dbltoken)
 .then(response => {
 var check = response.body.voted;
-if(check == 1) {
+if (check == 1) {
     
   
   const embed = new Discord.RichEmbed()
@@ -36,7 +36,7 @@ if(check == 1) {
 .setTimestamp()
   message.channel.send('embed')
   message.member.addRole('516611529987063808')
-  db.set(`lastDaily_${message.author.id}`, Date.now());
+  db.set(`oyZ_${message.author.id}`, Date.now());
     } else {
 let embed = new Discord.RichEmbed()
       .setTitle('HATA')
@@ -49,13 +49,13 @@ let embed = new Discord.RichEmbed()
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["brilliance"],
+  aliases: ["oy-verdim"],
   permLevel: 5,
   kategori: "efekt"
 };
 
 exports.help = {
-  name: 'hsbrilliance',
-  description: 'Avatarınıza HypeSquad brilliance efekti verir.',
-  usage: 'hsbrilliance <@kullanıcı> <sayı>'
+  name: 'oyverdim',
+  description: '',
+  usage: ''
 };
