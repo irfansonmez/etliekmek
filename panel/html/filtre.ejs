@@ -128,7 +128,14 @@ function w3_close() {
   
   
   
-  
+	<div class="row">
+    
+<div class="col">
+    <div class="container">
+      <form method="post">
+        <ul class="list-group list-group-flush">
+          
+    
     <div class="row">
       <div class="col-25">
           <label for="küfürEngel">Küfür Engelleme Sistemi</label>
@@ -148,61 +155,6 @@ function w3_close() {
           <% } %>
       </div>
     </div>
-    
-
-  
-    
-     <div class="row">
-      <div class="col-25">
-          <label for="linkEngel">Link/Reklam Engelleme Sistemi</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`linkE_${guild.id}`) === false) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="linkEngel" name="linkEngel" value="aktif">
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-					<% if(bot.ayar.has(`linkE_${guild.id}`) === true) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="linkEngel" name="linkEngel" value="deaktif" checked>
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-      </div>
-    </div>
-    
-     <div class="row">
-      <div class="col-25">
-          <label for="capslockEngel">Büyük harf Engelleme Sistemi</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`capsE_${guild.id}`) === false) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-					<% if(bot.ayar.has(`capsE_${guild.id}`) === true) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-      </div>
-    </div>
-    
-  </div>
-  
-	<div class="row">
-    
-<div class="col">
-    <div class="container">
-      <form method="post">
-        <ul class="list-group list-group-flush">
-          
-    
-
           
           <div class="row">
             <div class="col-25">
@@ -257,7 +209,8 @@ function w3_close() {
         
         
           <div style="width: 100%; text-align: right; margin-top: 15px;">
-   <button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
+      <button style="background-color:blue; color:#fff" type="sumbit" id="formbtn" class="btn btn-default" ><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kaydet</button>
+            
             
             
           </div>
@@ -277,7 +230,7 @@ function w3_close() {
  
   
   
-
+  
   
 </script>
 

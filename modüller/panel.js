@@ -306,11 +306,14 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
   
    app.post("/panel/:guildID/filtre", girisGerekli, async(req, res) => {
     const guild = client.guilds.get(req.params.guildID);
+      const sunucu = client.guilds.get(req.params.sunucuID);
     if (!guild) return res.status(404);
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
    
     client.writeSettings(guild.id, req.body);
+       
+ 
     res.redirect("/panel/"+req.params.guildID+"/filtre");
   });
   
