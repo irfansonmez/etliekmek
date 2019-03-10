@@ -4,9 +4,10 @@ const db = require('quick.db'),
       ms = require('parse-ms');
 
 exports.run = async (bot, message, args) => {
-    let cooldown = 43200000, // 24 Часа
-
-  amount = Math.floor(Math.random() * 10) + 200;      
+  
+   if(message.guild.id !== '489200365363920896') return message.channel.send('Bu komut sadece destek sunucumda çalışmaktadır.')
+ 
+  let cooldown = 43200000; // 24 Часа
 
     let lastDaily = await db.fetch(`oyZ_${message.author.id}`);
     if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
@@ -22,7 +23,6 @@ exports.run = async (bot, message, args) => {
  
     } 
 
-  
      const snekfetch = require("snekfetch");
 snekfetch.get(`https://discordbots.org/api/bots/${bot.user.id}/check?userId=${message.author.id}`)
 .set("Authorization", bot.ayarlar.dbltoken)
