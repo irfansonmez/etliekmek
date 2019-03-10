@@ -2727,6 +2727,15 @@ client.unload = command => {
   const db = require('quick.db');
   
     
+    let lastDaily = await db.fetch(`oyZ_${msg.author.id}`);
+    let cooldown = 43200000; // 24 Часа
+
+if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
+  msg.member.removeRole('516611529987063808')
+  msg.author.send('12 Saat geçtiği için destekçi rolünü aldım tekrar oy vererek destekçi rolünü tekrar alabilirsin https://discordbots.org/bot/516600125649453066/vote')
+  
+}
+    
   if (msg.channel.type === "dm") return;
   if(msg.author.bot) return;  
   
