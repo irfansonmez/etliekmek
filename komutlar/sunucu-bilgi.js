@@ -127,7 +127,7 @@ let kur = {
 	 .addField(`Emoji [${message.guild.emojis.size}]`, `${prefix}emojis Displaying all the emojis on the server by typing .`)
 	 .addField(`Role [${message.guild.roles.size - 1}]`, `${prefix}roles You can view all roles on the by typing.`)
 	 .addField('Verification level', `${vertific[message.guild.verificationLevel]}`)
-	 .addField('Premium', `Premium level: **${exp2}/50**\nPremium: **${exp < 50  ? "Not active	 " : `Active`}**`)
+	 .addField('Premium', `Premium level: **${exp2 > 50 ? '50' : exp2}/50**\nPremium: **${exp < 50  ? "Not active	 " : `Active`}**`)
 
 
 	 .setThumbnail(message.guild.iconURL)

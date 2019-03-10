@@ -43,16 +43,16 @@ exports.run = async (client, message, args) => {
     
     try {
     if (user.presence.game.type === 0) {
-    embed.addField(`Durum mesajı`, `${user.presence.game.name} ${oynuyor}` || `Durum Mesajı Boş`)
+    embed.addField(`Durum mesajı`, `${user.presence.game.name} ${durm}` || `Durum Mesajı Boş`)
     }
     if (user.presence.game.type === 3) {
-    embed.addField(`Durum mesajı`, `${user.presence.game.name} ${izliyor}` || `Durum Mesajı Boş`)
+    embed.addField(`Durum mesajı`, `${user.presence.game.name} ${durm}` || `Durum Mesajı Boş`)
     }
     if (user.presence.game.type === 2) {
-    embed.addField(`Durum mesajı`, `${user.presence.game.name} ${dinliyor}` || `Durum Mesajı Boş`)
+    embed.addField(`Durum mesajı`, `${user.presence.game.name} ${durm}` || `Durum Mesajı Boş`)
     }
     if (user.presence.game.type === 1) { 
-    embed.addField(`Durum mesajı`, `[${user.presence.game.name} ${yayında}](${user.presence.game.url})` || `Durum Mesajı Boş`)
+    embed.addField(`Durum mesajı`, `[${user.presence.game.name} ${durm}](${user.presence.game.url})` || `Durum Mesajı Boş`)
     }
     } catch(e) {
       embed.addField(`Durum mesajı`, `Durum Mesajı Boş`)
@@ -88,7 +88,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['kullanıcı'],
+  aliases: ['kullanıcı', 'kullanıcıbilgi'],
   permLevel: 0,
     kategori: "kullanıcı",
 
