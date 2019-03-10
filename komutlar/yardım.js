@@ -317,6 +317,7 @@ ${yana} **${prefix}sayaç-ayarla**: Sayacı ayarlar.
 ${yana} **${prefix}sayaç-kanal-ayarla**: Sayaç kanalını ayarlar. 
 ${yana} **${prefix}log-ayarla**: Sunucu kayıtları kanalını ayarlar. 
 ${yana} **${prefix}oto-rol-ayarla**: Sunucuya birisi katıldıgında verilecek rolü ayarlar. 
+${yana} **${prefix}oto-rol-kanal**: Otorol kayıt kanalını ayarlamaya yarar.
 ${yana} **${prefix}tag-ayarla**: Sunucuya katılan üyeye otomatik tag verir 
 ${yana} **${prefix}ön-ek**: Botun ön ekini sunucuya özel olarak değiştirir.
 
