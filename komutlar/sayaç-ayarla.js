@@ -24,18 +24,21 @@ exports.run = async (client, message, args) => {
 		return message.reply("Lütfen sunucu sayısından daha yüksek bir değer girin!")
 	}
 
-	/*if(!profil[message.guild.id]){
-		profil[message.guild.id] = {
-			sayi: args[0]
-		};
-	}
-	
-	//profil[message.guild.id].sayi = args[0]
-	
-	fs.writeFile("./jsonlar/sayac.json", JSON.stringify(profil), (x) => {
-        if (x) console.error(x)
-      })*/
+    if(args[0] === 'kapat') {
+   if (db.has(`sayac_${message.guild.id}`) === true) {
+     message.channel.send(`Sayaç başarıyla kaldırıldı`)
+     db.delete(`sayac_${message.guild.id}`)
+     
+       if (db.has(`sayac_${message.guild.id}`) === true) {
+       db.delete(`sKanal_${message.guild.id}`)
+       }
+     return
+}
+  message.channel.send(`Sayaç ayarlanmamış.`)
+    return
   
+  }
+//Mod Log kanalını kapatmak isterseniz **${prefix}modlog-kanal kapat** yazmanız yeterlidir.
   db.set(`sayac_${message.guild.id}`, args[0])
   
 	const embed = new Discord.RichEmbed()

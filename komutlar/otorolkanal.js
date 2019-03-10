@@ -28,7 +28,7 @@ exports.run = async (client, message, args) => {
      db.set(`otoRK_${message.guild.id}`, channel.id)
   
     const embed = new Discord.RichEmbed()
-    .setDescription(`Otomatik rol kayıtları kanalı başarıyla ${channel} olarak ayarlandı!\nOtorol kayıt kanalını kapatmak isterseniz **${prefix}oto-rol-kanal kapat** yazmanız yeterlidir.`)
+    .setDescription(`Otomatik rol kayıtları kanalı başarıyla ${channel} olarak ayarlandı!\nOtorol kayıt kanalını kapatmak isterseniz **${prefix}otorolkanal kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
   
@@ -37,7 +37,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['oto-rol-kanal-ayarla', 'oto-rol-kanal-belirle'],
+    aliases: ['oto-rol-kanal-ayarla', 'oto-rol-kanal-belirle', 'otorolkanal', 'otorol-kanal'],
     permLevel: 4,
     kategori: "ayarlar"
 }
