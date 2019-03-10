@@ -748,17 +748,6 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
   
 });
 
-
-
-
-client.on("guildCreate",guild => {
-  const e = new Discord.RichEmbed()
-  .setColor('RANDOM')
-  .setDescription("Beni Sunucuna Eklediğin İçin Teşekkür Ederim, \n Bir Ayar Komudunu Kapatmak İçin `?ayarlar kapat` Yazarak Nasıl Kapatacağınızı Görebilirsiniz. \n Ayrıca Komutlarımı görmek için `?yardım` yazabilirsiniz\n [DESTEK SUNUCUM](https://discord.gg/Hc6GrV) ")
-          .setFooter("Bu Mesaj Sadece Size Gönderilmiştir.")
-guild.owner.send(e)
-})
-
 client.on('messageReactionAdd', async (msgReact, user) => {
       if (user.bot === true) return;
   
@@ -1201,7 +1190,7 @@ client.on("guildMemberAdd", member => {
   
   
     if (db.has(`otoRolK_${member.guild.id}`) === true) {
-    member.guild.channels.get(db.fetch(`otoRolK_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya başarıyla otomatik rol olarak ayarlanmış olan **${rol.name}** adlı rol verildi!`)
+    member.guild.channels.get(db.fetch(`otoRK_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya başarıyla otomatik rol olarak ayarlanmış olan **${rol.name}** adlı rol verildi!`)
   }
   
 })

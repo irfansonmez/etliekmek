@@ -28,7 +28,7 @@ exports.run = async (client, message, args) => {
   
   
  
-  
+
     if(args[0] === 'kapat') {
    if (db.has(`girisM_${message.guild.id}`) === true) {
      message.channel.send(`Giriş mesajı başarıyla kaldırıldı`)

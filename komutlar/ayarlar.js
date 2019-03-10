@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
   const sayfa = [`${message.guild.name} | Ayarları
 
 ${y}**Sunucu prefixi** ${prefix}
-${y}**Mod log kanalı** ${db.has(`mLog_${message.guild.id}`) ? `${ac} ${db.fetch(`mLog_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}mod-log-ayarla** `}
+${y}**Mod log kanalı** ${db.has(`mLog_${message.guild.id}`) ? `${ac} ${message.guild.channels.get(db.fetch(`mLog_${message.guild.id}`)).name}` : `${ka} Ayarlanmamış **${prefix}mod-log-ayarla** `}
 ${y}**Log kanalı** ${db.has(`log_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`log_${message.guild.id}`)) : `${ka} Ayarlanmamış **${prefix}log-ayarla**`}
 ${y}**Davet kanalı** ${db.has(`dKanal_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`dKanal_${message.guild.id}`)) : `${ka} Ayarlanmamış **${prefix}davet-kanal-ayarla**`}  
 ${y}**Link engeli** ${db.has(`linkE_${message.guild.id}`) ? `${ac} Açık` : `${ka} Ayarlanmamış **${prefix}link-engelle**`}
