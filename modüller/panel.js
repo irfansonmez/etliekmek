@@ -278,7 +278,11 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
   
   
   
-  
+  app.get("/panel/:sunucuID/otorol/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`otoR_${req.params.sunucuID}`) === false) return res.json({"hata": "otorol adlı ayar "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`otoR_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/otorol`);
+  });
   
   // FİLTRE
   

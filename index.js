@@ -37,9 +37,9 @@ const useful = require('./x.js');
 
 
 let komutum = JSON.parse(fs.readFileSync("./komutlar.json", "utf8"));
-let filtreler = JSON.parse(fs.readFileSync("./filtre.json", "utf8"));
+
 client.cmdd = komutum
-client.filtres = filtreler
+
 
 
 client.useful = useful;
