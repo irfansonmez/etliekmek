@@ -2592,28 +2592,28 @@ message.channel.send(`:pencil: **| ${user.username} adlı kullanıcının rütbe
         
     }
   
-    if (command === "yetkili" || command === "ekip") {
+    if (command === "rozet-yetkili" || command === "rozet-ekip") {
         if (message.author.id !== "507803933557915652" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge2_${user.id}`, "https://cdn.discordapp.com/attachments/474685686075621376/480845736347435009/401723658491527168.png")
             return message.channel.send(`${onay} Kullanıcıya ekip rozeti verilmiştir.`)
         
     }
   
-    if (command === "kyetkili" || command === "kekip") {
+    if (command === "rozet-kyetkili" || command === "rozet-kekip") {
         if (message.author.id !== "507803933557915652" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge2_${user.id}`, "https://cdn.discordapp.com/attachments/461622592688619520/472923575049781268/profile.png")
             return message.channel.send(`${onay} Kullanıcıdan ekip rozeti alınmıştır.`)
         
     }
   
-    if (command === "destekci" || command === "destekçi") {
+    if (command === "rozet-destekci" || command === "rozet-destekçi") {
         if (message.author.id !== "507803933557915652" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge3_${user.id}`, "https://cdn.discordapp.com/attachments/474685686075621376/480845737006202881/401725034453925889.png")
             return message.channel.send(`${onay} Kullanıcıya destekçi rozeti verilmiştir.`)
         
     }
   
-    if (command === "kdestekci" || command === "kdestekçi") {
+    if (command === "rozet-kdestekci" || command === "kdestekçi") {
         if (message.author.id !== "507803933557915652" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge3_${user.id}`, "https://cdn.discordapp.com/attachments/461622592688619520/472923575049781268/profile.png")
             return message.channel.send(`${onay} Kullanıcıdan destekçi rozeti alınmıştır.`)
