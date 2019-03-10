@@ -105,8 +105,8 @@ db.set(`otoRK_${id}`, newSettings['otoRK'])
 }
 
       
- if (newSettings['tag']) {
-db.set(`tagB_${id}`, newSettings['tag'])   
+ if (newSettings['otoTag']) {
+db.set(`tagB_${id}`, newSettings['otoTag'])   
 }
 if (newSettings['otoTagK']) {
 db.set(`tagKanal_${id}`, newSettings['otoTagK'])
