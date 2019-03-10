@@ -160,32 +160,7 @@ function w3_close() {
         </div>
       </div>
     
-    <div class="row">
-        <div class="col-25">
-          <label for="otorol">Otomatik Rol</label>
-        </div>
-        <div class="col-75">
-          <% if (bot.ayar.has(`otoR_${sunucu.id}`) === false) { %>
-          <select style="text-align: left; width:87%;" name="otorol" id="otorol">
-            <option disabled selected>Lütfen bir rol seçiniz.</option>
-            <% sunucu.roles.filter(r => r.name !== "@everyone").forEach(r => { %>
-            <option value="<%=r.id%>" style="color:<%=r.hexColor%>"><%=r.name%></option>
-            <% }); %>
-          </select>
-          <a href="/panel/<%=sunucu.id%>/yonet/otorol/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`otoR_${sunucu.id}`) === true) { %>
-          <select style="color:<%=sunucu.roles.get(bot.ayar.fetch(`otoR_${sunucu.id}`)).hexColor%>; text-align: left; width:87%;" name="otorol" id="otorol">
-             <option disabled selected>Lütfen bir rol seçiniz.</option>
-            <option value="<%=bot.ayar.fetch(`otoR_${sunucu.id}`)%>" style="color:<%=sunucu.roles.get(bot.ayar.fetch(`otoR_${sunucu.id}`)).hexColor%>" selected><%=sunucu.roles.get(bot.ayar.fetch(`otoR_${sunucu.id}`)).name%></option>
-					 <% sunucu.roles.filter(r => r.name !== "@everyone").filter(r => r.id !== bot.ayar.fetch(`otoR_${sunucu.id}`)).forEach(r => { %>
-            <option value="<%=r.id%>" style="color:<%=r.hexColor%>"><%=r.name%></option>
-          <% }); %>
-          </select>
-          <a href="/panel/<%=sunucu.id%>/yonet/otorol/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-        </div>
-      </div>
+   
     
      <div class="row">
         <div class="col-25">

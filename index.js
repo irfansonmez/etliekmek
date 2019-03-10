@@ -1199,6 +1199,11 @@ client.on("guildMemberAdd", member => {
   
   member.addRole(rol)
   
+  
+    if (db.has(`otoRolK_${member.guild.id}`) === true) {
+    member.guild.channels.get(db.fetch(`otoRolK_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya başarıyla otomatik rol olarak ayarlanmış olan **${rol.name}** adlı rol verildi!`)
+  }
+  
 })
 
 client.on("guildMemberAdd", async member => {

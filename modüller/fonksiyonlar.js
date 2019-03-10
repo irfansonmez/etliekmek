@@ -95,8 +95,12 @@ if (!newSettings['capslockEngel']) {
 db.delete(`capsE_${id}`)
 }
       
-      if (newSettings['otorol']) {
+if (newSettings['otorol']) {
 db.set(`otoR_${id}`, newSettings['otorol'])
+}
+      
+if (newSettings['otoRK']) {
+db.set(`otoRK_${id}`, newSettings['otoRK'])   
 }
 
      } catch (err) {
@@ -118,27 +122,7 @@ db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])
 if (yeniAyar['girisMesaj']) {
 db.set(`girisM_${sunucu.id}`, yeniAyar['girisMesaj'])
 }
-if (yeniAyar['cikisMesaj']) {
-db.set(`cikisM_${sunucu.id}`, yeniAyar['cikisMesaj'])
-}
-if (yeniAyar['küfürEngel'] === 'aktif') {
-db.set(`küfürE_${sunucu.id}`, yeniAyar['küfürEngel'])
-}
-if (!yeniAyar['küfürEngel']) {
-db.delete(`küfürE_${sunucu.id}`)
-}
-if (yeniAyar['linkEngel'] === 'aktif') {
-db.set(`linkE_${sunucu.id}`, yeniAyar['linkEngel'])
-}
-if (!yeniAyar['linkEngel']) {
-db.delete(`linkE_${sunucu.id}`)
-}
-if (yeniAyar['capslockEngel'] === 'aktif') {
-db.set(`capsE_${sunucu.id}`, yeniAyar['capslockEngel'])
-}
-if (!yeniAyar['capslockEngel']) {
-db.delete(`capsE_${sunucu.id}`)
-}
+
 
 } catch(err) {
 //console.log(err)
