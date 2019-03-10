@@ -4,6 +4,25 @@ const db = require('quick.db')
 exports.run = async(client, message, args) => {
 	
   let kanal = message.mentions.channels.first() || message.guild.channels.find(c=>c.name===args.slice(0).join(' '))
+  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+  
+  
+      if(args[0] === 'kapat') {
+      
+   if (db.has(`tagKanal_${message.guild.id}`) === true) {
+   
+     db.delete(`tagKanal_${message.guild.id}`)
+    
+     
+     message.channel.send('Otomatik tag kanalı kaldırıldı.')
+     return
+}
+  message.channel.send(`Otomatik tag kanalı ayarlanmamış.`)
+    return
+  
+  }
+  
+  
   if (!kanal) { 
     var embedd = new Discord.RichEmbed()
                 .setDescription(`Lütfen sunucuya katılan kişilerin isimlerinin başına eklenecek tagı yazınız.`)
@@ -16,7 +35,7 @@ exports.run = async(client, message, args) => {
   const embed = new Discord.RichEmbed()
   .setColor("RANDOM")
   .setAuthor("Tag Kayıtları kanalı başarıyla ayarlandı!")
-  .setDescription(`Tag Kayıtları kanalı ${kanal} olarak ayarlandı!`)
+  .setDescription(`Tag Kayıtları kanalı ${kanal} olarak ayarlandı.\nOtomatik tag kanalını kapatmak isterseniz **${prefix}tagkanal kapat** yazmanız yeterlidir.`)
   message.channel.send({embed: embed})
 }
 

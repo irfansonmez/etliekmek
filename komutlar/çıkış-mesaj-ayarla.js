@@ -1,15 +1,27 @@
 const Discord = require('discord.js')
 const fs = require('fs');
-//var ayarlar = require('../ayarlar.json');
-//let cMesaj = JSON.parse(fs.readFileSync("././jsonlar/cikisM.json", "utf8"));
+
 const db = require('quick.db');
 
 exports.run = async (client, message, args) => {
-//if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu komutu kullanabilmek için **Yönetici** iznine sahip olmalısın!`);
   
-   const db = require('quick.db');
-  
+ const db = require('quick.db');
+    let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+
+         if(args[0] === 'kapat') {
+      
+   if (db.has(`cikisM_${message.guild.id}`) === true) {
    
+     db.delete(`cikisM_${message.guild.id}`)
+    
+     
+     message.channel.send('Çıkış mesajı kaldırıldı.')
+     return
+}
+  message.channel.send(`Çıkış mesajı ayarlanmamış.`)
+    return
+  
+  }
   
   
   let cM = args.slice(0).join(' ');
@@ -17,21 +29,12 @@ exports.run = async (client, message, args) => {
     if (!cM) {
         return message.reply("Çıkış mesajı ayarlamak istediğiniz mesajı yazmalısınız!")
     }
-
-    /*if(!cMesaj[message.guild.id]){
-        cMesaj[message.guild.id] = {
-            cm: cM
-        };
-    }
-    fs.writeFile("././jsonlar/cikisM.json", JSON.stringify(cMesaj), (x) => {
-        if (x) console.error(x)
-      })*/
   
     db.set(`cikisM_${message.guild.id}`, cM)
   
     const embed = new Discord.RichEmbed()
     .setTitle(`» Çıkış Mesajı Değiştirildi!`)
-    .addField(`Ayarlanan Mesaj`, "```" + cM + "```")
+    .setDescription(`Ayarlanan Mesaj **${cM}**\nÇıkış mesajını kapatmak isterseniz **${prefix}çıkışmesaj kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
 
@@ -40,7 +43,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ['çıkışmesaj'],
     permLevel: 4,
     kategori: "ayarlar",
  

@@ -5,15 +5,22 @@ const fs = require('fs');
 exports.run = async (client, message, args) => {
   
   const db = require('quick.db');
+  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   
-  var s = 'tr'
-  var a = client.commands.get('tag-ayarla').help.name
-    if(db.has(`dil_${message.guild.id}`) === true) {
-        var s = 'en'
-        var a = client.commands.get('tag-ayarla').help.enname
-    }
-    const dil = client[s]
-    const o = a
+     if(args[0] === 'kapat') {
+      
+   if (db.has(`tagB_${message.guild.id}`) === true) {
+   
+     db.delete(`tagB_${message.guild.id}`)
+    
+     
+     message.channel.send('Otomatik tag  kaldırıldı.')
+     return
+}
+  message.channel.send(`Otomatik tag ayarlanmamış.`)
+    return
+  
+  }
   
 
   let gM = args.slice(0).join(' ');
@@ -21,6 +28,8 @@ exports.run = async (client, message, args) => {
     if (!gM) {
         return message.reply('Lütfen ayarlamak istediğiniz tagı girin.')
     }
+  
+  
 
 
   
@@ -28,7 +37,7 @@ exports.run = async (client, message, args) => {
   
     const embed = new Discord.RichEmbed()
     
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Otomatik tag ayarlandı: ${gM}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Otomatik tag ayarlandı: ${gM}\nOtomatik tag  kapatmak isterseniz **${prefix}ototag kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }
@@ -43,10 +52,6 @@ exports.conf = {
 
   exports.help = {
     name: 'tag-ayarla',
-   
     description: 'Sunucuya katılan üyeye otomatik tag verir',
     usage: 'tag-ayarla <tag>',
-    
-    
-    
   };
