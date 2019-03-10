@@ -15,22 +15,14 @@ exports.run = async (client, message, args) => {
     const dil = client[s]
     const o = a
   
-//if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu komutu kullanabilmek için **Yönetici** iznine sahip olmalısın!`);
-  
+
   let gM = args.slice(0).join(' ');
   
     if (!gM) {
         return message.reply('Lütfen ayarlamak istediğiniz tagı girin.')
     }
 
-    /*if(!gMesaj[message.guild.id]){
-        gMesaj[message.guild.id] = {
-            gm: gM
-        };
-    }
-    fs.writeFile("././jsonlar/girisM.json", JSON.stringify(gMesaj), (x) => {
-        if (x) console.error(x)
-      })*/
+
   
     var s = db.set(`tagB_${message.guild.id}`, gM)
   
@@ -44,7 +36,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ['oto-tag', 'ototag'],
     permLevel: 4,
     kategori: "ayarlar",
   };

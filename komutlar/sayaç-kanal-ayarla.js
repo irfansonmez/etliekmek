@@ -41,7 +41,7 @@ exports.run = async (client, message, args) => {
     db.set(`sKanal_${message.guild.id}`, channel.id)
   
     const embed = new Discord.RichEmbed()
-    .setDescription(`${client.emojis.get(client.emojiler.evet)} Sayaç kanalı başarıyla ayarlandı: ${channel}`)
+    .setDescription(`${client.emojis.get(client.emojiler.evet)} Sayaç kanalı başarıyla ayarlandı: ${channel}\nSayaç kanalını kapatmak isterseniz **${prefix}sayaçkanal kapat** yazmanız yeterlidir.`)
     .setColor("RANDOM")
     message.channel.send({embed})
 }
@@ -49,7 +49,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['sayaç-kanal-belirle'],
+    aliases: ['sayaç-kanal-belirle', 'sayaçkanal'],
     permLevel: 4,
     kategori: "ayarlar",
 }
