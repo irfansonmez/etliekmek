@@ -131,6 +131,17 @@ function w3_close() {
     <div align="center">
       <form method="POST" id="forum">
     
+        
+        
+        <div class="card-columns" style="padding: 20px; border-radius: 40px;">
+
+  <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=sunucu.id%>/ozelkomutlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Özel Komutlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=sunucu.id%>/ozelkomutlar">
+				<a href="/panel/<%=sunucu.id%>/ozelkomutlar"		<p class="card-text" href="/panel/<%=sunucu.id%>/ozelkomutlar" style="color:#fff"><center>Sunucunuza özel komut komut ekleyebileceğiniz sayfaya yönlendirir.</center></p></a>
+					</div>
+				</div>
+          
   <div id="genelAyarlar">
     
       <div class="row">
@@ -242,73 +253,8 @@ function w3_close() {
     
     
     
+    
         
-     <div class="row">
-      <div class="col-25">
-          <label for="küfürEngel">Küfür Engelleme Sistemi</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`küfürE_${sunucu.id}`) === false) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="küfürEngel" name="küfürEngel" value="aktif">
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-					<% if(bot.ayar.has(`küfürE_${sunucu.id}`) === true) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="küfürEngel" name="küfürEngel" value="deaktif" checked>
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-      </div>
-    </div>
-    
-
-  
-    
-     <div class="row">
-      <div class="col-25">
-          <label for="linkEngel">Link/Reklam Engelleme Sistemi</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`linkE_${sunucu.id}`) === false) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="linkEngel" name="linkEngel" value="aktif">
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-					<% if(bot.ayar.has(`linkE_${sunucu.id}`) === true) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="linkEngel" name="linkEngel" value="deaktif" checked>
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-      </div>
-    </div>
-    
-     <div class="row">
-      <div class="col-25">
-          <label for="capslockEngel">Büyük harf Engelleme Sistemi</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`capsE_${sunucu.id}`) === false) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-					<% if(bot.ayar.has(`capsE_${sunucu.id}`) === true) { %>
-        <label style="margin-right:80%;" class="switch">
-         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
-         <span class="slider round"></span>
-        </label>
-          <% } %>
-      </div>
-    </div>
-    
-  </div>
-        
-        <button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
         
       </form>
     </div>  

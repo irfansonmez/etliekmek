@@ -117,7 +117,7 @@ function w3_close() {
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+<%- include('footer.ejs', {bot, user, path}) %>
 <div class="container">
 
 	<div class="row justify-content-md-center">
@@ -128,14 +128,17 @@ function w3_close() {
   
   
   
-<div class="container">
-  <br>
-  <div class="jumbotron" style="background-color:#2a2d32;">
-    <div align="center">
-      <form method="POST" id="forum">
+	<div class="row">
+    
+<div class="col">
+    <div class="container">
+      <form method="post">
+        <ul class="list-group list-group-flush">
           
     
-    <div class="row">
+
+              
+     <div class="row">
       <div class="col-25">
           <label for="küfürEngel">Küfür Engelleme Sistemi</label>
       </div>
@@ -277,4 +280,3 @@ function w3_close() {
   
 </script>
 
-<%- include('footer.ejs', {bot, user, path}) %>

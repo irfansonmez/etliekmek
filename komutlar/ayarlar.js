@@ -28,6 +28,7 @@ if (!a && a !== "destek" && a !== "kapat" && a !== "liste" && a !== "support" &&
   .addField('Log kanalı', db.has(`log_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`log_${message.guild.id}`)) : `${ka} Ayarlanmamış **${prefix}log-ayarla**`, true)
   .addField('Link engeli', db.has(`linkE_${message.guild.id}`) ? `${ac} Açık` : `${ka} Ayarlanmamış **${prefix}link-engelle**`, true)
   .addField('Küfür engeli', db.has(`küfürE_${message.guild.id}`) ? `${ac} Açık` : `${ka} Ayarlanmamış **${prefix}küfür-engelle**` ,true)
+  .addField('Büyük harf engeli', db.has(`capsE_${message.guild.id}`) ? `${ac} Açık` : `${ka} Ayarlanmamış **${prefix}büyükharf-engelle**` ,true)
   .addField('Otorol', db.has(`otoR_${message.guild.id}`) ? `${ac} \`@${message.guild.roles.get(db.fetch(`otoR_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}oto-rol**`, true)
   .addField('Susturma rolü', db.has(`sRol_${message.guild.id}`) ? `${ac} \`@${message.guild.roles.get(db.fetch(`sRol_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}sustur-rol-ayarla**`, true)
   .addField('Sayaç kanalı', db.has(`sKanal_${message.guild.id}`) ? `${ac} ${db.fetch(`sKanal_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-kanal-ayarla** `, true)
