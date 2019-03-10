@@ -139,7 +139,7 @@ module.exports = (client) => {
       req.session.backURL = null;
       res.redirect(url);
     } else {
-      res.redirect(`panel`);
+      res.redirect(`anasayfa`);
     }
   });
   

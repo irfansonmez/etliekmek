@@ -157,7 +157,8 @@ module.exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: ["rçiz","draw","resimciz"],
-  permLevel: 0
+  permLevel: 0,
+  kategori: "eğlence"
 };
 
 module.exports.help = {

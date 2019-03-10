@@ -22,7 +22,7 @@ exports.conf = {
   guildOnly: false, 
   aliases: ['filtreliste'], 
   permLevel: 4,
-  kategori: "özel",
+  kategori: "moderasyon",
  
 }; 
 

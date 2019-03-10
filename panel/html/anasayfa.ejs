@@ -78,31 +78,25 @@
   
 <!-- HEADER -->
     
-<div class="container">
-	<div class="jumbotron" style="background-color:#1c1c1c">
-    <center>
+  <div class="container">
+	  <div class="jumbotron" style="background-color:#1c1c1c">
+      <center>
       <img src="<%= bot.avatarURL %>" width="200" height="200" class="d-inline-block align-top rounded-circle" alt="Bot Avatar">
       <h3 style="color:#0070fa"><%= bot.user.username %></h3>
         
       
-            <% if(!user) { %>
-   <a href="/giris" <button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Giriş yap</button> </a>
-				<a style="color:#fff" class="nav-link" href="/komutlar" role="button"><i class="fa fa-book fa-fw"></i> Komutlar</a>
+      <% if(!user) { %>
+      <a href="/giris" <button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Giriş yap</button> </a>
+			<a style="color:#fff" class="nav-link" href="/komutlar" role="button"><i class="fa fa-book fa-fw"></i> Komutlar</a>
 			<% } else { %>
    
-  			<a style="color:#fff" class="nav-link" href="/kullaniciler/<%=user.id%>/yonet" role="button"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Seviye Kartını Düzenle
+  		<a style="color:#fff" class="nav-link" href="/kullaniciler/<%=user.id%>/yonet" role="button"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Seviye Kartını Düzenle
 			<a style="color:#fff" class="nav-link" href="/panel" role="button"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Yönetim/Kontrol Paneli
-				<% if(bot.ayarlar.sahip.includes(user.id)) { %>
-						<a style="color:#fff" class="nav-link" href="/yonetici" role="button"><i class="fa fa-key fa-fw" aria-hidden="true"></i> Yönetici Paneli</a>
-  
-				<% } %>
-
-				<a style="color:#fff" class="nav-link" href="/cikis" role="button"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Çıkış Yap</a>
-			<% } %>
-      
-      
-      
-      
-</div>
-</div>
+			<% if(bot.ayarlar.sahip.includes(user.id)) { %>
+			<a style="color:#fff" class="nav-link" href="/yonetici" role="button"><i class="fa fa-key fa-fw" aria-hidden="true"></i> Yönetici Paneli</a><% } %>
+      <a style="color:#fff" class="nav-link" href="/komutlar" role="button"><i class="fa fa-book fa-fw"></i> Komutlar</a>
+			<a style="color:#fff" class="nav-link" href="/cikis" role="button"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Çıkış Yap</a>			<% } %>
+               
+       </div>
+          </div>
 <%- include('footer.ejs', {bot, user, path}) %>

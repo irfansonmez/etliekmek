@@ -37,7 +37,7 @@ exports.conf = {
   guildOnly: false, 
   aliases: ['filtreekle', 'filtre-oluştur'], 
   permLevel: 4,
-  kategori: "özel",
+  kategori: "moderasyon",
  
 }; 
 

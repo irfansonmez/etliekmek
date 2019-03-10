@@ -32,6 +32,7 @@ exports.conf = {
   guildOnly: true,
   aliases: ['alinti','alıntıla','alintila'],
   permLevel: 0,
+  kategori: "kullanıcı"
 };
 exports.help = {
   name: 'alıntı',
