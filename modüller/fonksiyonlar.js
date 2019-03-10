@@ -95,6 +95,7 @@ if (!newSettings['capslockEngel']) {
 db.delete(`capsE_${id}`)
 }
       
+      
 if (newSettings['otorol']) {
 db.set(`otoR_${id}`, newSettings['otorol'])
 }
@@ -103,10 +104,18 @@ if (newSettings['otoRK']) {
 db.set(`otoRK_${id}`, newSettings['otoRK'])   
 }
 
+      
+ if (newSettings['tag']) {
+db.set(`tagB_${id}`, newSettings['tag'])   
+}
+if (newSettings['otoTagK']) {
+db.set(`tagKanal_${id}`, newSettings['otoTagK'])
+}
+  
      } catch (err) {
       //console.error(err)
     };
-        };
+        }; 
 
 client.panel.ayarlarKaydet = (sunucuID, sunucu, yeniAyar, req, res) => {
 
