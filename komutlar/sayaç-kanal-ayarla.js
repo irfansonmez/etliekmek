@@ -9,24 +9,36 @@ exports.run = async (client, message, args) => {
   const db = require('quick.db');
   
 
-  
-  let channel = message.mentions.channels.first()
+    let channel = message.mentions.channels.first() || message.guild.channels.find(c=>c.name===args.slice(0).join(' '))
+    let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+
+
   
     if (!channel) {
         return message.reply('Lütfen ayarlamak istediğiniz kanalı etiketleyin')
     }
 
-    /*if(!kanal[message.guild.id]){
-        kanal[message.guild.id] = {
-            sayacKanal: channel.id
-        };
-    }
+      if(args[0] === 'kapat') {
+      
+   if (db.has(`sKanal_${message.guild.id}`) === true) {
+   
+     db.delete(`sKanal_${message.guild.id}`)
+     
+       if (db.has(`sayac_${message.guild.id}`) === true) {
+       db.delete(`sayac_${message.guild.id}`)
+          message.channel.send('Sayaç kanalı ve sayaç başarıyla kaldırıldı')
+         return
+       }
+     
+     message.channel.send('Sayaç kanalı kaldırıldı.')
+     return
+}
+  message.channel.send(`Sayaç kanalı ayarlanmamış.`)
+    return
   
-    fs.writeFile("././jsonlar/sKanal.json", JSON.stringify(kanal), (x) => {
-        if (x) console.error(x)
-      })*/
+  }
   
-    db.set(`sKanal_${message.guild.id}`, "<#"+channel.id+">")
+    db.set(`sKanal_${message.guild.id}`, channel.id)
   
     const embed = new Discord.RichEmbed()
     .setDescription(`${client.emojis.get(client.emojiler.evet)} Sayaç kanalı başarıyla ayarlandı: ${channel}`)

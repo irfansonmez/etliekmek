@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
   
   const db = require('quick.db');
 
-  
+   let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   //if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu komutu kullanabilmek için **Yönetici** iznine sahip olmalısın!`);
   
 	if(!args[0]) {
@@ -15,6 +15,26 @@ exports.run = async (client, message, args) => {
 
 	//let profil = JSON.parse(fs.readFileSync("./jsonlar/sayac.json", "utf8"));
 
+    if(args[0] === 'kapat') {
+      
+   if (db.has(`sayac_${message.guild.id}`) === true) {
+   
+     db.delete(`sayac_${message.guild.id}`)
+     
+       if (db.has(`sKanal_${message.guild.id}`) === true) {
+       db.delete(`sKanal_${message.guild.id}`)
+          message.channel.send('Sayaç kanalı ve sayaç başarıyla kaldırıldı')
+         return
+       }
+     
+     message.channel.send('Sayaç kaldırıldı.')
+     return
+}
+  message.channel.send(`Sayaç ayarlanmamış.`)
+    return
+  
+  }
+  
 	if(isNaN(args[0])) {
 		return message.reply('Sadece sayı!')
 	}
@@ -24,25 +44,12 @@ exports.run = async (client, message, args) => {
 		return message.reply("Lütfen sunucu sayısından daha yüksek bir değer girin!")
 	}
 
-    if(args[0] === 'kapat') {
-   if (db.has(`sayac_${message.guild.id}`) === true) {
-     message.channel.send(`Sayaç başarıyla kaldırıldı`)
-     db.delete(`sayac_${message.guild.id}`)
-     
-       if (db.has(`sayac_${message.guild.id}`) === true) {
-       db.delete(`sKanal_${message.guild.id}`)
-       }
-     return
-}
-  message.channel.send(`Sayaç ayarlanmamış.`)
-    return
   
-  }
-//Mod Log kanalını kapatmak isterseniz **${prefix}modlog-kanal kapat** yazmanız yeterlidir.
+
   db.set(`sayac_${message.guild.id}`, args[0])
   
 	const embed = new Discord.RichEmbed()
-	.setTitle(`${client.emojis.get(client.emojiler.evet)} Sayaç başarıyla ayarlandı: **${args[0]}**`)
+	.setTitle(`${client.emojis.get(client.emojiler.evet)} Sayaç başarıyla ayarlandı: **${args[0]}**\nSayaç kapatmak isterseniz **${prefix}sayaç kapat** yazmanız yeterlidir.`)
 	message.channel.send({embed})
 }
 
