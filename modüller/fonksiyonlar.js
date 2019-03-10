@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+ const Discord = require('discord.js');
 const db = require('quick.db');
 const fs = require("fs");
 module.exports = (client, clientt) => {
@@ -94,6 +94,10 @@ db.set(`capsE_${id}`, newSettings['capslockEngel'])
 if (!newSettings['capslockEngel']) {
 db.delete(`capsE_${id}`)
 }
+      
+      if (newSettings['otorol']) {
+db.set(`otoR_${id}`, newSettings['otorol'])
+}
 
      } catch (err) {
       //console.error(err)
@@ -107,9 +111,7 @@ try {
 if (yeniAyar['prefix']) {
 db.set(`prefix_${sunucu.id}`, yeniAyar['prefix'])
 }
-if (yeniAyar['otorol']) {
-db.set(`otoR_${sunucu.id}`, yeniAyar['otorol'])
-}
+
 if (yeniAyar['girisCikis']) {
 db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])   
 }

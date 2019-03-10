@@ -248,8 +248,75 @@ module.exports = (client) => {
   
 
   
+  // OTOROL
   
-app.get("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
+  
+  
+  
+      app.post("/panel/:guildID/otorol", girisGerekli, async(req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+      const sunucu = client.guilds.get(req.params.sunucuID);
+   if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+   
+    client.writeSettings(guild.id, req.body);
+       
+ 
+    res.redirect("/panel/"+req.params.guildID+"/otorol");
+  });
+  
+  
+  
+      app.get("/panel/:guildID/otorol", girisGerekli, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+    yukle(res, req, "otorol.ejs", {guild});
+  });
+  
+  
+  
+  
+  
+  // FİLTRE
+  
+  
+  
+  
+  
+    app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+    yukle(res, req, "filtre.ejs", {guild});
+  });
+  
+  
+
+  
+  
+    app.post("/panel/:guildID/filtre", girisGerekli, async(req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+      const sunucu = client.guilds.get(req.params.sunucuID);
+    if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+    if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+
+   
+    client.writeSettings(guild.id, req.body);
+       
+ 
+    res.redirect("/panel/"+req.params.guildID+"/filtre");
+  });
+  
+  // ÖZEL KOMUT
+  
+  
+  
+  app.get("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
   const guild = client.guilds.get(req.params.guildID);
  if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
   const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
@@ -257,7 +324,7 @@ app.get("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
   yukle(res, req, "ozelkomutlar.ejs", {guild});
 });
 
-app.post("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
+  app.post("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
   const guild = client.guilds.get(req.params.guildID);
 if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
   const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
@@ -266,9 +333,10 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
   client.customCmds(guild.id, req.body);
   res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
-
-
-app.get("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
+  
+  
+  
+  app.get("/panel/:guildID/ozelkomutlar", girisGerekli, (req, res) => {
 const guild = client.guilds.get(req.params.guildID);
 if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
 const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
@@ -288,69 +356,20 @@ client.customCmds(guild.id, req.body);
 res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
   
- 
-  app.get("/panel/:guildID/filtre", girisGerekli, (req, res) => {
-    const guild = client.guilds.get(req.params.guildID);
-    if (!guild) return res.status(404);
-    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
-    yukle(res, req, "filtre.ejs", {guild});
-  });
   
-  
-    app.get("/panel/:guildID/otorol", girisGerekli, (req, res) => {
-    const guild = client.guilds.get(req.params.guildID);
-    if (!guild) return res.status(404);
-    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
-    yukle(res, req, "otorol.ejs", {guild});
-  });
-  
-  
-  
-    app.post("/panel/:guildID/otorol", girisGerekli, async(req, res) => {
-    const guild = client.guilds.get(req.params.guildID);
-      const sunucu = client.guilds.get(req.params.sunucuID);
-    if (!guild) return res.status(404);
-    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
-   
-    client.writeSettings(guild.id, req.body);
-       
- 
-    res.redirect("/panel/"+req.params.guildID+"/otorol");
-  });
-  
-  
-  
-app.get("/panel/:guildID/ozelkomutlar/sil", girisGerekli, async (req, res) => {
+  app.get("/panel/:guildID/ozelkomutlar/sil", girisGerekli, async (req, res) => {
 res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
 
   
- 
   
-   app.post("/panel/:guildID/filtre", girisGerekli, async(req, res) => {
-    const guild = client.guilds.get(req.params.guildID);
-      const sunucu = client.guilds.get(req.params.sunucuID);
-    if (!guild) return res.status(404);
-    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-    if (!isManaged && !req.session.isAdmin) return res.redirect("/hata-yetki");
-   
-    client.writeSettings(guild.id, req.body);
-       
- 
-    res.redirect("/panel/"+req.params.guildID+"/filtre");
-  });
-  
-  
-  
-const fs = require('fs');
+  const fs = require('fs');
 app.get("/panel/:guildID/ozelkomutlar/sil/:cmdID", girisGerekli, async (req, res) => {
 const guild = client.guilds.get(req.params.guildID);
-if (!guild) return res.status(404);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
 const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
-if (!isManaged && !req.session.isAdmin) res.redirect("/hata-yetki");
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+
 
 var komut = req.params.cmdID;
 
@@ -377,6 +396,38 @@ for (var i = 0; i < komutlar[req.params.guildID].length; i++) {
 res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
 
+  
+  //GİRİŞ ÇIKIŞ
+  
+  
+  
+  
+  
+  
+  
+  
+  // LOG
+  
+  
+  
+  
+  
+  
+  
+  
+  // DESTEK SİTEM
+
+
+
+
+
+ 
+
+  
+  
+  
+
+  
   
   app.post("/panel/:sunucuID/yonet", girisGerekli, (req, res) => {
     const sunucu = client.guilds.get(req.params.sunucuID);
@@ -420,21 +471,8 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
     res.redirect(`/panel/${req.params.sunucuID}/yonet`);
   });
   
-  app.get("/panel/:sunucuID/yonet/:ayarID/sifirla", girisGerekli, (req, res) => {
-    if (db.has(`${req.params.sunucuID}.${req.params.ayarID}`) === false) return res.json({"hata":req.params.ayarID.charAt(0).toUpperCase()+req.params.ayarID.slice(1)+" adlı ayar "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
-    db.delete(`${req.params.sunucuID}.${req.params.ayarID}`)
-    res.redirect(`/panel/${req.params.sunucuID}/yonet`);
-  });
-  
-  app.get("/panel/:sunucuID/yonet/ozelKomutlar/:komutID/:aciklamaID/:tipID/sifirla", girisGerekli, (req, res) => {
-    db.delete(`${req.params.sunucuID}.özelKomutlar`, JSON.parse(`{"${req.params.komutID}":"${req.params.aciklamaID}", "tip":"${req.params.tipID}"}`))
-    res.redirect(`/panel/${req.params.sunucuID}/yonet`);
-  });
-  
-  app.get("/panel/:sunucuID/yonet/ozelKomutlar/:komutID/:aciklamaID/:tipID/:renkID/sifirla", girisGerekli, (req, res) => {
-    db.delete(`${req.params.sunucuID}.özelKomutlar`, JSON.parse(`{"${req.params.komutID}":"${req.params.aciklamaID}", "tip":"${req.params.tipID}", "renk":"#${req.params.renkID}"}`))
-    res.redirect(`/panel/${req.params.sunucuID}/yonet`);
-  });
+
+
   
   app.get("/yonetici", girisGerekli, (req, res) => {
     yukle(res, req, "yönetici.ejs");
