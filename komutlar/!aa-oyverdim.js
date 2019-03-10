@@ -4,8 +4,9 @@ const db = require('quick.db'),
       ms = require('parse-ms');
 
 exports.run = async (bot, message, args) => {
-    let cooldown = 0.05, // 24 Часа
-        amount = Math.floor(Math.random() * 10) + 200;      
+    let cooldown = 43200000, // 24 Часа
+
+  amount = Math.floor(Math.random() * 10) + 200;      
 
     let lastDaily = await db.fetch(`oyZ_${message.author.id}`);
     if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
@@ -34,7 +35,7 @@ if (check == 1) {
   .setColor('RANDOM')
   .setDescription('**Destekçi** rolünüzü aldınız botu oyladığınız için teşekkürler, 12 saat sonra rolünüz otomatik alınacaktır ve tekrar oy vererek **destekçi** rolünü alabilirsiniz.')
 .setTimestamp()
-  message.channel.send('embed')
+  message.channel.send(embed)
   message.member.addRole('516611529987063808')
   db.set(`oyZ_${message.author.id}`, Date.now());
     } else {
