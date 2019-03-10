@@ -76,10 +76,25 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
         db.push(`filtre_${id}`, newSettings['kelimefiltre'])
          
       }
-         if (newSettings['küfürEngel'] === 'aktif') {
+if (newSettings['küfürEngel'] === 'aktif') {
 db.set(`küfürE_${id}`, newSettings['küfürEngel'])
 }
-   
+if (!newSettings['küfürEngel']) {
+db.delete(`küfürE_${id}`)
+}
+if (newSettings['linkEngel'] === 'aktif') {
+db.set(`linkE_${id}`, newSettings['linkEngel'])
+}
+if (!newSettings['linkEngel']) {
+db.delete(`linkE_${id}`)
+}
+if (newSettings['capslockEngel'] === 'aktif') {
+db.set(`capsE_${id}`, newSettings['capslockEngel'])
+}
+if (!newSettings['capslockEngel']) {
+db.delete(`capsE_${id}`)
+}
+
      } catch (err) {
       //console.error(err)
     };

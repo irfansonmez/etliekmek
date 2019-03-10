@@ -128,12 +128,11 @@ function w3_close() {
   
   
   
-	<div class="row">
-    
-<div class="col">
-    <div class="container">
-      <form method="post">
-        <ul class="list-group list-group-flush">
+<div class="container">
+  <br>
+  <div class="jumbotron" style="background-color:#2a2d32;">
+    <div align="center">
+      <form method="POST" id="forum">
           
     
     <div class="row">
@@ -155,7 +154,51 @@ function w3_close() {
           <% } %>
       </div>
     </div>
-          
+    
+
+  
+    
+     <div class="row">
+      <div class="col-25">
+          <label for="linkEngel">Link/Reklam Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.ayar.has(`linkE_${guild.id}`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="linkEngel" name="linkEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.ayar.has(`linkE_${guild.id}`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="linkEngel" name="linkEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
+    
+     <div class="row">
+      <div class="col-25">
+          <label for="capslockEngel">Büyük harf Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.ayar.has(`capsE_${guild.id}`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.ayar.has(`capsE_${guild.id}`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="capslockEngel" name="capslockEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
+    
+  </div>
           <div class="row">
             <div class="col-25">
               <label for="kelimefiltre">Kelime Filtresi Sistemi</label>
