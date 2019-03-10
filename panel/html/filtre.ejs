@@ -126,7 +126,65 @@ function w3_close() {
 	
   <!--<center><h7 style="color:red">Bakımda...</h7></center>-->
   
+       <div class="row">
+      <div class="col-25">
+          <label for="küfürEngel">Küfür Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.ayar.has(`küfürE_${guild.id}`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="küfürEngel" name="küfürEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.ayar.has(`küfürE_${guild.id}`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="küfürEngel" name="küfürEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
   
+  <div class="row">
+      <div class="col-25">
+          <label for="linkEngel">Link Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.ayar.has(`linkE_${guild.id}`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="linkEngel" name="linkEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.ayar.has(`linkE_${guild.id}`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="linkEngel" name="linkEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
+  
+  <div class="row">
+      <div class="col-25">
+          <label for="capsLockEngel">Büyük harf Engelleme Sistemi</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.ayar.has(`capsE_${guild.id}`) === false) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="capsLockEngel" name="capsLockEngel" value="aktif">
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+					<% if(bot.ayar.has(`capsE_${guild.id}`) === true) { %>
+        <label style="margin-right:80%;" class="switch">
+         <input type="checkbox" id="capsLockEngel" name="capsLockEngel" value="deaktif" checked>
+         <span class="slider round"></span>
+        </label>
+          <% } %>
+      </div>
+    </div>
   
 	<div class="row">
     
