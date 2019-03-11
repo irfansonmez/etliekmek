@@ -51,7 +51,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: ["oy-verdim"],
-  permLevel: 5,
+  permLevel: 0,
   kategori: "efekt"
 };
 
