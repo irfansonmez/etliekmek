@@ -93,7 +93,7 @@ client.emojiler = {
 }
 
 client.ayarlar = {
-        "oynuyor": "?yardım | ?davet | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın",
+        "oynuyor": "?yardım | ?davet | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli yakında",
         "official_sahip": "507803933557915652",
         "sahip": ['336869318874890241',"487515609815580672"],
         "yardimcilar": [''],
@@ -107,7 +107,17 @@ client.ayarlar = {
         "versiyon": "0.0.1",
         "prefix": "?",
         "veritabanı": "clientt.veritabanı",
- 
+        "yenilik": [`FİLTRE SİSTEMİ
+{prefix}filtre-ekle
+{prefix}filtre-sil
+{prefix}filtre-liste
+**BİLGİ**
+Sunucunuzda istediğiniz bir kelimeyi yasaklamanıza yarar.`,`
+ÖZEL KOMUT SİSTEMİ
+{prefix}komut-ekle
+{prefix}komut-sil
+{prefix}komut-liste
+**BİLGİ`],
 "renk":  "DARKBLUE",
 "version":  "2.0.0",
  
@@ -146,7 +156,7 @@ db.set(`mesaj_${message.channel.id}`, message.content)
 
 client.on('guildMemberAdd', async (member, guild) => {
 let tag = await db.fetch(`tagB_${member.guild.id}`)
-  if (db.has(`tagB_${member. return
+  if (db.has(`tagB_${member.guild.id}`) === false) return
 member.setNickname(`${tag} ${member.user.username}`)
   
   
@@ -171,7 +181,7 @@ client.on("ready", async () => {
   
   console.log(`${chalk.green(client.user.username)}${chalk.red(",")} ${chalk.blue(client.guilds.size)} ${chalk.yellow("Sunucu'ya")} ${chalk.red("ve")} ${chalk.blue(client.users.size.toLocaleString())} ${chalk.yellow("Kullanıcı'ya")} ${chalk.red("hizmet veriyor!")}`)
   client.user.setStatus("online");
-  client.user.setActivity(`${client.ayarlar.oynuyor}`, { type: 'WATCHING' });
+  client.user.setActivity(client.ayarlar.oynuyor, { type: 'WATCHING' });
   
 })
   
