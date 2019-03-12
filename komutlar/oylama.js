@@ -17,18 +17,11 @@ exports.run = async (client, message, args) => {
         .setColor("RANDOM")
         .setAuthor(`${client.user.username} - Oylama sistemi`)
         .addField('Oylama', x)
-        .addField('Yapılması gerekenler', )
-
     let msg = await message.channel.send(embed)
         .then(function (msg) {
         
           msg.react("✅");
-            msg.react("❌");
-
-          
-    
-          
-           
+            msg.react("❌")           
         });
 };
 

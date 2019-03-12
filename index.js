@@ -431,30 +431,6 @@ const applyText = (canvas, text) => {
 */
 
 
-client.on("message", async message => {
-  
-  if (!message.guild) return;
-  
-let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-  
-  if (message.author.bot) return;
-
-
-
-  if (message.content === `<@${client.user.id}>`) {
-    
-    message.channel.send(`• Bu sunucuya ait ön-ek/prefix: \`${prefix}\` \n• Bu sunucuya ait yardım komutu: \`${prefix}yardım\` \n• Ön-ek/Prefix değiştirilse bile komutlar etiket ile çalışır. \nÖrnek: \`@${client.user.tag}\`yardım`)
-    
-  }
-  
-  if (message.content === `<@${client.user.id}> ${message.content}`) {
-    
-    message.channel.send(`• Bu sunucuya ait ön-ek/prefix: \`${prefix}\` \n• Bu sunucuya ait yardım komutu: \`${prefix}yardım\` \n• Ön-ek/Prefix değiştirilse bile komutlar etiket ile çalışır. \nÖrnek: \`@${client.user.tag}\`yardım`)
-    
-  }
-  
-});
-
 
 
 const invites = {};
@@ -502,7 +478,7 @@ client.on('guildMemberAdd', member => {
 
 
 
-client.on("message", message => {
+client.on("message",async message => {
   if (!message.guild) return;
     let prefixyeni = db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
     let afk_kullanici = message.mentions.users.first() || message.author;
@@ -517,6 +493,27 @@ client.on("message", message => {
                 message.reply("başarıyla AFK modundan çıktın!")
             db.delete(`afks_${message.author.id}`)
         }
+  
+  
+    if (!message.guild) return;
+  
+let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+  
+  if (message.author.bot) return;
+
+
+
+  if (message.content === `<@${client.user.id}>`) {
+    
+    message.channel.send(`• Bu sunucuya ait ön-ek/prefix: \`${prefix}\` \n• Bu sunucuya ait yardım komutu: \`${prefix}yardım\` \n• Ön-ek/Prefix değiştirilse bile komutlar etiket ile çalışır. \nÖrnek: \`@${client.user.tag}\`yardım`)
+    
+  }
+  
+  if (message.content === `<@${client.user.id}> ${message.content}`) {
+    
+    message.channel.send(`• Bu sunucuya ait ön-ek/prefix: \`${prefix}\` \n• Bu sunucuya ait yardım komutu: \`${prefix}yardım\` \n• Ön-ek/Prefix değiştirilse bile komutlar etiket ile çalışır. \nÖrnek: \`@${client.user.tag}\`yardım`)
+    
+  }
 });
 
 client.on('guildCreate', async guild => {
