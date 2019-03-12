@@ -56,7 +56,7 @@ exports.conf = {
   };
   
   exports.help = {
-    name: 'ayarlar',
+    name: 'yenilikler',
     description: 'Sunucu ayarlarını gösterir.',
-    usage: 'ayarlar',
+    usage: 'yenilikler',
   };

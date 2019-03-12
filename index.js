@@ -117,7 +117,8 @@ Sunucunuzda istediğiniz bir kelimeyi yasaklamanıza yarar.`,`
 {prefix}komut-ekle
 {prefix}komut-sil
 {prefix}komut-liste
-**BİLGİ`],
+**BİLGİ**
+Sunucunuza özel komut eklemeye yarar.`],
 "renk":  "DARKBLUE",
 "version":  "2.0.0",
  
