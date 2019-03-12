@@ -107,7 +107,6 @@ client.ayarlar = {
         "versiyon": "0.0.1",
         "prefix": "?",
         "veritabanı": "clientt.veritabanı",
-        "yenilik": '**FİLTRE SİSTEMİ**\n {prefix}filtre-ekle\n {prefix}filtre-sil\n {prefix}filtre-liste\n**FİLTRE BİLGİ**\nSunucunuzda istediğiniz bir kelimeyi yasaklamanıza yarar.\n\n**ÖZEL KOMUT SİSTEMİ**\n {prefix}komut-ekle\n {prefix}komut-sil\n {prefix}komut-liste\n**ÖZEL KOMUT BİLGİ**\nSunucunuza özel komut eklemeye yarar.\n',
 "renk":  "DARKBLUE",
 "version":  "2.0.0",
  
