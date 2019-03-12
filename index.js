@@ -107,24 +107,9 @@ client.ayarlar = {
         "versiyon": "0.0.1",
         "prefix": "?",
         "veritabanı": "clientt.veritabanı",
-        "yenilik": [`**FİLTRE SİSTEMİ**
-{prefix}filtre-ekle
-{prefix}filtre-sil
-{prefix}filtre-liste
-**FİLTRE BİLGİ**
-Sunucunuzda istediğiniz bir kelimeyi yasaklamanıza yarar.
-
-**ÖZEL KOMUT SİSTEMİ**
-**{prefix}komut-ekle
-**{prefix}komut-sil**
-**{prefix}komut-liste**
-
-**BİLGİ**
-Sunucunuza özel komut eklemeye yarar.`],
-"renk":  "DARKBLUE",
-"version":  "2.0.0",
- 
-};
+        "renk":  "DARKBLUE",
+        "version":  "2.0.0",
+ };
 client.avatarURL = `https://cdn.discordapp.com/avatars/516600125649453066/c866646d27728bdb25fc39161c94a2e8.png?size=2048`
 const ayarlar = client.ayarlar;
 
@@ -192,240 +177,6 @@ client.on("ready", async () => {
   
  
 
-client.on('message', async message => {
-
-let db = require('quick.db');
-
-  let pref = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-  const ms = require('ms');
-  const args = message.content.slice(pref.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  let u = message.mentions.users.first() || message.author;
-  if (command === "sunucu-kur") {
-  if (message.guild.channels.find(channel => channel.name === "Bot Kullanımı")) return message.channel.send(" Bot Paneli Zaten Ayarlanmış.")
-  message.channel.send(`Bot sunucunuz baştan kurması için **evet** yazmanız gerekmektedir.\n**UYARI:** Tüm kanllar ve roller silinecektir ve bot yeni oluşturcaktır.`)
-      if (!message.member.hasPermission('ADMINISTRATOR'))
-  return message.channel.send(" Bu Kodu `Yönetici` Yetkisi Olan Kişi Kullanabilir.");
-      message.channel.awaitMessages(response => response.content === 'evet', {
-        max: 1,
-        time: 10000,
-        errors: ['time'],
-      })
-
-    .then((collected) => {
-
-      message.guild.channels.forEach((kanal) => {
-        kanal.delete()
-      }, 5000)
-
-      message.guild.roles.forEach((rol) => {
-        rol.delete()
-      }, 5000)
-
-   message.guild.createChannel('|▬▬|ÖNEMLİ KANALLAR|▬▬|', 'category', [{
-  id: message.guild.id,
-  deny: ['SEND_MESSAGES']
-}])
-
-
-  
-
-
-        
- message.guild.createChannel('「📃」kurallar', 'text', [{
-  id: message.guild.id,
-  deny: ['SEND_MESSAGES']
-}])
-.then(channel =>
- channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|ÖNEMLİ KANALLAR|▬▬|")));
- message.guild.createChannel('「🚪」gelen-giden', 'text', [{
-  id: message.guild.id,
-  deny: ['SEND_MESSAGES']
-}])
-.then(channel =>
-       channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|ÖNEMLİ KANALLAR|▬▬|")));
-       message.guild.createChannel('「✅」sayaç', 'text', [{
-        id: message.guild.id,
-
-        deny: ['SEND_MESSAGES']
-    
-      
-
-      }])
-.then(channel =>
-             channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|ÖNEMLİ KANALLAR|▬▬|")));
-             message.guild.createChannel('「💾」log-kanalı', 'text', [{
-              id: message.guild.id,
-              deny: ['SEND_MESSAGES']
-            }])
-            .then(channel => channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|ÖNEMLİ KANALLAR|▬▬|")));
-            message.guild.createChannel('「📢」duyuru-odası', 'text', [{
-              id: message.guild.id,
-              deny: ['SEND_MESSAGES']
-            }])
-.then(channel =>
- channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|ÖNEMLİ KANALLAR|▬▬|")));
-
-       }) 
-       .then((collected) => {
-        message.guild.createChannel('|▬▬|GENEL KANALLAR|▬▬|', 'category', [{
-       id: message.guild.id,
-     }]);
-             
-      message.guild.createChannel(`「💡」şikayet-ve-öneri`, 'text')
-     .then(channel =>
-      channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|GENEL KANALLAR|▬▬|")));
-     message.guild.createChannel(`「👥」pre-arama-odası`, 'text')
-     .then(channel =>
-            channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|GENEL KANALLAR|▬▬|")));
-     message.guild.createChannel(`「📷」görsel-içerik`, 'text')
-     .then(channel =>
-                  channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|GENEL KANALLAR|▬▬|")));
-     message.guild.createChannel(`「🤖」bot-komutları`, 'text')
-     .then(channel =>
-                  channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|GENEL KANALLAR|▬▬|")));
-     message.guild.createChannel(`「💬」sohbet`, 'text')
-     .then(channel =>
-      channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|GENEL KANALLAR|▬▬|")));
-
-      message.guild.createChannel(`🏆》Kurucu Odası`, "voice")
-      .then(channel =>
-        channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|SES KANALLARI|▬▬|")))
-      .then(c => {
-        let role = message.guild.roles.find("name", "@everyone");
-        let role2 = message.guild.roles.find("name", "Kurucu");
-        
-        c.overwritePermissions(role, {
-            CONNECT: false,
-        });
-        c.overwritePermissions(role2, {
-            CONNECT: true,
-            
-        });
-    })
-
-    message.guild.createChannel('|▬▬|SES KANALLARI|▬▬|', 'category', [{
-      id: message.guild.id,
-    }]);
-
-    message.guild.createChannel(`🏆》Yönetici Odası`, "voice")
-    .then(channel =>
-      channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|SES KANALLARI|▬▬|")))
-    .then(c => {
-      let role = message.guild.roles.find("name", "@everyone");
-      let role2 = message.guild.roles.find("name", "Kurucu");
-      let role3 = message.guild.roles.find("name", "Yönetici");
-      c.overwritePermissions(role, {
-          CONNECT: false,
-      });
-      c.overwritePermissions(role2, {
-          CONNECT: true,
-      });
-      c.overwritePermissions(role3, {
-          CONNECT: true,
-      });
-  })
-
-  message.guild.createChannel(`💬》Sohbet Odası`, "voice")
-  .then(channel =>
-    channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|SES KANALLARI|▬▬|")))
-  .then(c => {
-    let role = message.guild.roles.find("name", "@everyone");
-    c.overwritePermissions(role, {
-        CONNECT: true,
-    });
-})
-
-message.guild.createChannel('|▬▬|OYUN ODALARI|▬▬|', 'category', [{
-  id: message.guild.id,
-}]);
-
-message.guild.createChannel(`🎮》LOL`, 'voice')
-.then(channel =>
- channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
- message.guild.createChannel(`🎮》ZULA`, 'voice')
- .then(channel =>
-  channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
- message.guild.createChannel(`🎮》COUNTER STRİKE`, 'voice')
-.then(channel =>
- channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
- message.guild.createChannel(`🎮》PUBG`, 'voice')
- .then(channel =>
-  channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
-  message.guild.createChannel(`🎮》FORTNİTE`, 'voice')
-  .then(channel =>
-   channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
-   message.guild.createChannel(`🎮》MİNECRAFT`, 'voice')
-   .then(channel =>
-    channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
-    message.guild.createChannel(`🎮》ROBLOX`, 'voice')
-    .then(channel =>
-     channel.setParent(message.guild.channels.find(channel => channel.name === `|▬▬|OYUN ODALARI|▬▬|`)))
-     message.guild.createChannel(`🎮》WOLFTEAM`, 'voice')
-     .then(channel =>
-      channel.setParent(message.guild.channels.find(channel => channel.name === "|▬▬|OYUN ODALARI|▬▬|")))
-
-
-
-      message.guild.createRole({
-        name: 'Kurucu',
-        color: 'RED',
-        permissions: [
-            "ADMINISTRATOR",
-    ]
-      })
-
-      
-      message.guild.createRole({
-        name: 'Yönetici',
-        color: 'BLUE',
-        permissions: [
-            "MANAGE_GUILD",
-            "MANAGE_ROLES",
-            "MUTE_MEMBERS",
-            "DEAFEN_MEMBERS",
-            "MANAGE_MESSAGES",
-            "MANAGE_NICKNAMES",
-            "KICK_MEMBERS"
-    ]
-      })
-
-      message.guild.createRole({
-        name: 'Moderatör',
-        color: 'GREEN',
-        permissions: [
-            "MANAGE_GUILD",
-            "MANAGE_ROLES",
-            "MUTE_MEMBERS",
-            "DEAFEN_MEMBERS",
-            "MANAGE_MESSAGES",
-            "MANAGE_NICKNAMES"
-    ]
-      })
-
-      message.guild.createRole({
-        name: 'V.I.P',
-        color: '00ffff',
-      })
-
-      message.guild.createRole({
-        name: 'Üye',
-        color: 'WHITE',
-      })
-
-      message.guild.createRole({
-        name: 'Bot',
-        color: 'ORANGE',
-      })
-
-      // message.channel.send("Gerekli Odalar Kuruldu!")
-       message.guild.owner.send('Sunucu kurulumu bitmiştir\n**NOT:**Kanal listesinin en üst kısmında kanallar varsa ve onlara girilmiyorsa bilinki bugdalardır bir zaman sonra gideceklerdir ve o kanalları kimse göremez.')
-            })   
-
-
-    
-}
-});
 
 
 client.on("message",async  message => {
@@ -449,51 +200,7 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
     }
 });
 
-/*
-client.on('guildMemberAdd' , async member => {
-const toplamkullanıcı = await db.fetch(`toplamkullanıcı_${member.guild.id}`)
-const toplamkişi = await db.fetch(`toplamkişi_${member.guild.id}`)
-const toplambot = await db.fetch(`toplambot_${member.guild.id}`)
-const banlı = await db.fetch(`banlı_${member.guild.id}`)
-member.guild.channels.get(toplamkullanıcı).setName(`Toplam Kullanıcı Sayısı: ${member.guild.memberCount}`);
-member.guild.channels.get(toplamkişi).setName(`Toplam Kişi Sayısı: ${member.guild.members.filter(m => !m.user.bot).size}`);
-member.guild.channels.get(toplambot).setName(`Toplam Bot Sayısı: ${member.guild.members.filter(m => m.user.bot).size}`);
-member.guild.fetchBans().then(bans => member.guild.channels.get(banlı).setName(`Toplam Banlı Kişi Sayısı: ${bans.size}`))
-});
 
-client.on('guildMemberRemove' ,async member => {
-const toplamkullanıcı = await db.fetch(`toplamkullanıcı_${member.guild.id}`)
-const toplamkişi = await db.fetch(`toplamkişi_${member.guild.id}`)
-const toplambot = await db.fetch(`toplambot_${member.guild.id}`)
-const banlı = await db.fetch(`banlı_${member.guild.id}`)
-member.guild.channels.get(toplamkullanıcı).setName(`Toplam Kullanıcı Sayısı: ${member.guild.memberCount}`);
-member.guild.channels.get(toplamkişi).setName(`Toplam Kişi Sayısı: ${member.guild.members.filter(m => !m.user.bot).size}`);
-member.guild.channels.get(toplambot).setName(`Toplam Bot Sayısı: ${member.guild.members.filter(m => m.user.bot).size}`);
-member.guild.fetchBans().then(bans => member.guild.channels.get(banlı).setName(`Toplam Banlı Kişi Sayısı: ${bans.size}`))
-});
-
-client.on('guildBanAdd', async member => {
-const toplamkullanıcı = await db.fetch(`toplamkullanıcı_${member.guild.id}`)
-const toplamkişi = await db.fetch(`toplamkişi_${member.guild.id}`)
-const toplambot = await db.fetch(`toplambot_${member.guild.id}`)
-const banlı = await db.fetch(`banlı_${member.guild.id}`)
-member.guild.channels.get(toplamkullanıcı).setName(`Toplam Kullanıcı Sayısı: ${member.guild.memberCount}`);
-member.guild.channels.get(toplamkişi).setName(`Toplam Kişi Sayısı: ${member.guild.members.filter(m => !m.user.bot).size}`);
-member.guild.channels.get(toplambot).setName(`Toplam Bot Sayısı: ${member.guild.members.filter(m => m.user.bot).size}`);
-member.guild.fetchBans().then(bans => member.guild.channels.get(banlı).setName(`Toplam Banlı Kişi Sayısı: ${bans.size}`))
-});
-	
-client.on('guildBanRemove', async member => {
-const toplamkullanıcı = await db.fetch(`toplamkullanıcı_${member.guild.id}`)
-const toplamkişi = await db.fetch(`toplamkişi_${member.guild.id}`)
-const toplambot = await db.fetch(`toplambot_${member.guild.id}`)
-const banlı = await db.fetch(`banlı_${member.guild.id}`)
-member.guild.channels.get(toplamkullanıcı).setName(`Toplam Kullanıcı Sayısı: ${member.guild.memberCount}`);
-member.guild.channels.get(toplamkişi).setName(`Toplam Kişi Sayısı: ${member.guild.members.filter(m => !m.user.bot).size}`);
-member.guild.channels.get(toplambot).setName(`Toplam Bot Sayısı: ${member.guild.members.filter(m => m.user.bot).size}`);
-member.guild.fetchBans().then(bans => member.guild.channels.get(banlı).setName(`Toplam Banlı Kişi Sayısı: ${bans.size}`))
-});
-*/
 client.on("message", async message => {
   
   let client = message.client;
@@ -732,27 +439,7 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
   
   if (message.author.bot) return;
 
-  /*
-  const s = ["sa", "sea", "selam", "slm", "Selamünaleyküm", "Selamün Aleyküm", "Selamun Aleykum", "Selamunaleykum", "selamlar"]
-  if (s.some(k => message.content.toLowerCase() === (k))) {
-    message.react("465437494708797450").then(() => message.react("465440841863921669"))
-  }
-  
-  const g = ["günaydın", "iyi sabahlar"]
-  if (g.some(k => message.content.toLowerCase().includes(k))) {
-    message.react("🌇").then(() => message.react("🍳")).then(() => message.react("🍞"))
-  }
-  
-  const g2 = ["iyi geceler", "iyi akşamlar"]
-  if (g2.some(k => message.content.toLowerCase().includes(k))) {
-    message.react("🌆").then(() => message.react("😴"))
-  }
-  
-  const m = ["merhaba", "mrb", "bb", "by", "bye"]
-  if (m.some(k => message.content.toLowerCase().includes(k))) {
-    message.react("👋")
-  }
-  */
+
 
   if (message.content === `<@${client.user.id}>`) {
     
@@ -768,27 +455,7 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
   
 });
 
-client.on('messageReactionAdd', async (msgReact, user) => {
-      if (user.bot === true) return;
-  
-     if (msgReact.message.id !== db.fetch(`oylamaM_${msgReact.message.guild.id}`)) return;
-  
-     if (msgReact.message.id === db.fetch(`oylamaM_${msgReact.message.guild.id}`)) {
-  
-        if (msgReact.emoji.name === "✅") {
-        	
-        db.add(`oylamaE_${msgReact.message.guild.id}`, 1)   
-              
-        }
-  
-        if (msgReact.emoji.name === "❌") {
-          
-          db.add(`oylamaH_${msgReact.message.guild.id}`, 1)
-        
-        }  
-       
-     }
-});
+
 
 const invites = {};
 
