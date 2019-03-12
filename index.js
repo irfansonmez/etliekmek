@@ -2783,4 +2783,4 @@ client.on('ready', () => {
     console.log('DBL ye gerekli verileri girdim.') // {"server_count":2,"shards":[]}
  });
 
-client.login('NTE2NjAwMTI1NjQ5NDUzMDY2.D1xk2Q.mCPCl5bTEDpjzkB9ahv3D4_TTsU')
+client.login('NTE2NjAwMTI1NjQ5NDUzMDY2.D2kthw.RZyICoON8CECIGDLcODnzhIs41Y')
