@@ -11,13 +11,14 @@ exports.run = async (client, message, args) => {
   var ac = client.emojis.get(client.emojiler.evet);
   var ka = client.emojis.get(client.emojiler.hayır);
 const yenilik = client.ayarlar.yenilik;
+      
 
   
 
   
   const ayarReis = new Discord.RichEmbed()
   .setColor('RANDOM')
-  .setDescription(`${yenilik}`)
+  .setDescription(yenilik)
   .setTimestamp()
   message.channel.send(ayarReis)
 
