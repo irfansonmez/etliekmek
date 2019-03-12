@@ -18,7 +18,7 @@ const yenilik = client.ayarlar.yenilik;
   
   const ayarReis = new Discord.RichEmbed()
   .setColor('RANDOM')
-  .setDescription(yenilik)
+  .setDescription(yenilik.replace('{prefix}', prefix))
   .setTimestamp()
   message.channel.send(ayarReis)
 

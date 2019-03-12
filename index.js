@@ -107,19 +107,7 @@ client.ayarlar = {
         "versiyon": "0.0.1",
         "prefix": "?",
         "veritabanı": "clientt.veritabanı",
-        "yenilik": ['**FİLTRE SİSTEMİ** 
-  {prefix}filtre-ekle
-{prefix}filtre-sil
-{prefix}filtre-liste
-**FİLTRE BİLGİ**
-Sunucunuzda istediğiniz bir kelimeyi yasaklamanıza yarar.
-
-**ÖZEL KOMUT SİSTEMİ**
-{prefix}komut-ekle
-{prefix}komut-sil
-{prefix}komut-liste
-**ÖZEL KOMUT BİLGİ**
-Sunucunuza özel komut eklemeye yarar.'],
+        "yenilik": '**FİLTRE SİSTEMİ**\n {prefix}filtre-ekle\n {prefix}filtre-sil\n {prefix}filtre-liste\n**FİLTRE BİLGİ**\nSunucunuzda istediğiniz bir kelimeyi yasaklamanıza yarar.\n\n**ÖZEL KOMUT SİSTEMİ**\n {prefix}komut-ekle\n {prefix}komut-sil\n {prefix}komut-liste\n**ÖZEL KOMUT BİLGİ**\nSunucunuza özel komut eklemeye yarar.\n',
 "renk":  "DARKBLUE",
 "version":  "2.0.0",
  
