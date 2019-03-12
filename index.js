@@ -146,7 +146,7 @@ db.set(`mesaj_${message.channel.id}`, message.content)
 
 client.on('guildMemberAdd', async (member, guild) => {
 let tag = await db.fetch(`tagB_${member.guild.id}`)
-  if (tag == null || tag == undefined) return
+  if (db.has(`tagB_${member. return
 member.setNickname(`${tag} ${member.user.username}`)
   
   

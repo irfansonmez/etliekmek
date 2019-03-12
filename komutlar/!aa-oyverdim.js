@@ -42,7 +42,7 @@ if (check == 1) {
 let embed = new Discord.RichEmbed()
       .setTitle('HATA')
       .setColor('RANDOM')
-      .setDescription(`${bot.emojis.get(bot.emojiler.hayır)} **Hata**, Destekçi rolünü almak için 12 saat aralıkla** **[BURADAN](https://discordbots.org/bot/${bot.user.id}/vote)**  botu oylamanız gerekmektedir. Onayladıktan sonra sisteme geçmesi **1-4** dakikayı bulabilir, lütfen bekleyin. `)
+      .setDescription(`${bot.emojis.get(bot.emojiler.hayır)} **Hata**, Destekçi rolünü almak için **12** saat aralıkla **[BURADAN](https://discordbots.org/bot/${bot.user.id}/vote)**  botu oylamanız gerekmektedir. Onayladıktan sonra sisteme geçmesi **1-4** dakikayı bulabilir, lütfen bekleyin. `)
     message.channel.send(embed)
       return }});
 };
