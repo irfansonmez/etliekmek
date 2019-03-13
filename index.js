@@ -2433,7 +2433,7 @@ const dbl = new DBL(client.ayarlar.dbltoken, client);
 client.on('ready', () => {
    setInterval(() => {
         dbl.postStats(client.guilds.size);
-  }, 1800000);
+  }, 1800);
    });
 
   dbl.getStats("516600125649453066").then(stats => {
