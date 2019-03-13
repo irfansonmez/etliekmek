@@ -2404,6 +2404,19 @@ client.unload = command => {
   const db = require('quick.db');
   
     
+    
+        const snek = require("snekfetch");
+snek.get(`https://discordbots.org/api/bots/${bot.user.id}/check?userId=${msg.author.id}`)
+.then(response => {
+var check = response.body.voted;
+if (check < 1) {
+  
+  msg.member.removeRole('516611529987063808')
+  
+}}) 
+    
+    
+    
   if (msg.channel.type === "dm") return;
   if(msg.author.bot) return;  
   
