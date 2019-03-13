@@ -2409,7 +2409,7 @@ client.unload = command => {
 snek.get(`https://discordbots.org/api/bots/${bot.user.id}/check?userId=${msg.author.id}`)
 .then(response => {
 var check = response.body.voted;
-if (check < 1) {
+if (check === 0 || check < 1 || check === false || check === null) {
   
   msg.member.removeRole('516611529987063808')
   
