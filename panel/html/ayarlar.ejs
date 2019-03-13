@@ -78,6 +78,39 @@
       </div>
   </nav>
       
+   <div class="nav-breadcrumb" style="width: 100%; background-color:#2a2d32; margin-bottom: 40px;">
+    <div class="container">
+      <ol class="breadcrumb" style="width: 100%; background-color:#2a2d32;">
+        <li class="breadcrumb-item"><a href="/" class="ornek-link" style="color:#087059";>Ana Sayfa</a></li>
+        <%
+					pathArray = path.split("/").slice(1);
+					pathArray = pathArray.map(p => {
+						if(bot.guilds.has(p)) return bot.guilds.get(p).name;
+						if(bot.users.has(p)) return p.username;
+						return p.toProperCase().replace("Admin", "Yönetici Paneli").replace("Commands", "Komutlar").replace("Stats", "İstatistikler").replace("Members", "Üyeler").replace("Manage", "Yönet").replace("Dashboard", "Panel").replace("Istatistikler", "İstatistikler").replace('User', 'Kullanıcı Ayarları')
+            .replace("genel", "Genel Ayarlar")
+            .replace("giriscikis", "Giriş Çıkış")
+            .replace("Ayar=kayitlar", "Kayıtlar")
+            .replace("otorol", "Otomatik Rol")
+            .replace("ototag", "Tag")
+            .replace("sayac", "Sayaç")
+            .replace("filtre", "Filtreler")
+            .replace("esteksistemi", "Destek Sistemi")
+            .replace("Ozelkomutlar", "Özel Komut Sistemi")
+						.replace("davetsistemi", "Davet Sistemi")
+						.replace("resimligiriscikis", "Resimli Giriş Çıkış Sistemi")
+					});
+					let builtPath = "";
+					for(let i = 0; i < pathArray.length; i++) {
+						builtPath += "/"+path.split("/").slice(1)[i]; %>
+						<li class="breadcrumb-item<% if((i+1) === pathArray.length) {%> active" style="color:darkcyan;"><%= pathArray[i] %><% } else { %>">
+							<a href="<%= builtPath %>" style="color:#087059"><%= pathArray[i] %></a>
+						<% } %></li>
+					<% } %>
+      </ol>
+    </div>
+  </div>
+      
   <!-- HEADER -->
   
       
@@ -90,109 +123,83 @@
 
 
 
-      
+      <% const guild = sunucu %>
 
-<div class="container">
-  <br>
-  <div class="jumbotron" style="background-color:#2a2d32;">
-    <div align="center">
-      <form method="POST" id="forum">
+<div class="row">
+		
+		<!--<div class="col col-4">
+		<%- //include('../blocks/guild-card.ejs', {active: "manage", guild}) %>
+    </div>-->
     
-        
-        
-        <div class="card-columns" style="padding: 20px; border-radius: 40px;">
+     <div class="col">
+            <div class="container">
+          
+ 
+<div class="card-columns" style="padding: 20px; border-radius: 40px;">
 
   <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=sunucu.id%>/ozelkomutlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Özel Komutlar</a></center></h3>
-					<div style="color:white" class="card-block" href="/panel/<%=sunucu.id%>/ozelkomutlar">
-				<a href="/panel/<%=sunucu.id%>/ozelkomutlar"		<p class="card-text" href="/panel/<%=sunucu.id%>/ozelkomutlar" style="color:#fff"><center>Sunucunuza özel komut komut ekleyebileceğiniz sayfaya yönlendirir.</center></p></a>
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ozelkomutlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Özel Komutlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ozelkomutlar">
+						<p class="card-text" href="/panel/<%=guild.id%>/ozelkomutlar" style="color:#fff"><center>Sunucunuza özel istediğiniz kadar komut ekleyebileceğiniz bir sistem.</center></p>
 					</div>
 				</div>
-          
-  <div id="genelAyarlar">
-    
-      <div class="row">
-        <div class="col-25">
-          <label for="prefix">Ön-Ek/Prefix</label>
-        </div>
-        <div class="col-75">
-          <% if (bot.ayar.has(`prefix_${sunucu.id}`) === false) { %>
-          <input type="text" style="text-align: left; width:87%;" name="prefix" id="prefix" maxlength="15" placeholder="<%=bot.ayarlar.prefix%>">
-          <a href="/panel/<%=sunucu.id%>/yonet/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`prefix_${sunucu.id}`) === true) { %>
-					<input type="text" style="text-align: left; width:87%;" name="prefix" id="prefix" value="<%= bot.ayar.fetch(`prefix_${sunucu.id}`) %>" maxlength="15" placeholder="<%=bot.ayarlar.prefix%>">
-          <a href="/panel/<%=sunucu.id%>/yonet/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-        </div>
-      </div>
-    
-   
-    
-     <div class="row">
-        <div class="col-25">
-          <label for="girisCikis">Giriş Çıkış Kanalı</label>
-        </div>
-        <div class="col-75">
-          <% if (bot.ayar.has(`gc_${sunucu.id}`) === false) { %>
-          <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
-            <option disabled selected>Lütfen bir kanal seçiniz.</option>
-            <% sunucu.channels.filter(c => c.type === "text").forEach(c => { %>
-            <option value="<%=c.id%>">#<%=c.name%></option>
-            <% }); %>
-          </select>
-          <a href="/panel/<%=sunucu.id%>/yonet/girisCikis/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
-          <select style="text-align: left; width:87%;" name="girisCikis" id="girisCikis">
-            <option value="<%=bot.ayar.fetch(`gc_${sunucu.id}`)%>"><%=sunucu.channels.get(bot.ayar.fetch(`gc_${sunucu.id}`)).name%></option>
-					 <% sunucu.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`gc_${sunucu.id}`)).forEach(c => { %>
-            <option value="<%=c.id%>">#<%=c.name%></option>
-          <% }); %>
-          </select>
-          <a href="/panel/<%=sunucu.id%>/yonet/girisCikis/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-        </div>
-      </div>
-    
-    <% if (bot.ayar.has(`gc_${sunucu.id}`) === true) { %>
-    
-    <p style="color:#fff"><a style="color:red">NOT</a><a style="color:#2a2d32d">:</a> Giriş ve çıkış mesajlarında kullanıcının geleceği yere <a style="color:#bfff3f">{kullanıcı}</a> yazınız.</p>
-    
-    <div class="row">
-      <div class="col-25">
-          <label for="girisMesaj">Giriş Mesajı</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`girisM_${sunucu.id}`) === false) { %>
-        <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" placeholder="{kullanıcı} adlı kullanıcı sunucuya katıldı!">
-          <a href="/panel/<%=sunucu.id%>/yonet/girisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`girisM_${sunucu.id}`) === true) { %>
-        <input type="text" style="text-align: left; width:87%;" name="girisMesaj" id="girisMesaj" maxlength="1950" value="<%=bot.ayar.fetch(`girisM_${sunucu.id}`)%>">
-          <a href="/panel/<%=sunucu.id%>/yonet/girisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-25">
-          <label for="cikisMesaj">Çıkış Mesajı</label>
-      </div>
-      <div class="col-75">
-        <% if (bot.ayar.has(`cikisM_${sunucu.id}`) === false) { %>
-        <input type="text" style="text-align: left; width:87%;" name="cikisMesaj" id="cikisMesaj" maxlength="1950" placeholder="{kullanıcı} adlı kullanıcı sunucudan ayrıldı!">
-          <a href="/panel/<%=sunucu.id%>/yonet/cikisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-					<% if(bot.ayar.has(`cikisM_${sunucu.id}`) === true) { %>
-        <input type="text" style="text-align: left; width:87%;" name="cikisMesaj" id="cikisMesaj" maxlength="1950" value="<%=bot.ayar.fetch(`cikisM_${sunucu.id}`)%>">
-          <a href="/panel/<%=sunucu.id%>/yonet/cikisMesaj/sifirla" class="reset-btn" role="button">Sıfırla</a>
-          <% } %>
-      </div>
-    </div>
-    <% } %>
-    
-    
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/genel" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Genel Ayarlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/genel">
+						<p class="card-text" href="/panel/<%=guild.id%>/genel" style="color:#fff"><center>Botun sunucudaki ön-eki/prefixi ayarlanabilir. <br>Susturma rolü ayarlanabilir.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Giriş Çıkış</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis">
+						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="color:#fff"><center>Sunucuya birisi katıldığında ve sunucudan birisi ayrıldığında atılacak mesajlar.<br>Kanal ve mesajlar ayarlanabilir.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Kayıtlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar">
+						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="color:#fff"><center>Moderasyon kayıtları ve sunucu kayıtları kanalları ayarlanabilir.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/otorol" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Otomatik Rol</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/otorol">
+						<p class="card-text" href="/panel/<%=guild.id%>/otorol" style="color:#fff"><center>Sunucuya birisi katılınca katılan kişiye verilecek rol.<br>Rol ve otomatik rol kayıtları kanalı ayarlanabilir.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ototag" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Tag</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ototag">
+						<p class="card-text" href="/panel/<%=guild.id%>/ototag" style="color:#fff"><center>Sunucuya birisi katılınca katılan kişinin isminin başına eklenecek tag.<br>Tag ve tag kayıtları kanalı ayarlanabilir.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/sayac" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Sayaç</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/sayac">
+						<p class="card-text" href="/panel/<%=guild.id%>/sayac" style="color:#fff"><center>Sunucuya birisi katılınca ve sunucudan birisi ayrılınca ayarlanan hedefe kaç kişi kaldığını sayar.<br>Sayaç ve kanal ayarlanabilir.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/filtre" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Filtreler</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/filtre">
+						<p class="card-text" href="/panel/<%=guild.id%>/filtre" style="color:#fff"><center>Kelime filtresi, küfür ve link engelleme sistemleri.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/desteksistemi" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Destek Sistemi</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/desteksistemi">
+						<p class="card-text" href="/panel/<%=guild.id%>/desteksistemi" style="color:#fff"><center>Geliştirilmiş sunucu içi destek sistemi.<br>Destek kanalı, rolü ve mesajı ayarlanabilir.</center></p>
+					</div>
+				</div>
+  <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/davetsistemi" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Davet Sistemi</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/davetsistemi">
+						<p class="card-text" href="/panel/<%=guild.id%>/davetsistemi" style="color:#fff"><center>Sunucuya birisi katıldığında katılan kişiyi davet eden kullanıcıyı ve katıldığı daveti gösterir.<br>Davet Kayıtları kanalı ayarlanabilir.</center></p>
+					</div>
+				</div>
+
+</div>
+  
     
     
     

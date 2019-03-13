@@ -81,7 +81,39 @@
       </div>
   </nav>
       
-
+   <div class="nav-breadcrumb" style="width: 100%; background-color:#2a2d32; margin-bottom: 40px;">
+    <div class="container">
+      <ol class="breadcrumb" style="width: 100%; background-color:#2a2d32;">
+        <li class="breadcrumb-item"><a href="/" class="ornek-link" style="color:#087059";>Ana Sayfa</a></li>
+        <%
+					pathArray = path.split("/").slice(1);
+					pathArray = pathArray.map(p => {
+						if(bot.guilds.has(p)) return bot.guilds.get(p).name;
+						if(bot.users.has(p)) return p.username;
+						return p.toProperCase().replace("Admin", "Yönetici Paneli").replace("Commands", "Komutlar").replace("Stats", "İstatistikler").replace("Members", "Üyeler").replace("Manage", "Yönet").replace("Dashboard", "Panel").replace("Istatistikler", "İstatistikler").replace('User', 'Kullanıcı Ayarları')
+            .replace("genel", "Genel Ayarlar")
+            .replace("giriscikis", "Giriş Çıkış")
+            .replace("Ayar=kayitlar", "Kayıtlar")
+            .replace("otorol", "Otomatik Rol")
+            .replace("ototag", "Tag")
+            .replace("sayac", "Sayaç")
+            .replace("filtre", "Filtreler")
+            .replace("esteksistemi", "Destek Sistemi")
+            .replace("Ozelkomutlar", "Özel Komut Sistemi")
+						.replace("davetsistemi", "Davet Sistemi")
+						.replace("resimligiriscikis", "Resimli Giriş Çıkış Sistemi")
+					});
+					let builtPath = "";
+					for(let i = 0; i < pathArray.length; i++) {
+						builtPath += "/"+path.split("/").slice(1)[i]; %>
+						<li class="breadcrumb-item<% if((i+1) === pathArray.length) {%> active" style="color:darkcyan;"><%= pathArray[i] %><% } else { %>">
+							<a href="<%= builtPath %>" style="color:#087059"><%= pathArray[i] %></a>
+						<% } %></li>
+					<% } %>
+      </ol>
+    </div>
+  </div>
+      
 
   <!-- HEADER -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
