@@ -7,21 +7,10 @@ exports.run = async (bot, message, args) => {
   
    if(message.guild.id !== '489200365363920896') return message.channel.send('Bu komut sadece destek sunucumda çalışmaktadır.')
  
-  let cooldown = 43200000; // 24 Часа
+    if(message.member.roles.has('516611529987063808') === true) return message.channel.send(`Zaten destekçi rolün bulunuyor fazlasını ne yapacaksın`)
 
-    let lastDaily = await db.fetch(`oyZ_${message.author.id}`);
-    if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
-        let timeObj = ms(cooldown - (Date.now() - lastDaily));
-        
-
-        const embed = new Discord.RichEmbed()
-        .setTitle('Günlük Ödül!')
-        .setColor('#FFBA4A')
-        .setDescription(`Zaten destekçi rolünü aldın tekrar almak için **${timeObj.hours} saat ${timeObj.minutes} dakika** beklemen gerek!`)
-        message.channel.send(embed);
-        return
  
-    } 
+    
 
      const snekfetch = require("snekfetch");
 snekfetch.get(`https://discordbots.org/api/bots/${bot.user.id}/check?userId=${message.author.id}`)
@@ -37,7 +26,6 @@ if (check == 1) {
 .setTimestamp()
   message.channel.send(embed)
   message.member.addRole('516611529987063808')
-  db.set(`oyZ_${message.author.id}`, Date.now());
     } else {
 let embed = new Discord.RichEmbed()
       .setTitle('HATA')
@@ -52,7 +40,7 @@ exports.conf = {
   guildOnly: false,
   aliases: ["oy-verdim"],
   permLevel: 0,
-  kategori: "efekt"
+  kategori: "bot"
 };
 
 exports.help = {
