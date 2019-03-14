@@ -1,131 +1,21 @@
 <!--HEADER-->
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="<%=bot.avatarURL%>">
-  <meta name="author" content="<%=bot.user.tag%>">
-  <meta name="keywords" content="RYKER">
-  <meta property="og:site_name" value="<%=bot.user.username%>">
-  <meta property="og:image" content="<%=bot.avatarURL%>">
-  <meta property="og:description" content="Gelişmiş Türçe Discord Botu RYKER">
-  <meta name="description" content="Gelişmiş Türçe Discord Botu RYKER">
-  <meta name="theme-color" content="#0070fa">
-  <meta charset="UTF-8">
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700&amp;subset=latin-ext" rel="stylesheet">
-  <link href="https://bootswatch.com/4/cyborg/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.16/cr-1.4.1/r-2.2.0/datatables.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" integrity="sha256-zG8v+NWiZxmjNi+CvUYnZwKtHzFtdO8cAKUIdB8+U9I="
-    crossorigin="anonymous"></script>
-  
-  <link rel="stylesheet" href="/css/main.css" />
-  
-	<link rel='icon' href='<%=bot.avatarURL%>'>
-	<title><%=bot.user.username%> Web Paneli</title>
-</head>
-  
-  <body>
-    
-    <nav style="background-color:#2a2d32" class="navbar navbar-expand-lg navbar-dark">
-     <div class="container">
-      <a class="navbar-brand" href=""><img src="https://cdn.discordapp.com/avatars/<%=bot.user.id%>/<%=bot.user.avatar%>.png" width="30" height="30"
-          class="d-inline-block align-top rounded-circle" alt=""></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('başlık.ejs', {bot, user, path}) %>
 
-      <div class="collapse navbar-collapse" id="navbarColor02">
 
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a href="" class="nav-link">Ana Sayfa</a></li>
+<% const guild = sunucu %>
+<div class="container">
 
-        <li class="nav-item"><a href="/istatistikler" class="nav-link">İstatistikler</a></li>
-        <li class="nav-item"><a href="/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
-        <li class="nav-item"><a href="/sunucular" class="nav-link">Sunucular</a></li>
-        <li class="nav-item"><a href="/kullaniciler" class="nav-link">Kullanıcılar</a></li>
-      </ul>
-
-      <ul class="navbar-nav">
-          <%if(!user) {%>
-          <li class="nav-item"><a href="/giris" class="nav-link">Giriş Yap</a></li>
-            <%}%>
-       <%if(user) {%>
-            <li class="dropdown">
-            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt=""> <%=user.username%>
-           </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" style="background-color:#2a2d32">
-              <a class="dropdown-item" href="/kullaniciler/<%=user.id%>/yonet">Seviye Kartını Düzenle</a>
-              <a class="dropdown-item activex" href="/panel" style="color:#ffffff"><i aria-hidden="true"></i>Sunucularım <br>(Şuan <b><%=sunucu.name%></b> adlı sunucu seçili.)</a>
-              <% if(bot.ayarlar.sahip.includes(user.id)) { %>
-						  <a class="dropdown-item" href="/yonetici" style="color:#ffffff"><i aria-hidden="true"></i>Yönetici Paneli</a>
-				      <% } %>
-              <a class="dropdown-item" href="/cikis" style="color:#ffffff"><i aria-hidden="true"></i>Çıkış Yap</a>
-        </div>
-          </li>
-      <%}%>
-        </ul>
-      </div>
-  </nav>
-      
-   <div class="nav-breadcrumb" style="width: 100%; background-color:#2a2d32; margin-bottom: 40px;">
-    <div class="container">
-      <ol class="breadcrumb" style="width: 100%; background-color:#2a2d32;">
-        <li class="breadcrumb-item"><a href="/" class="ornek-link" style="color:#087059";>Ana Sayfa</a></li>
-        <%
-					pathArray = path.split("/").slice(1);
-					pathArray = pathArray.map(p => {
-						if(bot.guilds.has(p)) return bot.guilds.get(p).name;
-						if(bot.users.has(p)) return p.username;
-						return p.toProperCase().replace("Admin", "Yönetici Paneli").replace("Commands", "Komutlar").replace("Stats", "İstatistikler").replace("Members", "Üyeler").replace("Manage", "Yönet").replace("Dashboard", "Panel").replace("Istatistikler", "İstatistikler").replace('User', 'Kullanıcı Ayarları')
-            .replace("genel", "Genel Ayarlar")
-            .replace("giriscikis", "Giriş Çıkış")
-            .replace("Ayar=kayitlar", "Kayıtlar")
-            .replace("otorol", "Otomatik Rol")
-            .replace("ototag", "Tag")
-            .replace("sayac", "Sayaç")
-            .replace("filtre", "Filtreler")
-            .replace("esteksistemi", "Destek Sistemi")
-            .replace("Ozelkomutlar", "Özel Komut Sistemi")
-						.replace("davetsistemi", "Davet Sistemi")
-						.replace("resimligiriscikis", "Resimli Giriş Çıkış Sistemi")
-					});
-					let builtPath = "";
-					for(let i = 0; i < pathArray.length; i++) {
-						builtPath += "/"+path.split("/").slice(1)[i]; %>
-						<li class="breadcrumb-item<% if((i+1) === pathArray.length) {%> active" style="color:darkcyan;"><%= pathArray[i] %><% } else { %>">
-							<a href="<%= builtPath %>" style="color:#087059"><%= pathArray[i] %></a>
-						<% } %></li>
-					<% } %>
-      </ol>
+	<div class="row justify-content-md-center">
+    <div align="center"><h2 style="color: #fff;"><i class="fa fa-wrench fa-fw" aria-hidden="true"></i> Yönetim Paneli</h2></div>
     </div>
-  </div>
-      
-  <!-- HEADER -->
+
+	
+  <!--<center><h7 style="color:red">Bakımda...</h7></center>-->
   
-      
-    
-
-
-
-
-      
-
-
-
-      <% const guild = sunucu %>
-
-<div class="row">
+	<div class="row">
 		
 		<!--<div class="col col-4">
 		<%- //include('../blocks/guild-card.ejs', {active: "manage", guild}) %>
@@ -146,19 +36,19 @@
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
 					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/genel" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Genel Ayarlar</a></center></h3>
 					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/genel">
-						<p class="card-text" href="/panel/<%=guild.id%>/genel" style="color:#fff"><center>Botun sunucudaki ön-eki/prefixi ayarlanabilir. <br>Susturma rolü ayarlanabilir.</center></p>
+						<p class="card-text" href="/panel/<%=guild.id%>/=genel" style="color:#fff"><center>Botun sunucudaki ön-eki/prefixi ayarlanabilir. <br>Susturma rolü ayarlanabilir.</center></p>
 					</div>
 				</div>
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Giriş Çıkış</a></center></h3>
-					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis">
-						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="color:#fff"><center>Sunucuya birisi katıldığında ve sunucudan birisi ayrıldığında atılacak mesajlar.<br>Kanal ve mesajlar ayarlanabilir.</center></p>
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/giriscikis" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Giriş Çıkış</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/giriscikis">
+						<p class="card-text" href="/panel/<%=guild.id%>/giriscikis" style="color:#fff"><center>Sunucuya birisi katıldığında ve sunucudan birisi ayrıldığında atılacak mesajlar.<br>Kanal ve mesajlar ayarlanabilir.</center></p>
 					</div>
 				</div>
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Kayıtlar</a></center></h3>
-					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar">
-						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="color:#fff"><center>Moderasyon kayıtları ve sunucu kayıtları kanalları ayarlanabilir.</center></p>
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/kayitlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Kayıtlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/kayitlar">
+						<p class="card-text" href="/panel/<%=guild.id%>/kayitlar" style="color:#fff"><center>Moderasyon kayıtları ve sunucu kayıtları kanalları ayarlanabilir.</center></p>
 					</div>
 				</div>
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
@@ -174,7 +64,7 @@
 					</div>
 				</div>
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/sayac" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Sayaç</a></center></h3>
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/=sayac" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Sayaç</a></center></h3>
 					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/sayac">
 						<p class="card-text" href="/panel/<%=guild.id%>/sayac" style="color:#fff"><center>Sunucuya birisi katılınca ve sunucudan birisi ayrılınca ayarlanan hedefe kaç kişi kaldığını sayar.<br>Sayaç ve kanal ayarlanabilir.</center></p>
 					</div>
@@ -192,7 +82,7 @@
 					</div>
 				</div>
   <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/davetsistemi" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Davet Sistemi</a></center></h3>
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=davetsistemi" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Davet Sistemi</a></center></h3>
 					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/davetsistemi">
 						<p class="card-text" href="/panel/<%=guild.id%>/davetsistemi" style="color:#fff"><center>Sunucuya birisi katıldığında katılan kişiyi davet eden kullanıcıyı ve katıldığı daveti gösterir.<br>Davet Kayıtları kanalı ayarlanabilir.</center></p>
 					</div>
@@ -200,83 +90,18 @@
 
 </div>
   
-    
-    
-    
-        
-        
-      </form>
-    </div>  
+              
+                       <div style="width: 100%; text-align: right; margin-top: 15px;">
+   <a class="btn btn-danger" style="color: white; background-color:red" data-toggle="modal" data-target="#settingsResetModal" role="button"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Tüm Ayarları Sıfırla</a>
+<!-- </form>-->      
+</div>
+    </div>
   </div>
-</div> 
-      
-  
-  <script>
-    function myFunctionTwo () {
-      $("#yeniKomutX").css("display", "block");
-      $("#yeniAciklamaX").css("display", "block");
-      $("#yeniTipX").css("display", "block");
-    };
     
-    function myFunctionXyz () {
-      if (document.getElementById("tip").value === "embed") {
-        $("#tip").css("width", "49%");
-        $("#renk").css("display", "block");
-      } else {
-        $("#tip").css("width", "100%");
-        $("#renk").css("display", "none");
-      }
-    };
-    
-    function myFunctionAbc () {
-      if (document.getElementById("ytip").value === "embed") {
-        $("#ytip").css("width", "49%");
-        $("#yrenk").css("display", "block");
-      } else {
-        $("#ytip").css("width", "100%");
-        $("#yrenk").css("display", "none");
-      }
-    };
-  </script>
-  
-  <script>
-      function formAutoSubmit () {
-       var frm = document.getElementById("forum")
-        frm.submit();
-      }
-    </script>
-  
-  <script>
-      $(document).ready(function(){
-        
-        $("#genelAyarlarBtn").click(function() {
-          $("#genelAyarlarBtn").addClass("activex");
-          $("#genelAyarlar").css("display", "block");
-          $("#ozelKomutlarBtn").removeClass("activex");
-          $("#ozelKomutlar").css("display", "none");
-          $("#modAyarlarBtn").removeClass("activex");
-          $("#modAyarlar").css("display", "none");
-        });
-        
-        $("#ozelKomutlarBtn").click(function() {
-          $("#genelAyarlarBtn").removeClass("activex");
-          $("#genelAyarlar").css("display", "none");
-          $("#ozelKomutlarBtn").addClass("activex");
-          $("#ozelKomutlar").css("display", "block");
-          $("#modAyarlarBtn").removeClass("activex");
-          $("#modAyarlar").css("display", "none");
-        });
-        
-        $("#modAyarlarBtn").click(function() {
-          $("#genelAyarlarBtn").removeClass("activex");
-          $("#genelAyarlar").css("display", "none");
-          $("#ozelKomutlarBtn").removeClass("activex");
-          $("#ozelKomutlar").css("display", "none");
-          $("#modAyarlarBtn").addClass("activex");
-          $("#modAyarlar").css("display", "block");
-        });
-        
-      });
-  </script>
-  
-<%- include('footer.ejs', {bot, user, path}) %>
+  </div></div>
+
+<script>
+	var ts = parseInt($('#guildCreate').text());
+	$('#guildCreate').html(`<strong>Created:</strong>: ${moment(ts).format('MMMM Do YYYY (h:mm a)')}`);  
+</script>
+<% include footer.ejs %>
