@@ -91,7 +91,7 @@
 						if(bot.guilds.has(p)) return bot.guilds.get(p).name;
 						if(bot.users.has(p)) return p.username;
 						return p.toProperCase().replace("Admin", "Yönetici Paneli").replace("Commands", "Komutlar").replace("Stats", "İstatistikler").replace("Members", "Üyeler").replace("Manage", "Yönet").replace("Dashboard", "Panel").replace("Istatistikler", "İstatistikler").replace('User', 'Kullanıcı Ayarları')
-            .replace("ayarlar", "Genel Ayarlar")
+            .replace("yonet", "Genel Ayarlar")
             .replace("giriscikis", "Giriş Çıkış")
             .replace("Ayar=kayitlar", "Kayıtlar")
             .replace("otorol", "Otomatik Rol")
@@ -103,49 +103,23 @@
 						.replace("davetsistemi", "Davet Sistemi")
 						.replace("resimligiriscikis", "Resimli Giriş Çıkış Sistemi")
 					});
+        
 					let builtPath = "";
+        
 					for(let i = 0; i < pathArray.length; i++) {
 						builtPath += "/"+path.split("/").slice(1)[i]; %>
 						<li class="breadcrumb-item<% if((i+1) === pathArray.length) {%> active" style="color:darkcyan;"><%= pathArray[i] %><% } else { %>">
-							<a href="<%= builtPath %>" style="color:#087059"><%= pathArray[i] %></a>
-						<% } %></li>
+        		<a href="<%= builtPath %>" style="color:#087059"><%=  pathArray[i]  %></a> 
+						<% } %> </li>
 					<% } %>
+        
       </ol>
     </div>
   </div>
       
 
   <!-- HEADER -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-<!-- Sidebar -->
-<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
-  <button onclick="w3_close()" class="w3-bar-item w3-large">Kapat &times;</button>
-  <a href="/panel/<%=guild.id%>/yonet" class="w3-bar-item w3-button">Genel Ayarlar</a>
-  <a href="/panel/<%=guild.id%>/ozelkomutlar" class="w3-bar-item w3-button">Özel Komut Sistemi</a>
-
-</div>
-
-<!-- Page Content -->
-<div class="w3-teal">
-  <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">Diğer ayarlar ☰</button>
-  <div class="w3-container">
-   
-  </div>
-</div>
-
-<script>
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-</script>
-     
+ 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
