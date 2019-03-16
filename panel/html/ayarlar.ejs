@@ -170,29 +170,38 @@
      <div class="col">
             <div class="container">
           
-<div class="card-columns" style="padding: 40px; border-radius: 40px;">
-              
-<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Giriş Çıkış</a></center></h3>
-					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis">
-						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="color:#fff"><center>Sunucuya birisi katıldığında ve sunucudan birisi ayrıldığında atılacak mesajlar.<br>Kanal ve mesajlar ayarlanabilir.</center></p>
+<div class="card-columns" style="padding: 20px; border-radius: 40px;">
+
+  <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ozelkomutlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Özel Komutlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ozelkomutlar">
+						<p class="card-text" href="/panel/<%=guild.id%>/ozelkomutlar" style="color:#fff"><center>Sunucunuza özel istediğiniz kadar komut ekleyebileceğiniz bir sistem.</center></p>
 					</div>
 				</div>
-  
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Kayıtlar</a></center></h3>
-					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar">
-						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="color:#fff"><center>Moderasyon kayıtları ve sunucu kayıtları kanalları ayarlanabilir.</center></p>
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/genel" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Genel Ayarlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/genel">
+						<p class="card-text" href="/panel/<%=guild.id%>/genel" style="color:#fff"><center>Botun sunucudaki ön-eki/prefixi ayarlanabilir. <br>Susturma rolü ayarlanabilir.</center></p>
 					</div>
 				</div>
-      
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/giriscikis" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Giriş Çıkış</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/giriscikis">
+						<p class="card-text" href="/panel/<%=guild.id%>/giriscikis" style="color:#fff"><center>Sunucuya birisi katıldığında ve sunucudan birisi ayrıldığında atılacak mesajlar.<br>Kanal ve mesajlar ayarlanabilir.</center></p>
+					</div>
+				</div>
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/kayitlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Kayıtlar</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/kayitlar">
+						<p class="card-text" href="/panel/<%=guild.id%>/kayitlar" style="color:#fff"><center>Moderasyon kayıtları ve sunucu kayıtları kanalları ayarlanabilir.</center></p>
+					</div>
+				</div>
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
 					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/otorol" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Otomatik Rol</a></center></h3>
 					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/otorol">
 						<p class="card-text" href="/panel/<%=guild.id%>/otorol" style="color:#fff"><center>Sunucuya birisi katılınca katılan kişiye verilecek rol.<br>Rol ve otomatik rol kayıtları kanalı ayarlanabilir.</center></p>
 					</div>
 				</div>
-          
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
 					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ototag" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Tag</a></center></h3>
 					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ototag">
@@ -225,11 +234,7 @@
 				</div>
 
 </div>
-         
   
-    
-    
-    
         
         
       </form>
@@ -238,72 +243,6 @@
 </div> 
       
   
-  <script>
-    function myFunctionTwo () {
-      $("#yeniKomutX").css("display", "block");
-      $("#yeniAciklamaX").css("display", "block");
-      $("#yeniTipX").css("display", "block");
-    };
-    
-    function myFunctionXyz () {
-      if (document.getElementById("tip").value === "embed") {
-        $("#tip").css("width", "49%");
-        $("#renk").css("display", "block");
-      } else {
-        $("#tip").css("width", "100%");
-        $("#renk").css("display", "none");
-      }
-    };
-    
-    function myFunctionAbc () {
-      if (document.getElementById("ytip").value === "embed") {
-        $("#ytip").css("width", "49%");
-        $("#yrenk").css("display", "block");
-      } else {
-        $("#ytip").css("width", "100%");
-        $("#yrenk").css("display", "none");
-      }
-    };
-  </script>
-  
-  <script>
-      function formAutoSubmit () {
-       var frm = document.getElementById("forum")
-        frm.submit();
-      }
-    </script>
-  
-  <script>
-      $(document).ready(function(){
-        
-        $("#genelAyarlarBtn").click(function() {
-          $("#genelAyarlarBtn").addClass("activex");
-          $("#genelAyarlar").css("display", "block");
-          $("#ozelKomutlarBtn").removeClass("activex");
-          $("#ozelKomutlar").css("display", "none");
-          $("#modAyarlarBtn").removeClass("activex");
-          $("#modAyarlar").css("display", "none");
-        });
-        
-        $("#ozelKomutlarBtn").click(function() {
-          $("#genelAyarlarBtn").removeClass("activex");
-          $("#genelAyarlar").css("display", "none");
-          $("#ozelKomutlarBtn").addClass("activex");
-          $("#ozelKomutlar").css("display", "block");
-          $("#modAyarlarBtn").removeClass("activex");
-          $("#modAyarlar").css("display", "none");
-        });
-        
-        $("#modAyarlarBtn").click(function() {
-          $("#genelAyarlarBtn").removeClass("activex");
-          $("#genelAyarlar").css("display", "none");
-          $("#ozelKomutlarBtn").removeClass("activex");
-          $("#ozelKomutlar").css("display", "none");
-          $("#modAyarlarBtn").addClass("activex");
-          $("#modAyarlar").css("display", "block");
-        });
-        
-      });
-  </script>
+ 
   
 <%- include('footer.ejs', {bot, user, path}) %>
