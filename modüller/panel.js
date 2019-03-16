@@ -22,7 +22,7 @@ module.exports = (client) => {
   const bilgiler = {
     oauthSecret: "lQRQ4QWq0VXuzlFyaTSidt5qr1xc2H8X",
     callbackURL: "https://seed-satin.glitch.me/callback",
-    domain: "https://seed-satin.glitch.me/"
+    domain: "https://panel.ryker.cf/"
   };
   
   console.log('BAŞARILI')
