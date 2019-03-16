@@ -88,9 +88,9 @@
       %>
       <% let link = `/sunucular/${sunucu.id}` %>
       <% if (sunucu.icon) { %>
-      <a href="<%link%>"><img title="<%=sunucu.name%>" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${sunucu.id}/${sunucu.icon}.png?size=128` %>" style="width: 80px;" alt=""></a>
+      <a href=""><img title="<%=sunucu.name%>" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${sunucu.id}/${sunucu.icon}.png?size=128` %>" style="width: 80px;" alt=""></a>
 		  <% } else { %>
-      <a href="<%=bot.avatarURL%>"><canvas title="<%=sunucu.name%>" style="background-color:#7289da" class="rounded-circle" id="<%= sunucu.name.split(' ').join('').replace(`'`, ``) %>" width="80px" height="80px"></canvas></a>
+      <a href=""><canvas title="<%=sunucu.name%>" style="background-color:#7289da" class="rounded-circle" id="<%= sunucu.name.split(' ').join('').replace(`'`, ``) %>" width="80px" height="80px"></canvas></a>
 		  <script>
         function draw() {
         const ctx = document.getElementById("<%= sunucu.name.split(' ').join('').replace(`'`, ``) %>").getContext('2d');
