@@ -23,13 +23,13 @@
           <label for="prefix">Ön-Ek/Prefix</label>
         </div>
         <div class="col-75">
-          <% if (client.ayar.has(`prefix_${sunucu.id}`) === false) { %>
+          <% if (bot.ayar.has(`prefix_${sunucu.id}`) === false) { %>
           <input type="text" style="text-align: left; width:87%;" name="prefix" id="prefix" maxlength="15" placeholder="<%=bot.ayarlar.prefix%>">
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <a href="/panel/<%=sunucu.id%>/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
-					<% if(client.ayar.has(`prefix_${sunucu.id}`) === true) { %>
-					<input type="text" style="text-align: left; width:87%;" name="prefix" id="prefix" value="<%= client.ayar.veri(`prefix_${sunucu.id}`) %>" maxlength="15" placeholder="<%=bot.ayarlar.prefix%>">
-          <a href="/tr/panel/<%=sunucu.id%>/yonet/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
+					<% if(bot.ayar.has(`prefix_${sunucu.id}`) === true) { %>
+					<input type="text" style="text-align: left; width:87%;" name="prefix" id="prefix" value="<%= bot.ayar.fetch(`prefix_${sunucu.id}`) %>" maxlength="15" placeholder="<%=bot.ayarlar.prefix%>">
+          <a href="/panel/<%=sunucu.id%>/prefix/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
         </div>
       </div>

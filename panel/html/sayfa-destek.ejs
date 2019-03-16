@@ -1,0 +1,76 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<%- include('başlık.ejs', {bot, user, path}) %>
+<div class="container">
+
+	<div class="row justify-content-md-center">
+	<div align="center"><h2 style="color: #fff;"><i class="fa fa-wrench fa-fw" aria-hidden="true"></i> Gelişmiş Destek Sistemi</h2></div>
+  </div>
+	
+  <!--<center><h7 style="color:red">Bakımda...</h7></center>-->
+  
+	<div class="row">
+    
+<div class="col">
+    <div class="container">
+      <form method="post">
+        <ul class="list-group list-group-flush">
+          
+      <div class="row">
+            <div class="col-25">
+              <label for="destekK">Destek Kanalı</label>
+            </div>
+            <div class="col-75">
+              <select id="destekK" name="destekK"> 
+           <%if(bot.ayar.has(`destekK_${guild.id}`) === false) {%>
+                 <option value="" disabled selected>Kanal seçiniz.</option>
+                <%
+                for (var i = 0; i < guild.channels.filter(c => c.type==='text').size; i++){%>
+              
+                <option value="<%=guild.channels.filter(c => c.type==='text').array()[i].name%>">#<%=guild.channels.filter(c => c.type==='text').array()[i].name%></option>
+              <%  } %>
+           <%} else {%>
+               <option value="<%=guild.channels.get(bot.ayar.fetch(`destekK_${guild.id}`)).name%>" selected>#<%=guild.channels.get(bot.ayar.fetch(`destekK_${guild.id}`)).name%></option>
+                <%for (var i = 0; i < guild.channels.filter(c=>c.id!==bot.ayar.fetch(`destekK_${guild.id}`)).filter(c => c.type==='text').size; i++){%>
+               
+                <option value="<%=guild.channels.filter(c=>c.id!==bot.ayar.fetch(`destekK_${guild.id}`)).filter(c => c.type==='text').array()[i].name%>">#<%=guild.channels.filter(c=>c.id!==bot.ayar.fetch(`destekK_${guild.id}`)).filter(c => c.type==='text').array()[i].name%></option>
+              <%  } %>
+                <%}%>
+              </select>
+            </div>
+          </div>
+
+    <div class="row">
+        <div class="col-25">
+          <label for="destekR">Otomatik Rol</label>
+        </div>
+        <div class="col-75">
+          <% if (bot.ayar.has(`otoR_${guild.id}`) === false) { %>
+          <select style="text-align: left; width:87%;" name="destekR" id="otorol">
+            <option disabled selected>Lütfen bir rol seçiniz.</option>
+            <% guild.roles.filter(r => r.name !== "@everyone").forEach(r => { %>
+            <option value="<%=r.id%>" style="color:<%=r.hexColor%>"><%=r.name%></option>
+            <% }); %>
+          </select>
+          <a href="/panel/<%=guild.id%>/otorol/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.ayar.has(`otoR_${guild.id}`) === true) { %>
+          <select style="color:<%=guild.roles.get(bot.ayar.fetch(`otoR_${guild.id}`)).hexColor%>; text-align: left; width:87%;" name="otorol" id="otorol">
+             <option disabled selected>Lütfen bir rol seçiniz.</option>
+            <option value="<%=bot.ayar.fetch(`otoR_${guild.id}`)%>" style="color:<%=guild.roles.get(bot.ayar.fetch(`otoR_${guild.id}`)).hexColor%>" selected><%=guild.roles.get(bot.ayar.fetch(`otoR_${guild.id}`)).name%></option>
+					 <% guild.roles.filter(r => r.name !== "@everyone").filter(r => r.id !== bot.ayar.fetch(`otoR_${guild.id}`)).forEach(r => { %>
+            <option value="<%=r.id%>" style="color:<%=r.hexColor%>"><%=r.name%></option>
+          <% }); %>
+          </select>
+          <a href="/panel/<%=guild.id%>/otorol/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+        </div>
+      </div>
+
+
+
+<script>
+	var ts = parseInt($('#guildCreate').text());
+	$('#guildCreate').html(`<strong>Created:</strong>: ${moment(ts).format('MMMM Do YYYY (h:mm a)')}`);  
+</script>
+<% include footer.ejs %>

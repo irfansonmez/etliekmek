@@ -111,33 +111,27 @@ db.set(`tagB_${id}`, newSettings['otoTag'])
 if (newSettings['otoTagK']) {
 db.set(`tagKanal_${id}`, newSettings['otoTagK'])
 }
+ if (newSettings['prefix']) {
+db.set(`prefix_${id}`, newSettings['prefix'])
+}
+if (newSettings['sRol']) {
+db.set(`sRol_${id}`, newSettings['sRol'])
+}
+if (newSettings['girisCikis']) {
+db.set(`gc_${id}`, newSettings['girisCikis'])   
+}
+if (newSettings['girisMesaj']) {
+db.set(`girisM_${id}`, newSettings['girisMesaj'])
+}
+if (newSettings['cikisMesaj']) {
+db.set(`cikisM_${id}`, newSettings['cikisMesaj'])
+}
   
      } catch (err) {
       //console.error(err)
     };
         }; 
 
-client.panel.ayarlarKaydet = (sunucuID, sunucu, yeniAyar, req, res) => {
-
-try {
-
-if (yeniAyar['prefix']) {
-db.set(`prefix_${sunucu.id}`, yeniAyar['prefix'])
-}
-
-if (yeniAyar['girisCikis']) {
-db.set(`gc_${sunucu.id}`, yeniAyar['girisCikis'])   
-}
-if (yeniAyar['girisMesaj']) {
-db.set(`girisM_${sunucu.id}`, yeniAyar['girisMesaj'])
-}
-
-
-} catch(err) {
-//console.log(err)
-}
-
-};
 
 String.prototype.toProperCase = function() {
 return this.charAt(0).toUpperCase() + this.slice(1); 
