@@ -79,26 +79,19 @@
       
 
       <style>
-        
 .button {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%);
-width: 200px;
-height: 60px;
-text-align: center;
-line-height:  60px;
-color: #fff;
-font-size: 24px;
-text-transform: uppercase;
-text-decoration: none;
-font-family:  sans-serif;
-box-sizing: border-box;
-background: linear-gradient(90deg, #03a9f4, #f441a5, #ff3b3b, #03a9f4);
-background-size: 400%;
-border-radius: 30px;
-z-index: 1;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
 }
 
 .button1 {
@@ -157,17 +150,13 @@ z-index: 1;
     background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
     box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
 }
-        }
         
-        
+
 
 </style>
   <!-- HEADER -->
   
-            
       
-      
-
 
 
       <% const guild = sunucu %>
@@ -178,18 +167,84 @@ z-index: 1;
 		<%- //include('../blocks/guild-card.ejs', {active: "manage", guild}) %>
     </div>-->
     
+     <div class="col">
+            <div class="container">
+          
+ 
 
-<div class="card-columns" style="padding: 20px; border-radius: 40px;">
+<body>
+    <a href="#">1. BUTTON</a>
+</body>
+              <div align="center"> 
+                <br><br>  
+                <h5>ÖZEL KOMUTLAR</h5>
+                  <h>
+                   Sunucunuza Komut Eklemenize ve Silmenize Yarar.
+                </h><br>
+                  <a href="/panel/<%=guild.id%>/ozelkomutlar"><button class="btn-hover color-6">Özel Komutlar</button></a>
+              </div>
+         
+                 <div align="center"> 
+                <br>   
+                   <h5>OTOMATİK TAG</h5>
+                  <h>
+                   Sunucunuza Otomatik Tag ve Tag Kayıt Kanalı Eklemeye Yarar.
+                </h><br>
+                  <a href="/panel/<%=guild.id%>/ototag"><button class="btn-hover color-6">Otomatik Tag</button></a>
+              </div>
+              
+                     <div align="center"> 
+                <br> 
+                       <h5>OTOMATİK ROL</h5>
+                  <h>
+                   Sunucunuza Otomatik Rol ve Otomatik Rol Kayıt Kanalı Eklemeye Yarar.
+                </h><br>
+                  <a href="/panel/<%=guild.id%>/otorol"><button class="btn-hover color-6">Otomatik Rol</button></a>
+              </div>
+              
+                              <div align="center"> 
+                <br> 
+                       <h5>GENEL AYARLAR</h5>
+                  <h>
+                   Prefix, Mod log Kanalını Ayarlamaya Yarar  
+                </h><br>
+                  <a href="/panel/<%=guild.id%>/genelA"><button class="btn-hover color-6">Genel Ayarlar</button></a>
+              </div>
+              
+                 <div align="center"> 
+                <br> 
+                       <h5>GENEL AYARLAR</h5>
+                  <h>
+                   Prefix, Mod log Kanalını Ayarlamaya Yarar  
+                </h><br>
+                  <a href="/panel/<%=guild.id%>/genelA"><button class="btn-hover color-6">Genel Ayarlar</button></a>
+              </div>
+      
+                           <div align="center"> 
+                <br> 
+                       <h5>GİRİŞ ÇIKIŞ</h5>
+                  <h>
+                   Prefix, Mod log Kanalını Ayarlamaya Yarar  
+                </h><br>
+                  <a href="/panel/<%=guild.id%>/genelA"><button class="btn-hover color-6">Genel Ayarlar</button></a>
+              </div>
+      
+                    
+              
+            
+              
+
+
 
 <div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
-					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/giriscikis" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Giriş Çıkış</a></center></h3>
-					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/giriscikis">
-						<p class="card-text" href="/panel/<%=guild.id%>/giriscikis" style="color:#fff"><center>Sunucuya birisi katıldığında ve sunucudan birisi ayrıldığında atılacak mesajlar.<br>Kanal ve mesajlar ayarlanabilir.</center></p>
+					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Giriş Çıkış</a></center></h3>
+					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis">
+						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=giriscikis" style="color:#fff"><center>Sunucuya birisi katıldığında ve sunucudan birisi ayrıldığında atılacak mesajlar.<br>Kanal ve mesajlar ayarlanabilir.</center></p>
 					</div>
 				</div>
     
   
-<div class="card" style="background-color:#; margin: 3px; border-radius: 30px; ">
+<div class="card" style="background-color:#; margin: 3px; border-radius: 30px;">
 					<h3 class="card-header" style="color: #383838;"><center><a href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="font-size: 25px; text-decoration: none; color:#78C2AD;">Kayıtlar</a></center></h3>
 					<div style="color:white" class="card-block" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar">
 						<p class="card-text" href="/panel/<%=guild.id%>/ayarlar/ayar=kayitlar" style="color:#fff"><center>Moderasyon kayıtları ve sunucu kayıtları kanalları ayarlanabilir.</center></p>
@@ -235,7 +290,7 @@ z-index: 1;
 				</div>
 
 </div>
-
+         
   
     
     
