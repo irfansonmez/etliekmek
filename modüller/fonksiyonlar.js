@@ -141,6 +141,9 @@ db.set(`sKanal_${id}`, newSettings['sayacKanal']);
 if (newSettings['sayac']) {
 db.set(`sayac_${id}`, newSettings['sayac']);
 }
+if (newSettings['dkanal']) {
+db.set(`dKanal_${id}`, newSettings['dkanal']);
+}
   
      } catch (err) {
       //console.error(err)

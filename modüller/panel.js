@@ -461,11 +461,46 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
 });
 
   
+  //DAVET SİSTEMİ
+  
+  
+        app.post("/panel/:guildID/davetsistemi", girisGerekli, async(req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+      const sunucu = client.guilds.get(req.params.sunucuID);
+   if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+   
+    client.writeSettings(guild.id, req.body);
+       
+ 
+    res.redirect("/panel/"+req.params.guildID+"/davetsistemi");
+  });
+  
+  
+  
+      app.get("/panel/:guildID/davetsistemi", girisGerekli, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    const sunucu = client.guilds.get(req.params.guildID);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+    yukle(res, req, "sayfa-davet.ejs", {guild, sunucu});
+  });
+  
+  
+  
+  app.get("/panel/:sunucuID/dkanal/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`dKanal_${req.params.sunucuID}`) === false) return res.json({"hata": "Davet kanalı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`dKanal_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/davetsistemi`);
+  });
+  
   //GİRİŞ ÇIKIŞ
   
   
   
-  
+
   
         app.post("/panel/:guildID/giriscikis", girisGerekli, async(req, res) => {
     const guild = client.guilds.get(req.params.guildID);
@@ -516,7 +551,7 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
   
   
   
-  // LOG
+
   
   
   
@@ -594,12 +629,12 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
   
   
   
-  app.get("/panel/:sunucuID/sayac/sifirla", girisGerekli, (req, res) => {
-    if (client.ayar.has(`Skanal_${req.params.sunucuID}`) === false) return res.json({"hata": "Çıkış mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+  app.get("/panel/:sunucuID/skanal/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`sKanal_${req.params.sunucuID}`) === false) return res.json({"hata": "Çıkış mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
     client.ayar.delete(`sKanal_${req.params.sunucuID}`)
     res.redirect(`/panel/${req.params.sunucuID}/sayac`);
   });
-    app.get("/panel/:sunucuID/sayack/sifirla", girisGerekli, (req, res) => {
+    app.get("/panel/:sunucuID/sayac/sifirla", girisGerekli, (req, res) => {
     if (client.ayar.has(`sayac_${req.params.sunucuID}`) === false) return res.json({"hata": "Giriş çıkış kanalı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
     client.ayar.delete(`sayac_${req.params.sunucuID}`)
     res.redirect(`/panel/${req.params.sunucuID}/sayac`);
