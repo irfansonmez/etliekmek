@@ -120,12 +120,14 @@ db.set(`sRol_${id}`, newSettings['sRol'])
 if (newSettings['girisCikis']) {
 db.set(`gc_${id}`, newSettings['girisCikis'])   
 }
-if (newSettings['girisMesaj']) {
-db.set(`girisM_${id}`, newSettings['girisMesaj'])
+if (newSettings['girisM']) {
+db.set(`girisM_${id}`, newSettings['girisM']);
 }
-if (newSettings['cikisMesaj']) {
-db.set(`cikisM_${id}`, newSettings['cikisMesaj'])
-  
+if (newSettings['cikisM']) {
+db.set(`cikisM_${id}`, newSettings['cikisM']);
+}
+if (newSettings['gc']) {
+db.set(`gc_${id}`, newSettings['gc']);
 }
 if (newSettings['destekK']) {
 db.set(`destekK_${id}`, newSettings['destekK']);

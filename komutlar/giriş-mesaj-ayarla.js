@@ -13,9 +13,10 @@ exports.run = async (client, message, args) => {
   
   let gM = args.slice(0).join(' ');
   
-    if (!gM) {
-        return message.reply(`Doğru kullanım: ${prefix}giriş-mesaj-ayarla <mesaj> \n**NOT:** Mesajda kişinin geleceği yere **{kullanıcı}** yazınız aksi taktirde kişiyi göstermez.`)
+  if (!gM) {
+        return message.reply("Giriş mesajı ayarlamak istediğiniz mesajı yazmalısınız! \n**NOT:** Mesajda kişinin geleceği yere **{kullanıcı}**, sunucu isminin geleceği yere **{sunucu}** veya sunucudaki kişi sayısının geleceği yere **{kişisayısı}** yazınız.")
     }
+  
 
     /*if(!gMesaj[message.guild.id]){
         gMesaj[message.guild.id] = {

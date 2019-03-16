@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
   let cM = args.slice(0).join(' ');
   
     if (!cM) {
-        return message.reply("Çıkış mesajı ayarlamak istediğiniz mesajı yazmalısınız!")
+        return message.reply("Çıkış mesajı ayarlamak istediğiniz mesajı yazmalısınız! \n**NOT:** Mesajda kişinin geleceği yere **{kullanıcı}**, sunucu isminin geleceği yere **{sunucu}** veya sunucudaki kişi sayısının geleceği yere **{kişisayısı}** yazınız.")
     }
   
     db.set(`cikisM_${message.guild.id}`, cM)
