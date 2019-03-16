@@ -51,8 +51,9 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
 	}
 	const dil = client[dill]
   
-  
-  
+  if (db.has(`yasak_${message.guild.id}_${cmd.help.name}`)){
+      return message.channel.send(client.emojis.get(client.emojiler.hayır) + ' Bu komut sunucuda **yasaklanmıştır!**')
+  }
   db.add(`sunucuxp_${message.guild.id}`, 1)
   
   var y = db.fetch(`sunucuxp_${message.guild.id}`);
