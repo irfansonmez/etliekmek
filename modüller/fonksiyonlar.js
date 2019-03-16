@@ -135,6 +135,12 @@ db.set(`destekK_${id}`, newSettings['destekK']);
 if (newSettings['destekR']) {
 db.set(`destekR_${id}`, newSettings['destekR']);
 }
+if (newSettings['sayacKanal']) {
+db.set(`sKanal_${id}`, newSettings['sayacKanal']);
+}
+if (newSettings['sayac']) {
+db.set(`sayac_${id}`, newSettings['sayac']);
+}
   
      } catch (err) {
       //console.error(err)
