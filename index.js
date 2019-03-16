@@ -451,30 +451,32 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', member => {
-  
-  
- 
+  try{
+  if (db.has(`dKanal_${member.guild.id}`) === true) {
   member.guild.fetchInvites().then(guildInvites => {
-    
-    if (db.has(`dKanal_${member.guild.id}`) === false) return
-    const channel =  db.fetch(`dKanal_${member.guild.id}`)
-    
+   if (member.user.bot) return
     const ei = invites[member.guild.id];
-  
-    invites[member.guild.id] = guildInvites;
- 
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-
-    const davetçi = client.users.get(invite.inviter.id);
- 
     
-   const embed = new Discord.RichEmbed()
-   .setColor('GREEN')
-   .setDescription(`**${member.user.tag}** Sunucuya Katıldı, Katıldığı davet linki: **${invite.code}** \n Davet eden kullanıcı: **${davetçi.tag}** \n **${davetçi.tag}** Adlı kullanıcının oluşturduğu **${invite.code}** Adlı davet linkinden gelen kullanıcı sayısı: **${invite.uses}**`)
-   member.guild.channels.get(channel).send(embed)
-  })
-});
+    invites[member.guild.id] = guildInvites;
+   
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    
+    const inviter = client.users.get(invite.inviter.id);
+   
+    const kanal = member.guild.channels.get(db.fetch(`dKanal_${member.guild.id}`));
+ 
+    kanal.send(`\`${member.user.tag}\` adlı kullanıcı \`${inviter.tag}\` adlı kullanıcının ${invite.code} linkine sahip daveti ile sunucuya katıldı!`);
+  
 
+   
+  });
+  } else {
+    return
+  }
+  } catch(err) {
+    return
+  }
+});
 
 
 
@@ -831,14 +833,14 @@ client.on("message", async msg => {
 client.on("guildMemberAdd", async member => {
     if (db.has(`sayac_${member.guild.id}`) === false) return
     if (db.has(`sKanal_${member.guild.id}`) === false) return
-    const channel = db.fetch(`sKanal_${member.guild.id}`).replace("<#", "").replace(">", "")
+    const channel = db.fetch(`sKanal_${member.guild.id}`)
     member.guild.channels.get(channel).send(`**${member.user.tag}** Sunucuya katıldı! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.members.size}\` üye kaldı!`)
 })
 
 client.on("guildMemberRemove", async member => {
     if (db.has(`sayac_${member.guild.id}`) === false) return
     if (db.has(`sKanal_${member.guild.id}`) === false) return
-    const channel = db.fetch(`sKanal_${member.guild.id}`).replace("<#", "").replace(">", "")
+    const channel = db.fetch(`sKanal_${member.guild.id}`)
     member.guild.channels.get(channel).send(`**${member.user.tag}** Sunucudan ayrıldı! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.members.size}\` üye kaldı!`)
 })
 

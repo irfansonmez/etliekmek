@@ -125,6 +125,13 @@ db.set(`girisM_${id}`, newSettings['girisMesaj'])
 }
 if (newSettings['cikisMesaj']) {
 db.set(`cikisM_${id}`, newSettings['cikisMesaj'])
+  
+}
+if (newSettings['destekK']) {
+db.set(`destekK_${id}`, newSettings['destekK']);
+}
+if (newSettings['destekR']) {
+db.set(`destekR_${id}`, newSettings['destekR']);
 }
   
      } catch (err) {

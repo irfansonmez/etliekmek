@@ -480,7 +480,47 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
   
   
   // DESTEK SİTEM
-
+  
+      app.post("/panel/:guildID/desteksistemi", girisGerekli, async(req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+      const sunucu = client.guilds.get(req.params.sunucuID);
+   if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+   
+    client.writeSettings(guild.id, req.body);
+       
+ 
+    res.redirect("/panel/"+req.params.guildID+"/desteksistemi");
+  });
+  
+  
+  
+      app.get("/panel/:guildID/desteksistemi", girisGerekli, (req, res) => {
+    const guild = client.guilds.get(req.params.guildID);
+    const sunucu = client.guilds.get(req.params.guildID);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+    const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+    yukle(res, req, "sayfa-destek.ejs", {guild, sunucu});
+  });
+  
+  
+  
+  app.get("/panel/:sunucuID/destekk/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`destekK_${req.params.sunucuID}`) === false) return res.json({"hata": "Destek kanalı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`destekK_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/desteksistemi`);
+  });
+  
+   app.get("/panel/:sunucuID/destekr/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`destekR_${req.params.sunucuID}`) === false) return res.json({"hata": "Destek Rolü "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`destekR_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/desteksistemi`);
+  });
+  
+  
+  
 
 
 
