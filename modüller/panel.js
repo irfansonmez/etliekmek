@@ -493,21 +493,21 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
   
   
   
-  app.get("/panel/:sunucuID/çıkışm/sifirla", girisGerekli, (req, res) => {
-    if (client.ayar.has(`tagB_${req.params.sunucuID}`) === false) return res.json({"hata": "Çıkış mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
-    client.ayar.delete(`tagB_${req.params.sunucuID}`)
-    res.redirect(`/panel/${req.params.sunucuID}/ototag`);
+  app.get("/panel/:sunucuID/cikism/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`cikisM_${req.params.sunucuID}`) === false) return res.json({"hata": "Çıkış mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`cikisM_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/giriscikis`);
   });
-    app.get("/panel/:sunucuID/girişk/sifirla", girisGerekli, (req, res) => {
-    if (client.ayar.has(`tagB_${req.params.sunucuID}`) === false) return res.json({"hata": "Giriş çıkış kanalı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
-    client.ayar.delete(`tagB_${req.params.sunucuID}`)
-    res.redirect(`/panel/${req.params.sunucuID}/ototag`);
+    app.get("/panel/:sunucuID/girisk/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`gc_${req.params.sunucuID}`) === false) return res.json({"hata": "Giriş çıkış kanalı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`gc_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/giriscikis`);
   });
   
-   app.get("/panel/:sunucuID/girişm/sifirla", girisGerekli, (req, res) => {
-    if (client.ayar.has(`tagKanal_${req.params.sunucuID}`) === false) return res.json({"hata": "Giriş mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
-    client.ayar.delete(`tagKanal_${req.params.sunucuID}`)
-    res.redirect(`/panel/${req.params.sunucuID}/ototag`);
+   app.get("/panel/:sunucuID/girism/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`girisM_${req.params.sunucuID}`) === false) return res.json({"hata": "Giriş mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`girisM_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/giriscikis`);
   });
   
   

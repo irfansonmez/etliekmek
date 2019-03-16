@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
   
   const db = require('quick.db');
   
-let prefix = await db.fetch(`prefix_
+ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   let channel = message.mentions.channels.first()
   
     if (!channel) {
@@ -15,7 +15,7 @@ let prefix = await db.fetch(`prefix_
     }
 
   
-  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+ 
       if(args[0] === 'kapat') {
    if (db.has(`girisM_${message.guild.id}`) === true) {
      message.channel.send(`Giriş çıkış kanalı başarıyla kaldırıldı`)

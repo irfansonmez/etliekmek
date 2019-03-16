@@ -35,7 +35,7 @@
             <option value="<%=c.id%>">#<%=c.name%></option>
             <% }); %>
           </select>
-          <a href="/panel/<%=guild.id%>/girişk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <a href="/panel/<%=guild.id%>/girisk/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
 					<% if(bot.ayar.has(`gc_${guild.id}`) === true) { %>
           <select style="text-align: left; width:87%;" name="gc" id="gc">
@@ -44,7 +44,7 @@
             <option value="<%=c.id%>">#<%=c.name%></option>
           <% }); %>
           </select>
-          <a href="/panel/<%=guild.id%>/girişk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <a href="/panel/<%=guild.id%>/girisk/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
         </div>
       </div>
@@ -56,11 +56,11 @@
       <div class="col-75">
         <% if (bot.ayar.has(`cikisM_${guild.id}`) === false) { %>
         <input type="text" style="text-align: left; width:87%;" name="cikisM" id="cikisM" maxlength="1950" placeholder="Otomatik verilecek tagı yazınız.">
-          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <a href="/panel/<%=guild.id%>/cikism/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
 					<% if(bot.ayar.has(`cikisM_${guild.id}`) === true) { %>
         <input type="text" style="text-align: left; width:87%;" name="cikisM" id="cikisM" maxlength="1950" value="<%=bot.ayar.fetch(`cikisM_${guild.id}`)%>">
-          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <a href="/panel/<%=guild.id%>/cikism/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
       </div>
     </div>
@@ -72,11 +72,11 @@
       <div class="col-75">
         <% if (bot.ayar.has(`girisM_${guild.id}`) === false) { %>
         <input type="text" style="text-align: left; width:87%;" name="girisM" id="girisM" maxlength="1950" placeholder="Otomatik verilecek tagı yazınız.">
-          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <a href="/panel/<%=guild.id%>/girism/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
 					<% if(bot.ayar.has(`girisM_${guild.id}`) === true) { %>
         <input type="text" style="text-align: left; width:87%;" name="girisM" id="girisM" maxlength="1950" value="<%=bot.ayar.fetch(`girisM_${guild.id}`)%>">
-          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <a href="/panel/<%=guild.id%>/girism/sifirla" class="reset-btn" role="button">Sıfırla</a>
           <% } %>
       </div>
     </div>
