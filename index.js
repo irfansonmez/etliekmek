@@ -93,7 +93,7 @@ client.emojiler = {
 }
 
 client.ayarlar = {
-        "oynuyor": "?yardım | ?davet | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli yakında",
+        "oynuyor": "?yardım | ?davet | http://panel.ryker.cf | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
         "official_sahip": "507803933557915652",
         "sahip": ['336869318874890241',"487515609815580672"],
         "yardimcilar": [''],
@@ -104,7 +104,8 @@ client.ayarlar = {
         "dblO": "https://discordbots.org/bot/516600125649453066/vote",
         "dbl": "https://discordbots.org/bot/516600125649453066",
         "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxNjYwMDEyNTY0OTQ1MzA2NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTUxNjE4MDEwfQ.k435Nz8LEyG2uMQdtuKBOeDanzLi7u7-O5mFQnnuvRE",
-        "versiyon": "0.0.1",
+        "webpanel": "http://panel.ryker.cf",
+        "versiyon": "0.0.2",
         "prefix": "?",
         "veritabanı": "clientt.veritabanı",
         "renk":  "DARKBLUE",

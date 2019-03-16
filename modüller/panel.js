@@ -21,7 +21,7 @@ module.exports = (client) => {
   
   const bilgiler = {
     oauthSecret: "lQRQ4QWq0VXuzlFyaTSidt5qr1xc2H8X",
-    callbackURL: "https://panel.ryker.cf/callback",
+    callbackURL: "http://panel.ryker.cf/callback",
     domain: "https://panel.ryker.cf/"
   };
   
