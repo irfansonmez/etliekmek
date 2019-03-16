@@ -7,11 +7,11 @@ exports.run = async (client, message, args) => {
   
   const db = require('quick.db');
   
-
+let prefix = await db.fetch(`prefix_
   let channel = message.mentions.channels.first()
   
     if (!channel) {
-        return message.reply(`Lütfen ayarlamak istediğiniz kanalı etiketleyiniz. Örnek: **${prefix}giriş çıkış ayarla #kanal**`)
+        return message.reply(`Lütfen ayarlamak istediğiniz kanalı etiketleyiniz. Örnek: **${prefix}girişçıkışayarla #kanal**`)
     }
 
   

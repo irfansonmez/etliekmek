@@ -467,7 +467,7 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
   
   
   
-        app.post("/panel/:guildID/ototag", girisGerekli, async(req, res) => {
+        app.post("/panel/:guildID/giriscikis", girisGerekli, async(req, res) => {
     const guild = client.guilds.get(req.params.guildID);
       const sunucu = client.guilds.get(req.params.sunucuID);
    if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
@@ -477,30 +477,35 @@ res.redirect("/panel/"+req.params.guildID+"/ozelkomutlar");
     client.writeSettings(guild.id, req.body);
        
  
-    res.redirect("/panel/"+req.params.guildID+"/ototag");
+    res.redirect("/panel/"+req.params.guildID+"/giriscikis");
   });
   
   
   
-      app.get("/panel/:guildID/ototag", girisGerekli, (req, res) => {
+      app.get("/panel/:guildID/giriscikis", girisGerekli, (req, res) => {
     const guild = client.guilds.get(req.params.guildID);
     const sunucu = client.guilds.get(req.params.guildID);
 if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
   if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
-    yukle(res, req, "sayfa-ototag.ejs", {guild, sunucu});
+    yukle(res, req, "sayfa-girişçıkış.ejs", {guild, sunucu});
   });
   
   
   
-  app.get("/panel/:sunucuID/tag/sifirla", girisGerekli, (req, res) => {
-    if (client.ayar.has(`tagB_${req.params.sunucuID}`) === false) return res.json({"hata": "otomatik tag adlı ayar "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+  app.get("/panel/:sunucuID/çıkışm/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`tagB_${req.params.sunucuID}`) === false) return res.json({"hata": "Çıkış mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+    client.ayar.delete(`tagB_${req.params.sunucuID}`)
+    res.redirect(`/panel/${req.params.sunucuID}/ototag`);
+  });
+    app.get("/panel/:sunucuID/girişk/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`tagB_${req.params.sunucuID}`) === false) return res.json({"hata": "Giriş çıkış kanalı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
     client.ayar.delete(`tagB_${req.params.sunucuID}`)
     res.redirect(`/panel/${req.params.sunucuID}/ototag`);
   });
   
-   app.get("/panel/:sunucuID/girism/sifirla", girisGerekli, (req, res) => {
-    if (client.ayar.has(`tagKanal_${req.params.sunucuID}`) === false) return res.json({"hata": "Tag kayıt kanalı   "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
+   app.get("/panel/:sunucuID/girişm/sifirla", girisGerekli, (req, res) => {
+    if (client.ayar.has(`tagKanal_${req.params.sunucuID}`) === false) return res.json({"hata": "Giriş mesajı "+client.guilds.get(req.params.sunucuID).name+" adlı sunucuda ayarlı olmadığı için sıfırlanamaz."});
     client.ayar.delete(`tagKanal_${req.params.sunucuID}`)
     res.redirect(`/panel/${req.params.sunucuID}/ototag`);
   });

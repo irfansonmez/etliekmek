@@ -1,6 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<%- include('header.ejs', {bot, user, path}) %>
+<%- include('başlık.ejs', {bot, user, path}) %>
 <div class="container">
 
 	<div class="row justify-content-md-center">
@@ -22,73 +22,66 @@
     Sunucudaki kişi sayısı için: <a style="color:lightgreen">&#123;kişisayısı&#125;</a><br>terimlerini kullanınız.<br><br>(<a style="color:red">Not:</a> <a style="color:lightgreen">&#123;&#125;</a> işaretleri dahildir!)</li>
 </h6></center>
           
+        
             <div class="row">
-            <div class="col-25">
-              <label for="gc">Giriş Çıkış Kanalı</label>
-            </div>
-            <div class="col-75">
-              <select id="gc" name="gc"> 
-           <%if(bot.ayar.has(`gc_${guild.id}`) === false) {%>
-                <option value="" disabled selected>Kanal seçiniz.</option>
-                <%for (var i = 0; i < guild.channels.filter(c => c.type==='text').size; i++){%>
-               
-                <option value="<%=guild.channels.filter(c => c.type==='text').array()[i].name%>">#<%=guild.channels.filter(c => c.type==='text').array()[i].name%></option>
-              <%  } %>
-           <%} else {%>
-               <option value="<%=guild.channels.get(bot.ayar.fetch(`gc_${guild.id}`)).name%>" selected>#<%=guild.channels.get(bot.ayar.fetch(`gc_${guild.id}`)).name%></option>
-              <%for (var i = 0; i < guild.channels.filter(c=>c.id!==bot.ayar.fetch(`gc_${guild.id}`)).filter(c => c.type==='text').size; i++){%>
-               
-                <option value="<%=guild.channels.filter(c=>c.id!==bot.ayar.fetch(`gc_${guild.id}`)).filter(c => c.type==='text').array()[i].name%>">#<%=guild.channels.filter(c=>c.id!==bot.ayar.fetch(`gc_${guild.id}`)).filter(c => c.type==='text').array()[i].name%></option>
-              <%  } %>
-                <%}%>
-              </select>
-                <a href="/panel/<%=guild.id%>/girişk/sifirla" class="reset-btn" role="button">Sıfırla</a>
-            </div>
-          </div>
-          
+        <div class="col-25">
+          <label for="gc">Giriş Çıkış Kanalı</label>
+        </div>
+        <div class="col-75">
+          <% if (bot.ayar.has(`gc_${guild.id}`) === false) { %>
+          <select style="text-align: left; width:87%;" name="gc" id="gc">
+            <option disabled selected>Lütfen bir kanal seçiniz.</option>
+            <% guild.channels.filter(c => c.type === "text").forEach(c => { %>
+            <option value="<%=c.id%>">#<%=c.name%></option>
+            <% }); %>
+          </select>
+          <a href="/panel/<%=guild.id%>/girişk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.ayar.has(`gc_${guild.id}`) === true) { %>
+          <select style="text-align: left; width:87%;" name="gc" id="gc">
+            <option value="<%=bot.ayar.fetch(`gc_${guild.id}`)%>"><%=guild.channels.get(bot.ayar.fetch(`gc_${guild.id}`)).name%></option>
+					 <% guild.channels.filter(c => c.type === "text").filter(c => c.id !== bot.ayar.fetch(`gc_${guild.id}`)).forEach(c => { %>
+            <option value="<%=c.id%>">#<%=c.name%></option>
+          <% }); %>
+          </select>
+          <a href="/panel/<%=guild.id%>/girişk/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+        </div>
+      </div>
+        
           <div class="row">
-            <div class="col-25">
-              <label for="girisM">Giriş Mesajı</label>
-            </div>
-            <div class="col-75">
-              
-              <% if (bot.ayar.has(`girisM_${guild.id}`) === false) { %>
-								<input type="text" style="text-align: left; height:100px;" name="girisM" id="girisM"
-									placeholder="Bir mesaj yazınız!">
-                                     <a href="/panel/<%=guild.id%>/girişm/sifirla" class="reset-btn" role="button">Sıfırla</a>
-
-              <% } %>
-              
-							<% if(bot.ayar.has(`girisM_${guild.id}`) === true) { %>
-								<input type="text" style="text-align: left; height:100px;" name="girisM" id="girisM" value="<%= bot.ayar.fetch(`girisM_${guild.id}`) %>"
-                       placeholder="Bir mesaj yazınız!">
-              <% } %>
-            									<a href="/panel/<%=guild.id%>/girişm/sifirla" class="reset-btn" role="button">Sıfırla</a>
-
-            </div>
-</div>
-
-<div class="row">
-            <div class="col-25">
-              <label for="cikisM">Çıkış Mesajı</label>
-            </div>
-            <div class="col-75">
-              
-              <% if (bot.ayar.has(`cikisM_${guild.id}`) === false) { %>
-								<input type="text" style="text-align: left; height:100px;" name="cikisM" id="cikisM"
-									placeholder="Bir mesaj yazınız!">
-              <% } %>
-            <a href="/panel/<%=guild.id%>/cıkışm/sifirla" class="reset-btn" role="button">Sıfırla</a>
-
-              
-							<% if(bot.ayar.has(`cikisM_${guild.id}`) === true) { %>
-								<input type="text" style="text-align: left; height:100px;" name="cikisM" id="cikisM" value="<%= bot.ayar.fetch(`cikisM_${guild.id}`) %>"
-									placeholder="Bir mesaj yazınız!">
-              <% } %>
-          <a href="/panel/<%=guild.id%>/çıkışm/sifirla" class="reset-btn" role="button">Sıfırla</a>
-
-            </div>
-</div>
+      <div class="col-25">
+          <label for="cikisM">Çıkış Mesajı</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.ayar.has(`cikisM_${guild.id}`) === false) { %>
+        <input type="text" style="text-align: left; width:87%;" name="cikisM" id="cikisM" maxlength="1950" placeholder="Otomatik verilecek tagı yazınız.">
+          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.ayar.has(`cikisM_${guild.id}`) === true) { %>
+        <input type="text" style="text-align: left; width:87%;" name="cikisM" id="cikisM" maxlength="1950" value="<%=bot.ayar.fetch(`cikisM_${guild.id}`)%>">
+          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+      </div>
+    </div>
+        
+                <div class="row">
+      <div class="col-25">
+          <label for="girisM">Giriş Mesajı</label>
+      </div>
+      <div class="col-75">
+        <% if (bot.ayar.has(`girisM_${guild.id}`) === false) { %>
+        <input type="text" style="text-align: left; width:87%;" name="girisM" id="girisM" maxlength="1950" placeholder="Otomatik verilecek tagı yazınız.">
+          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+					<% if(bot.ayar.has(`girisM_${guild.id}`) === true) { %>
+        <input type="text" style="text-align: left; width:87%;" name="girisM" id="girisM" maxlength="1950" value="<%=bot.ayar.fetch(`girisM_${guild.id}`)%>">
+          <a href="/panel/<%=guild.id%>/tag/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+      </div>
+    </div>
+    
+       
           
           </ul>
           <div style="width: 100%; text-align: right; margin-top: 15px;">
