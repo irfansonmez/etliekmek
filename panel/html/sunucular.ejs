@@ -47,12 +47,11 @@
       <div class="collapse navbar-collapse" id="navbarColor02">
 
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a href="/anasayfa" class="nav-link">Ana Sayfa</a></li>
- 
+        <li class="nav-item"><a href="/anasayfa" class="nav-link">Ana Sayfa</a></li>     
         <li class="nav-item"><a href="/istatistikler" class="nav-link">İstatistikler</a></li>
-        <li class="nav-item"><a href="/botuekle" class="nav-link">Botu sunucuna ekle</a></li>
-        <li class="nav-item active"><a href="/sunucular" class="nav-link">Sunucular</a></li>
         <li class="nav-item"><a href="/kullaniciler" class="nav-link">Kullanıcılar</a></li>
+        <li class="nav-item"><a href="/sunucular" class="nav-link">Tüm Sunucular</a></li>
+        <li class="nav-item"><a href="/botuekle" class="nav-link">Botu Sunucuna Ekle</a></li>
       </ul>
 
       <ul class="navbar-nav">
@@ -89,9 +88,9 @@
       %>
       <% let link = `/sunucular/${sunucu.id}` %>
       <% if (sunucu.icon) { %>
-      <a href="<%=link%>"><img title="<%=sunucu.name%>" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${sunucu.id}/${sunucu.icon}.png?size=128` %>" style="width: 80px;" alt=""></a>
+      <a href="<%link%>"><img title="<%=sunucu.name%>" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${sunucu.id}/${sunucu.icon}.png?size=128` %>" style="width: 80px;" alt=""></a>
 		  <% } else { %>
-      <a href="<%=link%>"><canvas title="<%=sunucu.name%>" style="background-color:#7289da" class="rounded-circle" id="<%= sunucu.name.split(' ').join('').replace(`'`, ``) %>" width="80px" height="80px"></canvas></a>
+      <a href="<%=bot.avatarURL%>"><canvas title="<%=sunucu.name%>" style="background-color:#7289da" class="rounded-circle" id="<%= sunucu.name.split(' ').join('').replace(`'`, ``) %>" width="80px" height="80px"></canvas></a>
 		  <script>
         function draw() {
         const ctx = document.getElementById("<%= sunucu.name.split(' ').join('').replace(`'`, ``) %>").getContext('2d');
