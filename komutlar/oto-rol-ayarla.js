@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
 
     if(args[0] === 'kapat') {
    if (db.has(`otoR_${message.guild.id}`) === true) {
-     message.channel.send(`Mod log kanalı başarıyla kaldırıldı`)
+     message.channel.send(`Otorol başarıyla kaldırıldı`)
      db.delete(`otoR_${message.guild.id}`)
      return
 }

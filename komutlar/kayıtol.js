@@ -88,18 +88,18 @@ const embed = new Discord.RichEmbed()
   .setTitle('Komut Girişi')
   .setDescription(`Kayıt olmak için **${sifre}** bu kodu doğru bir şekilde yazınız.`)
   .setFooter('Komutu iptal etmek için "iptal" yazın veya otomatik 2 dakika içinde iptal edilecektir.')
-message.channel.send(embed)
+message.channel.send(embed).then(m => m.delete(20000))
 .then(async () => {
     message.channel.awaitMessages(filter, {
     max: 1,
     time: 200000
   }).then(async (collected) => {
    if (collected.first().content === `${sifre}`) { 
-     message.reply("Şifreyi doğru girdiniz ve rolünüz verilmiştir.")
-     message.member.addRole(db.fetch(kayıtR_${message.guild.id}`)
+     message.reply("Şifreyi doğru girdiniz ve rolünüz verilmiştir.").then(m => m.delete(10000))
+     message.member.addRole(db.fetch(`kayıtR_${message.guild.id}`))
      return
    } 
-      message.channel.send('Şifreyi yanlış girdiniz komut iptal oldu birdahaki sefere daha iyi yazın ve boşluk bırakmayın.')
+      message.channel.send('Şifreyi yanlış girdiniz komut iptal oldu birdahaki sefere daha iyi yazın ve boşluk bırakmayın.').then(m => m.delete(10000))
       
 
 
