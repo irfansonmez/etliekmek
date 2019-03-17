@@ -13,14 +13,6 @@ if (!message.guild) return message.reply(`Bu komutu sunucularda kullanabilirsin.
   
 const filter = m => m.author.id === message.author.id;
 
-let hakV = await db.fetch(`şifreH_${message.guild.id}_${message.author.id}`);
-
-var hak = ''
-
-if(hakV == 1) { var hak = 'Şifreyi yanlış girdiniz kalan hakkınızı: **3**' }
-if(hakV == 2) { var hak = 'Şifreyi yanlış girdiniz kalan hakkınızı: **2**' }
-if(hakV == 3) { var hak = 'Şifreyi yanlış girdiniz kalan hakkınızı: **1**' }
-if(hakV == 4) { var hak = 'HAKKINIZ BİTTİĞİ İÇİN KOMUT İPTAL EDİLDİ.' }
 
 
    var s = [
@@ -101,10 +93,6 @@ message.channel.send(embed)
      return
    } 
       message.channel.send('Şifreyi yanlış girdiniz komut iptal oldu birdahaki sefere daha iyi yazın ve boşluk bırakmayın.')
-      
-
-
-
   
 })
 })
@@ -115,7 +103,7 @@ exports.conf = {
   guildOnly: false,
   aliases: [],
   permLevel: 0,
-  kategori: ""
+  kategori: "sunucu"
 };
 
 exports.help = {
