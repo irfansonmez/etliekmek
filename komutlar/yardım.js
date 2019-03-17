@@ -5,7 +5,8 @@ exports.run = async (bot, message, args, dil) => {
 
   let x = args[0]
 
-  let yana = await bot.emojis.get(bot.emojiler.yan);
+ // let yana = await bot.emojis.get(bot.emojiler.yan);
+let yana = "-";
 
   let prefix = await db.fetch(`prefix_${message.guild.id}`) || bot.ayarlar.prefix;
 
@@ -87,7 +88,8 @@ ${yana} **${prefix}temizle**: Belirtilen miktarda mesaj siler.
 ${yana} **${prefix}uyar**: İstediğiniz kişiyi uyarır. 
 ${yana} **${prefix}uyarı-kaldır**: İstediğiniz kişinin uyarılarını kaldırır. 
 ${yana} **${prefix}uyarılar**: İstediğiniz kişinin uyarılarını gösterir.
-${yana} **${prefix}emojiyükle**: Sunucuza emoji yüklemenizi sağlar.
+${yana} **${prefix}kayıt-rol**: Kayıt olunca verilecek rolü ayarlar(rol ayarlı değilse **${prefix}kayıtol** komudu çalışmaz).
+${yana} **${prefix}komut-yasakla**: Botun istmediğiniz bir komudunu yasaklamanıza yarar.
 
 **${bot.user.username} Özel Komut Sistemi**
  
@@ -347,6 +349,7 @@ ${yana} **${prefix}fortnite**: İstediğiniz bir fortnite kullanıcısının ist
 ${yana} **${prefix}kazıkazan**: Kazı kazan oynarsınız ve rastgele para çıkarırsınız. 
 ${yana} **${prefix}oyun-ara**: Verilen oyun hakkında bilgi verir. 
 ${yana} **${prefix}slot**: Slot makinesi ile oynarsınız. Kazanırsanız rastgele para kazanır, kaybederseniz rastgele para kaybedersiniz.
+${yana} **${prefix}yazan-kazanır**: Herhangi bir arkadaşınız ile hızlı yazı yazma yarışması yapabilirsiniz.
 
 ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
 

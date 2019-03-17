@@ -17,7 +17,6 @@ if (p == null) prefix = client.ayarlar.prefix
     command = client.commands.get(command);
     
 
-    
     if (db.has(`yasak_${message.guild.id}_${command.help.name}`)){
       await db.delete(`yasak_${message.guild.id}_${command.help.name}`)
       message.channel.send(`${client.emojis.get(client.emojiler.evet)} Komut **artık kullanılabilir!**`)
@@ -33,7 +32,7 @@ if (p == null) prefix = client.ayarlar.prefix
 exports.conf = {
         enabled: true,
         guildOnly: true,
-        aliases: [],
+        aliases: ['komut-yasak'],
         permLevel: 4
 };
  
