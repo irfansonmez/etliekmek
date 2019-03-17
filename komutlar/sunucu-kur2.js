@@ -85,7 +85,7 @@ exports.run = async (client, message, args) => {
 
 [Uyarı!]: Gereksiz yere kullanmak yasaktır!
 
-- RytLight Gelişmiş Destek Sistemi -
+- Ryker Gelişmiş Destek Sistemi -
 \`\`\`
     	`)
     	db.set(`destekK_${message.guild.id}`, destek.id)
@@ -182,7 +182,7 @@ exports.run = async (client, message, args) => {
       message.guild.createRole({
         name: 'Bot',
         color: 'ff8100',
-      })
+      }).then(d => { db.set(`otoR_${message.guild.id}`, d.id)})
       message.guild.createRole({
         name: 'Üye',
         color: 'caf7fc',
@@ -205,10 +205,10 @@ exports.run = async (client, message, args) => {
 };
 
 exports.conf = {
-	enabled: false,
+	enabled: true,
 	guildOnly: false,
 	aliases: ['dsunucukurulum', 'dsunucu-kur', 'dsunucukur', 'dkur'],
-	permLevel: 'ozel',
+	permLevel: '4',
 	kategori: 'sistemm'
 };
 
