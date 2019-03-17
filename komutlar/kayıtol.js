@@ -4,9 +4,13 @@ const Jimp = require('jimp');
 
 exports.run = async (bot, message, args) => {
 var user = message.author;  
+  const db = require('quick.db');
+  
+  if(db.has(`kayıtR_${message.guild.id}`) === true) {
+    
 if (!message.guild) return message.reply(`Bu komutu sunucularda kullanabilirsin.`);
               
-  const db = require('quick.db');
+  
 const filter = m => m.author.id === message.author.id;
 
 let hakV = await db.fetch(`şifreH_${message.guild.id}_${message.author.id}`);
@@ -82,30 +86,28 @@ const embed = new Discord.RichEmbed()
 
   .setColor('#FFB900')
   .setTitle('Komut Girişi')
-  .setDescription(`Kayıt olmak için **${sifre}** bu kodu doğru bir şekilde yazınız 3 deneme hakkınız vardır.`)
-  .setFooter('Komutu iptal etmek için "iptal" yazın. Otomatik olarak 3 yanlış cevap verirseniz veya 2 dakika içinde iptal edilecektir.')
+  .setDescription(`Kayıt olmak için **${sifre}** bu kodu doğru bir şekilde yazınız.`)
+  .setFooter('Komutu iptal etmek için "iptal" yazın veya otomatik 2 dakika içinde iptal edilecektir.')
 message.channel.send(embed)
 .then(async () => {
     message.channel.awaitMessages(filter, {
-    max: 3,
+    max: 1,
     time: 200000
   }).then(async (collected) => {
    if (collected.first().content === `${sifre}`) { 
-     message.reply("OLDU YAVRUM")
-   db.delete(`şifreH_${message.guild.id}_${message.author.id}`)
+     message.reply("Şifreyi doğru girdiniz ve rolünüz verilmiştir.")
+     message.member.addRole(db.fetch(kayıtR_${message.guild.id}`)
      return
-   }
+   } 
+      message.channel.send('Şifreyi yanlış girdiniz komut iptal oldu birdahaki sefere daha iyi yazın ve boşluk bırakmayın.')
       
-  message.channel.send(`${hak}`)
+
+
+
   
- db.add(`şifreH_${message.guild.id}_${message.author.id}`, 1)
- 
-
-
-
-
 })
 })
+}
 }
 exports.conf = {
   enabled: false,
