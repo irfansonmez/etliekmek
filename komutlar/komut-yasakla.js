@@ -38,6 +38,6 @@ exports.conf = {
  
 exports.help = {
         name: 'komut-yasakla',
-        description: '',
-        usage: ''
+        description: 'Botun istemediğiniz herhangi bir komutunu yasaklamanıza yarar.',
+        usage: 'komut-yasakla <komut-adı>'
 };

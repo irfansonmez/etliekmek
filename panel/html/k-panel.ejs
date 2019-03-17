@@ -128,8 +128,20 @@ crossorigin="anonymous"></script>
 <input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız." value="<%=bot.ayar.fetch(`${user.id}.resim`)%>">
 <a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
 <div align="left" class="col-25">
+  
+    <% const sunucu = bot.guilds.get(sunucu.id) %>
+
+    <% const isManaged = sunucu && !!sunucu.member(user.id) ? sunucu.member(user.id).permissions.has("MANAGE_GUILD") : true %>
+  
+  
+        <% if(isManaged) { %>
+      <a href="/giris" button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Giriş yap</button> </a>
+		
+			<% } %>
+
 <label for="resim">Resim</label>
  
+  
 <img src="<%=bot.ayar.fetch(`${user.id}.resim`)%>" width="600px" height="450px"><br><br>
     
 
