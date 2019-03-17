@@ -182,6 +182,7 @@ module.exports = (client) => {
   
   app.get("/kullaniciler/:kullaniciID/yonet", girisGerekli, (req, res) => {
     const kullanici = client.users.get(req.params.kullaniciID);
+   
     if (!kullanici) return res.json({"hata":"Bot "+req.params.kullaniciID+" ID adresine sahip bir kullanıcıyı göremiyor."});
     if (req.user.id !== req.params.kullaniciID) return res.json({"hata":"Başkasının kullanıcı ayarlarına dokunamazsın."});
     yukle(res, req, "k-panel.ejs", {kullanici});
