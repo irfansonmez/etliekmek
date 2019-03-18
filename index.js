@@ -76,6 +76,10 @@ client.emojiler = {
    "olumlu": "",
    "olumsuz": "",
   
+  // AYARLAR KOMUDUNDAKİ AÇIK KAPALI EMOJİLERİ >>>>>>>>>>>>>>>>>
+  "kapalıA": "557283240516517953",
+  "açıkA": "557283240679833699",
+  
   // AÇIK BONUS EMOJİLERİ -------------- >>>>>>>>>>
   
   "açıkB": "549204804468211740", // B

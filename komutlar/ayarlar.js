@@ -5,11 +5,11 @@ const db = require('quick.db');
 exports.run = async (client, message, args) => {
   
 
-  let y = await client.emojis.get(client.emojiler.yan);
+  let y = "- ";
   let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
 
-  var ac = client.emojis.get(client.emojiler.evet)
-  var ka = client.emojis.get(client.emojiler.hayır)
+  var ac = client.emojis.get(client.emojiler.açıkA);
+  var ka = client.emojis.get(client.emojiler.kapalıA);
 
 
   
@@ -26,8 +26,9 @@ ${y}**Otorol** ${db.has(`otoR_${message.guild.id}`) ? `${ac} \`@${message.guild.
 ${y}**Otorol Kayıt Kanalı** ${db.has(`otoRK_${message.guild.id}`) ? `${ac} \`${message.guild.channels.get(db.fetch(`otoRK_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}oto-rol-kanal**`}
 ${y}**Susturma rolü** ${db.has(`sRol_${message.guild.id}`) ? `${ac} \`@${message.guild.roles.get(db.fetch(`sRol_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}sustur-rol-ayarla**`}
 ${y}**Sayaç kanalı** ${db.has(`sKanal_${message.guild.id}`) ? `${ac} ${db.fetch(`sKanal_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-kanal-ayarla** `}
-${y}**Sayaç** ${db.has(`sayac_${message.guild.id}`) ? `${ac} ${db.fetch(`sayac_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-ayarla**`}
-${y}**Otomatig tag** ${db.has(`tagB_${message.guild.id}`) ? db.fetch(`tagB_${message.guild.id}`) : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
+${y}**Sayaç** ${db.has(`sayac_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`sayac_${message.guild.id}`)).name : `${ka} Ayarlanmamış **${prefix}sayaç-ayarla**`}
+${y}**Otomatig tag** ${db.has(`tagB_${message.guild.id}`) ? ac + db.fetch(`tagB_${message.guild.id}`) : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
+${y}**Otomatig kayıt kanalı** ${db.has(`tagKanal_${message.guild.id}`) ? ac + message.guilds.get(db.fetch(`tagKanal_${message.guild.id}`)).name : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
 ${y}**Giriş Çıkış kanalı** ${db.has(`gc_${message.guild.id}`) ? `${ac} ${client.channels.get(db.fetch(`gc_${message.guild.id}`))}` : `${ka} Ayarlanmamış **${prefix}giriş-çıkış-ayarla** `}
 ${y}**Giriş mesajı** ${db.has(`girisM_${message.guild.id}`) ? db.fetch(`girisM_${message.guild.id}`).replace("{kullanıcı}", "**{kullanıcı}**").replace("{user}", "**{user}**") : `${ka} Ayarlanmamış **${prefix}giriş-mesaj-ayarla**`}
 ${y}**Çıkış mesajı** ${db.has(`cikisM_${message.guild.id}`) ? db.fetch(`cikisM_${message.guild.id}`).replace("{kullanıcı}", "**{kullanıcı}**").replace("{user}", "**{user}**") : `${ka} Ayarlanmamış **${prefix}çıkış-mesaj-ayarla**`}
