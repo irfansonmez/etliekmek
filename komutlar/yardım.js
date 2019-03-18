@@ -445,7 +445,7 @@ ${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: [],
+  aliases: ['help'],
   permLevel: 0,
   kategori: "bot"
 };

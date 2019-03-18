@@ -78,18 +78,18 @@ client.emojiler = {
   
   // AÇIK BONUS EMOJİLERİ -------------- >>>>>>>>>>
   
-  "açıkB": "549204804468211740",
-  "açıkO": "549204805151621141",
-  "açıkN": "549204804446978058",
-  "açıkU": "549204806796050462",
-  "açıkS": "549204806380552202",
+  "açıkB": "549204804468211740", // B
+  "açıkO": "549204805151621141", // O
+  "açıkN": "549204804446978058", // N
+  "açıkU": "549204806796050462", // U
+  "açıkS": "549204806380552202", // S
   
   // KAPALI BONUS EMOJİLERİ ---------------- >>>>>>>>>>>>>
   
-  "kapalıO": "549205266130927648",
-  "kapalıN": "549205265702977542",
-  "kapalıU": "549205268051787776",
-  "kapalıS": "549205267246612482",
+  "kapalıO": "549205266130927648", // O
+  "kapalıN": "549205265702977542", // N
+  "kapalıU": "549205268051787776", // U
+  "kapalıS": "549205267246612482", // S
 }
 
 client.ayarlar = {
@@ -105,11 +105,10 @@ client.ayarlar = {
         "dbl": "https://discordbots.org/bot/516600125649453066",
         "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxNjYwMDEyNTY0OTQ1MzA2NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTUxNjE4MDEwfQ.k435Nz8LEyG2uMQdtuKBOeDanzLi7u7-O5mFQnnuvRE",
         "webpanel": "https://ryker-bot.glitch.me/",
-        "versiyon": "0.0.2",
+        "versiyon": "1.0.0",
         "prefix": "?",
-        "veritabanı": "clientt.veritabanı",
         "renk":  "DARKBLUE",
-        "version":  "2.0.0",
+        "version":  "1.0.0",
  };
 client.avatarURL = `https://cdn.discordapp.com/avatars/516600125649453066/c866646d27728bdb25fc39161c94a2e8.png?size=2048`
 const ayarlar = client.ayarlar;
