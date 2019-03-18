@@ -93,7 +93,7 @@ client.emojiler = {
 }
 
 client.ayarlar = {
-        "oynuyor": "?yardım | ?davet | http://panel.ryker.cf | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
+        "oynuyor": "?yardım | ?davet | https://ryker-bot.glitch.me/ | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
         "official_sahip": "507803933557915652",
         "sahip": ['336869318874890241',"487515609815580672"],
         "yardimcilar": [''],
@@ -104,7 +104,7 @@ client.ayarlar = {
         "dblO": "https://discordbots.org/bot/516600125649453066/vote",
         "dbl": "https://discordbots.org/bot/516600125649453066",
         "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxNjYwMDEyNTY0OTQ1MzA2NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTUxNjE4MDEwfQ.k435Nz8LEyG2uMQdtuKBOeDanzLi7u7-O5mFQnnuvRE",
-        "webpanel": "http://panel.ryker.cf",
+        "webpanel": "https://ryker-bot.glitch.me/",
         "versiyon": "0.0.2",
         "prefix": "?",
         "veritabanı": "clientt.veritabanı",
@@ -899,7 +899,7 @@ client.on("guildMemberAdd", async member => {
   
   const giris = db.fetch(`girisM_${member.guild.id}`)
   
-    member.guild.channels.get(hgK).send(db.has(`girisM_${member.guild.id}`) ? giris.replace('{kullanıcı}', `<@${member.user.id}>`).replace("{user}", `<@${member.user.id}>`).replace("{sunucu}", `**${member.guild.name}**`).replace("{kişisayısı}", `**${member.guild.members.size}**`) : `<@${member.user.id}> Katıldı! **http://panel.ryker.cf** adresinden veya (\`giriş-mesaj-ayarla\` komutu ile mesajı değiştirilebilir.)`);
+    member.guild.channels.get(hgK).send(db.has(`girisM_${member.guild.id}`) ? giris.replace('{kullanıcı}', `<@${member.user.id}>`).replace("{user}", `<@${member.user.id}>`).replace("{sunucu}", `**${member.guild.name}**`).replace("{kişisayısı}", `**${member.guild.members.size}**`) : `<@${member.user.id}> Katıldı! **${client.ayarlar.webpanel}** adresinden veya (\`giriş-mesaj-ayarla\` komutu ile mesajı değiştirilebilir.)`);
 });
 
 client.on("guildMemberRemove", async member => {
@@ -915,7 +915,7 @@ client.on("guildMemberRemove", async member => {
   
   const cikis = db.fetch(`cikisM_${member.guild.id}`)
   
-  member.guild.channels.get(hgK).send(db.has(`cikisM_${member.guild.id}`) ? cikis.replace('{kullanıcı}', `**${member.user.username}**`).replace("{user}", `**${member.user.username}**`).replace("{sunucu}", `**${member.guild.name}**`).replace("{kişisayısı}", `**${member.guild.members.size}**`) : `**${member.user.username}** Ayrıldı! **http://panel.ryker.cf** adresinden veya (\`çıkış-mesaj-ayarla\` komutu ile mesaj değiştirilebilir.)`);
+  member.guild.channels.get(hgK).send(db.has(`cikisM_${member.guild.id}`) ? cikis.replace('{kullanıcı}', `**${member.user.username}**`).replace("{user}", `**${member.user.username}**`).replace("{sunucu}", `**${member.guild.name}**`).replace("{kişisayısı}", `**${member.guild.members.size}**`) : `**${member.user.username}** Ayrıldı! **${client.ayarlar.webpanel}** adresinden veya (\`çıkış-mesaj-ayarla\` komutu ile mesaj değiştirilebilir.)`);
 });
 
 const YouTube = require('simple-youtube-api');
