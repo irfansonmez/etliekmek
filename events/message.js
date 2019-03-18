@@ -153,7 +153,7 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
 			}
 		}
     
-    cmd.run(client, message, args, dil, dill, prefix, prefix2);
+    cmd.run(client, message, args, dil, dill);
     
   }
   
