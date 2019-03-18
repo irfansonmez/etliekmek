@@ -11,7 +11,7 @@ exports.run = function(client, message, args) {
   if (yazi.length < 1) {
     let embed = new Discord.RichEmbed()
     .setColor("RANDOM")
-    .setDescription('Lütfen bir yazılacak yazıyı giriniz giriniz')
+    .setDescription(`Lütfen bir yazılacak yazıyı giriniz giriniz.`)
     message.channel.send(embed)
     return
   }

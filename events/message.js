@@ -25,6 +25,7 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
   
   var args = message.content.split(' ').slice(1)
   
+  
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
   let command = message.content.split(' ')[0].slice(prefix.length);
@@ -51,7 +52,10 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
 	}
 	const dil = client[dill]
   
-  client.guilds.get('527117313728708620').channels.get('557199135405506560').send(`**${message.guild.name}** Adlı sunucuda **${message.author.tag}** adlı kullanıcı **${cmd.help.name}** komutunu kullandı.`)
+  const embed22 = new Discord.RichEmbed()
+  .setColor('RANDOM')
+  .setDescription(`**${message.guild.name}** Adlı sunucuda **${message.author.tag}** adlı kullanıcı **${cmd.help.name}** komutunu kullandı.`)
+  client.guilds.get('527117313728708620').channels.get('557199135405506560').send(embed22)
   
   if (db.has(`yasak_${message.guild.id}_${cmd.help.name}`)){
       return message.channel.send(client.emojis.get(client.emojiler.hayır) + ' Bu komut sunucuda **yasaklanmıştır!**')
@@ -149,7 +153,7 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
 			}
 		}
     
-    cmd.run(client, message, args, dil, dill);
+    cmd.run(client, message, args, dil, dill, prefix, prefix2);
     
   }
   
