@@ -207,13 +207,13 @@ exports.run = async (client, message, args) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['dsunucukurulum', 'dsunucu-kur', 'dsunucukur', 'dkur'],
+	aliases: ['sunucukurulum', 'ssunucu-kur', 'sunucukur'],
 	permLevel: '4',
-	kategori: 'sistemm'
+	kategori: 'moderasyon'
 };
 
 exports.help = {
-	name: 'dsunucu-kurulum',
+	name: 'sunucu-kurulum',
 	description: 'Sunucunuzu sıfırlar ve tekrardan botun ayarlarını ayarlayarak gerekli rolleri, kanalları, kategorileri oluşturarak sunucu kurar.',
 	usage: ''
 };
