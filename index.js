@@ -97,7 +97,7 @@ client.emojiler = {
 }
 
 client.ayarlar = {
-        "oynuyor": "?yardım | ?davet | https://ryker-bot.glitch.me/ | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
+        "oynuyor": "?yardım | ?davet | https://ryker-bot.glitch.me/ | İstediğiniz komutları ?tavsiye ile bildiriniz | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
         "official_sahip": "507803933557915652",
         "sahip": ['336869318874890241',"487515609815580672"],
         "yardimcilar": [''],
@@ -133,17 +133,9 @@ const log = message => {
                          
  
   client.ayar = db;
-const dbmiz = client.veritabanı;         
+   
 
 
-client.on("messageDelete", async (message) => {
-
-  if (message.author.bot) return;
-
-db.set(`atan_${message.channel.id}`, `${message.author.tag}`)
-db.set(`mesaj_${message.channel.id}`, message.content)
-
-});
 
 
 client.on('guildMemberAdd', async (member, guild) => {
@@ -1469,24 +1461,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false) {
   
 });
 
-//ÖNEMLİ
-/*client.on('voiceStateUpdate', (oldMember, newMember) => {
-  
-  let newUserChannel = newMember.voiceChannel
-  let oldUserChannel = oldMember.voiceChannel
-  
-  if (newMember.voiceChannel.name = "deneme-odası") {
-  //if (newMember.channel.name != "deneme-odası") return;
-  
-  if(oldUserChannel === undefined && newUserChannel !== undefined) {
 
-    console.log(`${newMember.user.username} odaya katıldı!`)
-    
-  }
-
-  }
-})*/
-//ÖNEMLİ
 
 client.on('message', async msg => {
   
@@ -1654,69 +1629,16 @@ if (message.content.toLowerCase().startsWith(prefix + `kapat`)) {
   });
   }
   
-});
 
-client.on("message", async message => {
   
-  if (!message.guild) return;
+  //if (!message.guild) return;
   
-  let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+ // let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   
-  var s = 'tr'
-  var r = 'Destek Ekibi'
-    if(db.has(`dil_${message.guild.id}`) === true) {
-        var s = 'en'
-        var r = 'Support Team'
-    }
-  const dil = s
-  
-  if (message.content.toLowerCase().startsWith(`${prefix}talepleri-kapat`)) {
-  
-  if (!message.guild.channels.get(db.fetch(`destekK_${message.guild.id}`))) return;
-  if (!message.guild.roles.get(db.fetch(`destekR_${message.guild.id}`))) return;
-  
-  if (db.has(`destekK_${message.guild.id}`) === true) {
-  var kanal = message.guild.channels.get(db.fetch(`destekK_${message.guild.id}`)).name
-  var rol = message.guild.roles.get(db.fetch(`destekR_${message.guild.id}`))
-  }
-  
-  if (db.has(`destekK_${message.guild.id}`) === false) {
-  var kanal = client[dil].desteksistem.kanal
-  var rol = client[dil].desteksistem.rol
-  }
-    
-  if (!message.channel.name.startsWith(`${client[dil].desteksistem.talep}-`)) return message.channel.send(`Bu komut sadece Destek Talebi kanallarında kullanılabilir.`);
-    
-  if(message.member.roles.has(rol.toString().replace("<@&", "").toString().replace(">", "")) === false) return message.reply(`Bu komutu sadece ${rol} rolüne sahip kullanıcılar kullanabilir!`);
 
-  const embed = new Discord.RichEmbed()
-  .setColor("RANDOM")
-  .setAuthor(`Tüm Destek Talepleri Kapatma İşlemi!`)
-  .setDescription(`Tüm Destek taleplerini kapatma işlemini onaylamak için, \n10 saniye içinde \`evet\` yazınız.`)
-  .setFooter(`${client.user.username} | Destek Sistemi`, client.user.avatarURL)
-  message.channel.send({embed})
-  .then((m) => {
-    message.channel.awaitMessages(response => response.content === 'evet', {
-      max: 1,
-      time: 10000,
-      errors: ['time'],
-    })
-    .then((collected) => {
-   try {
-    message.guild.channels.filter(c => c.name.startsWith('yardım-')).forEach(async (kanal, id) => {
-     kanal.delete()
-  });
-  } catch(e){
-      //console.log(e.stack);
-  }
-    })
-      .catch(() => {
-        m.edit('Tüm Destek taleblerini kapatma isteği zaman aşımına uğradı.').then(m2 => {
-            m2.delete()
-        }, 3000);
-      });
-  });
-  }
+  // const dil = s
+  
+  
   
 });
 
@@ -1931,6 +1853,11 @@ client.on("guildMemberRemove", member => {
 client.on("messageDelete", message => {
   
   if (message.author.bot) return;
+  
+    
+
+db.set(`atan_${message.channel.id}`, `${message.author.tag}`)
+db.set(`mesaj_${message.channel.id}`, message.content)
   
   //if (!logA[message.guild.id]) return;
   
