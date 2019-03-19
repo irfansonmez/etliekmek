@@ -99,7 +99,7 @@ exports.run = async (client, message, args) => {
     })
     	message.guild.createChannel('sayaç', 'text').then(sayac => {
     	sayac.setParent(kayitlar.id)
-    	db.set(`sayacK_${message.guild.id}`, sayac.id)
+    	db.set(`sKanal_${message.guild.id}`, sayac.id)
     	db.set(`sayac_${message.guild.id}`, message.guild.members.size+100)
     })
     	message.guild.createChannel('moderasyon-kayıtları', 'text').then(modlog => {
@@ -207,7 +207,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['sunucukurulum', 'ssunucu-kur', 'sunucukur'],
+	aliases: ['sunucukurulum', 'sunucu-kur', 'sunucukur'],
 	permLevel: '4',
 	kategori: 'moderasyon'
 };

@@ -25,8 +25,8 @@ ${y}**Büyük harf engeli** ${db.has(`capsE_${message.guild.id}`) ? `${ac} Açı
 ${y}**Otorol** ${db.has(`otoR_${message.guild.id}`) ? `${ac} \`@${message.guild.roles.get(db.fetch(`otoR_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}oto-rol**`}
 ${y}**Otorol Kayıt Kanalı** ${db.has(`otoRK_${message.guild.id}`) ? `${ac} \`${message.guild.channels.get(db.fetch(`otoRK_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}oto-rol-kanal**`}
 ${y}**Susturma rolü** ${db.has(`sRol_${message.guild.id}`) ? `${ac} \`@${message.guild.roles.get(db.fetch(`sRol_${message.guild.id}`)).name}\`` : `${ka} Ayarlanmamış **${prefix}sustur-rol-ayarla**`}
-${y}**Sayaç kanalı** ${db.has(`sKanal_${message.guild.id}`) ? `${ac} ${db.fetch(`sKanal_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-kanal-ayarla** `}
-${y}**Sayaç** ${db.has(`sayac_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`sayac_${message.guild.id}`)).name : `${ka} Ayarlanmamış **${prefix}sayaç-ayarla**`}
+${y}**Sayaç kanalı** ${db.has(`sKanal_${message.guild.id}`) ? `${ac} ${message.guild.channels.get(db.fetch(`sKanal_${message.guild.id}`)).name}`: `${ka} Ayarlanmamış **${prefix}sayaç-kanal-ayarla** `}
+${y}**Sayaç** ${db.has(`sayac_${message.guild.id}`) ?`${ac} ${db.fetch(`sayac_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-ayarla**`}
 ${y}**Otomatig tag** ${db.has(`tagB_${message.guild.id}`) ? ac + db.fetch(`tagB_${message.guild.id}`) : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
 ${y}**Otomatig kayıt kanalı** ${db.has(`tagKanal_${message.guild.id}`) ? ac + message.guilds.get(db.fetch(`tagKanal_${message.guild.id}`)).name : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
 ${y}**Giriş Çıkış kanalı** ${db.has(`gc_${message.guild.id}`) ? `${ac} ${client.channels.get(db.fetch(`gc_${message.guild.id}`))}` : `${ka} Ayarlanmamış **${prefix}giriş-çıkış-ayarla** `}
