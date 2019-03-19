@@ -2120,6 +2120,7 @@ client.on("message", async message => {
         if (membername == null) membername = `${user.tag}`
         let memberBadge = await db.fetch(`memberBadge_${user.id}`);
         
+    
 
 
         if (memberBadge == null) memberBadge = `https://cdn.discordapp.com/attachments/461622592688619520/472923575049781268/profile.png`
