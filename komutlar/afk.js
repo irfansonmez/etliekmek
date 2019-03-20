@@ -7,13 +7,13 @@ exports.run = async(message, args, client) => {
 if(!args[0]) return message.channel.send('Lütfen afk olma sebebinizi yazınız.')
   
   message.channel.send(`\`\`\${args[0]}\`\`\ Sebebi ile afk oldunuz!`)
-  db.set(`afkS_$
+  db.set(`afks_${message.author.id}`, args[0])
 
 }
 
 exports.conf = {
 enabled: true,
-guildOnly: false,
+guildOnly: true,
 permLevel: 0,
 aliases: ['afkol', 'afk-ol'],
 kategori: "kullanıcı"
