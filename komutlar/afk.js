@@ -1,49 +1,28 @@
 const Discord = require('discord.js');
-const db = require("quick.db");
+const db = require('quick.db');
 
-exports.run = async (client, message, args) => {
-      
-      let sebep = args.slice(0).join(" ");
-      
 
-      let dil = await db.fetch(`lang_${message.guild.id}`)  
-     
+exports.run = async(message, args, client) => {
+
+if(!args[0]) return message.channel.send('Lütfen afk olma sebebinizi yazınız.')
   
-  if (dil === "tr") {
-    
-    if (!sebep) {
-   message.channel.send('Lütfen afk olma sebebinizi giriniz.')
-    return
-    }
-    message.channel.send(`artık **${sebep}** sebebi ile AFK modundasın!`)
-    
-    db.set(`afks_${message.author.id}`, sebep)
-    return
-  }
-  
-  if (dil === "en") {
-     if (!sebep){
-   message.channel.send('Please enter your reason for being afk.')
-       return
-     }
-    
-    message.channel.send(`You are in AFK mode now! Reason: **${sebep}**`)
-    db.set(`afks_${message.author.id}`, sebep)
-    return
-  }
-  
-};
+  message.channel.send(`\`\`\${args[0]}\`\`\ Sebebi ile afk oldunuz!`)
+  db.set(`afkS_$
+
+}
 
 exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  permLevel: 0,
-  kategori: "kullanıcı",
-};
+enabled: true,
+guildOnly: false,
+permLevel: 0,
+aliases: ['afkol', 'afk-ol'],
+kategori: "kullanıcı"
+
+}
 
 exports.help = {
-  name: 'afk',
-  description: 'AFK olursunuz. (Birisi sizi etiketlediğinde AFK olduğunuzu söyler.)',
-  usage: 'afk <sebep>',
-};
+name: "afk",
+description: "Sunucuda veya başka bir sunucuda afk olmanızı sağlar ve birisi sizi etiketleyince afk olduğunuzu sebebi ile belirtir.",
+usage: "afk <sebep>"
+
+}
