@@ -33,9 +33,7 @@ if (db.has(`prefix_${member.guild.id}`) === false) {
   if (db.has(`tagB_${member.guild.id}`) === true) {
 member.setNickname(`${tag} ${member.user.username}`)
   
-  
-    
-  
+
   if(db.has(`tagKanal_${member.guild.id}`) === true) {
     
       member.guild.channels.get(db.fetch(`tagKanal_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya \`${db.fetch(`tagB_${member.guild.id}`)}\` olarak ayarlanmış olan tag verilerek kullanıcının ismi sunucu için \`${member.nickname || `${db.fetch(`tagB_${member.guild.id}`)} ${member.user.username}`}\` olarak ayarlanmıştır!`)
@@ -50,9 +48,12 @@ member.setNickname(`${tag} ${member.user.username}`)
   
   if (db.has(`otoR_${member.guild.id}`) === true) {
   var rol = member.guild.roles.get(db.fetch(`otoR_${member.guild.id}`));
- 
-    if (rol === true)  {
+  var rolD = `${member.guild.roles.get(db.fetch(`otoR_${member.guild.id}`)) ? "var" : "yok"}`;
   
+  var kanalD = `${}`;
+    
+    
+  if(rolD === "var") {
   member.addRole(rol)
   
   
