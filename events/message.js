@@ -32,7 +32,7 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
     
     
 
-  }
+  
       
         let komutum = client.cmdd
         if(komutum[message.guild.id]) {
