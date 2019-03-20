@@ -2,11 +2,11 @@ const Discord = require('discord.js');
 const db = require('quick.db');
 
 
-exports.run = async(message, args, client) => {
+exports.run = async(client, message, args) => {
 
 if(!args[0]) return message.channel.send('Lütfen afk olma sebebinizi yazınız.')
   
-  message.channel.send(`\`\`\${args[0]}\`\`\ Sebebi ile afk oldunuz!`)
+  message.channel.send("``" + args[0] + "`` Sebebi ile afk oldunuz!")
   db.set(`afks_${message.author.id}`, args[0])
 
 }
