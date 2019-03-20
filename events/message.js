@@ -37,6 +37,76 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
 				message.channel.send({embed})
     }*/
   
+  
+   if(message.content.startsWith(prefix)) {
+        let komutum = client.cmdd
+        if(komutum[message.guild.id]) {
+            for (var i = 0; i < Object.keys(komutum[message.guild.id]).length; i++) {
+                if(message.content.slice(prefix.length) === Object.keys(komutum[message.guild.id][i])[0]) {
+                   
+                    message.channel.send(komutum[message.guild.id][i][Object.keys(komutum[message.guild.id][i])])
+                  
+                    return
+                }
+            }
+        }
+    }
+  
+  
+  
+  
+  
+  
+      let prefixyeni = db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
+    let afk_kullanici = message.mentions.users.first() || message.author;
+    if(message.content.startsWith(prefixyeni+"afk")) return;
+  if (message.author.bot === true) return;
+    if(message.content.includes(`<@${afk_kullanici.id}>`))
+        if(db.has(`afks_${afk_kullanici.id}`)) {
+                message.channel.send(`**${client.users.get(afk_kullanici.id).tag}** adlı kullanıcı şuanda AFK! \n**Sebep:** \n${db.fetch(`afks_${afk_kullanici.id}`)}`)
+        }
+  
+        if(db.has(`afks_${message.author.id}`)) {
+                message.reply("başarıyla AFK modundan çıktın!")
+            db.delete(`afks_${message.author.id}`)
+        }
+  
+  
+    if (!message.guild) return;
+  
+
+  if (message.content === `<@${client.user.id}>`) {
+    
+    message.channel.send(`• Bu sunucuya ait ön-ek/prefix: \`${prefix}\` \n• Bu sunucuya ait yardım komutu: \`${prefix}yardım\` \n• Ön-ek/Prefix değiştirilse bile komutlar etiket ile çalışır. \nÖrnek: \`@${client.user.tag}\`yardım`)
+    
+  }
+  
+  if (message.content === `<@${client.user.id}> ${message.content}`) {
+    
+    message.channel.send(`• Bu sunucuya ait ön-ek/prefix: \`${prefix}\` \n• Bu sunucuya ait yardım komutu: \`${prefix}yardım\` \n• Ön-ek/Prefix değiştirilse bile komutlar etiket ile çalışır. \nÖrnek: \`@${client.user.tag}\`yardım`)
+    
+  }
+  
+  
+  
+  
+  
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // PERM LEVEL ŞEYSİLERİ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+  
+  
+  
   let cmd;
   if (client.commands.has(command)) {
     cmd = client.commands.get(command);
