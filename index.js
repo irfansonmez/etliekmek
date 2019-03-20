@@ -664,12 +664,6 @@ client.on("message", async message => {
 
 
 
-client.on("guildMemberAdd", async member => {
-    if (db.has(`sayac_${member.guild.id}`) === false) return
-    if (db.has(`sKanal_${member.guild.id}`) === false) return
-    const channel = db.fetch(`sKanal_${member.guild.id}`)
-    member.guild.channels.get(channel).send(`**${member.user.tag}** Sunucuya katıldı! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.members.size}\` üye kaldı!`)
-})
 
 client.on("guildMemberRemove", async member => {
     if (db.has(`sayac_${member.guild.id}`) === false) return
@@ -681,23 +675,6 @@ client.on("guildMemberRemove", async member => {
 
 //let ot = JSON.parse(fs.readFileSync("./jsonlar/otoR.json", "utf8"));
 
-client.on("guildMemberAdd", member => {
-  
-  //if (!ot[member.guild.id]) return;
-  
-  //var rol = member.guild.roles.get(ot[member.guild.id].otoRol);
-  if (db.has(`otoR_${member.guild.id}`) === false) return;
-  var rol = member.guild.roles.get(db.fetch(`otoR_${member.guild.id}`));
-  if (!rol) return;
-  
-  member.addRole(rol)
-  
-  
-    if (db.has(`otoRK_${member.guild.id}`) === true) {
-    member.guild.channels.get(db.fetch(`otoRK_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya başarıyla otomatik rol olarak ayarlanmış olan **${rol.name}** adlı rol verildi!`)
-  }
-  
-})
 
 client.on("guildMemberAdd", async member => {
   

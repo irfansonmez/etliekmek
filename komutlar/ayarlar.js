@@ -28,7 +28,7 @@ ${y}**Susturma rolü** ${db.has(`sRol_${message.guild.id}`) ? `${ac} \`@${messag
 ${y}**Sayaç kanalı** ${db.has(`sKanal_${message.guild.id}`) ? `${ac} ${message.guild.channels.get(db.fetch(`sKanal_${message.guild.id}`)).name}`: `${ka} Ayarlanmamış **${prefix}sayaç-kanal-ayarla** `}
 ${y}**Sayaç** ${db.has(`sayac_${message.guild.id}`) ?`${ac} ${db.fetch(`sayac_${message.guild.id}`)}` : `${ka} Ayarlanmamış **${prefix}sayaç-ayarla**`}
 ${y}**Otomatig tag** ${db.has(`tagB_${message.guild.id}`) ? ac + db.fetch(`tagB_${message.guild.id}`) : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
-${y}**Otomatig kayıt kanalı** ${db.has(`tagKanal_${message.guild.id}`) ? ac + message.guilds.get(db.fetch(`tagKanal_${message.guild.id}`)).name : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
+${y}**Otomatig kayıt kanalı** ${db.has(`tagKanal_${message.guild.id}`) ? ac + message.guild.channels.get(db.fetch(`tagKanal_${message.guild.id}`)).name : `${ka} Ayarlanmamış **${prefix}tag-ayarla**`}
 ${y}**Giriş Çıkış kanalı** ${db.has(`gc_${message.guild.id}`) ? `${ac} ${client.channels.get(db.fetch(`gc_${message.guild.id}`))}` : `${ka} Ayarlanmamış **${prefix}giriş-çıkış-ayarla** `}
 ${y}**Giriş mesajı** ${db.has(`girisM_${message.guild.id}`) ? db.fetch(`girisM_${message.guild.id}`).replace("{kullanıcı}", "**{kullanıcı}**").replace("{user}", "**{user}**") : `${ka} Ayarlanmamış **${prefix}giriş-mesaj-ayarla**`}
 ${y}**Çıkış mesajı** ${db.has(`cikisM_${message.guild.id}`) ? db.fetch(`cikisM_${message.guild.id}`).replace("{kullanıcı}", "**{kullanıcı}**").replace("{user}", "**{user}**") : `${ka} Ayarlanmamış **${prefix}çıkış-mesaj-ayarla**`}

@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
     return
    }
   
-  if (db.has(`otoRK_${message.guild.id}`) === false) return message.channel.send(`Bu ayarı kullanmanız için önce otorol ayarlamanız gerekmektedir.`)
+  if (db.has(`otoR_${message.guild.id}`) === false) return message.channel.send(`Bu ayarı kullanmanız için önce otorol ayarlamanız gerekmektedir.`)
   
     if (!channel) {
         return message.reply("Otomatik rol kayıtları kanalı olarak ayarlamak istediğiniz kanalı etiketleyiniz!")

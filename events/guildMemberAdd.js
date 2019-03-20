@@ -41,5 +41,23 @@ member.setNickname(`${tag} ${member.user.username}`)
       member.guild.channels.get(db.fetch(`tagKanal_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya \`${db.fetch(`tagB_${member.guild.id}`)}\` olarak ayarlanmış olan tag verilerek kullanıcının ismi sunucu için \`${member.nickname || `${db.fetch(`tagB_${member.guild.id}`)} ${member.user.username}`}\` olarak ayarlanmıştır!`)
   }};
 
+  if (db.has(`sayac_${member.guild.id}`) === true) {
+    if (db.has(`sKanal_${member.guild.id}`) === true) {
+    const channel = db.fetch(`sKanal_${member.guild.id}`)
+    member.guild.channels.get(channel).send(`**${member.user.tag}** Sunucuya katıldı! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.members.size}\` üye kaldı!`)
+    }};
+  
+  
+  if (db.has(`otoR_${member.guild.id}`) === true) {
+  var rol = member.guild.roles.get(db.fetch(`otoR_${member.guild.id}`));
+ 
+    if (rol === true)  {
+  
+  member.addRole(rol)
+  
+  
+    if (db.has(`otoRK_${member.guild.id}`) === true) {
+    member.guild.channels.get(db.fetch(`otoRK_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya başarıyla otomatik rol olarak ayarlanmış olan **${rol.name}** adlı rol verildi!`)
+  }}}
   
 };
