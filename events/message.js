@@ -31,7 +31,8 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
   let command = message.content.split(' ')[0].slice(prefix.length);
     
     
-    
+
+  }
       
         let komutum = client.cmdd
         if(komutum[message.guild.id]) {
@@ -40,12 +41,20 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
                    
                     message.channel.send(komutum[message.guild.id][i][Object.keys(komutum[message.guild.id][i])])
                   
-                    return
+            
                 }
             }
         }
     
     
+  
+  
+
+  
+
+
+
+
   
 
     // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
