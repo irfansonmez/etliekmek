@@ -29,15 +29,17 @@ if (db.has(`prefix_${member.guild.id}`) === false) {
   if (member.bot) return;
   
   
-    let tag = await db.fetch(`tagB_${member.guild.id}`)
+    let tag = await db.fetch(`tagB_${member.guild.id}`);
+    var tagK = await db.fetch(`tagKanal_${member.guild.id}`);
+    var tagKD = await `${member.guild.channels.get(db.fetch(`tagKanal_${member.guild.id}`)) ? "var" : "yok"}`;
   if (db.has(`tagB_${member.guild.id}`) === true) {
 member.setNickname(`${tag} ${member.user.username}`)
   
 
   if(db.has(`tagKanal_${member.guild.id}`) === true) {
-    
-      member.guild.channels.get(db.fetch(`tagKanal_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya \`${db.fetch(`tagB_${member.guild.id}`)}\` olarak ayarlanmış olan tag verilerek kullanıcının ismi sunucu için \`${member.nickname || `${db.fetch(`tagB_${member.guild.id}`)} ${member.user.username}`}\` olarak ayarlanmıştır!`)
-  }};
+    if(tagKD === "var") {
+      member.guild.channels.get(tagK).send(`**${member.user.tag}** adlı kullanıcıya \`${db.fetch(`tagB_${member.guild.id}`)}\` olarak ayarlanmış olan tag verilerek kullanıcının ismi sunucu için \`${member.nickname || `${db.fetch(`tagB_${member.guild.id}`)} ${member.user.username}`}\` olarak ayarlanmıştır!`)
+  }}};
 
   if (db.has(`sayac_${member.guild.id}`) === true) {
     if (db.has(`sKanal_${member.guild.id}`) === true) {
@@ -50,7 +52,7 @@ member.setNickname(`${tag} ${member.user.username}`)
   var rol = member.guild.roles.get(db.fetch(`otoR_${member.guild.id}`));
   var rolD = `${member.guild.roles.get(db.fetch(`otoR_${member.guild.id}`)) ? "var" : "yok"}`;
   
-  var kanalD = `${}`;
+  var kanalD = `${member.guild.channels.get(db.fetch(`otoRK_${member.guild.id}`)) ? "var" : "yok"}`;
     
     
   if(rolD === "var") {
@@ -58,7 +60,8 @@ member.setNickname(`${tag} ${member.user.username}`)
   
   
     if (db.has(`otoRK_${member.guild.id}`) === true) {
+      if(kanalD === "var"){
     member.guild.channels.get(db.fetch(`otoRK_${member.guild.id}`)).send(`**${member.user.tag}** adlı kullanıcıya başarıyla otomatik rol olarak ayarlanmış olan **${rol.name}** adlı rol verildi!`)
-  }}}
+  }}}};
   
 };
