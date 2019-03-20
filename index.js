@@ -263,9 +263,6 @@ const applyText = (canvas, text) => {
 
 */
 
-
-
-
 const invites = {};
 
 
