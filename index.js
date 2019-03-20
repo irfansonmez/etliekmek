@@ -138,18 +138,6 @@ const log = message => {
 
 
 
-client.on('guildMemberAdd', async (member, guild) => {
-let tag = await db.fetch(`tagB_${member.guild.id}`)
-  if (db.has(`tagB_${member.guild.id}`) === false) return
-member.setNickname(`${tag} ${member.user.username}`)
-  
-  
-    let kanal = member.guild.channels.get(db.fetch(`tagKanal_${member.guild.id}`));
-  if(!kanal) return;
-  if(db.has(`tagKanal_${member.guild.id}`) === true) {
-      kanal.send(`**${member.user.tag}** adlı kullanıcıya \`${db.fetch(`tagB_${member.guild.id}`)}\` olarak ayarlanmış olan tag verilerek kullanıcının ismi sunucu için \`${member.nickname || `${db.fetch(`tagB_${member.guild.id}`)} ${member.user.username}`}\` olarak ayarlanmıştır!`)
-    };
-    })
 
 
 
