@@ -97,7 +97,7 @@ client.emojiler = {
 }
 
 client.ayarlar = {
-        "oynuyor": "?yardım | ?davet | https://ryker-bot.glitch.me/ | İstediğiniz komutları ?tavsiye ile bildiriniz | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
+        "oynuyor": "?yardım | ?davet | panel.ryker.xyz | İstediğiniz komutları ?tavsiye ile bildiriniz | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
         "official_sahip": "507803933557915652",
         "sahip": ['336869318874890241',"487515609815580672"],
         "yardimcilar": [''],
@@ -108,7 +108,7 @@ client.ayarlar = {
         "dblO": "https://discordbots.org/bot/516600125649453066/vote",
         "dbl": "https://discordbots.org/bot/516600125649453066",
         "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxNjYwMDEyNTY0OTQ1MzA2NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTUxNjE4MDEwfQ.k435Nz8LEyG2uMQdtuKBOeDanzLi7u7-O5mFQnnuvRE",
-        "webpanel": "https://ryker-bot.glitch.me/",
+        "webpanel": "panel.ryker.xyz",
         "versiyon": "1.0.0",
         "prefix": "?",
         "renk":  "DARKBLUE",
@@ -656,6 +656,22 @@ client.on("message", async msg => {
 })
 
 
+client.on("message", async message => {
+  
+  if (!message.guild) return;
+  
+    if(db.has(`sayac_${message.guild.id}`) === true) {
+        if(db.fetch(`sayac_${message.guild.id}`) <= message.guild.members.size) {
+            const embed = new Discord.RichEmbed()
+            .setTitle(`Tebrikler ${message.guild.name}!`)
+            .setDescription(`Başarıyla \`${db.fetch(`sayac_${message.guild.id}`)}\` kullanıcıya ulaştık! Sayaç sıfırlandı!`)
+            .setColor("RANDOM")
+            message.channel.send({embed})
+            message.guild.owner.send({embed})
+            db.delete(`sayac_${message.guild.id}`)
+        }
+    }
+})
 
 
 
@@ -677,22 +693,6 @@ client.on("guildMemberRemove", async member => {
     member.guild.channels.get(channel).send(`**${member.user.tag}** Sunucudan ayrıldı! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.members.size}\` üye kaldı!`)
 })
 
-client.on("message", async message => {
-  
-  if (!message.guild) return;
-  
-    if(db.has(`sayac_${message.guild.id}`) === true) {
-        if(db.fetch(`sayac_${message.guild.id}`) <= message.guild.members.size) {
-            const embed = new Discord.RichEmbed()
-            .setTitle(`Tebrikler ${message.guild.name}!`)
-            .setDescription(`Başarıyla \`${db.fetch(`sayac_${message.guild.id}`)}\` kullanıcıya ulaştık! Sayaç sıfırlandı!`)
-            .setColor("RANDOM")
-            message.channel.send({embed})
-            message.guild.owner.send({embed})
-            db.delete(`sayac_${message.guild.id}`)
-        }
-    }
-})
 
 //let ot = JSON.parse(fs.readFileSync("./jsonlar/otoR.json", "utf8"));
 
@@ -1022,7 +1022,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false) {
   //etiketli muzuk ewqeqw
   
   
-  const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+  const prefixMention = new RegExp(`^<@!?${client.user.id}>`);
     const p = String(message.content.match(prefixMention));
   
   if (message.author.bot) return;
