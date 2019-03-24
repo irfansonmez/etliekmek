@@ -6,11 +6,11 @@ exports.run = async (client, message, args) => {
   const db = require('quick.db');
   
  
-  let kanal = message.mentions.channels.first();
+  let kanal = message.mentions.channels.first(); 
   
   let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   
-    if(args[0] === 'kapat') {
+    if(kanal === 'kapat') {
    if (db.has(`destekK_${message.guild.id}`) === true) {
      message.channel.send(`Destek kanalı başarıyla kaldırıldı`)
      db.delete(`destekK_${message.guild.id}`)
