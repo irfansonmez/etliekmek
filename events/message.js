@@ -1,8 +1,9 @@
+
 const fs = require('fs');
 const Discord = require('discord.js');
 const db = require('quick.db');
 const chalk = require('chalk')
-const {RichEmbed} = require('discord.js');
+
 module.exports = async message => {
   
   let client = message.client;
@@ -25,37 +26,16 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
   
   var args = message.content.split(' ').slice(1)
   
-  
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
   let command = message.content.split(' ')[0].slice(prefix.length);
-    
-    
-
   
-      
-     
-  
-  
-  
-  
-
-  
-
-
-  
-
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // PERM LEVEL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+  /*if (client.commands.has(command) === false) {
+      const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komut Bot Sahibi tarafından devre dışı bırakılmış!`)
+					.setColor("RANDOM")
+				message.channel.send({embed})
+    }*/
   
   let cmd;
   if (client.commands.has(command)) {
@@ -72,7 +52,8 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
 	}
 	const dil = client[dill]
   
-  const embed22 = new Discord.RichEmbed()
+  
+    const embed22 = new Discord.RichEmbed()
   .setColor('RANDOM')
   .setDescription(`**${message.guild.name}** Adlı sunucuda **${message.author.tag}** adlı kullanıcı **${cmd.help.name}** komutunu kullandı.`)
   client.guilds.get('527117313728708620').channels.get('557199135405506560').send(embed22)
@@ -80,6 +61,9 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
   if (db.has(`yasak_${message.guild.id}_${cmd.help.name}`)){
       return message.channel.send(client.emojis.get(client.emojiler.hayır) + ' Bu komut sunucuda **yasaklanmıştır!**')
   }
+ 
+
+  
   db.add(`sunucuxp_${message.guild.id}`, 1)
   
   var y = db.fetch(`sunucuxp_${message.guild.id}`);
@@ -178,3 +162,4 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
   }
   
 };
+

@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
   
   let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
   
-    if(kanal === 'kapat') {
+    if(args[0] === 'kapat') {
    if (db.has(`destekK_${message.guild.id}`) === true) {
      message.channel.send(`Destek kanalı başarıyla kaldırıldı`)
      db.delete(`destekK_${message.guild.id}`)
