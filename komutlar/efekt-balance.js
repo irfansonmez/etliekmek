@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+    const Discord = require('discord.js');
 const Jimp = require('jimp');
 
 exports.run = (bot, message, args) => {
