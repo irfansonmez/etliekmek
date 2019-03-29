@@ -9,7 +9,7 @@ exports.run = async (bot, message, args, dil) => {
 let yana = "-";
 
   let prefix = await db.fetch(`prefix_${message.guild.id}`) || bot.ayarlar.prefix;
-
+const footer = `<3 ${bot.user.username} Botunu eklemeyi ve [oy vermeyi](https://discordbots.org/bot/${bot.user.id}/vote) unutmayın.`;
 
   try {
     
@@ -30,7 +30,7 @@ ${yana} **${prefix}yardım bot** > ${bot.user.username} komutlarını listeler.
 ${yana} **${prefix}yardım sahip** > Bot sahibinin komutlarını listeler.
 
       
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       const anaY = new Discord.RichEmbed()
       .setColor('RANDOM')
