@@ -107,7 +107,6 @@ module.exports = (client) => {
     }
     next();
     
-    client.channels.get("561273201527619605").send(`**${client.users.get(req.user.id).tag}** adlı kullanıcı Web Paneline Discord hesabıyla giriş yaptı!`)
 
   },
   passport.authenticate("discord"));
@@ -141,9 +140,13 @@ module.exports = (client) => {
       const url = req.session.backURL;
       req.session.backURL = null;
       res.redirect(url);
+
     } else {
       res.redirect(`anasayfa`);
     }
+    
+    client.channels.get("561273201527619605").send(`**${client.users.get(req.user.id).tag}** adlı kullanıcı Web Paneline Discord hesabıyla giriş yaptı!`)
+
   });
   
 
@@ -152,6 +155,8 @@ module.exports = (client) => {
       req.logout();
       res.redirect("/anasayfa");
     });
+
+    
   });
   
 
