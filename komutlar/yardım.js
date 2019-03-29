@@ -9,7 +9,7 @@ exports.run = async (bot, message, args, dil) => {
 let yana = "-";
 
   let prefix = await db.fetch(`prefix_${message.guild.id}`) || bot.ayarlar.prefix;
-const footer = `<3 ${bot.user.username} Botunu eklemeyi ve [oy vermeyi](https://discordbots.org/bot/${bot.user.id}/vote) unutmayın.`;
+const footer = `${bot.emojis.get(bot.emojiler.kalpSarılmalı)} ${bot.user.username} Botunu eklemeyi ve [oy vermeyi](https://discordbots.org/bot/${bot.user.id}/vote) unutmayın.`;
 
   try {
     
@@ -57,7 +57,7 @@ ${yana} **${prefix}ses**: Şarkının sesini ayarlar.
 ${yana} **${prefix}geç**: Sıradaki şarkıya geçer. 
 ${yana} **${prefix}kuyruk**: Şarkı kuyruğunu ve çalan şarkıyı gösterir.  
             
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
       
             const müzikE = new Discord.RichEmbed()
             .setColor('RANDOM')
@@ -104,7 +104,7 @@ ${yana} **${prefix}filtre-sil**: Sunucunuzda eklediğiniz bir filtreyi silmenize
 ${yana} **${prefix}filtre-liste**: Sunucunuza eklenmiş kelime filtrelerini gösterir.
 
     
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
       
             const modE = new Discord.RichEmbed()
             .setColor('RANDOM')
@@ -137,7 +137,7 @@ ${yana} **${prefix}yetkilerim**: Komutu kullandığınız sunucudaki yetkilerini
 ${yana} **${prefix}çevir**: İstediğiniz yazıyı istediğiniz dile çevirir.
 ${yana} **${prefix}truckersmp**: Truckers mp komutlarını gösterir.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
 
 const kullanıcıE = new Discord.RichEmbed()
@@ -165,7 +165,7 @@ ${yana} **${prefix}pokemon**: Belirtilen Pokemon hakkında bilgi verir.
 ${yana} **${prefix}sor**: Yapay zeka ile sorularınıza cevap verir. 
 ${yana} **${prefix}yazdır**: İstediğiniz yazıyı bota webhook ile etiketlenen kullanıcının ağzından yazdırır.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -192,7 +192,7 @@ ${yana} **${prefix}roller**: Bulunduğunuz sunucudaki rolleri gösterir.
 ${yana} **${prefix}premium**: Premium hakkında bilgi verir. (Ücretsiz) 
 ${yana} **${prefix}yetkililer**: Bulunduğunuz sunucudaki yetkilileri çevrimiçi, çevrımdışı/görünmez, rahatsız etmeyin ve boşta modlarında olup olmadıklarını göstererek listeler.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -223,7 +223,7 @@ ${yana} **${prefix}reload**: Belirtilen bir komutu yeniden başlatır.
 ${yana} **${prefix}speedtest**: speedtest 
 ${yana} **${prefix}unload**: Belirtilen bir komutu devre dışı bırakır.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -259,7 +259,7 @@ ${yana} **${prefix}triggered**: Avatarınıza Triggered efekti verir.
 ${yana} **${prefix}wasted**: Avatarınıza Wasted efekti verir. 
 ${yana} **${prefix}zıt-renk**: Avatarınızın rengini tersine çevirir.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -285,7 +285,7 @@ ${yana} **${prefix}hata-bildir**: Bottaki bir hatayı bildirmenizi sağlar.
 ${yana} **${prefix}tavsiye**: Bot geliştiricisine hataları raporlamayı/tavsiye vermeyi/öneri iletmeyi sağlar.
 ${yana} **${prefix}top10**: Botun bulunduğu sunuculardan en çok kişiye sahip olan 10 sunucuyu sıralar. 
   
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -323,7 +323,7 @@ ${yana} **${prefix}oto-rol-kanal**: Otorol kayıt kanalını ayarlamaya yarar.
 ${yana} **${prefix}tag-ayarla**: Sunucuya katılan üyeye otomatik tag verir 
 ${yana} **${prefix}ön-ek**: Botun ön ekini sunucuya özel olarak değiştirir.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -351,7 +351,7 @@ ${yana} **${prefix}oyun-ara**: Verilen oyun hakkında bilgi verir.
 ${yana} **${prefix}slot**: Slot makinesi ile oynarsınız. Kazanırsanız rastgele para kazanır, kaybederseniz rastgele para kaybedersiniz.
 ${yana} **${prefix}yazan-kazanır**: Herhangi bir arkadaşınız ile hızlı yazı yazma yarışması yapabilirsiniz.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -395,7 +395,7 @@ ${yana} **${prefix}seviye**: Seviye kartınızı gösterir.
 ${yana} **${prefix}seviye renk**: Seviye kartınızdaki renkleri değiştirir.
 ${yana} **${prefix}seviye resim**: Seviye kartınızın resmini değişir.
 
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 
@@ -419,7 +419,7 @@ ${yana} **${prefix}toplu-rol-al**: İstediğiniz rolü sunucudaki herkesten alı
 ${yana} **${prefix}toplu-rol-ver**: İstediğiniz rolü sunucudaki herkese verir.
     
 ${yana} Premium olmayı bilmiyorsanız **${prefix}premium** yazarak öğrenebilirsiniz.
-${yana} Eğer beni sunucuna eklemek istersen **${prefix}davet** yazabilirsin.`];
+${footer}`];
 
       
 

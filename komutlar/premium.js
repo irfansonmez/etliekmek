@@ -69,7 +69,8 @@ message.channel.send(embed)
   
   if (i === "aç" || i === "aktif") {
     
-    if (message.author.id !== "507803933557915652") return;
+    if (message.author.id !== client.ayarlar.official_sahip) return;
+    args
     
     db.set(`premium_${message.guild.id}`, "aktif")
     db.set(`sunucuxp_${message.guild.id}`, 50)

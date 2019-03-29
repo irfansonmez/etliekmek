@@ -73,7 +73,7 @@ client.emojiler = {
    "Yvar": "533379120722214937", // YETKİLERİM KOMUDUNDAKİ TİK İŞARETİ
    "Yyok": "533379123356237835", // YETKİLERİM KOMUDUNDAKİ X İŞARETİ
    "yan": "538809641036152853", // > GİBİ EMOJİ İŞTE :ç
-   "kalpSarılmalı":  "",
+   "kalpSarılmalı": "561146492648161284",
    "olumlu": "",
    "olumsuz": "",
   
