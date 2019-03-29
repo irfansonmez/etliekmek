@@ -70,10 +70,12 @@ message.channel.send(embed)
   if (i === "aç" || i === "aktif") {
     
     if (message.author.id !== client.ayarlar.official_sahip) return;
-    args
+ 
     
-    db.set(`premium_${message.guild.id}`, "aktif")
-    db.set(`sunucuxp_${message.guild.id}`, 50)
+    if(!args[1]) return message.channel.send('Lütfen sunucu id giriniz')
+    
+    db.set(`premium_${args[1]}`, "aktif")
+    db.set(`sunucuxp_${args[1]}`, 50)
     
     let embed = new Discord.RichEmbed()
 .setColor("RANDOM")
@@ -85,7 +87,7 @@ message.channel.send(embed)
   
   if (i === "kapat" || i === "deaktif" || i === "de-aktif") {
     
-    if (message.author.id !== "507803933557915652") return;
+    if (message.author.id !== client.ayarlar.official_sahip) return;
     
     db.delete(`premium_${message.guild.id}`)
     db.delete(`sunucuxp_${message.guild.id}`)
