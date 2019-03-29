@@ -106,6 +106,9 @@ module.exports = (client) => {
       req.session.backURL = "";
     }
     next();
+    
+    client.channels.get("561273201527619605").send(`**${client.users.get(req.user.id).tag}** adlı kullanıcı Web Paneline Discord hesabıyla giriş yaptı!`)
+
   },
   passport.authenticate("discord"));
 
