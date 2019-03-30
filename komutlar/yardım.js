@@ -32,7 +32,7 @@ ${cats}
   
   let list = client.commands.filter(x => x.conf.kategori === arg)
   
-  if (!list[1]) return msg.channel.send(`**${arg}** adlı bir kategori bulunamadı!`)
+  if (!arr.includes(arg)) return msg.channel.send(`**${arg}** adlı bir kategori bulunamadı!`)
   
   const cmds = Array.from(list.keys())
   const longest = cmds.reduce((long, str) => Math.max(long, str.length), 0);
