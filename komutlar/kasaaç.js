@@ -43,10 +43,10 @@ orta = [
 'Moto Gloves | Spearmint (Minimal Wear)',
 'M9 Bayonet | Night (Factory New)',
 'StatTrak™ AK-47 | Fire Serpent (Minimal Wear)',
-'',
-'',
-'',
-''],
+'Karambit | Autotronic (Factory New)',
+'AWP | Medusa (Factory New)',
+'Sport Gloves | Vice (Minimal Wear)',
+'MP9: Bulldozer'],
       
            
 çokDeğersiz = [
@@ -62,15 +62,17 @@ orta = [
 ''];
 
 exports.run = async (client, message, args) => {
-
-  var şans = Math.floor(Math.random() * 101);
   
+ var Kşans = Math.floor(Math.random() * 15);
+  var şans = Math.floor(Math.random() * 101) + Kşans;
+ // var şans = 5
   
   if(şans <= 5) {
-  message.channel.send(`çok değerli ${şans}`)
+  
     
     var çokDeğerliS = çokDeğerli[Math.floor((Math.random() * çokDeğerli.length))];
     
+    message.channel.send(`**%${şans}** Şans ile **${çokDeğerliS}** kazandınız bu eşyanın değeri çok yüksek! :scream:`)
   return
   }
   
@@ -103,6 +105,15 @@ exports.run = async (client, message, args) => {
   }
   
    if(şans <= 100) {
+  // ÇOK DEĞERSİZ
+    message.channel.send(`çok değersiz ${şans}`)
+     
+     var çokdeğersizS = çokDeğersiz[Math.floor((Math.random() * çokDeğersiz.length))];
+     
+  return
+  }
+  
+   if(şans > 100) {
   // ÇOK DEĞERSİZ
     message.channel.send(`çok değersiz ${şans}`)
      
