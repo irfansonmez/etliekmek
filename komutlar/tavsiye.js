@@ -35,7 +35,7 @@ exports.conf = {
     guildOnly: false,
     aliases: ['rapor', 'raporla', 'tavsiye', 'tavsiyeet', 'tavsiyet', 'öner', 'öneri', 'bildir'],
     permLevel: 0,
-  kategori: "iletisim"
+  kategori: "bot"
 }
 
 exports.help = {

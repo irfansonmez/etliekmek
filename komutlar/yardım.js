@@ -19,9 +19,11 @@ arr.push(x.conf.kategori)
 }
 })
 
-  let cats = arr.map(k => `[-]: ${k}`).join("\n")
+  let cats = arr.map(k => `- ${k}`).join("\n")
   
   if (!arg) {
+    
+    
   msg.channel.send(`# ${client.user.username} - Kategoriler
 
 ${cats}

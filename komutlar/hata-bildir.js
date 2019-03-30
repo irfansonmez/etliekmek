@@ -32,7 +32,7 @@ exports.conf = {
   guildOnly: false,
   aliases: ['hata', 'bug', 'bug-bildir'],
   permLevel: 0,
-    kategori: "iletisim",
+    kategori: "bot",
 
 };
 
