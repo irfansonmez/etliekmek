@@ -4,7 +4,7 @@ const db = require('quick.db');
 exports.run = async (bot, msg, args, dil) => {
   const client = bot
 
-  let arg = args[0]
+  let arg = args[0].replace('seviye', 'profil').replace('özel', 'moderasyon')
 
  // let yana = await bot.emojis.get(bot.emojiler.yan);
 let yana = "-";

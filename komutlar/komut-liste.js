@@ -28,7 +28,7 @@ exports.conf = {
   guildOnly: false,
   aliases: ['komutlistesi', 'komutliste', 'komut-liste'],
   permLevel: 0,
-  kategori: "özel"
+  kategori: "moderasyon"
 };
 
 exports.help = {

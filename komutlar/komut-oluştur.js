@@ -88,7 +88,7 @@ exports.conf = {
 	guildOnly: false,
 	aliases: ['komutekle', 'komut-ekle', 'komutoluştur'],
 	permLevel: 4,
-	kategori: 'özel'
+	kategori: 'moderasyon'
 }
 
 exports.help = {

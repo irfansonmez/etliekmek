@@ -48,7 +48,7 @@ exports.conf = {
 	guildOnly: false,
 	aliases: ['komutsil'],
 	permLevel: 4,
-	kategori: 'özel'
+	kategori: 'moderasyon'
 }
 
 exports.help = {

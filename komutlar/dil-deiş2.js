@@ -39,7 +39,8 @@ exports.conf = {
   enabled: false,
   guildOnly: false,
   aliases: ['language2'],
-  permLevel: 0
+  permLevel: 4,
+  kategori: "moderasyon"
 };
 
 exports.help = {

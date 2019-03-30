@@ -361,7 +361,7 @@ exports.conf = {
   guildOnly: false,
   aliases: ["level", "rank", "xp", "puan"],
   permLevel: 0,
-    kategori: ["profil"]
+    kategori: "profil"
 };
 
 exports.help = {
