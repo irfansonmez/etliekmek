@@ -46,7 +46,7 @@ orta = [
 'Karambit | Autotronic (Factory New)',
 'AWP | Medusa (Factory New)',
 'Sport Gloves | Vice (Minimal Wear)',
-'MP9: Bulldozer'],
+'MP9 Bulldozer'],
       
            
 çokDeğersiz = [
@@ -134,7 +134,7 @@ permLevel: 0,
 }
 
 exports.help = {
-    name: 'kasaaç',
-    description: 'Bir adet csgo kasası açarsınız',
-    usage: 'kasaaç',
+name: 'kasaaç',
+description: 'Bir adet csgo kasası açarsınız',
+usage: 'kasaaç',
 }

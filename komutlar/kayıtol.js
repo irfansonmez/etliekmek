@@ -86,7 +86,7 @@ message.channel.send(embed)
     max: 1,
     time: 200000
   }).then(async (collected) => {
-   if (collected.first().content === `${sifre}`) { 
+   if (collected.first().content === sifre) { 
      message.reply("Şifreyi doğru girdiniz ve rolünüz verilmiştir.")
      message.member.addRole(db.fetch(`kayıtR_${message.guild.id}`))
      

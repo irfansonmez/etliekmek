@@ -100,7 +100,7 @@ client.emojiler = {
 client.ayarlar = {
         "oynuyor": "?yardım | ?davet | panel.ryker.xyz | İstediğiniz komutları ?tavsiye ile bildiriniz | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
         "official_sahip": "507803933557915652",
-        "sahip": ['336869318874890241',"487515609815580672"],
+        "sahip": ['336869318874890241',"487515609815580672", "530706106599866380"],
         "yardimcilar": [''],
         "isim": "RYKER",
         "botD": "https://discordapp.com/oauth2/authorize?client_id=516600125649453066&scope=bot&permissions=2146958847",
