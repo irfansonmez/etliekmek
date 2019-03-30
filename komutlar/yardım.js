@@ -19,23 +19,27 @@ arr.push(x.conf.kategori)
 }
 })
 
-  let catsArr = arr.map(k => `[${i++}]: ${k}`)
+  let cats = arr.map(k => `[-]: ${k}`).join("\n")
   
-  let i = 1
-  let cats = arr.map(k => `[${i++}]: ${k}`).join("\n")
-  
+  if (!arg) {
   msg.channel.send(`# ${client.user.username} - Kategoriler
 
 ${cats}
 
-> ${prefix}yardım [kategori/kategori numarası] yazarak komutları görebilirsiniz.
+> ${prefix}yardım [kategori] yazarak komutları görebilirsiniz.
 `, {split: true, code: "md"})
+  } else {
   
-  if (!client.commands.filter(x => x.conf.kategori === arg)[0]) return msg.channel.send(`**${arg}** ${isNaN(arg) ? "adlı" : "numaralı"} bir kategori bulunamadı!`)
+  let list = client.commands.filter(x => x.conf.kategori === arg)
   
-  let list = isNaN(arg) ? client.commands.filter(x => x.conf.kategori === arg) : client.commands.filter(x => x.conf.kategori === catsArr[arg])
+  if (!list[1]) return msg.channel.send(`**${arg}** adlı bir kategori bulunamadı!`)
   
-  msg.channel.send(list.map(k => `${k.help.name} :: ${}`), {split: true, code: "asciidoc"})
+  const cmds = Array.from(list.keys())
+  const longest = cmds.reduce((long, str) => Math.max(long, str.length), 0);
+  
+  msg.channel.send(list.map(k => `${k.help.name}${' '.repeat(longest - k.help.name.length)} :: ${k.help.description}`).join("\n"), {split: true, code: "asciidoc"})
+  
+  }
   
 }
 
