@@ -20,13 +20,14 @@ arr.push(x.conf.kategori)
 })
 
   let cats = arr.map(k => `- ${k}`).join("\n")
+ 
   
   if (!arg) {
     
     
   msg.channel.send(`# ${client.user.username} - Kategoriler
 
-${cats}
+${cats})}
 
 > ${prefix}yardım [kategori] yazarak komutları görebilirsiniz.
 `, {split: true, code: "md"})
