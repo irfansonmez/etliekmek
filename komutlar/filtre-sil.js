@@ -9,7 +9,7 @@ const argss = args[0]
   
   
 if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.')
-  
+  if(s.length <= 0) return message.channel.send('Bu sunucuda filtre bulunmuyor.')
   if(!args[0]) return message.channel.send(`Silmek istediğiniz filtreyi girmeniz gerek örnek: **${prefix}filtre-sil <silmek istediğiniz filtre>**`)
   
  

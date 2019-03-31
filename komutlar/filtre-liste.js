@@ -8,6 +8,8 @@ let filtre = await db.fetch(`filtre_${message.guild.id}`)
 
 
 //if(filtreler === null) return message.channel.send('Sununuza eklenmiş filtre bulunmuyor')
+
+if(filtre.length <= 0) return message.channel.send('Bu sunucuda filtre bulunmuyor.')
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
     .setThumbnail(message.guild.iconURL)
