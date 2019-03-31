@@ -34,23 +34,23 @@ orta = [
 'Galil AR | Kış Ormanı 29',
 'P2000 | Çayır Yaprakları 32',
 'SSG 08 | Yosun Tireli 19',
-'',
-'',
-'',
-''],
+'M4A4 | Çöl Fırtınası 18',
+'SCAR-20 | Palmiye 24',
+'AK-47 | Yırtıcı 25',
+'AWP | Yılan Kamuflaj 19.99'],
   
       
 çokDeğerli = [
-'AWP | Dragon Lore (Factory New)',
-'Stat Trak™ M4A4 | Howl',
-'M9 Bayonet | Lore (Factory New)',
-'Moto Gloves | Spearmint (Minimal Wear)',
-'M9 Bayonet | Night (Factory New)',
-'StatTrak™ AK-47 | Fire Serpent (Minimal Wear)',
-'Karambit | Autotronic (Factory New)',
-'AWP | Medusa (Factory New)',
-'Sport Gloves | Vice (Minimal Wear)',
-'MP9 Bulldozer'],
+'AWP | Dragon Lore (Factory New) 1500',
+'Stat Trak™ M4A4 | Howl 3200',
+'M9 Bayonet | Lore (Factory New) 1302',
+'Moto Gloves | Spearmint (Minimal Wear) 5000',
+'M9 Bayonet | Night (Factory New) 6700',
+'StatTrak™ AK-47 | Fire Serpent (Minimal Wear) 905',
+'Karambit | Autotronic (Factory New) 2405',
+'AWP | Medusa (Factory New) 1204',
+'Sport Gloves | Vice (Minimal Wear) 5402',
+'MP9 Bulldozer 1204'],
            
 çokDeğersiz = [
   
@@ -70,8 +70,10 @@ orta = [
 
 exports.run = async (client, message, args) => {
   
- var Kşans = Math.floor(Math.random() * 15);
+ var Kşans = Math.floor(Math.random() * 400);
   var şans = Math.floor(Math.random() * 101) + Kşans;
+  
+  var şanss = `${şans > 100 ? '100' : şans}` 
  // var şans = 5
   
   if(şans <= 5) {
@@ -79,15 +81,17 @@ exports.run = async (client, message, args) => {
     
     var çokDeğerliS = çokDeğerli[Math.floor((Math.random() * çokDeğerli.length))];
     
-    message.channel.send(`**%${şans}** Şans ile **${çokDeğerliS}** kazandınız bu eşyanın değeri çok yüksek! :scream:`)
+    message.channel.send(`**%${şanss}** Şans ile **${çokDeğerliS}** kazandınız bu eşyanın değeri çok yüksek! :scream:`)
   return
   }
   
     if(şans <= 15) {
-  message.channel.send(`değerli ${şans}`)
+  
       
       var değerliS = değerli[Math.floor((Math.random() * değerli.length))];
-      
+         
+      message.channel.send(`**%${şanss}** Şans ile **${değerliS}** kazandınız bu eşyanın değeri yüksek! :scream:`)
+
   return
   
   }
@@ -96,7 +100,7 @@ exports.run = async (client, message, args) => {
   // ORTA
       var ortaS = orta[Math.floor((Math.random() * orta.length))];
       
-   message.channel.send(`**%${şans}** Şans ile **${ortaS} Tl** Fiyatlı bir eşya kazandınız bu eşyanın değeri orta!`)
+   message.channel.send(`**%${şanss}** Şans ile **${ortaS} Tl** Fiyatlı bir eşya kazandınız bu eşyanın değeri orta!`)
       
       
       
@@ -107,7 +111,7 @@ exports.run = async (client, message, args) => {
    if(şans <= 50) {
   // DEĞERSİZ
     var değersizS = değersiz[Math.floor((Math.random() * değersiz.length))];
-        message.channel.send(`**%${şans}** Şans ile **${değersizS} Tl** Fiyatlı bir eşya kazandınız bu eşyanın değeri az!`)
+        message.channel.send(`**%${şanss}** Şans ile **${değersizS} Tl** Fiyatlı bir eşya kazandınız bu eşyanın değeri az!`)
 
      
   return
@@ -116,7 +120,7 @@ exports.run = async (client, message, args) => {
    if(şans <= 100) {
   // ÇOK DEĞERSİZ
      var çokdeğersizS = çokDeğersiz[Math.floor((Math.random() * çokDeğersiz.length))];
-        message.channel.send(`**%${şans}** Şans ile **${çokdeğersizS} Kuruş** Fiyatlı bir eşya kazandınız bu eşyanın değeri yok bile!`)
+        message.channel.send(`**%${şanss}** Şans ile **${çokdeğersizS} Kuruş** Fiyatlı bir eşya kazandınız bu eşyanın değeri yok bile!`)
 
      
      
@@ -127,7 +131,7 @@ exports.run = async (client, message, args) => {
    if(şans > 100) {
   // ÇOK DEĞERSİZ
    var çokdeğersizS = çokDeğersiz[Math.floor((Math.random() * çokDeğersiz.length))];
-        message.channel.send(`**%${şans}** Şans ile **${çokdeğersizS} Kuruş** Fiyatlı bir eşya kazandınız bu eşyanın değeri yok bile!`)
+        message.channel.send(`**%${şanss}** Şans ile **${çokdeğersizS} Kuruş** Fiyatlı bir eşya kazandınız bu eşyanın değeri yok bile!`)
 
      
      
