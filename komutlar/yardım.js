@@ -42,6 +42,7 @@ arr.push(x.conf.kategori)
 ${cats}
 
 > ${prefix}yardım [kategori] yazarak komutları görebilirsiniz.
+${footer}
 `)
 .setTimestamp()
     msg.channel.send(embed)
@@ -54,8 +55,11 @@ ${cats}
   const cmds = Array.from(list.keys())
   const longest = cmds.reduce((long, str) => Math.max(long, str.length), 0);
   
-  msg.channel.send(list.map(k => `${k.help.name}${' '.repeat(longest - k.help.name.length)} :: ${k.help.description}`).join("\n"), {split: true, code: "asciidoc"})
-  
+ // msg.channel.send(list.map(k => `${k.help.name}${' '.repeat(longest - k.help.name.length)} :: ${k.help.description}`).join("\n"), {split: true, code: "asciidoc"})
+  const e = new Discord.RichEmbed()
+  .setColor('RANDOM')
+  .setDescription(list.map(k => `**${prefix + k.help.name}**${' '.repeat(longest - k.help.name.length)}: ${k.help.description}`).join("\n") + \\nfooter)
+msg.channel.send(e)
   }
   
 }
