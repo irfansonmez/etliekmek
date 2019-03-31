@@ -35,13 +35,19 @@ arr.push(x.conf.kategori)
   
   if (!arg) {
     
-    const embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setDescription(`# ${client.user.username} - Kategoriler
+    /*  msg.channel.send(`# ${client.user.username} - Kategoriler
 
 ${cats}
 
 > ${prefix}yardım [kategori] yazarak komutları görebilirsiniz.
+`, {split: true, code: "md"})
+*/
+    const embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setDescription(`${client.user.username} - Kategoriler
+
+${cats}
+
 ${footer}
 `)
 .setTimestamp()
@@ -56,9 +62,10 @@ ${footer}
   const longest = cmds.reduce((long, str) => Math.max(long, str.length), 0);
   
  // msg.channel.send(list.map(k => `${k.help.name}${' '.repeat(longest - k.help.name.length)} :: ${k.help.description}`).join("\n"), {split: true, code: "asciidoc"})
-  const e = new Discord.RichEmbed()
+
+    const e = new Discord.RichEmbed()
   .setColor('RANDOM')
-  .setDescription(list.map(k => `**${prefix + k.help.name}**${' '.repeat(longest - k.help.name.length)}: ${k.help.description}`).join("\n") + \\nfooter)
+  .setDescription(list.map(k => `**${prefix + k.help.name}**${' '.repeat(longest - k.help.name.length)}: ${k.help.description}`).join("\n") + `\n\n${footer}`)
 msg.channel.send(e)
   }
   
