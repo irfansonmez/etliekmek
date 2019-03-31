@@ -12,17 +12,18 @@ const değerli = [
 '',
 '',
 ''],
+      
 değersiz = [
-'',
-'',
-'',
-'',
-'',
-'',
-'',
-'',
-'',
-''],
+'P90 | Çekiş 70 Kuruş',
+'SG 553 | Aloha ',
+'MAC-10 | Okyanus ',
+'Glock-18 | Dünya Dışı ',
+'P250 | Dalgalanma ',
+'SCAR-20 | Plan ',
+'MAC-10 | Lapis Kertenkele ',
+'MAG-7 | Kobalt Çekirdeği ',
+'UMP-45 | Çivit ',
+'Five-SeveN | Ormanda Gece '],
       
 orta = [
 '',
@@ -47,19 +48,22 @@ orta = [
 'AWP | Medusa (Factory New)',
 'Sport Gloves | Vice (Minimal Wear)',
 'MP9 Bulldozer'],
-      
            
 çokDeğersiz = [
-'',
-'',
-'',
-'',
-'',
-'',
-'',
-'',
-'',
-''];
+  
+  'P90 | Çekiş 70 Kuruş',
+'SG 553 | Aloha ',
+'MAC-10 | Okyanus ',
+'Glock-18 | Dünya Dışı ',
+'P250 | Dalgalanma ',
+'SCAR-20 | Plan ',
+'MAC-10 | Lapis Kertenkele ',
+'MAG-7 | Kobalt Çekirdeği ',
+'UMP-45 | Çivit ',
+'Five-SeveN | Ormanda Gece '];
+  
+  
+
 
 exports.run = async (client, message, args) => {
   
