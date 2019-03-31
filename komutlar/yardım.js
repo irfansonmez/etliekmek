@@ -4,8 +4,10 @@ const db = require('quick.db');
 exports.run = async (bot, msg, args, dil) => {
   const client = bot
 
-  let arg = args[0].replace('seviye', 'profil').replace('özel', 'moderasyon')
-
+  var arg = ``
+  if(arg === 'özel') {var arg = `moderasyon` }
+  if(arg
+  
  // let yana = await bot.emojis.get(bot.emojiler.yan);
 let yana = "-";
 
@@ -19,15 +21,12 @@ arr.push(x.conf.kategori)
 }
 })
 
-  let cats = arr.map(k => `- ${k}`).join("\n")
- 
+  let cats = arr.map(k => `> ${k}`).join("\n")
   
   if (!arg) {
-    
-    
   msg.channel.send(`# ${client.user.username} - Kategoriler
 
-${cats})}
+${cats}
 
 > ${prefix}yardım [kategori] yazarak komutları görebilirsiniz.
 `, {split: true, code: "md"})
