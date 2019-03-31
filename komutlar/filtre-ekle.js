@@ -20,7 +20,7 @@ const filtreler = await db.fetch(`filtreK_${message.guild.id}_${args[0]}`)
  let kelimeler = args[0]
   
   var a = db.push(`filtre_${message.guild.id}`, kelimeler)
-  db.set(`filtreK_${message.guild.id}_${args[0]}`, args[0])
+ // db.set(`filtreK_${message.guild.id}_${args[0]}`, args[0])
   db.set(`filtreAK_${message.guild.id}`, "açık");
   //var a = db.push(`aciklama_${message.guild.id}`, args.slice(1).join(' '))
 
