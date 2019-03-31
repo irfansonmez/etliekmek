@@ -29,17 +29,22 @@ arr.push(x.conf.kategori)
 }
 })
 
-  let cats = arr.filter(x => x !== undefined).map(k => `[${k}]: ${k.charAt(0).toUpperCase()+k.slice(1)} komutlarını gösterir.`).join("\n")
+  let cats = arr.filter(x => x !== undefined).map(k => `- **${prefix}yardım ${k}** = ${k.charAt(0).toUpperCase()+k.slice(1)} komutlarını gösterir.`).join("\n")
   
   
   
   if (!arg) {
-  msg.channel.send(`# ${client.user.username} - Kategoriler
+    
+    const embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setDescription(`# ${client.user.username} - Kategoriler
 
 ${cats}
 
 > ${prefix}yardım [kategori] yazarak komutları görebilirsiniz.
-`, {split: true, code: "md"})
+`)
+.setTimestamp()
+    msg.channel.send(embed)
   } else {
   
   let list = client.commands.filter(x => x.conf.kategori === arg)
