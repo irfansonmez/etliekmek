@@ -29,7 +29,7 @@ arr.push(x.conf.kategori)
 }
 })
 
-  let cats = arr.map(k => `> ${k}`).join("\n")
+  let cats = arr.filter(x => x !== undefined).map(k => `[${k}]: ${k.charAt(0).toUpperCase()+k.slice(1)} komutlarını gösterir.`).join("\n")
   
   
   
