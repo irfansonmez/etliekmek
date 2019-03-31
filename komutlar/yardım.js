@@ -5,8 +5,16 @@ exports.run = async (bot, msg, args, dil) => {
   const client = bot
 
   var arg = ``
-  if(arg === 'özel') {var arg = `moderasyon` }
-  if(arg
+  if(args[0] === 'özel') {
+    var arg = `moderasyon` 
+  } else if(args[0] === 'lvl') {
+    var arg = `profil`
+    } else {
+      var arg = args[0]
+      }
+  
+  
+  if(!args[0]) {var arg = args[0]}
   
  // let yana = await bot.emojis.get(bot.emojiler.yan);
 let yana = "-";
@@ -22,6 +30,8 @@ arr.push(x.conf.kategori)
 })
 
   let cats = arr.map(k => `> ${k}`).join("\n")
+  
+  
   
   if (!arg) {
   msg.channel.send(`# ${client.user.username} - Kategoriler
