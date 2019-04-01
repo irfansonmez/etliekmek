@@ -13,7 +13,7 @@ if (!message.guild) return message.reply(`Bu komutu sunucularda kullanabilirsin.
   
 const filter = m => m.author.id === message.author.id;
 
-
+if(message.member.roles.has(db.fetch(`kayıtR_${message.guild.id}`).has) === true) return message.chabbel.send(`Zaten sende **` + db.fetch(`kayıtR_${message.guild.id}`).name + `** rolü bulunuyor.`)
 
    var s = [
 "(XQ2iAHq",
