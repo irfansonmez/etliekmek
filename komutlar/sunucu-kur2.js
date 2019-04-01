@@ -85,7 +85,7 @@ exports.run = async (client, message, args) => {
 
 [Uyarı!]: Gereksiz yere kullanmak yasaktır!
 
-- Ryker Gelişmiş Destek Sistemi -
+- ${client.user.username} Gelişmiş Destek Sistemi -
 \`\`\`
     	`)
     	db.set(`destekK_${message.guild.id}`, destek.id)
@@ -182,11 +182,11 @@ exports.run = async (client, message, args) => {
       message.guild.createRole({
         name: 'Bot',
         color: 'ff8100',
-      }).then(d => { db.set(`otoR_${message.guild.id}`, d.id)})
+      })
       message.guild.createRole({
         name: 'Üye',
         color: 'caf7fc',
-      })
+      }).then(d => { db.set(`otoR_${message.guild.id}`, d.id)})
 
     const embed = new Discord.RichEmbed()
 	.setColor('RANDOM')

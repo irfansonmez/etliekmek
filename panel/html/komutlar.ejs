@@ -35,12 +35,8 @@ crossorigin="anonymous"></script>
 	<link rel='icon' href='<%=bot.avatarURL%>'>
 	<title><%=bot.user.username%> Web Paneli</title>
 </head>
-<%
 
-
-  
 <body>
-
 
 
   <nav style="background-color:#2a2d32" class="navbar navbar-expand-lg navbar-dark">
@@ -140,10 +136,6 @@ bot.commands.forEach((command) => {
 			<h3 style="color:#<%=yazıTema%>;"><%= k.charAt(0).toUpperCase() + k.slice(1) %></h3>
 		</div>
 		<br>
-    
-    
-    
-    
 		<div class="card-columns" style="padding: 20px; border-radius: 40px;">
 			<% for (const command of help[category]) { %>
 				<div class="card" style="background-color:#<%=t%>; margin: 3px; border-radius: 40px;">
