@@ -86,10 +86,9 @@
         
       
       <% if(!user) { %>
-      <a href="/giris" button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Giriş yap</button> </a>
-			<a href="/komutlar" button style="background-color:red; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Komutlar</button> </a>
+      <a href="/giris" button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Giriş yap</button> </a><br><br>
+			<a href="/komutlar" button style="background-color:red; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-book fa-fw" aria-hidden="true"></i> Komutlar</button> </a>
 
-      <a style="color:#fff" class="nav-link" href="/komutlar" role="button"><i class="fa fa-book fa-fw"></i> Komutlar</a>
 			<% } else { %>
    
   		<a style="color:#fff" class="nav-link" href="/kullaniciler/<%=user.id%>/yonet" role="button"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Seviye Kartını Düzenle
