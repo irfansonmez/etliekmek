@@ -70,7 +70,7 @@ orta = [
 
 exports.run = async (client, message, args) => {
   
- var Kşans = Math.floor(Math.random() * 200);
+ var Kşans = Math.floor(Math.random() * 101);
   var şans = Math.floor(Math.random() * 101) + Kşans;
   
   var şanss = `${şans > 100 ? '100' : şans}` 
