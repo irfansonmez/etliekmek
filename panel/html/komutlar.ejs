@@ -36,7 +36,7 @@ crossorigin="anonymous"></script>
 	<title><%=bot.user.username%> Web Paneli</title>
 </head>
 <%
-  const brr = <br>
+
   let arr = [];
 bot.commands.forEach(x => {
 if (!arr.includes(x.conf.kategori)) {
@@ -44,7 +44,7 @@ arr.push(x.conf.kategori)
 }
 })
   
-    let cats = arr.filter(x => x !== undefined).map(k => `- **${k}** `).join(`<%=<br>%>`)
+    let cats = arr.filter(x => x !== undefined).map(k => `- **${k}** `).join("/n"3)
 %>
     
  
