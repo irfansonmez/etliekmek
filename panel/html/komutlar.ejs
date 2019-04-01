@@ -36,7 +36,7 @@ crossorigin="anonymous"></script>
 	<title><%=bot.user.username%> Web Paneli</title>
 </head>
 <%
-  
+  const brr = <br>
   let arr = [];
 bot.commands.forEach(x => {
 if (!arr.includes(x.conf.kategori)) {
@@ -44,15 +44,15 @@ arr.push(x.conf.kategori)
 }
 })
   
-    let cats = arr.filter(x => x !== undefined).map(k => `- **${k}** = ${k.charAt(0).toUpperCase()+k.slice(1)} komutlarını gösterir.`).join("\n")
-
+    let cats = arr.filter(x => x !== undefined).map(k => `- **${k}** `).join(`<%=<br>%>`)
+%>
     
-  %>
-<%=cats%>
+ 
+   <h2> <%=cats%> </h2>  
   
 <body>
 
- 
+
 
   <nav style="background-color:#2a2d32" class="navbar navbar-expand-lg navbar-dark">
      <div class="container">
