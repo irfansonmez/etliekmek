@@ -99,7 +99,7 @@ message.channel.send(embed)
 }
 }
 exports.conf = {
-  enabled: false,
+  enabled: true,
   guildOnly: false,
   aliases: [],
   permLevel: 0,
