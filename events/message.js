@@ -80,6 +80,12 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
   
   if (cmd) {
     
+ const es = new Discord.RichEmbed()
+ .setColor('RANDOM')
+.setDescription(`Verdiğiniz bu güzel karşılığa bizde botu kapama kararı verdik teşekkürler. [Destek Sunucu](https://discord.gg/yrkbXrU)`)
+ message.channel.send(es)
+return
+    
     if (db.has(`karalist_${message.author.id}`) === true) {
     let embed = new Discord.RichEmbed()
     .setColor("RANDOM")
