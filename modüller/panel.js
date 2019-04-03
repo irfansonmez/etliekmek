@@ -21,8 +21,8 @@ module.exports = (client) => {
   
   const bilgiler = {
     oauthSecret: "-45UQARNNezs5SzK5LUIszdMvrciSvcB",
-    callbackURL: `https://heady-doom.glitch.me/callback`,
-    domain: `https://heady-doom.glitch.me/`
+    callbackURL: `https://ryker-bot.glitch.me/callback`,
+    domain: `https://ryker-bot.glitch.me/`
   };
   
   console.log('BAŞARILI')
