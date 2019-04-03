@@ -71,10 +71,11 @@ message.channel.send(embed)
     
     if (message.author.id !== client.ayarlar.official_sahip) return;
  
+    var arr = ''
+    if(!args[2]) { var arr = message.guild.id } else { var = arr
+    if(!args[2]) return message.channel.send('Lütfen sunucu id giriniz')
     
-    if(!args[1]) return message.channel.send('Lütfen sunucu id giriniz')
-    
-    db.set(`premium_${args[1]}`, "aktif")
+    db.set(`premium_${arr}`, "aktif")
     db.set(`sunucuxp_${args[1]}`, 50)
     
     let embed = new Discord.RichEmbed()
