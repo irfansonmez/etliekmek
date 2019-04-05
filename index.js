@@ -1,3 +1,5 @@
+
+ç
 // ıkarken yapılacaklar
 
 
