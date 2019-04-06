@@ -10,10 +10,10 @@ const argss = args[0]
   
 if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.')
   if(s.length <= 0) return message.channel.send('Bu sunucuda filtre bulunmuyor.')
-  if(!args[0]) return message.channel.send(`Silmek istediğiniz filtreyi girmeniz gerek örnek: **${prefix}filtre-sil <silmek istediğiniz filtre>**`)
+  if(!args[0]) return message.channel.send(`Silmek istediğiniz filtreyi girmeniz gerek örnek: **${prefix}filtre-sil <silmek istediğiniz filtre>**\nEğer eklediğiniz filtreleri hatırlamıyorsanız **${prefix}filtre-liste** yazarak görebilirsiniz.`)
   
  
-
+if (!db.fetch(`filtre_${message.guild.id}`).includes(args[0])) return message.reply("Sunucuda böyle bir filtre bulunmuyor")
 
   
   
@@ -28,12 +28,12 @@ arr.push(v)
 }
 })
   
-  //if() return message.channel.send('Sunucuda böyle bir filtre bulunmuyor')
+
 db.set(`filtre_${message.guild.id}`, arr)
 
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
-   .setDescription(`Sunucudaki ${args[0]} filtresi silindi`) 
+   .setDescription(`Sunucudaki **${args[0]}** filtresi silindi`) 
     message.channel.send(embed)
   return
     
