@@ -114,13 +114,45 @@ crossorigin="anonymous"></script>
 <% } %>
 </div>
 </div>
+  <canvas id="av" width="934px" height="282px"></canvas>
+  
   <% const member = user %>
+
+
+
+<div class="row">
+<div class="col-25">
+<label for="resim">Seviye kartı arka plan resmi</label>
+</div>
+<div class="col-75">
+<% if (bot.ayar.has(`${user.id}.resim`) === false || bot.ayar.fetch(`${user.id}.resim`) === "https://img.revabot.tk/99kd63vyss.png") { %>
+<input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız.">
+<a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<% } else { %>
+<input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız resim .png veya .jpg şeklinde olmalıdır ve boyutu çok büyük olmamalıdır." value="<%=bot.ayar.fetch(`${user.id}.resim`)%>">
+<a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
+<div align="left" class="col-25">
+  
+
+
+<label for="resim">Resim</label>
+ 
+  
+<img src="<%=bot.ayar.fetch(`${user.id}.resim`)%>" width="600px" height="450px"><br><br>
+    
+
+</div>
+<% } %>
+</div>
+</div>
+
+<button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
   <script>
         var xp = 1;
         var img = document.getElementById("av");
-        
-							function draw() {
-								const ctx = document.getElementById("test").getContext('2d');
+        const s = {
+						    var c=document.getElementById("myCanvas");var ctx=c.getContext("2d");let url="<%= u.displayAvatarURL %>";let ava=new Image();ava.src=url;let srs="";<% if (!bot.ayar.has(`${u.id}.resim`)) { %>
+
                 
                 ctx.fillStyle = "rgba(0, 0, 0, 0.95)";
   ctx.fill()
@@ -165,39 +197,11 @@ crossorigin="anonymous"></script>
   ctx.fill()
 	ctx.lineWidth = 8;        
 	ctx.arc(55 + 80, 80 + 80, 80, 0, 2 * Math.PI, false);
-
+              }
 							};
 							draw();
       </script>
-
-<div class="row">
-<div class="col-25">
-<label for="resim">Seviye kartı arka plan resmi</label>
-</div>
-<div class="col-75">
-<% if (bot.ayar.has(`${user.id}.resim`) === false || bot.ayar.fetch(`${user.id}.resim`) === "https://img.revabot.tk/99kd63vyss.png") { %>
-<input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız.">
-<a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
-<% } else { %>
-<input type="url" id="resim" name="resim" style="width:87%" placeholder="Bir resim URL'si yazınız resim .png veya .jpg şeklinde olmalıdır ve boyutu çok büyük olmamalıdır." value="<%=bot.ayar.fetch(`${user.id}.resim`)%>">
-<a href="/kullaniciler/<%=user.id%>/yonet/resim/sifirla" class="reset-btn" role="button">Sıfırla</a>
-<div align="left" class="col-25">
   
-
-
-<label for="resim">Resim</label>
- 
-  
-<img src="<%=bot.ayar.fetch(`${user.id}.resim`)%>" width="600px" height="450px"><br><br>
-    
-
-</div>
-<% } %>
-</div>
-</div>
-
-<button id="formbtn" class="save-btn" type="submit"><i class="fa fa-save fa-fw"></i> Değişiklikleri Kaydet</button>
-
       </form>
     </div>
   </div>
