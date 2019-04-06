@@ -562,7 +562,7 @@ client.on("message", async msg => {
   let mesaj = args.slice(1).join(' ');
   const filtre = await db.fetch(`filtre_${msg.guild.id}`);
   
-  if(fAK === null) return;
+ 
   if(fAK == 'açık') {
     
     
@@ -589,7 +589,7 @@ client.on("message", async msg => {
 
   if (msg.author.bot) return;
   
-  if (db.has(`capsE_${msg.guild.id}`) === false) return;
+ 
   if (db.has(`capsE_${msg.guild.id}`) === true) {
     let x = /\w*[A-Z]\w*[A-Z]\w*/g;
     if (msg.content.match(x)) {
@@ -603,7 +603,7 @@ client.on("message", async msg => {
 
   
   if (!msg.guild) return;
-  if (db.has(`küfürE_${msg.guild.id}`) === false) return;
+ 
     if (db.has(`küfürE_${msg.guild.id}`) === true) {
     const kufur = new RegExp(/(göt|amk|aq|orospu|oruspu|oç|oc|sik|fuck|yarrak|piç|amq|amcık|çocu|sex|seks|amına|sg|siktir git)/)
   if (kufur.test(msg.content)==true) {
@@ -619,7 +619,7 @@ client.on("message", async msg => {
 }
     }
 
-      if (db.has(`linkE_${msg.guild.id}`) === false) return;
+     
       if (db.has(`linkE_${msg.guild.id}`) === true) {
         const reklam = new RegExp(/(.com|www|dicord.gg|.tk|.pw|https:|http:|.info|.cf|gg|.net|.me|www.|WWW.|.COM|.NET|.TK|DİSCORD.GG|.PW)/)
       if (reklam.test(msg.content)==true) {
@@ -640,6 +640,92 @@ client.on("message", async msg => {
 
 
 })
+
+
+client.on("messageUpdate", async (msg) => {
+  
+  const prefix = await db.fetch(`prefix_${msg.guild.id}`) || client.ayarlar.prefix;
+  //const args = msg.content.slice.split(' ');
+  const args = msg.content.trim().split(/ +/g);
+  const fAK = await  db.fetch(`filtreAK_${msg.guild.id}`);
+  let mesaj = args.slice(1).join(' ');
+  const filtre = await db.fetch(`filtre_${msg.guild.id}`);
+  
+  
+  if(fAK == 'açık') {
+    
+    
+    
+            
+      const fltr = filtre
+   if (fltr.some(word => msg.content.includes(word))) {
+  if (!msg.member.hasPermission("ADMINISTRATOR")) {
+    msg.delete()
+     
+   var k = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor("Filtre Sistemi")
+        .setDescription(`Bu sunucuda yasaklanmış bir kelimeyi kullandınız, bu yüzden mesajınızı sildim.`)
+        msg.channel.send(k).then(message => message.delete(5000));
+     
+  return;
+  }
+  } }
+    
+  
+  
+   if (!msg.guild) return;
+
+  if (msg.author.bot) return;
+  
+  
+  if (db.has(`capsE_${msg.guild.id}`) === true) {
+    let x = /\w*[A-Z]\w*[A-Z]\w*/g;
+    if (msg.content.match(x)) {
+      if (mesaj.member.permissions.has("ADMINISTRATOR") === true) return;
+      msg.delete();
+      let y = await msg.reply(`Bu sunucuda büyük harf engeli açık, bu yüzden büyük harf açıkken yazı yazamazsın!`)
+      y.delete(5000);
+      return
+    };
+  };
+
+  
+  if (!msg.guild) return;
+  
+    if (db.has(`küfürE_${msg.guild.id}`) === true) {
+    const kufur = new RegExp(/(göt|amk|aq|orospu|oruspu|oç|oc|sik|fuck|yarrak|piç|amq|amcık|çocu|sex|seks|amına|sg|siktir git)/)
+  if (kufur.test(msg.content)==true) {
+    if (!msg.member.hasPermission("ADMINISTRATOR")) {
+      msg.delete()
+       msg.channel.send(`<@${msg.author.id}>`).then(message => message.delete(5000));
+        var k = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor("Küfür Engeli!")
+        .setDescription(`Bu sunucuda küfürler **${client.user.username}** tarafından engellenmektedir! Küfür etmene izin vermeyeceğim!`)
+        msg.channel.send(k).then(message => message.delete(5000));
+    }
+}
+    }
+
+      
+      if (db.has(`linkE_${msg.guild.id}`) === true) {
+        const reklam = new RegExp(/(.com|www|dicord.gg|.tk|.pw|https:|http:|.info|.cf|gg|.net|.me|www.|WWW.|.COM|.NET|.TK|DİSCORD.GG|.PW)/)
+      if (reklam.test(msg.content)==true) {
+       
+          msg.delete()
+           msg.channel.send(`<@${msg.author.id}>`).then(message => message.delete(5000));
+            var ke = new Discord.RichEmbed()
+            .setColor("RANDOM")
+            .setAuthor("link Engeli!")
+            .setDescription(`Bu sunucuda linkler **${client.user.username}** tarafından engellenmektedir! Reklam yapmana izin vermeyeceğim!`)
+            msg.channel.send(ke).then(message => message.delete(5000));
+        
+    }
+        }
+
+  
+});
 
 
 client.on("message", async message => {
