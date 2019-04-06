@@ -28,6 +28,7 @@ arr.push(v)
 }
 })
   
+  //if() return message.channel.send('Sunucuda böyle bir filtre bulunmuyor')
 db.set(`filtre_${message.guild.id}`, arr)
 
     var embed = new Discord.RichEmbed()

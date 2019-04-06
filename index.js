@@ -621,7 +621,7 @@ client.on("message", async msg => {
 
      
       if (db.has(`linkE_${msg.guild.id}`) === true) {
-        const reklam = new RegExp(/(.com|www|dicord.gg|.tk|.pw|https:|http:|.info|.cf|gg|.net|.me|www.|WWW.|.COM|.NET|.TK|DİSCORD.GG|.PW)/)
+        const reklam = new RegExp(/(com|.com|www|dicord.gg|.tk|.pw|https:|http:|.info|.cf|gg|.net|.me|www.|WWW.|.COM|.NET|.TK|DİSCORD.GG|.PW)/)
       if (reklam.test(msg.content)==true) {
         if (!msg.member.hasPermission("ADMINISTRATOR")) {
           msg.delete()
@@ -710,9 +710,9 @@ client.on("messageUpdate", async (msg) => {
 
       
       if (db.has(`linkE_${msg.guild.id}`) === true) {
-        const reklam = new RegExp(/(.com|www|dicord.gg|.tk|.pw|https:|http:|.info|.cf|gg|.net|.me|www.|WWW.|.COM|.NET|.TK|DİSCORD.GG|.PW)/)
+        const reklam = new RegExp(/(com|.com|www|dicord.gg|.tk|.pw|https:|http:|.info|.cf|gg|.net|.me|www.|WWW.|.COM|.NET|.TK|DİSCORD.GG|.PW)/)
       if (reklam.test(msg.content)==true) {
-       
+       if (!msg.member.hasPermission("ADMINISTRATOR")) {
           msg.delete()
            msg.channel.send(`<@${msg.author.id}>`).then(message => message.delete(5000));
             var ke = new Discord.RichEmbed()
@@ -720,7 +720,7 @@ client.on("messageUpdate", async (msg) => {
             .setAuthor("link Engeli!")
             .setDescription(`Bu sunucuda linkler **${client.user.username}** tarafından engellenmektedir! Reklam yapmana izin vermeyeceğim!`)
             msg.channel.send(ke).then(message => message.delete(5000));
-        
+       }
     }
         }
 
