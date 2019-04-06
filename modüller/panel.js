@@ -20,9 +20,9 @@ const db = require('quick.db');
 module.exports = (client) => {
   
   const bilgiler = {
-    oauthSecret: "-45UQARNNezs5SzK5LUIszdMvrciSvcB",
-    callbackURL: `https://heady-doom.glitch.me/callback`,
-    domain: `https://heady-doom.glitch.me/`
+    oauthSecret: "P8myIXzonHOIt2c8Nc1eHixee5qJ9wHn",
+    callbackURL: `https://gelistirme.glitch.me/callback`,
+    domain: `https://gelistirme.glitch.me/`
   };
   
   console.log('BAŞARILI')
@@ -190,7 +190,8 @@ module.exports = (client) => {
   
   app.get("/kullaniciler/:kullaniciID/yonet", girisGerekli, (req, res) => {
     const kullanici = client.users.get(req.params.kullaniciID);
-   
+       const member = client.users.get(req.params.kullaniciID);
+
     if (!kullanici) return res.json({"hata":"Bot "+req.params.kullaniciID+" ID adresine sahip bir kullanıcıyı göremiyor."});
     if (req.user.id !== req.params.kullaniciID) return res.json({"hata":"Başkasının kullanıcı ayarlarına dokunamazsın."});
     yukle(res, req, "k-panel.ejs", {kullanici});
