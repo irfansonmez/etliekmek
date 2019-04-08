@@ -128,9 +128,10 @@
             </thead>
             <tbody>
                     <%for(var i = 0; i < bot.ayar.fetch(`filtre_${guild.id}`).length; i++) {%>
+              <%var k = bot.ayar.fetch(`filtre_${guild.id}`).includes(i) %>
               <tr>
                   <th scope="row"><%=bot.ayar.fetch(`filtre_${guild.id}`)[i]%></th>
-                                  <td><a class="btn btn-danger" href="/panel/<%=guild.id%>/filtre/sil/<%=bot.ayar.fetch(`filtre_${guild.id}`)%>">Komutu Sil</a></td>
+                                  <td><a class="btn btn-danger" href="/panel/<%=guild.id%>/filtre/sil/<%=bot.ayar.fetch(`filtre_${guild.id}`)[i]%>">Filtreyi Sil</a></td>
 
                  </tr>
                   <%}%>

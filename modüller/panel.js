@@ -383,6 +383,32 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
     res.redirect("/panel/"+req.params.guildID+"/filtre");
   });
   
+  
+    app.get("/panel/:guildID/ozelkomutlar/sil", girisGerekli, async (req, res) => {
+res.redirect("/panel/"+req.params.guildID+"/filtre");
+});
+
+  
+  
+ 
+app.get("/panel/:guildID/filtre/sil/:cmdID", girisGerekli, async (req, res) => {
+const guild = client.guilds.get(req.params.guildID);
+if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
+const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
+  if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
+
+
+var komutf = req.params.cmdID;
+
+let komutlar = client.cmdd
+if(!db.fetch(`filtre_${req.params.guildID}`).includes(komutf)) {
+
+} 
+
+res.redirect("/panel/"+req.params.guildID+"/filtre");
+});
+
+  
   // ÖZEL KOMUT
   
   
