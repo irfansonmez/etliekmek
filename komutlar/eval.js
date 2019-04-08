@@ -7,7 +7,7 @@ const Jimp = require('jimp');
 const dbs = require("db-system");
 const up = require("useful-package");
 const uptest = require("../test.js");
-
+const şarkı = require("discord.js-music-v11");
 exports.run = async (client, message, args) => {
   
   const tokenuyari = 'TOKENİMİ ÇALACAN HAİN!'

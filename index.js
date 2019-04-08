@@ -812,7 +812,17 @@ client.on("message", async message => {
   var searchString = args.slice(1).join(' ');
   var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
   var serverQueue = queue.get(message.guild.id);
+  /*
+   var voiceChannel = message.member.voiceChannel;
+    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+      var playlist = await youtube.getPlaylist(url);
+      var videos = await playlist.getVideos();
+      for (const video of Object.values(videos)) {
+        var video2 = await youtube.getVideoByID(video.id);
+        await handleVideo(video2, message, voiceChannel, true);
+      }
   
+  */
     switch (args[0].toLowerCase()) {
         
       case "oynat":
