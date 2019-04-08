@@ -115,7 +115,7 @@
             <button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kelimeyi Ekle</button>    
           </div>
           
-          
+         
           
           <br>
           <%if(bot.ayar.has(`filtre_${guild.id}`) === true) {%>
@@ -130,6 +130,8 @@
                     <%for(var i = 0; i < bot.ayar.fetch(`filtre_${guild.id}`).length; i++) {%>
               <tr>
                   <th scope="row"><%=bot.ayar.fetch(`filtre_${guild.id}`)[i]%></th>
+                                  <td><a class="btn btn-danger" href="/panel/<%=guild.id%>/filtre/sil/<%=bot.ayar.fetch(`filtre_${guild.id}`)%>">Komutu Sil</a></td>
+
                  </tr>
                   <%}%>
             <%} else {%>

@@ -48,9 +48,9 @@ exports.run = async (client, message, args) => {
     if(evaled.length >= 1024) {
     
     
-     message.channel.send(evaled, {split: true, code: "asciidoc"})
+     message.channel.send(evaled, {split: true, code: "js"})
 
-    
+    return
     }
     
     if (code === "2+2" || code === "2 + 2" || code === "Math.floor(2+2)" || code === "Math.floor(2 + 2)") { 
