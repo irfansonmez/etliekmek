@@ -28,23 +28,9 @@ arr.push(x.help.name)
       
           
    %>
-         <div class="row">
-        <div class="col-25">
-          <label for="sRol">Yasaklamak istediğiniz komut</label>
-        </div>
-        <div class="col-75">
-      
-          <select style="text-align: left; width:87%;" name="kYasak" id="kYasak">
-            <option disabled selected>Sunucunuzda yasaklamak istediğiniz bir komut.</option>
-            <% arr.forEach(r => { r.name !=== 'yardım'%>
-            <option value="<%=r%>" style="color:RANDOM"><%=r%></option>
-            <% }); %>
-          </select>
-         
-        
+ 
 				
-        </div>
-      </div>
+     
   <div class="row">
         <div class="col-25">
           <label for="prefix">Ön-Ek/Prefix</label>
@@ -88,7 +74,21 @@ arr.push(x.help.name)
         </div>
       </div>
           
-       
+               <div class="row">
+        <div class="col-25">
+          <label for="sRol">Yasaklamak istediğiniz komut</label>
+        </div>
+        <div class="col-75">
+      
+          <select style="text-align: left; width:87%;" name="kYasak" id="kYasak">
+            <option disabled selected>Sunucunuzda yasaklamak istediğiniz bir komut.</option>
+            <% arr.forEach(r => {  %>
+            <option value="<%=r%>" style="color:#fffff"><%=r%></option>
+            <% }); %>
+          </select>
+         
+           </div>
+      </div>
           </ul>
           <div style="width: 100%; text-align: right; margin-top: 15px;">
          <button style="background-color:blue; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kaydet</button>
