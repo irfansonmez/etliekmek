@@ -372,11 +372,11 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
     app.post("/panel/:guildID/filtre", girisGerekli, async(req, res) => {
     const guild = client.guilds.get(req.params.guildID);
       const sunucu = client.guilds.get(req.params.sunucuID);
+      
     if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sahip bir sunucuda bulunmuyor."});
     const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.id).permissions.has("MANAGE_GUILD") : false;
     if (!isManaged && !req.session.isAdmin) return res.json({"hata":"Bu sunucuda Sunucuyu Yönet iznin bulunmuyor. Bu yüzden bu sayfaya erişim sağlayamazsın."});
-
-   
+  
     client.writeSettings(guild.id, req.body);
        
  

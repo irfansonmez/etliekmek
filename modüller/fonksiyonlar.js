@@ -72,10 +72,12 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
     
     try {
       
+      if(db.fetch(`filtre_${id}`).includes(newSettings['kelimefiltre']) === false) {
          if (newSettings['kelimefiltre']) {
         db.push(`filtre_${id}`, newSettings['kelimefiltre'])
-         
+         }
       }
+      
 if (newSettings['küfürEngel'] === 'aktif') {
 db.set(`küfürE_${id}`, newSettings['küfürEngel'])
 }
