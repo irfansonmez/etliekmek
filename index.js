@@ -1382,6 +1382,7 @@ client.on('message', async msg => {
   
   let prefix = await db.fetch(`prefix_${msg.guild.id}`) || client.ayarlar.prefix;
   
+  if(!msg.guild.channels.get(db.fetch(`destekK_${msg.guild.id}`))) return
   var s = 'tr'
   var r = 'Destek Ekibi'
   var k = 'destek-kanalı'
@@ -1503,7 +1504,8 @@ client.on('message', async msg => {
 })
 
 client.on('message', async message => {
-  
+    if(!message.guild.channels.get(db.fetch(`destekK_${message.guild.id}`))) return
+
   if (!message.guild) return;
   
   let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
