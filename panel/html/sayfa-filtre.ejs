@@ -118,7 +118,7 @@
          
           
           <br>
-          <%if(bot.ayar.has(`filtre_${guild.id}`) === true) {%>
+          <%if(bot.ayar.has(`filtre_${guild.id}`).length >= 1) {%>
         <table class="table table-hover" style="background-color:#222">
             <thead>
                 <tr>
@@ -131,9 +131,10 @@
               <%var k = bot.ayar.fetch(`filtre_${guild.id}`).includes(i) %>
               <tr>
                   <th scope="row"><%=bot.ayar.fetch(`filtre_${guild.id}`)[i]%></th>
-                                  <td><a class="btn btn-danger" href="/panel/<%=guild.id%>/filtre/sil/<%=bot.ayar.fetch(`filtre_${guild.id}`)[i]%>">Filtreyi Sil</a></td>
 
                  </tr>
+                                                <td><a class="btn btn-danger" href="/panel/<%=guild.id%>/filtre/sil/<%=bot.ayar.fetch(`filtre_${guild.id}`)[i]%>">Filtreyi Sil</a></td>
+
                   <%}%>
             <%} else {%>
                   <h5 align="center" style="color:#fff">

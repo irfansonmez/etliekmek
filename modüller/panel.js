@@ -384,7 +384,7 @@ if (!guild) return res.json({"hata":"Bot "+req.params.sunucuID+" ID adresine sah
   });
   
   
-    app.get("/panel/:guildID/ozelkomutlar/sil", girisGerekli, async (req, res) => {
+    app.get("/panel/:guildID/filtre/sil", girisGerekli, async (req, res) => {
 res.redirect("/panel/"+req.params.guildID+"/filtre");
 });
 
@@ -400,10 +400,23 @@ const isManaged = guild && !!guild.member(req.user.id) ? guild.member(req.user.i
 
 var komutf = req.params.cmdID;
 
-let komutlar = client.cmdd
-if(!db.fetch(`filtre_${req.params.guildID}`).includes(komutf)) {
 
-} 
+if(!db.fetch(`filtre_${req.params.guildID}`).includes(komutf)) {
+res.json({"hata":`Filtre bulunamadı veya silinmiş.`});
+} else {
+
+let x = komutf
+let arr = []
+db.fetch(`filtre_${req.params.guildID}`).forEach(v => {
+if (v !== x) {
+arr.push(v)
+}
+})
+  
+
+db.set(`filtre_${req.params.guildID}`, arr)
+  
+}
 
 res.redirect("/panel/"+req.params.guildID+"/filtre");
 });
