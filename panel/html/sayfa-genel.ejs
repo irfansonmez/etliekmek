@@ -18,6 +18,33 @@
       <form method="post">
         <ul class="list-group list-group-flush">
           
+          <%          
+          let arr = [];
+bot.commands.forEach(x => {
+if (!arr.includes(x.help.name)) {
+arr.push(x.help.name)
+}
+})
+        for(var s = 0; s < arr.length; s++)
+          
+   %>
+         <div class="row">
+        <div class="col-25">
+          <label for="sRol">Susturma Rolü</label>
+        </div>
+        <div class="col-75">
+          <% if (bot.ayar.has(`sRol_${guild.id}`) === false) { %>
+          <select style="text-align: left; width:87%;" name="sRol" id="sRol">
+            <option disabled selected>Lütfen bir rol seçiniz.</option>
+            <% arr.forEach(r => { %>
+            <option value="<%=s+r%>" style="color:RANDOM"><%=s+r%></option>
+            <% }); %>
+          </select>
+          <a href="/panel/<%=guild.id%>/srol/sifirla" class="reset-btn" role="button">Sıfırla</a>
+          <% } %>
+				
+        </div>
+      </div>
   <div class="row">
         <div class="col-25">
           <label for="prefix">Ön-Ek/Prefix</label>
@@ -60,6 +87,8 @@
           <% } %>
         </div>
       </div>
+          
+       
           </ul>
           <div style="width: 100%; text-align: right; margin-top: 15px;">
          <button style="background-color:blue; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kaydet</button>

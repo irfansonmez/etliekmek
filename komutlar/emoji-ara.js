@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-//var ayarlar = require('../ayarlar.json');
+
 
 exports.run = async (client, message, args) => {
   
@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
 
   
   message.channel.send(`${client.emojis.get(emoji)}`)
-  
+ 
 }
 
 exports.conf = {
