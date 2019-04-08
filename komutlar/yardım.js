@@ -3,13 +3,34 @@ const db = require('quick.db');
 
 exports.run = async (bot, msg, args, dil) => {
   const client = bot
+  let prefix = await db.fetch(`prefix_${msg.guild.id}`) || bot.ayarlar.prefix;
+const footer = `${bot.emojis.get(bot.emojiler.kalpSarılmalı)} ${bot.user.username} Botunu eklemeyi ve [oy vermeyi](https://discordbots.org/bot/${bot.user.id}/vote) unutmayın.`;
 
   var arg = ``
   if(args[0] === 'özel') {
     var arg = `moderasyon` 
   } else if(args[0] === 'lvl') {
     var arg = `profil`
-    } else {
+   } else if(args[0] === 'müzik') {
+      let müzik = [`
+**${prefix}oynat**: İstenilen şarkıyı oynatır. 
+**${prefix}tekrar**: Çalan şarkıyı bittiği zaman tekrar oynatır. 
+**${prefix}durdur**: Çalan şarkıyı durdurur. 
+**${prefix}duraklat**: Çalan şarkıyı duraklatır. 
+**${prefix}devamet**: Duraklatılmış şarkıyı devam ettirir. 
+**${prefix}ses**: Şarkının sesini ayarlar. 
+**${prefix}geç**: Sıradaki şarkıya geçer. 
+**${prefix}kuyruk**: Şarkı kuyruğunu ve çalan şarkıyı gösterir.  
+            
+${footer}`];
+      
+            const müzikE = new Discord.RichEmbed()
+            .setColor('RANDOM')
+            .setThumbnail(bot.user.avatarURL)
+            .setDescription(müzik)
+          msg.channel.send(müzikE)
+     return
+    }else {
       var arg = args[0]
       }
   
@@ -19,8 +40,6 @@ exports.run = async (bot, msg, args, dil) => {
  // let yana = await bot.emojis.get(bot.emojiler.yan);
 let yana = "-";
 
-  let prefix = await db.fetch(`prefix_${msg.guild.id}`) || bot.ayarlar.prefix;
-const footer = `${bot.emojis.get(bot.emojiler.kalpSarılmalı)} ${bot.user.username} Botunu eklemeyi ve [oy vermeyi](https://discordbots.org/bot/${bot.user.id}/vote) unutmayın.`;
 
 let arr = [];
 client.commands.forEach(x => {
