@@ -50,4 +50,4 @@ exports.help = {
         name: 'komut-yasakla',
         description: 'Botun istemediğiniz herhangi bir komutunu yasaklamanıza yarar.',
         usage: 'komut-yasakla <komut-adı>'
-};
+};Ben
