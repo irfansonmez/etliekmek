@@ -17,9 +17,18 @@ if (p == null) prefix = client.ayarlar.prefix
     command = client.commands.get(command);
     
 
-    if (db.has(`yasak_${message.guild.id}_${command.help.name}`)){
-      await db.delete(`yasak_${message.guild.id}_${command.help.name}`)
+    if (db.fetch(`yasakK_${message.guild.id}`).includes(args[0])){
       message.channel.send(`${client.emojis.get(client.emojiler.evet)} Komut **artık kullanılabilir!**`)
+      
+      let x = args[0]
+let arr = []
+db.fetch(`yasakK_${message.guild.id}`).forEach(v => {
+if(v !== x) {
+arr.push(v)
+}
+})
+db.set(`yasakK_${message.guild.id}`, arr)
+
     }else{
         await db.push(`yasakK_${message.guild.id}`, command.help.name)
 
