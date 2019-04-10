@@ -58,11 +58,10 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
   .setDescription(`**${message.guild.name}** Adlı sunucuda **${message.author.tag}** adlı kullanıcı **${cmd.help.name}** komutunu kullandı.`)
 //  client.guilds.get('527117313728708620').channels.get('557199135405506560').send(embed22)
   
-  if (db.has(`yasak_${message.guild.id}_${cmd.help.name}`)){
-      return message.channel.send(client.emojis.get(client.emojiler.hayır) + ' Bu komut sunucuda **yasaklanmıştır!**')
-  }
+ // if (db.has(`yasak_${message.guild.id}_${cmd.help.name}`)){
+    //  return message.channel.send(client.emojis.get(client.emojiler.hayır) + ' Bu komut sunucuda **yasaklanmıştır!**')
+ // }
  
-
   
   db.add(`sunucuxp_${message.guild.id}`, 1)
   
