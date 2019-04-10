@@ -18,7 +18,7 @@ if (!db.fetch(`filtre_${message.guild.id}`).includes(args[0])) return message.re
   
   
 
-          
+   Az       
     
 let x = args[0] 
 let arr = []
