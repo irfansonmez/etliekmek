@@ -110,7 +110,7 @@
             
             </div>
             
-            
+          
             
             <button style="background-color:orange; color:#fff" type="sumbit" id="formbtn" class="btn btn-default"><i class="fa fa-fw fa-save" aria-hidden="true"></i> Kelimeyi Ekle</button>    
           </div>
@@ -118,8 +118,17 @@
          
           
           <br>
-          <%if(bot.ayar.fetch(`filtre_${guild.id}`).length >= 1) {%>
-        <table class="table table-hover" style="background-color:#222">
+          <%if(bot.ayar.fetch(`filtre_${guild.id}`) === null || bot.ayar.fetch(`filtre_${guild.id}`).length <= 0) {%>
+      
+               <h5 align="center" style="color:#fff">
+                    Kelime filtresine hiç kelime eklenmemiş.
+              </h5>
+        
+            <%} else {%>
+          
+        
+        
+          <table class="table table-hover" style="background-color:#222">
             <thead>
                 <tr>
                   <th scope="col">Kelime</th>
@@ -136,10 +145,7 @@
                  </tr>
 
                   <%}%>
-            <%} else {%>
-                  <h5 align="center" style="color:#fff">
-                    Kelime filtresine hiç kelime eklenmemiş.
-              </h5>
+        
               <%}%>
             </tbody>
         </table>

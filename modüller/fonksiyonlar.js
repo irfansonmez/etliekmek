@@ -72,16 +72,15 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
     
     try {
       
-      if(db.fetch(`filtre_${id}`).includes(newSettings['kelimefiltre']) === false) {
+      
          if (newSettings['kelimefiltre']) {
         db.push(`filtre_${id}`, newSettings['kelimefiltre'])
-         }
+         
       }
       
      
          if (newSettings['kYasak']) {
-        db.push(`yasak_${id}_${newSettings['kYasak']}`, newSettings['kYasak'])
-        db.push(`yasak_${id}_${client.commands.get(newSettings['kYasak']).conf.aliases[0] ? client.commands.get(newSettings['kYasak']).conf.aliases.join(', ') : 'Bulunmuyor'}`, client.commands.get(newSettings['kYasak']).conf.aliases[0])
+        db.push(`yasakK_${id}`, newSettings['kYasak'])
          }
       
       
