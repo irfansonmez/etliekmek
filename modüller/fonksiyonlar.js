@@ -74,7 +74,9 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
       
       
          if (newSettings['kelimefiltre']) {
+           if(db.fetch(`filtre_${id}`).includes(newSettings['kelimefiltre']) === false) {
         db.push(`filtre_${id}`, newSettings['kelimefiltre'])
+           }
          
       }
       

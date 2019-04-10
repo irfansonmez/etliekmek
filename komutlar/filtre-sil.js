@@ -8,17 +8,17 @@ const prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pr
 const argss = args[0]
   
   
-if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.')
-  if(s.length <= 0) return message.channel.send('Bu sunucuda filtre bulunmuyor.')
-  if(!args[0]) return message.channel.send(`Silmek istediğiniz filtreyi girmeniz gerek örnek: **${prefix}filtre-sil <silmek istediğiniz filtre>**\nEğer eklediğiniz filtreleri hatırlamıyorsanız **${prefix}filtre-liste** yazarak görebilirsiniz.`)
-  
+//if(s === null) return message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.')
+  //if(s.length <= 0) return message.channel.send('Bu sunucuda filtre bulunmuyor.')
  
-if (!db.fetch(`filtre_${message.guild.id}`).includes(args[0])) return message.reply("Sunucuda böyle bir filtre bulunmuyor")
+ 
 
+  if(db.fetch(`filtre_${message.guild.id}`) === null || db.fetch(`filtre_${message.guild.id}`).length <= 0) { message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.') } else {
   
+ if(!args[0]) return message.channel.send(`Silmek istediğiniz filtreyi girmeniz gerek örnek: **${prefix}filtre-sil <silmek istediğiniz filtre>**\nEğer eklediğiniz filtreleri hatırlamıyorsanız **${prefix}filtre-liste** yazarak görebilirsiniz.`)
   
+      if (!db.fetch(`filtre_${message.guild.id}`).includes(args[0])) return message.reply("Sunucuda böyle bir filtre bulunmuyor")
 
-      
     
 let x = args[0] 
 let arr = []
@@ -35,7 +35,7 @@ db.set(`filtre_${message.guild.id}`, arr)
     .setColor("RANDOM")
    .setDescription(`Sunucudaki **${args[0]}** filtresi silindi`) 
     message.channel.send(embed)
-  return
+  }
     
   
 

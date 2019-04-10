@@ -9,14 +9,15 @@ let filtre = await db.fetch(`filtre_${message.guild.id}`)
 
 //if(filtreler === null) return message.channel.send('Sununuza eklenmiş filtre bulunmuyor')
 
-if(filtre.length <= 0) return message.channel.send('Bu sunucuda filtre bulunmuyor.')
+if(db.fetch(`filtre_${message.guild.id}`) === null || db.fetch(`filtre_${message.guild.id}`).length <= 0) { message.channel.send('Sunucunuzda hiç eklenmiş filtre bulunmuyor.') } else {
+  
     var embed = new Discord.RichEmbed()
     .setColor("RANDOM")
     .setThumbnail(message.guild.iconURL)
     .setTitle(`${message.guild.name} | Kelime filtreleri`)//çakma coder seni, NERDEN ÇALIYON LAN İBNE AKSJDLGJAKSGKJSAJKSG
    .setDescription(filtre) 
     message.channel.send(embed)
-  
+}
 };
 
 exports.conf = { 
