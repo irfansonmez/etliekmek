@@ -61,7 +61,7 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
  // if (db.has(`yasak_${message.guild.id}_${cmd.help.name}`)){
     //  return message.channel.send(client.emojis.get(client.emojiler.hayır) + ' Bu komut sunucuda **yasaklanmıştır!**')
  // }
- /*
+ 
   let x = cmd.help.name
 let arr = []
 db.fetch(`yasakK_${message.guild.id}`).forEach(v => {
@@ -69,8 +69,7 @@ if (v !== x) {
 arr.push(v)
 }
 })
-*/
-if(db.has(`yasakK_${message.guild.id}`).includes(cmd.help.name)) return message.channel.send('yooo');
+if(db.has(`yasakK_${message.guild.id}`).includes(cmd.help.name) === true) return message.channel.send('yooooo')
   db.add(`sunucuxp_${message.guild.id}`, 1)
   
   var y = db.fetch(`sunucuxp_${message.guild.id}`);
