@@ -53,7 +53,7 @@ if (db.has(`prefix_${message.guild.id}`) === false) {
 	const dil = client[dill]
   
   
-    const embed22 = new Discord.RichEmbed()
+    const embed22 = new Discord.RichEmbed().
   .setColor('RANDOM')
   .setDescription(`**${message.guild.name}** Adlı sunucuda **${message.author.tag}** adlı kullanıcı **${cmd.help.name}** komutunu kullandı.`)
 //  client.guilds.get('527117313728708620').channels.get('557199135405506560').send(embed22)
