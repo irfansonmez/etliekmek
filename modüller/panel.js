@@ -757,7 +757,7 @@ res.json({"hata":`Yasaklanan komut bulunamadı veya silinmiş.`});
 
 let x = komutf
 let arr = []
-db.fetch(`yasakk_${req.params.guildID}`).forEach(v => {
+db.fetch(`yasakK_${req.params.guildID}`).forEach(v => {
 if (v !== x) {
 arr.push(v)
 }
