@@ -25,7 +25,7 @@ if (p == null) prefix = client.ayarlar.prefix
 
     //await db.push(`yasak_${message.guild.id}_${command.help.name}`, command.help.name)
     message.channel.send(`${client.emojis.get(client.emojiler.evet)} Komut başarıyla **sunucuda yasaklandı!** Tekrar aktif etmek için; \`${prefix}komut-yasakla ${args[0]}\``)
-    await db.push(`yasak_${message.guild.id}_${command.conf.aliases[0] ? command.conf.aliases.join(', ') : 'Bulunmuyor'}`, command.conf.aliases[0])
+  //  await db.push(`yasak_${message.guild.id}_${command.conf.aliases[0] ? command.conf.aliases.join(', ') : 'Bulunmuyor'}`, command.conf.aliases[0])
     }
   }
 };
