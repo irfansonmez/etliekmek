@@ -80,8 +80,10 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
       
      
          if (newSettings['kYasak']) {
-        db.push(`yasakK_${id}`, newSettings['kYasak'])
-         }      
+        db.push(`yasak_${id}_${newSettings['kYasak']}`, newSettings['kYasak'])
+        db.push(`yasak_${id}_${client.commands.get(newSettings['kYasak']).conf.aliases[0] ? client.commands.get(newSettings['kYasak']).conf.aliases.join(', ') : 'Bulunmuyor'}`, client.commands.get(newSettings['kYasak']).conf.aliases[0])
+         }
+      
       
       
 if (newSettings['küfürEngel'] === 'aktif') {
