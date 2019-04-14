@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
   var ka = client.emojis.get(client.emojiler.kapalıA);
 
 
-  
+
   const sayfa = [`${message.guild.name} | Ayarları
 
 ${y}**Sunucu prefixi** ${prefix}
