@@ -91,7 +91,9 @@ module.exports = (client) => {
   app.get("/", (req, res) => {
     yukle(res, req, "anasayfa.ejs")
   });
-  
+   app.get("/", (req, res) => {
+    yukle(res, req, "deneme.ejs")
+  });
  
 
   app.get("/giris", (req, res, next) => {
@@ -165,6 +167,9 @@ module.exports = (client) => {
     yukle(res, req, "anasayfa.ejs");
   });
   
+   app.get("/deneme", (req, res) => {
+    yukle(res, req, "deneme.ejs");
+  });
   app.get("/komutlar", (req, res) => {
     yukle(res, req, "komutlar.ejs");
   });
