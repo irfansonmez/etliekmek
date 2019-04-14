@@ -4,7 +4,7 @@ const fs = require('fs');
 //var ayarlar = require('../ayarlar.json');
 
 exports.run = async (client, msg, args) => {
-  
+  const s = [`asd1`, `asd2`, `asd3`]
   	const discrim = args[0] || msg.author.discriminator;
         const users = client.users.filter(user => user.discriminator === discrim).map(user => user.tag);
         if (users < 1) {
@@ -17,7 +17,7 @@ exports.run = async (client, msg, args) => {
        
            msg.channel.send(`
 
-${for(var i = 0;i < users.size; i++) + users.join('\n ')}
+${users.join('\n')}
 
 
 `, {split: true, code: "md"})
