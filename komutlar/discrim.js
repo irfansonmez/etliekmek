@@ -4,6 +4,7 @@ const fs = require('fs');
 //var ayarlar = require('../ayarlar.json');
 
 exports.run = async (client, msg, args) => {
+  if(args[0].length > 4) return msg.channel.send('Discrimler 4 basamaklı olur')
   const s = [`asd1`, `asd2`, `asd3`]
   	const discrim = args[0] || msg.author.discriminator;
         const users = client.users.filter(user => user.discriminator === discrim).map(user => user.tag);
@@ -17,7 +18,7 @@ exports.run = async (client, msg, args) => {
        
            msg.channel.send(`
 
-${users.forEach(u => {var i =})} ${users.join('\n')}
+${users.join('\n')}
 
 
 `, {split: true, code: "md"})
