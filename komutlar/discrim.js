@@ -17,7 +17,7 @@ exports.run = async (client, msg, args) => {
        
            msg.channel.send(`
 
-${users.join('\n')}
+${users.forEach(u => {var i =})} ${users.join('\n')}
 
 
 `, {split: true, code: "md"})
