@@ -21,8 +21,8 @@ module.exports = (client) => {
   
   const bilgiler = {
     oauthSecret: "a4zpplghBRL3YGTGLUZLPWuRi6LZKMmb",
-    callbackURL: `http://panel.konyatr.ml/callback`,
-    domain: `http://panel.konyatr.ml`
+    callbackURL: `https://konyatra.herokuapp.com/callback`,
+    domain: `https://konyatra.herokuapp.com`
   };
   
    console.log('BAŞARILI')
