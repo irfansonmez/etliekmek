@@ -1917,4 +1917,4 @@ client.on("message", async msg => {
   ///////////// SEVİYE  
 
 
-client.login('NTgwODMxODg4MDAwOTQyMTQz.XYuong.7jrKl-NV-jCwf9DfJGia33DegMc')
+client.login('NTgwODMxODg4MDAwOTQyMTQz.XYuseg.6sjzFx8I3lGKkFmjued40-Prnpo')
