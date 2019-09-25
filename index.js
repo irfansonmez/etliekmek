@@ -27,6 +27,7 @@ const chalk = require('chalk');
 const fs = require('fs');
 const { stripIndents } = require('common-tags');
 const moment = require('moment');
+const ms = require('parse-ms');
 
 
 const db = require('quick.db');
@@ -49,37 +50,37 @@ client.config = require("./config.js");
 client.emojiler = {
 
    "gold": "532931814730366980",  //?PARAM DAKİ ALTIN EMOJİSİ      
-   "paraGitti": "533379120722214937",  // X İŞARETİ          
-   "paraGitmedi": "533379123356237835", // TİK İŞARETİ      
+   "paraGitti": "596113587853066254",  // X İŞARETİ          
+   "paraGitmedi": "596113587823443988", // TİK İŞARETİ      
    "paraROZET": "533265960002650123", // PARA İLE ALINAN YILDIRIM ROZET EMOJİSİ  
    "onayRozet": "527573460814135306" , // ONAY ROZETİ
    "modRozet": "539489890014855178", // MOD ROZETİ
    "yetkiliRozet": "539489890434285568", // YETKİLİ ROZETİ
    "destekçiRozet": "539489889977237530",
-   "evet": "533379120722214937",  // TİK İŞARET       
-   "hayır": "533379123356237835", // X İŞARETİ  
-   "kendineParaYollama": "534004856558714890", // KENDİNE PARA ATMAYA ÇALIŞANLAR İÇİN SİNİRLİ EMOJİSİ      
+   "evet": "596113587823443988",  // TİK İŞARET       
+   "hayır": "596113587853066254", // X İŞARETİ  
+   "kendineParaYollama": "624326629921128457", // KENDİNE PARA ATMAYA ÇALIŞANLAR İÇİN SİNİRLİ EMOJİSİ      
    "konfeti": "535023706104266762", // MESLEK SAHİBİ OLUNCA RENGARENK KONFETİ ATIYOR  
-   "yukleniyor": "536478214013583372", // YÜKLENİYOR EMOJİ İŞTE :D     
+   "yukleniyor": "615150130320113664", // YÜKLENİYOR EMOJİ İŞTE :D     
    "sinirli": "534004856558714890", // TİTREYEN SİNİRLİ :D       
    "mutlu": "536478990597095424", // MUTLU EMOJİ                   
-   "rahatsızetme": "536480419953115175", // RAHATSIZ ETMEYİN EMOJİSİ    
-   "çevrimiçi": "536480420318150667", // ÇEVRİMİÇİ EMOJİSİ  
-   "yayıncı": "537015282192089099", // YAYINCI EMOJİSİ 
-   "çevrimdışı": "536480420393648129", // ÇEVRİM DIŞI EMOJİSİ  
-   "boşta": "536480419437084673", // BOŞTA EMOJİSİ     
-   "bot": "536480420062298113", // BOT EMOJİSİ          
-   "polis": "536480421685362699", // POLİS EMOJİ   
-   "Yvar": "533379120722214937", // YETKİLERİM KOMUDUNDAKİ TİK İŞARETİ
-   "Yyok": "533379123356237835", // YETKİLERİM KOMUDUNDAKİ X İŞARETİ
+   "rahatsızetme": "572160230775848961", // RAHATSIZ ETMEYİN EMOJİSİ    
+   "çevrimiçi": "572160231153598464", // ÇEVRİMİÇİ EMOJİSİ  
+   "yayıncı": "615895130553188352", // YAYINCI EMOJİSİ 
+   "çevrimdışı": "572160231493206016", // ÇEVRİM DIŞI EMOJİSİ  
+   "boşta": "572160231472234589", // BOŞTA EMOJİSİ     
+   "bot": "615897544257437741", // BOT EMOJİSİ          
+   "polis": "618475039691636738", // POLİS EMOJİ   
+   "Yvar": "558194776172658689", // YETKİLERİM KOMUDUNDAKİ TİK İŞARETİ
+   "Yyok": "596113587853066254", // YETKİLERİM KOMUDUNDAKİ X İŞARETİ
    "yan": "538809641036152853", // > GİBİ EMOJİ İŞTE :ç
    "kalpSarılmalı": "561146492648161284",
    "olumlu": "",
    "olumsuz": "",
   
   // AYARLAR KOMUDUNDAKİ AÇIK KAPALI EMOJİLERİ >>>>>>>>>>>>>>>>>
-  "kapalıA": "557283240516517953",
-  "açıkA": "557283240679833699",
+  "kapalıA": "590150824798453760",
+  "açıkA": "590150824873820173",
   
   // AÇIK BONUS EMOJİLERİ -------------- >>>>>>>>>>
   
@@ -98,24 +99,24 @@ client.emojiler = {
 }
 
 client.ayarlar = {
-        "oynuyor": "?yardım | ?davet | panel.ryker.xyz | İstediğiniz komutları ?tavsiye ile bildiriniz | Destek sunucumuza gelmeyi ve bota oy vermeyi unutmayın. Web paneli AÇILDI!!!",
-        "official_sahip": "507803933557915652",
-        "sahip": ['336869318874890241',"487515609815580672", "530706106599866380"],
+        "oynuyor": "k!yardım | panel.konyatr.ml",
+        "official_sahip": "580454771643777031",
+        "sahip": ['580454771643777031',"580454771643777031", "580454771643777031"],
         "yardimcilar": [''],
-        "isim": "RYKER",
-        "botD": "https://discordapp.com/oauth2/authorize?client_id=516600125649453066&scope=bot&permissions=2146958847",
-        "webS": "http://ryker.tk",
-        "web": "https://ryker.tk",
-        "dblO": "https://discordbots.org/bot/516600125649453066/vote",
-        "dbl": "https://discordbots.org/bot/516600125649453066",
-        "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxNjYwMDEyNTY0OTQ1MzA2NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTUxNjE4MDEwfQ.k435Nz8LEyG2uMQdtuKBOeDanzLi7u7-O5mFQnnuvRE",
-        "webpanel": "https://gelistirme.glitch.me/",
+        "isim": "KONYA TR",
+        "botD": "https://discordapp.com/oauth2/authorize?client_id=580831888000942143&scope=bot&permissions=2146958847",
+        "webS": "http://panel.konyatr.ml",
+        "web": "http://panel.konyatr.ml",
+        "dblO": "https://discordbots.org/bot/580831888000942143/vote",
+        "dbl": "https://discordbots.org/bot/580831888000942143",
+        "dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4MDgzMTg4ODAwMDk0MjE0MyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTY2NjU3ODg4fQ.40Ea52pZjkdd70c4TrS3JO4S6CHyakeACmkzVvNIRVk",
+        "webpanel": "http://panel.konyatr.ml",
         "versiyon": "1.0.0",
-        "prefix": "?",
+        "prefix": "k!",
         "renk":  "DARKBLUE",
         "version":  "1.0.0",
  };
-client.avatarURL = `https://cdn.discordapp.com/avatars/516600125649453066/c866646d27728bdb25fc39161c94a2e8.png?size=2048`
+client.avatarURL = `https://images-ext-2.discordapp.net/external/WpLsY51kpd9k8JTbOnFg8yZ8mspFnGeCakZRSLSNYCE/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/580831888000942143/864b59af6fb9dc51c9ebbb68fa45070e.png?width=300&height=300`
 const ayarlar = client.ayarlar;
 
 client.tr = require('./tr.js');
@@ -141,8 +142,6 @@ const log = message => {
 
 
 
-
-
 client.on("ready", async () => {
   
   client.appInfo = await client.fetchApplication();
@@ -153,7 +152,7 @@ client.on("ready", async () => {
   require("./modüller/panel.js")(client); 
   
   console.log(`${chalk.green(client.user.username)}${chalk.red(",")} ${chalk.blue(client.guilds.size)} ${chalk.yellow("Sunucu'ya")} ${chalk.red("ve")} ${chalk.blue(client.users.size.toLocaleString())} ${chalk.yellow("Kullanıcı'ya")} ${chalk.red("hizmet veriyor!")}`)
-  client.user.setStatus("online");
+  client.user.setStatus("dnd");
   client.user.setActivity(client.ayarlar.oynuyor, { type: 'WATCHING' });
   
 })
@@ -162,6 +161,7 @@ client.on("ready", async () => {
   
  
 
+////////anti spam//////
 
 
 
@@ -297,23 +297,66 @@ client.on('guildMemberAdd', member => {
   }
 });
 
-
-
-client.on("message",async message => {
-  if (!message.guild) return;
-    let prefixyeni = db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.prefix;
-    let afk_kullanici = message.mentions.users.first() || message.author;
-    if(message.content.startsWith(prefixyeni+"afk")) return;
-  if (message.author.bot === true) return;
-    if(message.content.includes(`<@${afk_kullanici.id}>`))
-        if(db.has(`afks_${afk_kullanici.id}`)) {
-                message.channel.send(`**${client.users.get(afk_kullanici.id).tag}** adlı kullanıcı şuanda AFK! \n**Sebep:** \n${db.fetch(`afks_${afk_kullanici.id}`)}`)
-        }
+client.on('guildMemberAdd',async member => {
+  let user = client.users.get(member.id);
+  let chan = client.channels.get(db.fetch(`guvenlik${member.guild.id}`)) 
+       const Canvas = require('canvas')
+       const canvas = Canvas.createCanvas(360,100);
+       const ctx = canvas.getContext('2d');
   
-        if(db.has(`afks_${message.author.id}`)) {
-                message.reply("başarıyla AFK modundan çıktın!")
-            db.delete(`afks_${message.author.id}`)
-        }
+  const resim1 = await Canvas.loadImage('https://cdn.discordapp.com/attachments/591299755976425493/614151181752860672/yhosgeldirrn.png')
+    const resim2 = await Canvas.loadImage('https://cdn.discordapp.com/attachments/591299755976425493/614164419768877056/yhosgeldirrn.png')
+    const kurulus = new Date().getTime() - user.createdAt.getTime();
+    const gün = moment.duration(kurulus).format("D")   
+    var kontrol;
+      if (kurulus > 2629800000) kontrol = resim2
+    if (kurulus < 2629800000) kontrol = resim1
+
+       const background = await Canvas.loadImage('https://cdn.discordapp.com/attachments/582167338405593088/619547018339024896/vortex-guvenlik.png');
+       ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+   
+
+
+  const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+  ctx.drawImage(kontrol,0,0,canvas.width, canvas.height)
+  ctx.beginPath();
+    ctx.lineWidth = 4;
+  ctx.fill()
+    ctx.lineWidth = 4;
+  ctx.arc(180, 46, 36, 0, 2 * Math.PI);
+    ctx.clip();
+  ctx.drawImage(avatar, 143,10, 73, 72  );
+
+   
+       const attachment = new Discord.Attachment(canvas.toBuffer(), 'STARKs-güvenlik.png');
+    chan.send(attachment)
+});
+client.on("message", async message => {
+  
+  if(message.author.bot) return;
+  if(!message.guild) return;
+  if(message.content.includes(`${client.ayarlar.prefix}afk`)) return;
+  
+  if(await db.fetch(`afk_${message.author.id}`)) {
+        let süre = await db.fetch(`afk_süre_${message.author.id}`);
+    let timeObj = ms(Date.now() - süre);
+    db.delete(`afk_${message.author.id}`);
+    db.delete(`afk_süre_${message.author.id}`);
+    message.reply("<:onay:558194776755666946> Başarıyla AFK modundan çıktın."+" ``"+timeObj.days+` gün `+timeObj.hours+` saat `+timeObj.minutes +` dakika `+"`` "+"süre boyunca AFK'tın.");
+  }
+  
+  var USER = message.mentions.users.first();
+  if(!USER) return;
+  var REASON = await db.fetch(`afk_${USER.id}`);
+  
+  if(REASON) {
+    let süre = await db.fetch(`afk_süre_${USER.id}`);
+    let timeObj = ms(Date.now() - süre);
+//    message.channel.send(`${USER.tag} adlı kullanıcı ${REASON} sebebiyle ```+timeObj.hours+`h`+timeObj.minutes+`m`+timeObj.seconds +`s`+ ```dır AFK.` )
+    
+    //    message.channel.send(USER.tag+'adlı kullanıcı'+```${REASON}``` +'sebebiyle,'+ ```${timeObj.hours}saat ${timeObj.minutes}dakika ${timeObj.seconds}saniye```+"dir AFK.' ' )
+        message.reply("``"+USER.username+"``"+" adlı kullanıcı "+"``"+REASON+"``"+" sebebiyle " +"``"+timeObj.days+` gün `+timeObj.hours+` saat `+timeObj.minutes +` dakika`+"``"+ "'dır AFK.")
+  }
   
   
     if (!message.guild) return;
@@ -336,7 +379,130 @@ let prefix = await db.fetch(`prefix_${message.guild.id}`) || client.ayarlar.pref
     
   }
 });
+client.on("message", async message => {
+  
+  let client = message.client;
+  
+  
+  //if (!client.users.get(client.user.id).hasPermission("SEND_MESSAGES")) return message.reply(`Yeterli izinlere sahip değilim! \n**İhtiyacım Olan Yetki:** \n\`Mesaj Gönder\``)
 
+  if (!message.guild) return;
+
+  let prefix;
+  
+if (db.has(`prefix_${message.guild.id}`) === true) {
+  prefix = db.fetch(`prefix_${message.guild.id}`)
+}
+  
+if (db.has(`prefix_${message.guild.id}`) === false) {
+  prefix = ayarlar.prefix
+}
+  
+   const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+    const p = String(message.content.match(prefixMention));
+  
+  if (message.author.bot) return;
+  if (!message.content.startsWith(p)) return;
+  const args = message.content.slice(p.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  
+  let cmd;
+  if (client.commands.has(command)) {
+    cmd = client.commands.get(command);
+  } else if (client.aliases.has(command)) {
+    cmd = client.commands.get(client.aliases.get(command));
+   } else
+    if (client.english.has(command)) {
+    cmd = client.english.get(command);
+    }
+  
+  
+  
+
+  if (cmd) {
+    
+    if (db.has(`karalist_${message.author.id}`) === true) {
+    let embed = new Discord.RichEmbed()
+    .setColor("RANDOM")
+    .setDescription("Sen botun komutlarını kullanamazsın! Çünkü botun kara listesindesin!")
+    message.channel.send({embed: embed})
+    message.react("😡")
+    return
+  };
+    
+    //if (ayarlar.sahip.includes(message.author.id)) return;
+    
+    if (cmd.conf.enabled === false) {
+      if (!ayarlar.sahip.includes(message.author.id) && !client.ayarlar.sahip.includes(message.author.id)) {
+        const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komut şuanda sunucularda kullanıma kapalıdır! (Yapım aşamasındadır)`)
+					.setColor("RANDOM")
+				message.channel.send({embed})
+				return
+      }
+    }
+    
+    if (cmd.conf.bakim === false) {
+      //if (!ayarlar.sahip.includes(message.author.id) && !ayarlar.official_sahip.includes(message.author.id)) {
+        const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komut bakımdadır.`)
+					.setColor("RANDOM")
+				message.channel.send({embed})
+				/*return
+      }*/
+    }
+    
+    if (cmd.conf.permLevel === 1) {
+			if (!message.member.hasPermission("MANAGE_MESSAGES") & !client.ayarlar.sahip.includes(message.author.id)) {
+				const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komutu kullanabilmek için Mesajları Yönet iznine sahip olmalısın!`)
+          .setColor("RANDOM")
+				message.channel.send({embed})
+				return
+			}
+		}
+		if (cmd.conf.permLevel === 2) {
+			if (!message.member.hasPermission("KICK_MEMBERS") & !client.ayarlar.sahip.includes(message.author.id)) {
+				const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komutu kullanabilmek için Üyeleri At iznine sahip olmalısın!`)
+					.setColor("RANDOM")
+				message.channel.send({embed})
+				return
+			}
+		}
+    if (cmd.conf.permLevel === 3) {
+			if (!message.member.hasPermission("BAN_MEMBERS") & !client.ayarlar.sahip.includes(message.author.id)) {
+				const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komutu kullanabilmek için Üyeleri Yasakla iznine sahip olmalısın!`)
+					.setColor("RANDOM")
+				message.channel.send({embed})
+				return
+			}
+		}
+		if (cmd.conf.permLevel === 4) {
+			if (!message.member.hasPermission("ADMINISTRATOR") & !client.ayarlar.sahip.includes(message.author.id)) {
+				const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komutu kullanabilmek için Yönetici iznine sahip olmalısın!`)
+					.setColor("RANDOM")
+				message.channel.send({embed})
+				return
+			}
+		}
+		if (cmd.conf.permLevel === 5) {
+			if (!ayarlar.sahip.includes(message.author.id) && !client.ayarlar.sahip.includes(message.author.id)) {
+				const embed = new Discord.RichEmbed()
+					.setDescription(`Bu komutu sadece Bot Sahibi kullanabilir!`)
+					.setColor("RANDOM")
+				message.channel.send({embed})
+				return
+			}
+		}
+    
+    cmd.run(client, message, args,);
+    
+  }
+  
+});
 client.on('guildCreate', async guild => {
    var konum = ''
         if(guild.region === "russia") {
@@ -420,7 +586,7 @@ client.on('guildCreate', async guild => {
         }
   
        
-        var guildhook = new Discord.WebhookClient("551481876062273570", "3DnJc2MXtFgtNYTyE93c3Lw3o9GQjzTf-gHb-cE1RzPGxP_KyW5Z6Iun5hNoIPdZR062")
+  var guildhook = new Discord.WebhookClient("614827529068478484", "jfX_NliLr92JT4WGN9q2Uhywp2nFVjAztdnw-brF9aXn3ge43yhI9Ubh75_FWRs-m64G")
         //https://discordapp.com/api/webhooks/551481876062273570/3DnJc2MXtFgtNYTyE93c3Lw3o9GQjzTf-gHb-cE1RzPGxP_KyW5Z6Iun5hNoIPdZR062
         
         const server = new RichEmbed()
@@ -527,7 +693,7 @@ client.on("guildDelete", async guild => {
   
         
 
-                var guildhook = new Discord.WebhookClient("551481876062273570", "3DnJc2MXtFgtNYTyE93c3Lw3o9GQjzTf-gHb-cE1RzPGxP_KyW5Z6Iun5hNoIPdZR062")
+  var guildhook = new Discord.WebhookClient("614827831754620938", "4x2Angtd13G0bDXXIByRNaASXUMuaMO1F7DzEE8narl-_g2fOUIkvBCqymabrkLNtDeC")
         // https://discordapp.com/api/webhooks/538374610669010954/BcMbfOHukB1iyyy-lFYPbUkjm1VdcDxOdRS35urWLkqjOnM5reZ6duYmW5yaudgGpVDx
            const server = new RichEmbed()
   .setColor('RED')
@@ -796,563 +962,7 @@ client.on("guildMemberRemove", async member => {
 });
 
 
-const YouTube = require('simple-youtube-api');
-const ytdl = require('ytdl-core');
-const youtube = new YouTube('AIzaSyCJrGp1nROqIEp9mDXd1iV-gl5wYXNeDMs');
-const queue = new Map();
 
-client.on("message", async message => {
-  
-  if (!message.guild) return;
-  
-  let prefix = await db.fetch(`prefix_${message.guild.id}`) || "r!";
-  
-  var args = message.content.substring(prefix.length).split(" ");
-    if (!message.content.startsWith(prefix)) return;
-  var searchString = args.slice(1).join(' ');
-  var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
-  var serverQueue = queue.get(message.guild.id);
-  /*
-   var voiceChannel = message.member.voiceChannel;
-    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-      var playlist = await youtube.getPlaylist(url);
-      var videos = await playlist.getVideos();
-      for (const video of Object.values(videos)) {
-        var video2 = await youtube.getVideoByID(video.id);
-        await handleVideo(video2, message, voiceChannel, true);
-      }
-  
-  */
-    switch (args[0].toLowerCase()) {
-        
-      case "oynat":
-    var voiceChannel = message.member.voiceChannel;
-        
-    const embed = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription("Dinlemek istediğin şarkıyı yazmalısın! (Şarkı ismi veya Youtube URLsi)")
-    if (!url) return message.channel.send(embed);
-        
-    const voiceChannelAdd = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Lütfen herhangi bir sesli kanala katılınız.`)
-    if (!voiceChannel) return message.channel.send(voiceChannelAdd);
-    var permissions = voiceChannel.permissionsFor(message.client.user);
-    if (!permissions.has('CONNECT')) {
-      const warningErr = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Herhangi bir sesli kanala katılabilmek için yeterli iznim yok.`)
-      return message.channel.send(warningErr);
-    }
-    if (!permissions.has('SPEAK')) {
-      const musicErr = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Müzik açamıyorum/şarkı çalamıyorum çünkü kanalda konuşma iznim yok veya mikrofonum kapalı.`)
-      return message.channel.send(musicErr);
-    }
-      if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-      var playlist = await youtube.getPlaylist(url);
-      var videos = await playlist.getVideos();
-      for (const video of Object.values(videos)) {
-        var video2 = await youtube.getVideoByID(video.id);
-        await handleVideo(video2, message, voiceChannel, true);
-      }
-      const PlayingListAdd = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`[${playlist.title}](https://www.youtube.com/watch?v=${playlist.id}) İsimli şarkı oynatma listesine Eklendi.`)
-      return message.channel.send(PlayingListAdd);
-    } else {
-      try {
-        var video = await youtube.getVideo(url);
-      } catch (error) {
-      try {
-          var videos = await youtube.searchVideos(searchString, 10);
-          
-          var r = 1
-        
-          var video = await youtube.getVideoByID(videos[r - 1].id);
-        } catch (err) {
-          console.error(err);
-          const songNope = new RichEmbed()
-          .setColor("RANDOM")
-          .setDescription(`Aradığınız isimde bir şarkı bulamadım.`) 
-          return message.channel.send(songNope);
-        }
-      }
-      return handleVideo(video, message, voiceChannel);
-    }
-    break
-       case "tekrar":
-       const e = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`) 
-    if (!message.member.voiceChannel) return message.channel.send(e);
-    const p = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(p);
-        
-    var u = serverQueue.songs[0]
-        
-    /*var pla = await youtube.getPlaylist(u);
-      var v = await pla.getVideos();*/
-      var vi2 = await youtube.getVideoByID(u.id);
-      await handleVideo(vi2, message, voiceChannel, true);
-    const PlayingListAdd = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`[${u.title}](https://www.youtube.com/watch?v=${u.id}) İsimli şarkı bitince tekrar oynatılacak.`)
-    return message.channel.send(PlayingListAdd);
-        
-    break;
-      case "geç":
-      const err0 = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`) 
-    if (!message.member.voiceChannel) return message.channel.send(err0);
-    const err05 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(err05);
-    const songSkip = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla geçildi!`)
-    serverQueue.connection.dispatcher.end('');
-    message.channel.send(songSkip)
-    return undefined;
-break;
-      case "durdur":
-    const err1 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Bir sesli kanalda değilsin.`)  
-    if (!message.member.voiceChannel) return message.channel.send(err1);
-    const err2 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(err2);
-    serverQueue.songs = [];
-    const songEnd = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla durduruldu ve odadan ayrıldım!`)
-    serverQueue.connection.dispatcher.end('');
-    message.channel.send(songEnd);
-    return undefined;
-break;
-      case "ses":
-      const asd1 = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`)  
-    if (!message.member.voiceChannel) return message.channel.send(asd1);
-    const asd2 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(asd2);
-
-    if (!args[1]) return message.reply("Ses seviyesi ayarlamak için bir sayı yaz!");
-    serverQueue.volume = args[1];
-    if (args[1] > 10) return message.channel.send(`Ses seviyesi en fazla \`10\` olarak ayarlanabilir.`)
-    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
-    const volumeLevelEdit = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Ayarlanan Ses Seviyesi: **${args[1]}**`)
-    return message.channel.send(volumeLevelEdit);
-break;
-      case "kuyruk":
-      var siralama = 0;
-        const a = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`)  
-    if (!message.member.voiceChannel) return message.channel.send(a);
-    const b = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(b);
-        
-    var k = serverQueue.songs.map(song => `${++siralama} - [${song.title}](https://www.youtube.com/watch?v=${song.id})`).join('\n').replace(serverQueue.songs[0].title, `**${serverQueue.songs[0].title}**`)
-        
-    const kuyruk = new Discord.RichEmbed()
-    .setColor("RANDOM")
-    .addField("Şarkı Kuyruğu", k)
-    return message.channel.send(kuyruk)
-break;
-case "duraklat":
-      if (serverQueue && serverQueue.playing) {
-        serverQueue.playing = false;
-        serverQueue.connection.dispatcher.pause();
-        const asjdhsaasjdha = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla duraklatıldı!`)
-      return message.channel.send(asjdhsaasjdha);
-    }
-    return message.channel.send('Şuanda herhangi bir şarkı çalmıyor.');
-break;
-      case "devamet":
-      if (serverQueue && !serverQueue.playing) {
-        serverQueue.playing = true;
-        serverQueue.connection.dispatcher.resume();
-        const asjdhsaasjdhaadssad = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla devam ettiriliyor...`)
-      return message.channel.send(asjdhsaasjdhaadssad);
-    }
-    return message.channel.send('Şuanda herhangi bir şarkı çalmıyor.');
-  
-
-  return undefined;
-break;
-}
-async function handleVideo(video, message, voiceChannel, playlist = false) {
-  var serverQueue = queue.get(message.guild.id);
-  //console.log(video);
-  var song = {
-    id: video.id,
-    title: video.title,
-    durationh: video.duration.hours,
-    durationm: video.duration.minutes,
-		durations: video.duration.seconds,
-    url: `https://www.youtube.com/watch?v=${video.id}`,
-    thumbnail: `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`,
-    requester: message.author.id,
-  };
-  if (!serverQueue) {
-    var queueConstruct = {
-      textChannel: message.channel,
-      voiceChannel: voiceChannel,
-      connection: null,
-      songs: [],
-      volume: 3,
-      playing: true
-    };
-    queue.set(message.guild.id, queueConstruct);
-
-    queueConstruct.songs.push(song);
-
-    try {
-      var connection = await voiceChannel.join();
-      queueConstruct.connection = connection;
-      play(message.guild, queueConstruct.songs[0]);
-    } catch (error) {
-      console.error(`Ses kanalına giremedim HATA: ${error}`);
-      queue.delete(message.guild.id);
-      return message.channel.send(`Ses kanalına giremedim HATA: ${error}`);
-    }
-  } else {
-    serverQueue.songs.push(song);
-    //console.log(serverQueue.songs);
-    if (playlist) return undefined;
-
-    const songListBed = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`[${song.title}](https://www.youtube.com/watch?v=${song.id}) isimli şarkı kuyruğa eklendi!`)
-    return message.channel.send(songListBed);
-  }
-  return undefined;
-}
-  function play(guild, song) {
-  var serverQueue = queue.get(guild.id);
-
-  if (!song) {
-    serverQueue.voiceChannel.leave();
-    voiceChannel.leave();
-    queue.delete(guild.id);
-    return;
-  }
-  //console.log(serverQueue.songs);
-
-  const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-    .on('end', reason => {
-      if (reason === 'İnternetten kaynaklı bir sorun yüzünden şarkılar kapatıldı.');
-      else console.log(reason);
-      serverQueue.songs.shift();
-      play(guild, serverQueue.songs[0]);
-    })
-    .on('error', error => console.error(error));
-  dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-  
-  const playingBed = new RichEmbed()
-  .setColor("RANDOM")
-  .setAuthor(`Şuanda Oynatılıyor`, "https://davidjhinson.files.wordpress.com/2015/05/youtube-icon.png")
-  .setDescription(`[${song.title}](${song.url})`)
-  .addField("Şarkı Süresi", `${song.durationm}:${song.durations}`, true)
-  .addField("Şarkıyı Açan Kullanıcı", `<@${song.requester}>`, true)
-  .setThumbnail(song.thumbnail)
-  serverQueue.textChannel.send(playingBed);
-}
-  
-  
-  //etiketli muzuk ewqeqw
-  
-  
-  const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
-    const p = String(message.content.match(prefixMention));
-  
-  if (message.author.bot) return;
-  if (!message.content.startsWith(p)) return;
-  
-  const arg = message.content.slice(p.length).trim().split(/ +/g);
-  
-    if (!message.content.startsWith(p)) return;
-  var searchString = arg.slice(1).join(' ');
-  var url = arg[1] ? arg[1].replace(/<(.+)>/g, '$1') : '';
-  var serverQueue = queue.get(message.guild.id);
-  
-    switch (arg[0].toLowerCase()) {
-        
-      case "oynat":
-    var voiceChannel = message.member.voiceChannel;
-        
-    const embed = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription("Dinlemek istediğin şarkıyı yazmalısın! (Şarkı ismi veya Youtube URLsi)")
-    if (!url) return message.channel.send(embed);
-        
-    const voiceChannelAdd = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Lütfen herhangi bir sesli kanala katılınız.`)
-    if (!voiceChannel) return message.channel.send(voiceChannelAdd);
-    var permissions = voiceChannel.permissionsFor(message.client.user);
-    if (!permissions.has('CONNECT')) {
-      const warningErr = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Herhangi bir sesli kanala katılabilmek için yeterli iznim yok.`)
-      return message.channel.send(warningErr);
-    }
-    if (!permissions.has('SPEAK')) {
-      const musicErr = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Müzik açamıyorum/şarkı çalamıyorum çünkü kanalda konuşma iznim yok veya mikrofonum kapalı.`)
-      return message.channel.send(musicErr);
-    }
-      if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-      var playlist = await youtube.getPlaylist(url);
-      var videos = await playlist.getVideos();
-      for (const video of Object.values(videos)) {
-        var video2 = await youtube.getVideoByID(video.id);
-        await handleVideo(video2, message, voiceChannel, true);
-      }
-      const PlayingListAdd = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`[${playlist.title}](https://www.youtube.com/watch?v=${playlist.id}) İsimli şarkı oynatma listesine Eklendi.`)
-      return message.channel.send(PlayingListAdd);
-    } else {
-      try {
-        var video = await youtube.getVideo(url);
-      } catch (error) {
-      try {
-          var videos = await youtube.searchVideos(searchString, 10);
-          
-          var r = 1
-        
-          var video = await youtube.getVideoByID(videos[r - 1].id);
-        } catch (err) {
-          console.error(err);
-          const songNope = new RichEmbed()
-          .setColor("RANDOM")
-          .setDescription(`Aradığınız isimde bir şarkı bulamadım.`) 
-          return message.channel.send(songNope);
-        }
-      }
-      return handleVideo(video, message, voiceChannel);
-    }
-    break
-       case "tekrar":
-       const e = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`) 
-    if (!message.member.voiceChannel) return message.channel.send(e);
-    const p = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(p);
-        
-    var u = serverQueue.songs[0]
-        
-    /*var pla = await youtube.getPlaylist(u);
-      var v = await pla.getVideos();*/
-      var vi2 = await youtube.getVideoByID(u.id);
-      await handleVideo(vi2, message, voiceChannel, true);
-    const PlayingListAdd = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`[${u.title}](https://www.youtube.com/watch?v=${u.id}) İsimli şarkı bitince tekrar oynatılacak.`)
-    return message.channel.send(PlayingListAdd);
-        
-    break;
-      case "geç":
-      const err0 = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`) 
-    if (!message.member.voiceChannel) return message.channel.send(err0);
-    const err05 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(err05);
-    const songSkip = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla geçildi!`)
-    serverQueue.connection.dispatcher.end('');
-    message.channel.send(songSkip)
-    return undefined;
-break;
-      case "durdur":
-    const err1 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Bir sesli kanalda değilsin.`)  
-    if (!message.member.voiceChannel) return message.channel.send(err1);
-    const err2 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(err2);
-    serverQueue.songs = [];
-    const songEnd = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla durduruldu ve odadan ayrıldım!`)
-    serverQueue.connection.dispatcher.end('');
-    message.channel.send(songEnd);
-    return undefined;
-break;
-      case "ses":
-      const asd1 = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`)  
-    if (!message.member.voiceChannel) return message.channel.send(asd1);
-    const asd2 = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(asd2);
-
-    if (!args[1]) return message.reply("Ses seviyesi ayarlamak için bir sayı yaz!");
-    serverQueue.volume = args[1];
-    if (args[1] > 10) return message.channel.send(`Ses seviyesi en fazla \`10\` olarak ayarlanabilir.`)
-    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
-    const volumeLevelEdit = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Ayarlanan Ses Seviyesi: **${args[1]}**`)
-    return message.channel.send(volumeLevelEdit);
-break;
-      case "kuyruk":
-      var siralama = 0;
-        const a = new RichEmbed()
-      .setColor("RANDOM")
-      .setDescription(`Bir sesli kanalda değilsin.`)  
-    if (!message.member.voiceChannel) return message.channel.send(a);
-    const b = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şuanda herhangi bir şarkı çalmıyor.`)
-    if (!serverQueue) return message.channel.send(b);
-        
-    var k = serverQueue.songs.map(song => `${++siralama} - [${song.title}](https://www.youtube.com/watch?v=${song.id})`).join('\n').replace(serverQueue.songs[0].title, `**${serverQueue.songs[0].title}**`)
-        
-    const kuyruk = new Discord.RichEmbed()
-    .setColor("RANDOM")
-    .addField("Şarkı Kuyruğu", k)
-    return message.channel.send(kuyruk)
-break;
-case "duraklat":
-      if (serverQueue && serverQueue.playing) {
-        serverQueue.playing = false;
-        serverQueue.connection.dispatcher.pause();
-        const asjdhsaasjdha = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla duraklatıldı!`)
-      return message.channel.send(asjdhsaasjdha);
-    }
-    return message.channel.send('Şuanda herhangi bir şarkı çalmıyor.');
-break;
-      case "devamet":
-      if (serverQueue && !serverQueue.playing) {
-        serverQueue.playing = true;
-        serverQueue.connection.dispatcher.resume();
-        const asjdhsaasjdhaadssad = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`Şarkı başarıyla devam ettiriliyor...`)
-      return message.channel.send(asjdhsaasjdhaadssad);
-    }
-    return message.channel.send('Şuanda herhangi bir şarkı çalmıyor.');
-  
-
-  return undefined;
-break;
-}
-async function handleVideo(video, message, voiceChannel, playlist = false) {
-  var serverQueue = queue.get(message.guild.id);
-  //console.log(video);
-  var song = {
-    id: video.id,
-    title: video.title,
-    durationh: video.duration.hours,
-    durationm: video.duration.minutes,
-		durations: video.duration.seconds,
-    url: `https://www.youtube.com/watch?v=${video.id}`,
-    thumbnail: `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`,
-    requester: message.author.id,
-  };
-  if (!serverQueue) {
-    var queueConstruct = {
-      textChannel: message.channel,
-      voiceChannel: voiceChannel,
-      connection: null,
-      songs: [],
-      volume: 3,
-      playing: true
-    };
-    queue.set(message.guild.id, queueConstruct);
-
-    queueConstruct.songs.push(song);
-
-    try {
-      var connection = await voiceChannel.join();
-      queueConstruct.connection = connection;
-      play(message.guild, queueConstruct.songs[0]);
-    } catch (error) {
-      console.error(`Ses kanalına giremedim HATA: ${error}`);
-      queue.delete(message.guild.id);
-      return message.channel.send(`Ses kanalına giremedim HATA: ${error}`);
-    }
-  } else {
-    serverQueue.songs.push(song);
-    //console.log(serverQueue.songs);
-    if (playlist) return undefined;
-
-    const songListBed = new RichEmbed()
-    .setColor("RANDOM")
-    .setDescription(`[${song.title}](https://www.youtube.com/watch?v=${song.id}) isimli şarkı kuyruğa eklendi!`)
-    return message.channel.send(songListBed);
-  }
-  return undefined;
-}
-  function play(guild, song) {
-  var serverQueue = queue.get(guild.id);
-
-  if (!song) {
-    serverQueue.voiceChannel.leave();
-    voiceChannel.leave();
-    queue.delete(guild.id);
-    return;
-  }
-  //console.log(serverQueue.songs);
-
-  const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-    .on('end', reason => {
-      if (reason === 'İnternetten kaynaklı bir sorun yüzünden şarkılar kapatıldı.');
-      else console.log(reason);
-      serverQueue.songs.shift();
-      play(guild, serverQueue.songs[0]);
-    })
-    .on('error', error => console.error(error));
-  dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-  
-  const playingBed = new RichEmbed()
-  .setColor("RANDOM")
-  .setAuthor(`Şuanda Oynatılıyor`, "https://davidjhinson.files.wordpress.com/2015/05/youtube-icon.png")
-  .setDescription(`[${song.title}](${song.url})`)
-  .addField("Şarkı Süresi", `${song.durationm}:${song.durations}`, true)
-  .addField("Şarkıyı Açan Kullanıcı", `<@${song.requester}>`, true)
-  .setThumbnail(song.thumbnail)
-  serverQueue.textChannel.send(playingBed);
-}
-  
-  
-  
-});
 
 client.on("message",async  message => {
 
@@ -2102,63 +1712,63 @@ message.channel.send(`:pencil: **| ${user.username} adlı kullanıcının rütbe
     
   
         if (command === "rozet-parar") {
-          if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channek.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+          if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channek.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
           const i = await db.set(`memberBadge6_${user.id}`, "https://cdn.discordapp.com/attachments/531535859594297364/533260601162465280/paraR.png")
               return message.channel.send(`${onay} Verdım aşkm.`)
           
       }
 
     if (command === "rozet-onayla") {
-        if (message.author.id !== "507803933557915652"  && message.author.id !== "336869318874890241" ) return message.channek.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031"  && message.author.id !== "580454771643777031" ) return message.channek.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge_${user.id}`, "https://cdn.discordapp.com/attachments/474685686075621376/480845736347435015/401725450470031362.png")
             return message.channel.send(`${onay} Kullanıcıya onay rozeti verilmiştir.`)
         
     }
   
     if (command === "rozet-konay" || command === "rozet-konayla") {
-        if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge_${user.id}`, "https://cdn.discordapp.com/attachments/461622592688619520/472923575049781268/profile.png")
             return message.channel.send(`${onay} Kullanıcıdan onay rozeti alınmıştır.`)
         
     }
   
     if (command === "rozet-yetkili" || command === "rozet-ekip") {
-        if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge2_${user.id}`, "https://cdn.discordapp.com/attachments/474685686075621376/480845736347435009/401723658491527168.png")
             return message.channel.send(`${onay} Kullanıcıya ekip rozeti verilmiştir.`)
         
     }
   
     if (command === "rozet-kyetkili" || command === "rozet-kekip") {
-        if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge2_${user.id}`, "https://cdn.discordapp.com/attachments/461622592688619520/472923575049781268/profile.png")
             return message.channel.send(`${onay} Kullanıcıdan ekip rozeti alınmıştır.`)
         
     }
   
     if (command === "rozet-destekci" || command === "rozet-destekçi") {
-        if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge3_${user.id}`, "https://cdn.discordapp.com/attachments/474685686075621376/480845737006202881/401725034453925889.png")
             return message.channel.send(`${onay} Kullanıcıya destekçi rozeti verilmiştir.`)
         
     }
   
     if (command === "rozet-kdestekci" || command === "rozet-kdestekçi") {
-        if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge3_${user.id}`, "https://cdn.discordapp.com/attachments/461622592688619520/472923575049781268/profile.png")
             return message.channel.send(`${onay} Kullanıcıdan destekçi rozeti alınmıştır.`)
         
     }
   
     if (command === "rozet-mod" || command === "rozet-moderator") {
-        if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge4_${user.id}`, "https://cdn.discordapp.com/attachments/474685686075621376/480845735647117312/401724520806875139.png")
             return message.channel.send(`${onay} Kullanıcıya moderator rozeti verilmiştir.`)
         
     }
   
     if (command === "rozet-kmod" || command === "rozet-kmoderator") {
-        if (message.author.id !== "507803933557915652" && message.author.id !== "336869318874890241" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
+        if (message.author.id !== "580454771643777031" && message.author.id !== "580454771643777031" ) return message.channel.send(`${red} Bu komutu kullanmak için yetkin bulunmuyor.`);
         const i = await db.set(`memberBadge4_${user.id}`, "https://cdn.discordapp.com/attachments/461622592688619520/472923575049781268/profile.png")
             return message.channel.send(`${onay} Kullanıcıdan moderator rozeti alınmıştır.`)
         
@@ -2248,37 +1858,6 @@ client.unload = command => {
   });
 };
 
-
- 
-
-  client.on("message", async msg => {
-  
-  const request = require('node-superfetch');
-  const db = require('quick.db');
-  
-    
-    
-
-    
-  if (msg.channel.type === "dm") return;
-  if(msg.author.bot) return;  
-  
-  if (msg.content.length > 7) {
-    
-    db.add(`puancik_${msg.author.id + msg.guild.id}`, 1)
-};
-
-  if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 250) {
-    
-    db.add(`seviye_${msg.author.id + msg.guild.id}`, 1)
-    
-    msg.channel.send(`Tebrik ederim <@${msg.author.id}>! Seviye atladın ve **${db.fetch(`seviye_${msg.author.id + msg.guild.id}`)}** seviye oldun!`)
-    
-    db.delete(`puancik_${msg.author.id + msg.guild.id}`)
-    
-  };
-});
-
 const DBL = require("dblapi.js");
 const dbl = new DBL(client.ayarlar.dbltoken, client);
 
@@ -2289,8 +1868,53 @@ client.on('ready', () => {
   }, 1800);
    });
 
-  dbl.getStats("516600125649453066").then(stats => {
+  dbl.getStats("580831888000942143").then(stats => {
     console.log('DBL ye gerekli verileri girdim.') // {"server_count":2,"shards":[]}
  });
 
-client.login('NTY0MDkzNDIzNzU0MjgwOTYw.XKi2-A.8NonFn5TRtv_I0IXsS5IBGOeqsM')
+ 
+
+  ///////////// SEVİYE  
+  
+client.on("message", async msg => {
+  const db = require('quick.db');
+  
+  if (msg.channel.type === "dm") return;
+  if(msg.author.bot) return;  
+  
+  if (msg.content.length > 1) {
+    
+    db.add(`puancik_${msg.author.id + msg.guild.id}`, 1)
+};
+
+  if (db.fetch(`puancik_${msg.author.id + msg.guild.id}`) > 200) {
+    
+    db.add(`seviye_${msg.author.id + msg.guild.id}`, 1)
+    
+
+    
+    db.delete(`puancik_${msg.author.id + msg.guild.id}`)
+    
+  };
+ 
+  if (db.has(`roll_${msg.guild.id}`) === true) {
+  if (db.has(`rollss_${msg.guild.id}`) === true) {
+    
+ var r = db.fetch(`roll_${msg.guild.id}`)
+ var s = db.fetch(`rollss_${msg.guild.id}`)
+  
+  if (db.fetch(`seviye_${msg.author.id + msg.guild.id}`) == s) {
+    if (msg.member.roles.has(msg.guild.roles.get(r).id) === false) {
+    msg.channel.send(`<@${msg.author.id}> başarıyla **${db.fetch(`seviye_${msg.author.id + msg.guild.id}`) - 1 || 0}** seviyeyi geçtin ve **${msg.guild.roles.get(r).name}** rolünü aldın!`)
+    msg.member.addRole(msg.guild.roles.get(r).id)
+    }
+  };
+
+}};
+  
+});
+
+  ///////////// SEVİYE  
+
+
+client.login('NTgwODMxODg4MDAwOTQyMTQz.XV0szA.ai5rDdGRWRFYsf1QKA0DBX0hFuA')
