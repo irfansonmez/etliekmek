@@ -86,7 +86,12 @@ db.set(`${kullanici.id}.resim`, yeniAyar['resim'])
          }
       
       
-      
+if (newSettings['antispam'] === 'aktif') {
+db.set(`antispam_${id}`, newSettings['antispam'])
+}
+if (!newSettings['antispam']) {
+db.delete(`antispam_${id}`)
+}      
 if (newSettings['küfürEngel'] === 'aktif') {
 db.set(`küfürE_${id}`, newSettings['küfürEngel'])
 }
@@ -105,8 +110,12 @@ db.set(`capsE_${id}`, newSettings['capslockEngel'])
 if (!newSettings['capslockEngel']) {
 db.delete(`capsE_${id}`)
 }
-      
-      
+   if (newSettings['kayitr']) {
+db.set(`kayıtR_${id}`, newSettings['kayitr']);
+}   
+ if (newSettings['mlog']) {
+db.set(`mLog_${id}`, newSettings['mlog']);
+}     
 if (newSettings['otorol']) {
 db.set(`otoR_${id}`, newSettings['otorol'])
 }
@@ -156,6 +165,14 @@ if (newSettings['dkanal']) {
 db.set(`dKanal_${id}`, newSettings['dkanal']);
 }
   
+if (newSettings['bot']) {
+db.set(`bot_${id}`, newSettings['bot']);
+}
+  
+
+if (newSettings['log']) {
+db.set(`log_${id}`, newSettings['log']);
+}
      } catch (err) {
       //console.error(err)
     };
